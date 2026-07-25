@@ -35,11 +35,18 @@ Two engines, both stdlib, both exact.
 
 *Edge-wise* (`lib/ryser.py`): build by edges, dedupe by canonical form (lex-least
 flattening over all part orders and edge orders, symbols renamed by first
-appearance). Calibration: reproduced f(3)=3, and settled **Ryser at r=3 outright**
-— the Bollobás set-pair bound gives |E| ≤ C(τ+r−1, r) = C(5,3) = 10 for a
-τ-critical family (re-derived here from the pairs (e_i, C_i), C_i a (τ−1)-cover of
-H−e_i disjoint from e_i), and exhaustive generation to m=10 found zero τ≥3
-classes in 26 s. Class counts 3, 8, 25, 64, 193, 550, 1714, 263, 0 at m=2..10.
+appearance). Calibration: reproduced f(3)=3, and settled **Ryser at r=3** —
+exhaustive generation to m=10 found zero τ≥3 classes in 26 s, and a τ-critical
+family with τ=t has at most C(t+r−1, r) = C(5,3) = 10 edges.
+
+Honesty on that last step, per the cited-input discipline: what is derived *here*
+is the reduction — for each edge e_i of a τ-critical family there is a
+(τ−1)-cover C_i of H−e_i with C_i ∩ e_i = ∅ (else τ would drop), and C_i meets
+every e_j with j ≠ i, so the pairs (e_i, C_i) form a cross-intersecting set-pair
+system with |e_i| = r, |C_i| = τ−1. The bound |E| ≤ C(r+τ−1, r) on such a system
+is **Bollobás's set-pair inequality**, cited, not proved here. So r=3 is settled
+modulo that citation. It is a calibration of the machinery, not a result of this
+lab, and nothing in cert 0001 depends on it. Class counts 3, 8, 25, 64, 193, 550, 1714, 263, 0 at m=2..10.
 Too slow at r=6: 187 s to reach m=5.
 
 *Column-wise* (`lib/columns.py`): H as 6 partitions of the edge set. Block =
