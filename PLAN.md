@@ -9,6 +9,14 @@ Founded and seeded per [BRIEF.md](BRIEF.md): the statement **m ≥ 21**, the pro
 setup, and nothing else. The seal (BRIEF §2) is intact — no sealed path has been
 read by this repo or by any subagent it has run.
 
+**Cert 0002 GREEN (23 checks):** the maximum-degree window. The per-edge
+pigeonhole (L4) — Σ_{v∈E} deg(v) ≥ m+5, of which cert 0001's (L2) is exactly the
+average — gives Δ ≥ 1+⌈(m−1)/6⌉ against Δ ≤ m−13. Re-running the pair count per Δ
+collapses **m = 19 to the single case Δ = 6**, where the degree-6 vertex's
+complement is an f(6)-extremal 13-edge object. Δ=4 there dies twice over, the
+second time by parity. m = 20 keeps Δ ∈ {5,6,7}, the Δ=5 case on a slack of 2.
+The floor is unchanged — this is a reduction, not an improvement.
+
 **Cert 0001 GREEN (22 checks):** the degree-cap ladder. A Ryser r=6 intersecting
 counterexample has **m ≥ 18** citing nothing, and **m ≥ 19** citing the single
 published constant f(6)=13. Exact values g(1)=1, g(2)=3, g(3)=5, g(4)=8 each
@@ -42,32 +50,35 @@ the cross-part union prune was added; both runs returned the same witness.
 
 ## Next, in order
 
-1. **Answer the standing audit question (BRIEF §3) — highest priority.** The seal
-   lifts only for the diff. Locate the step in the existing chain that does the
-   work the Open Lemma was meant to do, and check it on its own terms. Do this
-   *after* cert 0001 is committed, which it now is, so this is unblocked.
+1. **Lazy partition generation — the one engineering blocker.** `columns.py`
+   materialises the whole admissible partition list before searching. Fine at
+   m = 8 (2220 partitions); at m = 13 it does not finish enumerating. Generate
+   partitions on demand, indexed by the pair they must join, so the list is never
+   built. Everything below is gated on this.
 
-2. **Fold the cross-part cap into the counting ladder.** (L1) is currently used
-   only in its same-part form. The general form couples the six parts, so the
-   per-part optimisation becomes a joint one. Target: m = 19, where the slack is
-   only 9 and the maximising profile (6,5,3,2,2,1) saturates all five caps at
-   once — which forces the degree-6 vertex's complement to be an extremal
-   f(6)=13 object, six times over. Cheap to attempt, high information either way.
+2. **Close m = 19.** Cert 0002 reduces it to one case: Δ = 6, residual an
+   f(6)-extremal 13-edge object. Two routes — take the classification of those
+   from the literature, or generate them here once (1) lands. Then it is a finite
+   extension question: can six edges through one new common vertex lift such an
+   object to τ = 6? Note ABW: f(6) is *not* achieved only by linear hypergraphs,
+   so linearity may not be assumed.
 
-3. **Squeeze the linearity vice at m = 19.** Slack 9 means at most 9 units of
-   repeated agreement across 171 pairs, so the object is forced nearly linear;
-   Francetić–Herke–McKay–Wanless forbid it from being linear. Quantify how far
-   from linear a counterexample must be and compare against the slack.
+3. **m = 20, Δ = 5.** Slack 2 — the tightest number in the lab — and it forces
+   essentially every part to profile (5,5,5,2,2,1). Needs no classification input,
+   so it can run in parallel with (2). Kill it and m=20 loses a third of its cases.
 
-4. **Pin g(5) exactly.** Derived ≥ 12, published value 13. Deciding m = 12 at
-   τ ≥ 5 by the column engine would make the m ≥ 19 floor fully self-contained.
-   Pre-register before running: partition count and a measured cost estimate
-   first, budget and kill criterion written down, per the No-Noise Law.
+4. **Squeeze the linearity vice.** Slack bounds the total excess
+   X = Σ_pairs(λ−1), so a counterexample is forced nearly linear, while
+   Francetić–Herke–McKay–Wanless forbid it from being linear outright. Quantify
+   the minimum non-linearity and compare against the slack.
 
-5. **Only then, m = 20.** Not before 2–4 have been tried; the counting slack there
-   is 26 and growing, so the method that reached 19 will not reach 21 by
-   tightening. A different idea is required, which is exactly what the audit in
-   step 1 is looking for in the existing chain.
+5. **The standing audit question (BRIEF §3).** Unblocked since cert 0001 was
+   committed, and gated only on JD's seal ruling. Note that the localisation has
+   improved since that ruling was framed: the unverified remainder is now m = 19
+   in one case, plus m = 20 in three.
+
+6. **Pin g(5) exactly** (derived ≥ 12, published 13) to make the floor fully
+   self-contained. Pre-register cost first, per the No-Noise Law.
 
 ## Standing
 
