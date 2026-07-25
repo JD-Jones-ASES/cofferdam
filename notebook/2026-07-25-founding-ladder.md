@@ -46,8 +46,10 @@ every e_j with j ≠ i, so the pairs (e_i, C_i) form a cross-intersecting set-pa
 system with |e_i| = r, |C_i| = τ−1. The bound |E| ≤ C(r+τ−1, r) on such a system
 is **Bollobás's set-pair inequality**, cited, not proved here. So r=3 is settled
 modulo that citation. It is a calibration of the machinery, not a result of this
-lab, and nothing in cert 0001 depends on it. Class counts 3, 8, 25, 64, 193, 550, 1714, 263, 0 at m=2..10.
-Too slow at r=6: 187 s to reach m=5.
+lab, and nothing in cert 0001 depends on it.
+
+Class counts at m=2..10: 3, 8, 25, 64, 193, 550, 1714, 263, 0. Too slow at r=6 —
+187 s to reach m=5.
 
 *Column-wise* (`lib/columns.py`): H as 6 partitions of the edge set. Block =
 vertex, block size = degree, intersecting = the partitions jointly cover all

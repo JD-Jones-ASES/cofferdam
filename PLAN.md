@@ -26,9 +26,11 @@ never performed.
 ## Machinery
 
 `lib/ryser.py` — edge-wise: canonical form, exact τ by depth-bounded branching,
-isomorph-free layer generation. Validated: reproduces **f(3)=3** and, at the
-Bollobás ceiling C(5,3)=10 for τ-critical families, settles Ryser at r=3
-completely (zero τ≥3 classes on ≤10 edges, 26 s). Slow at r=6 — ~3 min by m=5.
+isomorph-free layer generation. Validated: reproduces **f(3)=3**, and settles
+Ryser at r=3 (zero τ≥3 classes on ≤10 edges, 26 s) **modulo the cited Bollobás
+set-pair inequality**, which caps a τ-critical family at C(τ+r−1, r) = 10 edges —
+the reduction to a set-pair system is ours, the inequality is not. Calibration
+only; cert 0001 does not depend on it. Slow at r=6 — ~3 min by m=5.
 
 `lib/columns.py` — column-wise: r partitions of the edge set. Prunes by the cap
 ladder, by τ-monotonicity in the columns fixed so far, by the cross-part union
