@@ -9,6 +9,12 @@ Founded and seeded per [BRIEF.md](BRIEF.md): the statement **m ≥ 21**, the pro
 setup, and nothing else. The seal (BRIEF §2) is intact — no sealed path has been
 read by this repo or by any subagent it has run.
 
+**Cert 0003 GREEN (12 checks):** the low-incidence bound (L5). Deficiency
+Δ−deg summed over an edge is ≤ B = 6Δ−(m+5) by (L4), so no edge has more than
+⌊B/θ⌋ parts of deficiency ≥ θ, giving Σ_i L_i(θ) ≤ m⌊B/θ⌋. At m=20, Δ=5 the
+budget is 5: at most 20 low incidences available against 28 required.
+**m = 20, Δ = 5 is dead** (primal and dual DPs agree). m=20 is now Δ ∈ {6,7}.
+
 **Cert 0002 GREEN (23 checks):** the maximum-degree window. The per-edge
 pigeonhole (L4) — Σ_{v∈E} deg(v) ≥ m+5, of which cert 0001's (L2) is exactly the
 average — gives Δ ≥ 1+⌈(m−1)/6⌉ against Δ ≤ m−13. Re-running the pair count per Δ
@@ -50,22 +56,26 @@ the cross-part union prune was added; both runs returned the same witness.
 
 ## Next, in order
 
-1. **Lazy partition generation — the one engineering blocker.** `columns.py`
-   materialises the whole admissible partition list before searching. Fine at
-   m = 8 (2220 partitions); at m = 13 it does not finish enumerating. Generate
-   partitions on demand, indexed by the pair they must join, so the list is never
-   built. Everything below is gated on this.
+1. **Column-wise star attachment — the one engineering blocker.** `peel.py`
+   attaches stars by assigning symbols, allowing up to Δ fresh labels per part
+   with no canonical ordering, so isomorphic stars are generated repeatedly and
+   deduped afterwards. What actually matters in part q is only the *partition* the
+   star induces on its Δ edges, and whether each class takes an old symbol or a
+   new one. Enumerate those partitions instead and the redundancy vanishes at
+   source. Everything below is gated on this.
 
-2. **Close m = 19.** Cert 0002 reduces it to one case: Δ = 6, residual an
-   f(6)-extremal 13-edge object. Two routes — take the classification of those
-   from the literature, or generate them here once (1) lands. Then it is a finite
-   extension question: can six edges through one new common vertex lift such an
-   object to τ = 6? Note ABW: f(6) is *not* achieved only by linear hypergraphs,
-   so linearity may not be assumed.
+2. **Close m = 19.** One case (cert 0002): Δ = 6, residual an f(6)-extremal
+   13-edge object R. Sharpened to a finite question — each star edge restricts to
+   a *minimum cover of R*, and τ(H) ≥ 6 iff every minimum cover of R is disjoint
+   from one of the six. So: does some extremal R admit six of its own minimum
+   covers, rainbow across one common five parts, dominating all its minimum covers
+   by disjointness? Cheap per R; the cost is producing R. ABW caveat: f(6) is
+   *not* achieved only by linear hypergraphs, so linearity may not be assumed.
 
-3. **m = 20, Δ = 5.** Slack 2 — the tightest number in the lab — and it forces
-   essentially every part to profile (5,5,5,2,2,1). Needs no classification input,
-   so it can run in parallel with (2). Kill it and m=20 loses a third of its cases.
+3. **m = 20, Δ ∈ {6,7}.** Δ=5 is closed by cert 0003. The remaining two have
+   slack 20 and 26, so counting will not do it — they need the same structural
+   route as m=19 (residual 14 and 13 edges respectively; the Δ=7 residual is again
+   f(6)-extremal, so it reuses whatever (2) builds).
 
 4. **Squeeze the linearity vice.** Slack bounds the total excess
    X = Σ_pairs(λ−1), so a counterexample is forced nearly linear, while

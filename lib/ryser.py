@@ -308,7 +308,7 @@ def generate(r: int, m_target: int, tau_target: int,
                 need2 = tau_target - (m_target - m2)
                 if need2 > 0 and tau(H2) < need2:
                     continue
-                c = canonical(H2)
+                c = canonical_fast(H2)
                 if c not in seen:
                     seen[c] = H2
         levels[m + 1] = list(seen.values())
@@ -335,3 +335,57 @@ def min_edges_for_tau(r: int, tau_target: int, m_cap: int, report=None):
         if report:
             report(m, len(pool), False)
     return None
+
+
+# --------------------------------------------------------------------------
+# faster canonical form: restrict the part permutations by an invariant
+# --------------------------------------------------------------------------
+
+def _edge_invariants(H: Sequence[Edge], r: int, deg: Dict[Vertex, int]):
+    return {e: tuple(sorted(deg[(i, e[i])] for i in range(r))) for e in H}
+
+
+def _part_invariants(H: Sequence[Edge], r: int):
+    """An isomorphism-invariant signature per part. Parts get permuted along with
+    their signatures, so sorting the signatures is well defined on iso classes."""
+    deg = degrees(H)
+    einv = _edge_invariants(H, r, deg)
+    out = []
+    for i in range(r):
+        syms: Dict[int, List] = {}
+        for e in H:
+            syms.setdefault(e[i], []).append(einv[e])
+        out.append(tuple(sorted((len(v), tuple(sorted(v))) for v in syms.values())))
+    return out
+
+
+def canonical_fast(H: Sequence[Edge]) -> Tuple:
+    """Same canonical form as `canonical`, but only over the part permutations
+    that sort the part invariants ascending -- and with the sorted invariant
+    sequence carried in the result.
+
+    Sound because the multiset of part invariants is isomorphism-invariant: two
+    hypergraphs are isomorphic iff they have the same sorted invariant sequence
+    AND the same lex-least flattening among the orders realising it. When every
+    part has a distinct invariant this collapses 720 part orders to one.
+    """
+    if not H:
+        return ()
+    r = len(H[0])
+    inv = _part_invariants(H, r)
+    order = sorted(range(r), key=lambda i: inv[i])
+    sig = tuple(inv[i] for i in order)
+    # part orders consistent with the sorted signature: permute within ties only
+    groups, start = [], 0
+    for k in range(1, r + 1):
+        if k == r or inv[order[k]] != inv[order[start]]:
+            groups.append(order[start:k])
+            start = k
+    best: Optional[Tuple[int, ...]] = None
+    for pick in itertools.product(*[itertools.permutations(gp) for gp in groups]):
+        sigma = [i for gp in pick for i in gp]
+        rows = [tuple(e[sigma[j]] for j in range(r)) for e in H]
+        got = _lexmin_under_row_order(rows, r, best)
+        if got is not None:
+            best = got
+    return (sig, best)

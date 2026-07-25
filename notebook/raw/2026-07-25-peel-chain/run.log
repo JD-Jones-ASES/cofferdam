@@ -1,0 +1,3 @@
+[    0.0s] CALIBRATION enumerate(4,3) = 0, expected 0 -> OK
+[   85.9s] CALIBRATION enumerate(5,3) = 12, expected 12 -> OK
+[  212.1s]     (m=4,t>=2) Delta=2: 6 residuals -> 49 new classes
