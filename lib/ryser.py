@@ -164,6 +164,14 @@ def extension_edges(H: Sequence[Edge], r: int, max_deg: Optional[int] = None) ->
     deg = degrees(H)
     fresh = list(nsym)  # next unused symbol in each part
     out = set()
+    # An edge ALREADY in H trivially meets every edge of H, so it satisfies the
+    # search below and would be returned as a valid "extension" -- generate()
+    # then appends it and canonical_fast keeps the duplicated row as a distinct
+    # object.  That inflated the non-extremal censuses (enumerate(6,3) read
+    # 53,906 for 53,871).  Extremal counts were never affected: a repeat at
+    # (5,3) would mean 4 distinct edges with tau >= 3, contradicting g(3) = 5.
+    # See DECISIONS.md D-025.
+    present = set(tuple(e) for e in H)
 
     def fill_free(assign: Tuple[Optional[int], ...]):
         free = [i for i in range(r) if assign[i] is None]
@@ -173,6 +181,8 @@ def extension_edges(H: Sequence[Edge], r: int, max_deg: Optional[int] = None) ->
             for i, s in zip(free, combo):
                 f[i] = s
             ft = tuple(f)
+            if ft in present:
+                continue
             if max_deg is not None:
                 if any(deg.get((i, s), 0) + 1 > max_deg for i, s in enumerate(ft)):
                     continue

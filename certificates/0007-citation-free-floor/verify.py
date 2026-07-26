@@ -254,10 +254,14 @@ head("(L8) under the citation-free ladder N = {1:2, 2:4, 3:6, 4:9, 5:11}")
 # (D-016; 0005 now starts at 12).  Sweeping
 # 12..20 here costs about a second and makes this certificate answer for its own
 # whole range.
+# D-016: a loop's range is part of its claim.  This used to test m = 11 and
+# m = 10 only, while its label quantified over every m <= 11.
 check("m <= 11 is impossible by (A) and (B) alone, before any search",
-      not profiles(11, N_FREE) and not profiles(10, N_FREE),
+      not any(profiles(mm, N_FREE) for mm in range(0, 12))
+      and not any(profiles(mm, N_CITED) for mm in range(0, 12)),
       "degrees within one part sum to m, so a part with >= 6 active vertices "
-      "each of degree >= 2 forces m >= 12")
+      "each of degree >= 2 forces m >= 12; checked at every m from 0 to 11 on "
+      "BOTH ladders, not sampled")
 
 results = {}
 for m in range(12, 21):

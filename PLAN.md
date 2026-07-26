@@ -92,39 +92,43 @@ on AKP alone). Do not spend attack time there.
 
 ## Next, in order
 
-1. **Settle the degree-2 lever, and with it m ≥ 22.** FHMW Lemma 2.1(iii) — each
-   line holds at most one degree-2 vertex, so 2·D₂ ≤ m — is a constraint this lab
-   never had, and against our own enumeration it kills all 105 multisets at m = 20
-   by itself and, with (L8), all of m = 21. See
-   [notebook/2026-07-26-fhmw-lemma-21.md](notebook/2026-07-26-fhmw-lemma-21.md).
-   **It is not a result yet.** Owing, in this order:
-   - **the not-too-strong control — PASSES, but not at the m I first specified.**
-     Six copies of (17,3,3,3,2,2) at m = 30 survives (L8) explicitly, so the
-     filter is not vacuously strong. m = 22, 23, 24 were the values originally
-     named and are still not done; m = 30 answers the "does it kill everything"
-     question, not the "where exactly does it stop" one. Note the first attempt at this control was wrong — two
-     copies of `l8_kills` with different return types, `not (False, reason)` is
-     `False` — and reported no survivors anywhere. m = 20 and m = 21 re-checked
-     and unchanged; **m = 22 is not yet correctly computed** (156,797 of 2,079,883
-     pass the cap there).
-   - **(iii) re-derived here**, so the floor stays citation-free. Two lines: if
-     line ℓ holds degree-2 vertices u, v with other lines ℓ_u, ℓ_v, then
-     ℓ∖{u,v} ∪ {x} for any x ∈ ℓ_u ∩ ℓ_v is an (r−1)-cover.
-   - a positive control: the bound must hold on objects that exist.
-2. **Certify Δ = 4 for f(6)-extremal objects** — the turn-4 result, still
+**Item 1 is DONE — certificate 0008, `m ≥ 22` citing nothing.** (D2) re-derived
+here via a strictly more general constructive lemma, the sweep run on the
+**citation-free** ladder (the notebook's table had been computed on the cited
+one, which would have silently re-imported f(6)=13), and reproduced by a blind
+second implementation. The lever buys **one rung and stops**: m = 22 survives,
+56,592 of 307,420 cap-passers citation-free. The positive control this file
+asked for was **impossible as written** and has been replaced — see D-024.
+
+1. **Certify Δ = 4 for f(6)-extremal objects** — the turn-4 result, still
    uncertified and used nowhere load-bearing. The cheapest place a real error
-   could still be hiding, and independent of item 1.
-3. **A third implementation of the N(4) = 9 exhaustion.** Two now agree; a third
-   by a different route would close the last single point of failure.
-4. **The old push-past-21 levers**, now second-string behind item 1: restoring the
-   value-pool ceiling dropped under D-009, or settling **Q13** — is there a 13-edge
-   τ=5 object with a part of minimum degree 2? NO gives N(5) ≥ 14, which on the
-   0005 ladder reaches exactly m ≥ 21 (*not* past it) and needs (L8) to go further.
-   **Open.** Measured: 44 min on 3 cores did not finish 1 of 232 disjoint slices;
-   the untried route peels through the N(3)- and N(2)-extremal seeds (6 and 4
-   edges, both tiny).
-5. **Pin g(5) exactly** (derived ≥ 12, published 13). No longer urgent — it was
-   only ever wanted to self-contain the floor, and the floor is self-contained.
+   could still be hiding.
+2. **Attack X, the sole total load-bearer**, and **g(4) = 8** with it. The
+   corrected risk table above says X is the only step whose removal leaves 100%
+   surviving, and g(4) = 8 carries a margin of exactly one while appearing on no
+   attack list. Neither peer audit touched either.
+3. **A third implementation of the N(4) = 9 exhaustion.** Two agree; a third by a
+   different route would close the last single point of failure. It is now the
+   hinge for m ≤ 20 under (D2) as well, since (L8) is not consulted there.
+4. **Fix `lib/ryser.py`'s duplicate-edge bug** (D-025) and recount anything that
+   used the non-extremal censuses. `enumerate(6,3)` is 53,871, not 53,906. The
+   extremal counts 12 and 5 are unaffected, so the ladder does not move.
+5. **The old push-past-22 levers.** Q13 — is there a 13-edge τ=5 object with a
+   part of minimum degree 2? Measured: 44 min on 3 cores did not finish 1 of 232
+   disjoint slices; the untried route peels through the N(3)- and N(2)-extremal
+   seeds (6 and 4 edges, both tiny). Note its payoff has fallen further: it
+   reaches m ≥ 21, which is now two rungs below the floor.
+6. **Pin g(5) exactly** (derived ≥ 12, published 13). Not urgent.
+
+**Dead end, closed this turn (D-022): the (L7) tightening to N(4) = 9.** The only
+ρ = |R| where the +1 changes a floor is ρ = 8, and there R is g(4)-extremal — and
+certificate 0005's corrected AKP Lemma 2.8 says every part of an 8-edge τ ≥ 4
+object is (3,2,2,1) or (3,2,1,1,1), each carrying a degree-1 vertex. **So at the
+only ρ that matters the residual provably has no part of minimum degree 2.** The
+property is strictly stronger than the conclusion it would buy. Machine-checked
+too: 15 of 15 two-star residuals of W8 and 15 of 15 of W9 have no such part. And
+it would not have been enough anyway — running (L7) with g(4) = 9 still leaves
+950 survivors at m = 21 citation-free.
 
 ## Machinery
 
@@ -159,22 +163,47 @@ need. Measured lessons:
 
 Measured by ablation in the turn-7 completeness pass, and it relocates the risk:
 
+**Corrected 2026-07-26 turn 8. The (L7) row published here was false**, and it
+was the row this table existed to get right. Measured firsthand with certificate
+0007's own `l8_kills`, one line changed:
+
 | step | what fails without it |
 | --- | --- |
-| **(L7)** | everything — 100% of configurations survive at every m tested |
-| **the excess budget X** | everything — same |
-| **N(4) = 9** | m = 20 revives (1445 of 3664 with N(4) = 8) |
-| the δ-budget | **only m = 20** — 12 of the 105 cited configurations, 117 of the 7159 citation-free. Below m = 20 the kills come from (L7) + X alone, with a margin of 16 at m = 19 |
-| the concentration ceiling U | **nothing — inert.** 0 survivors with it removed entirely |
+| **the excess budget X** | everything — **exactly 100%** survive at every m with a non-empty configuration set. The sole total load-bearer |
+| **(L7)** | the floor breaks (21 → 20 cited, 21 → 19 free) but **most configurations still die**: 3 of 105 survive at m=20 cited (2.9%), 1,616 of 7,159 at m=20 free (22.6%), 1 of 33 at m=19 free |
+| **N(4) = 9** | m = 20 revives (1445 of 3664 with N(4) = 8) — **and m = 19 revives too**, so the floor drops 21 → **19**, not 21 → 20 |
+| **g(4) = 8** | (L7) goes with it. Weaken to 7 and 649 of 7,159 survive at m = 20 free — the same margin of exactly one, on a constant nobody lists |
+| the δ-budget | **only m = 20** — 12 of the 105 cited, 117 of the 7159 citation-free |
+| the ceiling U | **nothing — inert**, at m = 21 as well as below |
+| B ≤ ⌊5X/2⌋ inside X | **nothing — inert.** A second dead step: it is implied by the level budget, which already does the work |
 
-Two consequences worth stating plainly. **(L7) and X are the joint load-bearer**,
-and neither peer audit named them as such — both worked the δ-budget, which is the
-newest and least-checked inequality and also the one that can cost the least. And
-**a δ-budget failure would drop the floor from m ≥ 21 to m ≥ 20, still citing
-nothing** — it cannot touch the citation-free status, only the top rung. The
-inert ceiling is D-009 working as intended: it was deliberately weakened, and it
-turns out to be doing no work at all, which is the best possible outcome for a
-step you kept only for safety.
+**And the real load-bearer has no name.** 100% survival is reproducible only if
+you *also* zero **B_min(A)** — the convexity lower bound on B = Σ C(c_ij,2) given
+Σ c_ij = A — which is no part of (L7). With floors *and* B_min zeroed: 105/105
+and 7159/7159 survive. So the step carrying the other 77.4% of the m = 20
+citation-free kills is **the convexity bound on B_min, together with A ≥ S − m
+(from (C4) and δ ≥ 0) and B_cap (from X)**. That step appears in no risk table,
+no ledger line and no certificate label. Five implementations agree, one keeping
+0007's loop structure verbatim.
+
+Three consequences. **The convexity bound and X are what to defend** — not the
+pair (L7)+X. **g(4) = 8 belongs on the attack list above and is not on it** — it
+carries the same single-unit margin D-017 prices for the δ-budget, and unlike the
+δ-budget (whose failure only drops the floor to 20) a failure of g(4) takes (L7)
+with it. And **a table published to direct attack, that misstates one step's load
+by a factor of 35 and omits the step doing the work, sends the attack to the
+wrong place** — D-019 failing on its own terms (D-023).
+
+**What did survive the attack, and it is most of the chain.** (L2), X's
+definition, (C2), (C3), B_cap = ⌊5X/2⌋, (C5) in its corrected form, δ(k), `need`
+and `qmin` were each brute-forced over **1,859,176 audits on explicit objects,
+zero failures** — each also run under two deliberately wrong choices of u_j, so
+the identities are tested as identities. The intersecting hypothesis was *priced*
+rather than assumed: drop it and Σ(t_ef−1)⁺ ≤ X fails 5,167 times in 39,721
+non-intersecting families, with an explicit witness. And the relaxation property
+itself — that no real object's true point falls outside any guard — was checked
+directly: **1,924 instances from real objects with τ computed, all 16 guards
+inside `l8_kills` pass at the object's true (A, B, n₂..n₅, D)**.
 
 ## Standing
 

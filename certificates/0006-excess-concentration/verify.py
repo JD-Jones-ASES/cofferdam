@@ -266,9 +266,16 @@ check("POSITIVE CONTROL: (L7) holds on every object that actually exists, and is
       "TIGHT on each -- so it is not vacuously satisfied", ok_l7,
       "  ".join(det_l7))
 
-check("B <= floor(5X/2) whenever X > 0 (the sharp form of the excess bound)",
+# The `if q['X'] > 0` guard here used to silently drop W5 (which has X = 0
+# exactly), so the check covered 3 of the 4 witnesses while its label implied 4.
+# The guard was never needed -- at X = 0 both sides are 0 -- and a check whose
+# label claims more coverage than its code has is the same hazard as D-015's
+# literal `True`.  Guard removed, coverage now printed.
+check("B <= floor(5X/2) on every witness, X = 0 included (the excess bound)",
       all(sum(comb(v, 2) for v in q['t'].values()) <= (5 * q['X']) // 2
-          for q in res.values() if q['X'] > 0))
+          for q in res.values()),
+      "%d of %d witnesses, X values %s"
+      % (len(res), len(res), sorted(q['X'] for q in res.values())))
 
 # POSITIVE CONTROL.  The delta budget is the one inequality of (L8) that does the
 # killing, so it must be checked in the direction that would expose it as false:

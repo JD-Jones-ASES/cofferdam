@@ -349,6 +349,10 @@ our prunes.
 
 ## D-019 · State which step carries what, or the attack goes to the wrong place (2026-07-26)
 
+> **Corrected by [D-023](#d-023--a-risk-decomposition-is-a-claim-and-ours-was-wrong-2026-07-26-turn-8).**
+> The (L7) sentence below is **false** — removing (L7) leaves 2.9%–22.6%
+> surviving, not 100%. The rule this ADR states survives; its own table did not.
+
 Ablation across the whole chain (turn 7): remove **(L7)** and 100% of
 configurations survive at every m. Remove the **excess budget X** and the same.
 Remove **N(4) = 9** and m = 20 revives. Remove the **δ-budget** and *only* m = 20
@@ -371,3 +375,115 @@ lists them.
 (Also vindicating D-009: U was kept deliberately weak for safety and turns out to
 be doing no work whatever. A step you kept only as insurance and that proves inert
 is the best possible outcome — it can be deleted from the trust chain outright.)
+
+## D-022 · The residual of a cross-part peel keeps nothing (2026-07-26, turn 8)
+
+The lever that looked free: (L7) reads `c_ij >= M_i + M_j - (m - g(4))` with
+g(4) = 8. If the two-star residual R could be shown to have a part of minimum
+degree 2, it would take **N(4) = 9** instead and (L7) would tighten by one unit
+everywhere — in a regime where D-017 prices the margin at exactly one.
+
+**It is false, and false exactly where it would have mattered.** The only
+ρ = |R| at which the +1 changes a floor is ρ = 8, and there R is g(4)-extremal.
+Certificate 0005's corrected AKP Lemma 2.8 states every part of an 8-edge τ ≥ 4
+6-partite intersecting object is (3,2,2,1) or (3,2,1,1,1) — each carrying a
+degree-1 vertex. So at ρ = 8 the residual has **no** part of minimum degree 2.
+The property is strictly *stronger* than the conclusion it was meant to buy, and
+any proof of it would have to rule out ρ = 8 first, i.e. already have the goal.
+
+Mechanism, and it is the general lesson. Lemma (C) gets N(6−k) because deleting
+k vertices of **one** part never touches the degrees of that part's survivors —
+an edge has exactly one vertex per part. A **cross-part** peel destroys precisely
+that guarantee: part i loses M_j − c_ij degree units through u_j, part j loses
+M_i − c_ij, and every other part loses the full m − ρ. Nothing stops a degree-2
+vertex dropping to 1.
+
+Machine-checked: 15 of 15 two-star residuals of W8 and 15 of 15 of W9 have no
+part of minimum degree 2. And the lever would not have sufficed anyway — (L7)
+with g(4) = 9 still leaves 950 survivors at m = 21 citation-free.
+
+**Rule.** A same-part peel and a cross-part peel are not the same operation. Only
+the first preserves the degree structure the N-ladder is defined by. Before
+carrying any per-part hypothesis across a deletion, ask which part paid for it.
+
+## D-023 · A risk decomposition is a claim, and ours was wrong (2026-07-26, turn 8)
+
+D-019 published a table so that attack would go to the right place. **Its (L7)
+row was false.** It said removing (L7) leaves 100% of configurations surviving at
+every m. Measured, with certificate 0007's own `l8_kills` and one line changed:
+**3 of 105 survive at m = 20 cited (2.9%), 1,616 of 7,159 at m = 20 free (22.6%),
+1 of 33 at m = 19 free.** Four implementations agree, one of them keeping 0007's
+loop structure verbatim.
+
+The mechanism the row missed: with (L7) gone, D = A − S + m ≥ 0 still forces
+A ≥ S − m, convexity still forces B_min large, and X still refuses to pay. Every
+no-(L7) survivor sits at exactly D = 0.
+
+**The step actually doing that work has no name anywhere in this repo.** 100%
+survival reproduces only when **B_min(A)** — the convexity lower bound on
+B = Σ C(c_ij,2) subject to Σ c_ij = A — is zeroed *as well as* the (L7) floors.
+It is in no risk table, no ledger line, no certificate label. The lab spent two
+turns ranking the δ-budget (which costs at most one rung) above a step it never
+wrote down.
+
+X, by contrast, reproduces at **exactly** 100% everywhere — it is the other total
+load-bearer. And the same pass found **g(4) = 8** carrying a margin of one
+(weaken it to 7 and 649 of 7,159 survive at m = 20 free), on no attack list
+anywhere; plus a second inert step inside X (`B <= floor(5X/2)` is implied by the
+level budget). The N(4) = 8 row was numerically right but **understated**: m = 19
+revives too, so that failure drops the floor to 19, not 20.
+
+**Rule.** D-019 stands; this is D-019 applied to itself. A published risk
+decomposition is a load-bearing claim and gets the same treatment as any other —
+an executable ablation, re-derived, with the numbers printed. An unchecked table
+that misstates a step's load by a factor of 35 does not merely fail to direct
+attack; it directs it away.
+
+## D-024 · Some controls are impossible, and saying so is the control (2026-07-26, turn 8)
+
+PLAN.md owed "a positive control: the bound must hold on objects that exist" for
+the degree-2 cap. **That cannot be discharged, by anyone.** FHMW 2.1(iii) needs
+τ(H) = r, and an intersecting 6-partite object with τ = 6 *is* a Ryser
+counterexample — the thing being ruled out. For r ≤ 5 the class is empty by
+theorem. Measured: **0 of 67,463** census objects have τ = r; exhaustive searches
+found none at r = 3 (m ≤ 8), r = 4 (m ≤ 11), r = 5 (m ≤ 8). The bound fails even
+at τ = r−1: truncated PG(2,2) has 2·D₂ = 12 against m = 4.
+
+What replaced it: **test the proof, not the conclusion.** The lemma is a
+construction, so it runs on objects regardless of τ — if a line holds degree-2
+vertices u,v with other lines ℓ_u, ℓ_v, then (ℓ∖{u,v}) ∪ {x} must be a genuine
+cover of size ≤ r−1 for every x ∈ ℓ_u ∩ ℓ_v. Certificate 0008 does this
+exhaustively over two bounded classes: **248,460 constructed sets, zero
+failures**, with a mutant drawing x from outside ℓ_u ∩ ℓ_v failing 3,780 of 3,780
+to prove the test has teeth.
+
+**Rule.** When a lemma's hypothesis class is conjecturally empty, no amount of
+compute produces a positive control on its conclusion, and an open checklist item
+demanding one will sit there forever looking like diligence. Test the
+*construction* instead — a proof by explicit witness is runnable wherever its
+construction is defined, which is a strictly larger class than where its
+conclusion holds. And record the impossibility, because "we could not find a
+violating object" and "no object of that kind exists" are different sentences.
+
+## D-025 · `extension_edges` returns edges already present (2026-07-26, turn 8)
+
+`lib/ryser.py`'s `extension_edges(H, r)` promises "every edge f such that
+H + (f,) is still intersecting" — and an edge **already in H** trivially meets
+every edge of H, so it is returned. `generate()` then does
+`H2 = tuple(sorted(H + (f,)))` with no check that f is new, and `canonical_fast`
+treats a duplicated row as a distinct object, so the duplicate survives dedup.
+Reproduces in one line: `generate(3,3,1)` returns `((0,0,0),(0,0,0))` and
+`((0,0,0),(0,0,0),(0,0,0))`.
+
+Blast radius, measured by the auditing agent: 4,304 of 71,767 emitted objects
+across its runs are not simple, and it reaches the peeling engine —
+**`enumerate(6,3)` is 53,871, not the 53,906 this lab has published.** The
+**extremal** counts are unaffected: a repeat at (5,3) would mean 4 distinct edges
+with τ ≥ 3, contradicting g(3) = 5, and likewise at (8,4). So `enumerate(5,3)=12`,
+`enumerate(8,4)=5`, N(4) = 9 and the whole ladder stand.
+
+**Rule.** "Every f such that H + f has property P" is not the same set as "every
+f **not already in H** such that H + f has property P", and for a hereditary P
+the difference is silent — it inflates counts without ever producing an invalid
+object. A census engine needs a simplicity assertion on its output, not just on
+its logic.
