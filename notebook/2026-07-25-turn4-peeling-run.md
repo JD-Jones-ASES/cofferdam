@@ -73,21 +73,28 @@ at ~65% CPU each. Recorded in the vault's MACHINE.md.
 
 ## 5. The run did not reach m ≥ 21 — measured, with the cause
 
-`enumerate(9,4)` did not finish, and the reason is structural rather than a missing
-prune. Profiling one 5-edge residual at Δ=4:
+`enumerate(9,4)` did not finish. **Corrected diagnosis, after the profile
+completed** — the first reading of this was wrong and is worth stating plainly.
 
-- **~220 star patterns per part** (≈1320 across the six), and
-- **only 78 minimum covers of R** to escape.
+I inferred from the stall that the 4-subset selection was exploding to ~10⁸–10⁹
+nodes per residual with little output. It is not. Profiling one 5-edge residual at
+Δ=4, on an idle machine:
 
-The set-cover condition is what prunes the star selection, and here it is *weak*:
-with so few covers to escape and so many patterns escaping them, almost every
-partial selection survives, so the search over 4-subsets runs to ~10⁸–10⁹ nodes per
-residual. Multiply by 53,906 residuals and the level is out of reach.
+    216–224 star patterns per part (≈1320 across six), 78 minimum covers of R
+    attach_stars(delta=4)  ->  6457 classes in 142.4 s
 
-This is the opposite of the top of the chain, where τ(R)=5 makes the covers
-numerous and the patterns few, and the same code decides a residual in
-milliseconds. **The enumeration is hardest exactly where the mathematics is
-loosest** — at the bottom, where τ is small and objects proliferate.
+So the search **terminates**, in about two minutes, and the time goes into
+*producing and canonicalising thousands of outputs* rather than into a hopeless
+search. The blocker is not a weak prune. It is that **the intermediate level is
+enormous**: one residual yields 6457 classes, twelve residuals feed the Δ=4 branch,
+and the Δ=3 branch has 53,906 residuals behind it. (9,4) is plausibly 10⁵–10⁶
+classes, and the next pass would have to sweep all of them.
+
+The shape of the problem is the ordinary one for this kind of build-up: **the
+intermediate level is far larger than the target level.** (13,5) is *extremal* — 13
+edges is the minimum for τ=5 — so it should be small, while (9,4) sits in the loose
+middle where objects proliferate. Routing the small extremal target through the
+large loose intermediate is the mistake.
 
 ### What that means for the route
 

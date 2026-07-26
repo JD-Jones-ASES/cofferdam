@@ -65,10 +65,12 @@ the cross-part union prune was added; both runs returned the same witness.
    admissible partition list before searching (fine at m=8's 2220, hopeless at
    m=13's millions); generate them lazily, indexed by the pair they must join.
 
-   *Why not bottom-up:* measured. At (9,4) a residual offers ~220 star patterns
-   per part against only 78 minimum covers, so the set-cover condition barely
-   prunes and the 4-subset search runs to ~10⁸–10⁹ nodes per residual, times
-   53,906 residuals. The enumeration is hardest where the mathematics is loosest.
+   *Why not bottom-up:* measured. One 5-edge residual at Δ=4 yields **6457
+   classes in 142 s** — the search terminates fine; the level is simply enormous.
+   Twelve residuals feed the Δ=4 branch and 53,906 feed the Δ=3 branch, putting
+   (9,4) at perhaps 10⁵–10⁶ classes, all of which the next pass would sweep. The
+   intermediate level is far larger than the target: (13,5) is *extremal*, so it
+   is small, while (9,4) sits in the loose middle where objects proliferate.
 
 2. **Old item, superseded:** column-wise star attachment — the one engineering blocker.** `peel.py`
    attaches stars by assigning symbols, allowing up to Δ fresh labels per part
