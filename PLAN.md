@@ -93,9 +93,13 @@ on AKP alone). Do not spend attack time there.
    by itself and, with (L8), all of m = 21. See
    [notebook/2026-07-26-fhmw-lemma-21.md](notebook/2026-07-26-fhmw-lemma-21.md).
    **It is not a result yet.** Owing, in this order:
-   - **the not-too-strong control at m = 22, 23, 24.** Started, unfinished. If the
-     same filter kills those, it is being misapplied and none of this stands. Do
-     this before anything else — it is cheap to want it to work.
+   - ~~the not-too-strong control~~ **DONE and it passes**: six copies of
+     (17,3,3,3,2,2) at m = 30 survives (L8) explicitly. The filter is not
+     vacuously strong. Note the first attempt at this control was wrong — two
+     copies of `l8_kills` with different return types, `not (False, reason)` is
+     `False` — and reported no survivors anywhere. m = 20 and m = 21 re-checked
+     and unchanged; **m = 22 is not yet correctly computed** (156,797 of 2,079,883
+     pass the cap there).
    - **(iii) re-derived here**, so the floor stays citation-free. Two lines: if
      line ℓ holds degree-2 vertices u, v with other lines ℓ_u, ℓ_v, then
      ℓ∖{u,v} ∪ {x} for any x ∈ ℓ_u ∩ ℓ_v is an (r−1)-cover.
