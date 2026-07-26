@@ -1,0 +1,21 @@
+[     0.0s] CALIBRATION base(4,3) = 0 want 0 -> OK
+[     1.0s] CALIBRATION base(5,3) = 12 want 12 -> OK
+[     1.0s]   surviving Delta at (13, 5): [4, 5]
+[     1.0s]   surviving Delta at (14, 5): [4, 5, 6]
+[     1.0s]   surviving Delta at (10, 4): [3, 4, 5]
+[     1.0s]   surviving Delta at (9, 4): [3, 4]
+[     1.0s]   surviving Delta at (8, 4): [3]
+[     1.0s]       base(m=5,t>=3,maxdeg<=3) level 2: 6
+[     1.2s]       base(m=5,t>=3,maxdeg<=3) level 3: 7
+[     1.7s]       base(m=5,t>=3,maxdeg<=3) level 4: 49
+[     1.9s]       base(m=5,t>=3,maxdeg<=3) level 5: 12
+[     1.9s] *** base(5,3,<=3) = 12 [1.0s]
+[     2.0s]       base(m=5,t>=3,maxdeg<=4) level 2: 6
+[     2.2s]       base(m=5,t>=3,maxdeg<=4) level 3: 7
+[     2.7s]       base(m=5,t>=3,maxdeg<=4) level 4: 49
+[     2.9s]       base(m=5,t>=3,maxdeg<=4) level 5: 12
+[     2.9s] *** base(5,3,<=4) = 12 [1.0s]
+[     3.0s]       base(m=6,t>=3,maxdeg<=3) level 2: 6
+[     3.6s]       base(m=6,t>=3,maxdeg<=3) level 3: 48
+[     6.0s]       base(m=6,t>=3,maxdeg<=3) level 4: 508
+[    34.2s]       base(m=6,t>=3,maxdeg<=3) level 5: 13789
