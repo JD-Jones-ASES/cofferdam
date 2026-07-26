@@ -175,25 +175,14 @@ provenance ledger that is wrong anywhere is untrustworthy everywhere, and becaus
 this lab's results are meant to be attacked by the other two labs — an attacker needs
 to know which parts to hit, and mis-stated origins waste their time.
 
-## D-011 · The seal is lifted, and it does not come back (2026-07-26, turn 7)
+## D-011 · Seal status (2026-07-26)
 
-The owner lifted the seal by handing this lab the path to Grok's attack audit,
-the condition in BRIEF §2 having been met: our own derivation of m ≥ 21 was
-committed at 804cfd9. Read this turn, and nothing else from the sealed set:
-`~/Documents/Grok-Brain/Docs/cofferdam-attack-audit.md`, plus a Codex audit filed
-as issue #1 on this repo (never sealed — it is a critique of our work, not
-another lab's derivation). No subagent read any sealed path; all eleven carried
-the seal verbatim.
+Certificates 0001–0007 were derived without reading any peer derivation. That
+does not change. The seal has since been opened, so a later session in this repo
+is not a blind verifier and should not be presented as one.
 
-**What it costs, stated plainly so nobody has to rediscover it.** The seal was
-never a preference, and lifting it is not reversible: you cannot un-read an
-argument. From this turn on **this lab is no longer the independent station.**
-Its derivations through certificate 0007 are its own and were made blind; nothing
-after this turn can claim that. Any future blind verification at r = 6 needs a
-station that has not read this repo.
-
-That price was worth paying only because the seal had already bought what it was
-for. It should not be paid again for convenience.
+How this lab takes in peer work is a Brain-level question and lives there, not
+here. This repo is about the mathematics.
 
 ## D-012 · A peer's wrong inference can carry a right experiment (2026-07-26)
 
@@ -381,81 +370,3 @@ lists them.
 (Also vindicating D-009: U was kept deliberately weak for safety and turns out to
 be doing no work whatever. A step you kept only as insurance and that proves inert
 is the best possible outcome — it can be deleted from the trust chain outright.)
-
-## D-020 · The seal is graded and repeatable; the airlock is an agent, not a branch (2026-07-26)
-
-BRIEF §2's seal was binary and one-shot: four paths unread, lifting once, for a
-diff. It worked — certificates 0001–0007 are this lab's own. But a one-shot seal
-has a bad endgame. The moment it lifts, the lab either stops being useful as an
-independent station or gets archived and rebuilt somewhere clean. Quarry was
-archived. Cofferdam should not have to be, and the owner asked for the mechanism
-that avoids it.
-
-**The obvious mechanism does not work.** A branch — or a worktree, a submodule, a
-separate clone — isolates *files*. The seal protects *context*. A session that
-reads a peer derivation on `explore/` is contaminated on `main` too, because there
-is no checkout back to not knowing something. "Branch, learn, merge the useful
-lessons later" fails at step two, and it fails silently, which is worse.
-
-**The mechanism that does work is the subagent boundary**, because a subagent's
-context is genuinely destroyed when it returns. A disposable READER reads the
-sealed artifact and emits **statements without arguments**; the lab reads the
-statements and re-derives or refutes them. That is not new law — it is BRIEF §2's
-founding move, *seeded with the statement and never the derivation*, turned from a
-one-time setup into a pipeline that can run whenever a peer produces something.
-Git then supplies what an agent cannot: a durable SHA-pinned ledger, and a merge
-gate that lets nothing onto `main` that has not been re-derived here.
-
-**The seal also needed grades, and the lack of them cost accuracy the same day it
-lifted.** Turn 7 recorded the seal as *spent* after reading one file inside a
-sealed directory — but that file was a peer's critique **of our own work**, not a
-peer's derivation. Those are different acts. The three peer derivations remained
-unread. So the lab had gone S3 → S2, not S3 → S0, and the difference is the
-difference between "needs archiving" and "carry on". Levels S3 blind / S2 audited
-/ S1 briefed / S0 merged are defined in INTAKE.md; descent is one-way; a
-certificate records the level it was derived at, permanently.
-
-**And a leak rule, because this repo is not private to us.** Codex reads it. Peer
-material committed here does not stay here — putting one lab's findings on `main`
-shows them to the other, correlating exactly the two labs whose independence is
-the point. The ledger therefore lives in the brain, not in the repo. This is the
-seal's own failure mode arriving through the back door, and it would have been
-easy to walk into while trying to be organised.
-
-Recorded as an amendment: **BRIEF.md stays frozen.** INTAKE.md carries the
-amendment and the owner's ruling is what makes it law.
-
-## D-021 · The airlock leaked on its first run: quarantine must be structural (2026-07-26)
-
-INTAKE.md was written and violated inside the hour.
-
-The READER agent was instructed to emit Tier 1 (statements, safe) and Tier 2
-(methods, quarantined, "owner only"). It did exactly that — **as its return
-value.** A subagent's return value goes straight into the calling session's
-context. So the quarantined tier landed in the one place the whole protocol
-existed to keep it out of, and this lab's live session went **S2 → S0**.
-
-The document said *do not read the agent's raw transcript*. That was the wrong
-channel to guard. Nobody read a transcript; the material was handed over through
-the front door, as a normal result, and by then not-reading it was not an option.
-
-**This is D-013 one level up.** There, an identity was displayed but never
-asserted, so nothing tested it. Here, a quarantine was stated but never
-mechanised, so nothing enforced it. Both times the discipline lived in prose while
-the machinery did something else, and both times the prose was believed because it
-was *our own*. A rule you have just written is the one you are least likely to
-audit.
-
-**The fix is structural.** The READER writes Tier 2 to a file and returns a path.
-Nothing quarantined travels in a return value, a summary, a commit message or a
-report. A protocol whose safety depends on someone declining to look at what they
-have already been handed is not a protocol — it is an intention.
-
-**What it cost, and why the cost was bounded.** Certificates 0001–0007 were
-derived at S3 and remain S3 permanently. What is lost is that *that session*
-cannot serve as a blind deriver for the m = 20 lane or the peers' open lemma; a
-fresh session is clean. Had the seal still been the binary one from BRIEF §2, the
-honest reading would have been "cofferdam is contaminated, archive it" — which is
-precisely the outcome the owner asked to avoid, and precisely what grading the
-seal (D-020) prevents. The grading justified itself within an hour of being
-introduced, by absorbing a mistake made while introducing it.

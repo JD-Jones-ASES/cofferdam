@@ -4,10 +4,6 @@ Revised 2026-07-26 (turn 7). History is the record; this file is rewritten.
 
 ## Where we are — **floor m ≥ 21, citing nothing**
 
-The seal is **lifted and spent** (D-011): its condition was met, the owner lifted
-it for the diff, and it does not come back. Derivations through certificate 0007
-were made blind; nothing after this turn can claim that.
-
 | cert | result |
 | --- | --- |
 | **0001** (22 + 0 notes) | degree-cap ladder; g(1..4) = 1,3,5,8 twice over → m ≥ 18 citing nothing |

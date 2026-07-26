@@ -140,17 +140,6 @@ turns out to be a proxy for *attention*, not for *load*. (D-019.)
 - The erratum covers both editions. The journal text is a re-typeset, so the error
   passed a copy-editing pass into the version of record.
 
-## The seal — and this is the one thing needing your attention
-
-**The seal is spent.** You lifted it by handing me the Grok audit, and the
-condition in BRIEF §2 was met, so that was correct. But it does not come back:
-you cannot un-read an argument.
-
-Through certificate 0007 this lab's derivations are its own and were made blind.
-**Nothing after this turn can claim that.** If a blind check of r = 6 is ever
-wanted again, it needs a station that has not read this repo. I have recorded this
-as D-011 so nobody has to rediscover it.
-
 ## What I did not do
 
 I have **not** replied to Codex's issue. A draft response is ready — publishing
