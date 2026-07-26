@@ -53,9 +53,11 @@ THE LEDGER, in full
   EXTERNAL INPUTS      -- NONE.
 
 Note this certificate does NOT lean on certificate 0005's m >= 19: it sweeps
-m = 12..20 itself.  That is deliberate.  0005's ladder loop runs range(14, 24),
-so as executed it never tests m = 12 or 13, and inheriting its floor would have
-inherited that gap.
+m = 12..20 itself.  That is deliberate: 0005's ladder loop USED to run
+range(14, 24), so as executed it never tested m = 12 or 13, and inheriting its
+floor would have inherited that gap.  (0005 now starts at 12; this certificate
+still sweeps its own range, because a floor should not depend on another file's
+loop bounds.)
 
 PROVENANCE
 ----------
@@ -224,10 +226,11 @@ def sweep(m, N, g4=G4, stop_at_first=False):
 
 head("(P): the citation-free N(5) rung, and the direction of the weakening")
 
-check("(P) N(5) >= N(4) + 2 = 11, by peeling the smallest block of the full part",
-      N_FREE[4] + 2 == 11,
-      "the residual still has tau >= 4 and its distinguished part keeps every "
-      "vertex it had, at unchanged degree, so it is an N(4) witness")
+note("(P) N(5) >= N(4) + 2 = 11, by peeling the smallest block of the full part",
+     "proved by hand in certificate 0005: the residual still has tau >= 4 and its "
+     "distinguished part keeps every vertex it had at unchanged degree, so it is "
+     "an N(4) witness, and the block removed had size >= 2. Nothing is computed "
+     "here -- 9 + 2 == 11 would be a tautology, not a test of the lemma.")
 check("11 < 13, so this certificate runs on a STRICTLY WEAKER input than "
       "certificates 0005 and 0006", N_FREE[5] < N_CITED[5])
 
@@ -246,8 +249,9 @@ for m in (19, 20):
 head("(L8) under the citation-free ladder N = {1:2, 2:4, 3:6, 4:9, 5:11}")
 
 # The whole range is swept HERE rather than inherited.  Certificate 0005's floor
-# would have served for m <= 18, but its ladder loop runs `range(14, 24)` and so
-# never tests m = 12 or 13 -- leaning on it would have imported a gap.  Sweeping
+# would have served for m <= 18, but its ladder loop USED to run `range(14, 24)`
+# and so never tested m = 12 or 13 -- leaning on it would have imported a gap
+# (D-016; 0005 now starts at 12).  Sweeping
 # 12..20 here costs about a second and makes this certificate answer for its own
 # whole range.
 check("m <= 11 is impossible by (A) and (B) alone, before any search",

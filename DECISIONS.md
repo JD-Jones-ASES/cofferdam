@@ -328,3 +328,56 @@ N(4) = 8 turns 0 survivors into 1445 of 3664.
 state (a) the *margin* at the tightest point, and (b) which parts of the pipeline
 run in the loose direction and which run in the tight one. A defence that applies
 to only half the pipeline is not a defence, however true it is of its half.
+
+## D-018 · An empty search should exhibit what it rejected (2026-07-26)
+
+N(4) ≥ 9 — the step everything now funnels through — was confirmed by a second,
+structurally different exhaustion in the turn-7 completeness pass: 1505 candidate
+columns against our 2220, 5,713,053 nodes against our 52,023,309, same verdict.
+
+The part worth keeping is not the agreement. It is that **the second search
+exhibits what it rejects**: it built **8648 full pair-covers on 8 edges and found
+every one of them at τ = 3**. Ours returns `None` and a node count.
+
+A node count is a claim about effort, not about coverage — an under-enumerating
+search produces a small node count and an empty answer, which is exactly what a
+correct search on a genuinely empty space also produces. **The two are
+indistinguishable from the outside.** A search that hands back the objects it
+built and the property that killed each one is distinguishable: you can check the
+objects, and you can see the search reached the region where an answer would have
+been.
+
+**Rule.** Any "no such object exists" result should ship the near-misses — the
+objects that satisfied every constraint but the last, with the value of the
+quantity that failed. Where that set is too large, ship a sample plus its size.
+The completeness argument stops being a promise and becomes an artifact.
+
+Corollary for the standing request to the other labs: **a third implementation
+should match the verdict by a different route, not match the node count.**
+Reproducing 52,023,309 nodes would only demonstrate that someone reimplemented
+our prunes.
+
+## D-019 · State which step carries what, or the attack goes to the wrong place (2026-07-26)
+
+Ablation across the whole chain (turn 7): remove **(L7)** and 100% of
+configurations survive at every m. Remove the **excess budget X** and the same.
+Remove **N(4) = 9** and m = 20 revives. Remove the **δ-budget** and *only* m = 20
+revives — below it, the kills come from (L7) + X alone, with a margin of 16 at
+m = 19. Remove the **concentration ceiling U** and nothing happens at all: it is
+inert.
+
+Both peer audits ranked the δ-budget as the thing to attack, and so did we — it
+is the newest inequality and the least checked. It is also the one that can cost
+the least: **a δ-budget failure drops the floor from m ≥ 21 to m ≥ 20, still
+citing nothing.** Meanwhile (L7) and X, which carry everything, appeared on
+nobody's list, precisely because they are old, simple, and were never in doubt.
+
+**Rule.** Publish a risk decomposition beside the attack surface: for each step,
+what the result degrades to if that step fails. "Newest and least checked" is a
+proxy for fragility, and it is a bad one — it correlates with *attention*, not
+with *load*. The steps most worth defending are the ones so settled that nobody
+lists them.
+
+(Also vindicating D-009: U was kept deliberately weak for safety and turns out to
+be doing no work whatever. A step you kept only as insurance and that proves inert
+is the best possible outcome — it can be deleted from the trust chain outright.)

@@ -533,11 +533,14 @@ check("N(4) <= 9: its part 1 has profile (3,2,2,2) -- every degree >= 2",
 
 # The only profile a full part could have at 8 edges: >= 4 vertices (a part is a
 # cover and tau = 4), each of degree >= 2, summing to 8 -- so exactly (2,2,2,2).
-prof8 = [p for p in
-         [(2, 2, 2, 2)] if sum(p) == 8 and len(p) >= 4 and min(p) >= 2]
+# This licenses pinning the load-bearing exhaustion below to that one profile, so
+# it is ENUMERATED.  It used to filter a hardcoded [(2,2,2,2)] and therefore could
+# not fail -- a tautology standing exactly where the whole result funnels.
+prof8 = full_part_profiles(8, 4)
 check("N(4) >= 9: at 8 edges a full part must be exactly (2,2,2,2)",
       prof8 == [(2, 2, 2, 2)],
-      "4 vertices minimum (a part is a cover), degrees >= 2, summing to 8")
+      f"enumerated, not assumed: {prof8} is the whole list. 4 vertices minimum "
+      f"(a part is a cover), degrees >= 2, summing to 8")
 
 print("       ... exhaustive search, this is the slow one (~4-5 min) ...",
       flush=True)

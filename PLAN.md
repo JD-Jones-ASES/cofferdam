@@ -15,7 +15,7 @@ were made blind; nothing after this turn can claim that.
 | **0003** (10 + 2 notes) | **(L5)** low-incidence bound |
 | **0005** (49 + 5 notes) | **minimum-degree ladder**: m ≥ 19 citing nothing · m ≥ 20 citing f(6)=13; **the corrected AKP Lemma 2.8, now BOTH halves** |
 | **0006** (22 + 0 notes) | **(L8) excess-concentration**: m = 20 impossible → m ≥ 21 citing f(6)=13 |
-| **0007** (19 + 0 notes) | **the citation is unnecessary**: (L8) on the weaker rung N(5) ≥ 11 kills every m ≤ 20 → **m ≥ 21 citing NOTHING** |
+| **0007** (18 + 1 note) | **the citation is unnecessary**: (L8) on the weaker rung N(5) ≥ 11 kills every m ≤ 20 → **m ≥ 21 citing NOTHING** |
 
 All six green under `python3` **and** `python3 -O` (D-015).
 
@@ -30,20 +30,28 @@ citation-free ladder, (L8) kills every m from 12 to 20 and leaves m = 21 alive.
 
 ## Where to attack this — reranked, and it is now one target
 
-1. **N(4) = 9's lower bound. This is the whole thing.** Since 0007 removed the
-   citation, every certificate in the repo funnels through **one exhaustive
-   search of ours**: ρ=8 pinned to (2,2,2,2), 52,023,309 nodes, 2220 admissible
-   columns, result *empty*. There is **no independent implementation of it
-   anywhere**, and an under-enumerating search fakes a proof. 0007's sensitivity
-   check prices it exactly: set N(4) = 8 and m = 20 comes back to life among
-   180,480 configurations.
+1. **N(4) = 9's lower bound — still #1, but no longer unchecked.** Since 0007
+   removed the citation, every certificate funnels through one exhaustive search:
+   ρ=8 pinned to (2,2,2,2), 52,023,309 nodes, 2220 admissible columns, result
+   *empty*. 0007's sensitivity check prices it: set N(4) = 8 and m = 20 comes back
+   to life among 180,480 configurations.
 
-   Beware a trap here. It is tempting to treat our corrected Lemma 2.8 as a second
-   leg — it is not. **Lemma 2.8's derivation consumes that same search**, so it is
+   **A second, structurally different search now agrees** (turn 7, completeness
+   pass): 1505 candidate columns, 5,713,053 nodes, same verdict — and it is a
+   *better* control than ours, because it exhibits what it rejects: **8648 full
+   pair-covers built, every one at τ = 3**. A search that returns empty tells you
+   nothing about whether it looked; one that hands you 8648 near-misses does. The
+   least-uncovered-pair reduction the two searches share was closed by brute force
+   separately.
+
+   Beware a trap. It is tempting to treat our corrected Lemma 2.8 as a further leg
+   — it is not. **Lemma 2.8's derivation consumes that same search**, so it is
    downstream of N(4) ≥ 9 and can never corroborate it. AKP Lemma 2.1 *would* be a
    genuine independent leg, but we cite it and mark it not-used.
 
-   **Target to match: `None`, at exactly 52,023,309 nodes, 2220 columns.**
+   **What a third implementation should match is the verdict and a structurally
+   different route — not the node count.** Matching 52,023,309 nodes would only
+   prove someone reimplemented our prunes.
 
 2. **(L8)'s δ-budget step** — hunted for a false kill in the turn-7 pass and none
    found: no off-by-one in any loop bound (ranges widened by 12, zero admissible
@@ -119,6 +127,27 @@ need. Measured lessons:
   files, and false. It died when the sweep was rerun on the weaker rung. The
   assumption under which it was true: that the *pair count* was the only thing
   consuming N(5). (L8) consumes it far more cheaply.
+
+## Risk decomposition — what each step actually carries
+
+Measured by ablation in the turn-7 completeness pass, and it relocates the risk:
+
+| step | what fails without it |
+| --- | --- |
+| **(L7)** | everything — 100% of configurations survive at every m tested |
+| **the excess budget X** | everything — same |
+| **N(4) = 9** | m = 20 revives (1445 of 3664 with N(4) = 8) |
+| the δ-budget | **only m = 20** — 12 of the 105 cited configurations, 117 of the 7159 citation-free. Below m = 20 the kills come from (L7) + X alone, with a margin of 16 at m = 19 |
+| the concentration ceiling U | **nothing — inert.** 0 survivors with it removed entirely |
+
+Two consequences worth stating plainly. **(L7) and X are the joint load-bearer**,
+and neither peer audit named them as such — both worked the δ-budget, which is the
+newest and least-checked inequality and also the one that can cost the least. And
+**a δ-budget failure would drop the floor from m ≥ 21 to m ≥ 20, still citing
+nothing** — it cannot touch the citation-free status, only the top rung. The
+inert ceiling is D-009 working as intended: it was deliberately weakened, and it
+turns out to be doing no work at all, which is the best possible outcome for a
+step you kept only for safety.
 
 ## Standing
 

@@ -85,21 +85,46 @@ Two things it found anyway, both worth having:
 Which sharpens the ranking rather than softening it: the weakest step is not in
 (L8) at all. It is N(4) = 9. (Recorded as D-017.)
 
-## Where the exposure went
+## What neither audit examined — and it was the repo's own #1 target
 
-It did not vanish; it moved, and it is now sharper and cheaper to attack.
+A completeness pass asked what *both* auditors had left alone. The answer was
+uncomfortable: **neither touched N(4) = 9**, which our own PLAN and README both
+named as the single load-bearing step with no independent check. Grok *identified*
+it as the hinge, which is not the same as testing it — and its claim that N(4) ≥ 9
+has "dual support" is wrong in the unsafe direction, since our corrected Lemma 2.8
+*consumes* that same search and is therefore downstream of it.
 
-**Everything now rests on N(4) = 9 — one exhaustive search of ours, 52,023,309
-nodes.** Grok called this correctly, ahead of its own headline. But its claim that
-N(4) ≥ 9 has "dual support" is **wrong, and wrong in the unsafe direction**: our
-corrected Lemma 2.8 derivation *consumes* that same search, so it is a consequence
-of N(4) ≥ 9, never a check on it. The published AKP Lemma 2.1 would be a genuine
-second leg, but we cite it and mark it "not used".
+So the pass did the missing work. **N(4) ≥ 9 is now confirmed by a second,
+structurally different exhaustion** — 1505 candidate columns against our 2220,
+5.7M nodes against our 52.0M, same verdict. And it is a *better* control than
+ours, because it **exhibits what it rejects: 8648 full pair-covers built, every
+one at τ = 3.** Ours returns "None" and a node count, and a node count is a claim
+about effort, not coverage — an under-enumerating search and a correct search on
+an empty space look identical from outside. One that hands you 8648 near-misses
+does not. (D-018.)
 
-So: one search, no independent implementation anywhere. **A third implementation of
-that one search is now the most valuable thing anyone could contribute to this
-repo** — worth more than any further work on the literature, which is no longer
-holding anything up.
+It also caught **a vacuous check sitting exactly at the funnel point**: the test
+licensing the pin of that whole exhaustion to profile (2,2,2,2) was a filter over
+a hardcoded one-element list, so it could not fail. True claim, untested. It now
+enumerates. And two overclaims of my own in cert 0007, including — with some
+irony — a stated-not-tested check under a line asserting the certificate had none.
+
+## Where the exposure went, and what carries what
+
+Ablation relocated the risk, and it is not where anyone was looking:
+
+| step | what fails without it |
+| --- | --- |
+| **(L7)** and the **excess budget X** | everything — 100% survive at every m |
+| **N(4) = 9** | m = 20 revives |
+| the δ-budget | **only m = 20**; the floor would drop to m ≥ 20, still citing nothing |
+| the concentration ceiling U | nothing — **inert** |
+
+Both audits ranked the δ-budget as the thing to attack. So did we. It is the
+newest inequality and the least checked — and also the one that can cost the
+least. **(L7) and X carry everything and appeared on nobody's list**, precisely
+because they are old, simple and were never in doubt. "Newest and least checked"
+turns out to be a proxy for *attention*, not for *load*. (D-019.)
 
 ## What else changed in the repo
 

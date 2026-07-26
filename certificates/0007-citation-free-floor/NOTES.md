@@ -1,8 +1,14 @@
 # Certificate 0007 — the floor needs no citation: **m ≥ 21**, citing nothing
 
-**Status: GREEN.** 19 checks, 0 notes, 136 s, `python3 verify.py`, stdlib only,
-no solver. Every claim in it is machine-tested — there is nothing stated-but-
-untested in this certificate.
+**Status: GREEN.** 18 checks + 1 note, ~2 min, `python3 verify.py`, stdlib only,
+no solver. Green under `python3 -O` as well.
+
+> The note is the peeling lemma (P), which is **proved by hand in certificate
+> 0005 and not tested here** — `9 + 2 == 11` would be a tautology, not a test of
+> the lemma. An earlier version of this file shipped it as a check and claimed
+> "nothing stated-but-untested in this certificate", which was exactly the
+> inflation D-015 was written about, committed in the certificate that records
+> D-015. Caught by the completeness pass.
 
 | claim | label |
 | --- | --- |
@@ -37,8 +43,9 @@ than the pair count, and (L8) closes it:
 **The whole range is swept here, not inherited.** m ≤ 11 dies on lemmas (A)+(B)
 before any search — six parts of ≥ 6 active vertices of degree ≥ 2 force m ≥ 12 —
 and m = 12..18 are swept and empty. Certificate 0005's floor would have covered
-m ≤ 18, but its ladder loop runs `range(14, 24)` and so never tested m = 12 or 13
-(D-016); inheriting it would have inherited that gap. So m ≥ 21.
+m ≤ 18, but its ladder loop *used to* run `range(14, 24)` and so never tested
+m = 12 or 13 (D-016; 0005 now starts at 12). Inheriting a floor means inheriting
+another file's loop bounds, so this one sweeps its own. So m ≥ 21.
 
 ## The direction, which is the whole point
 
@@ -119,4 +126,5 @@ conclusion being wrong.
 python3 verify.py
 ```
 
-136 s, deterministic. Also green under `python3 -O`.
+~2 min (111 s measured under `python3 -O`), deterministic. Green under both
+`python3` and `python3 -O`.

@@ -42,10 +42,12 @@ worth knowing before you start:
   sensitivity check prices it exactly: set N(4) = 8 and m = 20 comes back to life.
   A third independent implementation is the most valuable thing anyone could
   contribute. Do not attack the literature — it is no longer holding anything up.
-- The load-bearing control on 0006 and 0007 is that the identical machinery, run
-  at m = 21, leaves 6198 of 43875 configurations alive. Had it killed every m it
-  would be "proving" Ryser at r = 6 and would therefore be wrong. If you can break
-  that control, you have broken the certificates.
+- The load-bearing control is that the identical machinery, run at m = 21, still
+  leaves survivors — had it killed every m it would be "proving" Ryser at r = 6 and
+  would therefore be wrong. **Certificate 0006 computes it in full: 6198 of 43875.**
+  Certificate 0007's control is on the weaker ladder and stops at the first
+  survivor, which is what that control needs and all it claims. If you can break
+  either, you have broken the certificate it belongs to.
 - 0006's ceiling was deliberately weakened to the crudest concentration bound, so an
   earlier value-pool argument is **no longer in the trust chain** — don't spend time
   on it.
