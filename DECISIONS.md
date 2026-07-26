@@ -66,3 +66,38 @@ An error that flatters the expected answer is the most dangerous kind available 
 a verifier. Ladder inputs are computed, never inferred from the shape of the
 answer, and any value that cannot be computed is carried as an explicit open
 parameter with the result stated for each of its possible values.
+
+## D-006 · A cited lemma is only as good as what we let it sit next to (2026-07-26)
+
+Certificate 0002 folded Abu-Khazneh–Pokrovskiy Lemma 2.1 into the ladder, worked
+the two-star equality case, found the residual's tail forced to (3,2,1,1,1), saw
+that the existing caps already forced exactly that, and recorded the lemma as
+*subsumed — moves the floor by nothing*. The lemma was cited correctly. The
+conclusion was wrong, because it was set beside an unstated assumption of our
+own: that a counterexample may contain degree-1 vertices. It may not, by a
+two-line argument nobody had written down. With that, the equality case is not
+constrained but empty, and the same lemma moves the floor by a full rung.
+
+**The failure mode is not "we mis-cited".** It is that a negative result — *this
+lever does nothing* — was accepted without auditing the assumptions surrounding
+the lever. Positive results get checked because they are load-bearing; negative
+ones close doors quietly and are checked far less. Therefore: **a recorded dead
+end must name the assumptions under which it is dead**, so that a later turn can
+see what would have to change to reopen it. Cert 0002's NOTES said only that the
+ladder "already encodes this structure"; it did not say *under the profiles the
+ladder then admitted*, which is precisely the clause that stopped being true.
+
+## D-007 · The N-ladder: strengthen the class, not the constant (2026-07-26)
+
+The degree-cap ladder asks "how few edges can carry τ ≥ t?" (that is g(t)) and
+squeezes the answer. Turn 5 got its improvement instead by **changing the class
+being minimised over**: N(t) counts the least edges with τ ≥ t *and a part all of
+whose vertices have degree ≥ 2*. Since a deleted star leaves exactly such an
+object — the surviving vertices of that part keep every edge they had — every cap
+in the ladder can be restated over the smaller class for free. N(4) = 9 against
+g(4) = 8 is the whole gain, and it is worth two rungs.
+
+Recorded as a method, not a result: when a bound is tight and its constants are
+already computed exactly, look for a **property the extremal object inherits from
+the context it appears in** and re-minimise over the restricted class. The
+constants stop being the thing to improve.
