@@ -127,7 +127,7 @@ At m = 20 the survivors go from {Δ=5,6,7} to **Δ=7 alone**; Δ=5 had previousl
 needed certificate 0003's separate low-incidence argument, and now dies by
 counting.
 
-## The single remaining question
+## The question that was, at turn 5, the single remaining one
 
 Δ = 7 at m = 20 saturates the k=1 cap (7 = 20 − 13). So the degree-7 vertex's
 complement R has exactly 13 edges; τ(R) ≥ 5 by peeling, and τ(R) = 6 would make R
@@ -157,9 +157,10 @@ keeping:
 - **Sensitivity.** m ≥ 20 rests on exactly three things: (A)+(B)+(C), N(4) = 9
   (now ours twice, by two unrelated searches), and the citation f(6) ≥ 13.
   Perturb any one and the floor falls back to 19 (or to 16 with no N-ladder).
-  **f(6) ≥ 13 is now the single largest unverified load in this lab** — and it
-  is the *lower* bound that is needed, whereas extremal constants are often
-  reported as best-known constructions. Our own citation-free bound is g(5) ≥ 12,
+  **Superseded:** certificate 0007 removed that citation entirely, so f(6) ≥ 13
+  is no longer a load on anything. The single largest one is now N(4) = 9.
+  (The point about needing the *lower* bound, not a best-known construction,
+  still stands for anyone re-reading the literature.) Our own citation-free bound is g(5) ≥ 12,
   and the entire distance from m ≥ 19 to m ≥ 20 lives in 12 versus 13.
 - **No circularity.** Excluding τ(R) = 6 uses cert 0001's m ≥ 18, which cites
   nothing — not the f(6) figure the same argument is deriving from.
@@ -167,7 +168,8 @@ keeping:
   multisets that reach C(20,2) contains **at least two parts with a degree-7
   vertex**. So an m=20 counterexample has two degree-7 vertices in different
   parts, and (L7) forces their stars to share ≥ 2 edges. That does not go through
-  Q13 and is the obvious next thing to push.
+  Q13 and is the obvious next thing to push. **It was pushed** — that is (L7),
+  and with (L8) it closes m = 20 in certificate 0006.
 
 Strictly, the 13-edge complement is a witness for **N(5) ≤ 13**; equality needs
 N(5) ≥ g(5) = 13, the cited constant. And "Q13 NO ⟹ N(5) ≥ 14" also uses g(5)=13
@@ -190,4 +192,5 @@ python3 verify.py
 
 Deterministic, and dominated by the ρ=8 exhaustion — which visits exactly
 **52,023,309 nodes**, a figure worth checking against if you modify the engine, since
-any change to the traversal moves it. ~8 min on 3.10+, ~42 min on 3.9.
+any change to the traversal moves it. ~7 min on 3.10+ and longer on 3.9; green under
+`python3 -O` too. 49 checks + 5 notes.

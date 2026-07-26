@@ -107,7 +107,9 @@ forbids. At m = 20 every admissible configuration fails one of the two.
 
 The numbers are interpretable, which is the reassuring part. At m = 20 the best
 per-part profile scores 33, so reaching C(20,2) = 190 leaves an excess of at most
-**X = 8** — while (L7) with two forced degree-7 vertices demands **B ≥ 15**.
+**X = 8** — while (L7), in the six-copies-of-(7,4,3,2,2,2) case, demands
+**B ≥ 15**. (B ≥ 15 is that configuration's floor, not a bound holding across all
+105; the general statement is just that (L7) forces B large.)
 Fifteen units of pair-depth cannot be bought with eight units of excess unless the
 pairs are deep, and deep pairs need high-k edges, whose budget is also only 8.
 
@@ -196,7 +198,8 @@ corrected form certificate 0005 proves outright.** So the loop closes:
 | Lemma 2.8, the structural input to the hard case | **independently ours** — cert 0005 proves the corrected statement by exhaustion, and re-derives Lemma 2.1's degree-3 clause |
 | **Lemma 2.9 (f(6) ≠ 12), the case analysis itself** | **cited, not reproduced** |
 
-So the external exposure of m ≥ 21 is not a constant but **one lemma: AKP 2.9** —
+So the external exposure of m ≥ 21 *for this certificate* is not a constant but
+**one lemma: AKP 2.9** — (certificate 0007 has no external exposure at all) —
 whose main structural input we have proven ourselves, and in whose printed
 statement we found (and corrected) an error. The ledger: three lemmas of ours, one
 exhaustive search of ours (N(4) = 9, 52.0M nodes), two counting lemmas of ours,
@@ -209,9 +212,11 @@ one peer-seeded reframing (Codex, re-derived here), one cited lemma.
 - **Q13 is not answered** — the question of whether a 13-edge τ=5 object can have
   a part of minimum degree 2. It became *unnecessary*, not settled. It remains the
   natural next lever, since answering it NO would push the floor past 21 by the
-  0005 ladder alone.
-- f(6) ≥ 13 is still unverified here, and it is the whole difference between
-  m ≥ 19 and m ≥ 21.
+  0005 ladder alone — though FHMW Lemma 2.1(iii) now looks like a cheaper one
+  (notebook/2026-07-26-fhmw-lemma-21.md).
+- f(6) ≥ 13 is not verified here, and at the time this certificate was written it
+  was the whole difference between m ≥ 19 and m ≥ 21. **Certificate 0007 removed
+  that dependence**: the floor of 21 holds citing nothing.
 
 ## Reproduce
 
