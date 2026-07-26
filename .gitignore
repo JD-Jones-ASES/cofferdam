@@ -2,3 +2,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .obsidian/
+
+# regenerable run caches: opaque, large, and pickles execute on load.
+# kept locally, not shipped -- see notebook/raw/README.md
+notebook/raw/**/cache.pkl
