@@ -11,14 +11,24 @@
 
 Certificate 0005 excluded m ≤ 19 and left Δ = 7 at m = 20 as its sole survivor.
 This certificate excludes m = 20 outright. Together: **m ≥ 21** — the statement
-this lab was seeded with, now reached by a derivation of its own.
+this lab was seeded with. **But see the attribution section: the seed of this last
+step came from Codex, so the result is partially independent, not blind.**
 
-## Origin: JD's step
+## Origin: Codex's hint, relayed by JD — and what that costs the claim
 
 > *Let x,y be the forced degree-7 vertices and put c = |E(x) ∩ E(y)| ≥ 2. Feed
 > that overlap back into the pair-intersection count. The c common-star edges
 > contribute at least C(c,2) ≥ 1 units of excess, because every pair among them
 > meets at both x and y. Therefore Σ_v C(d(v),2) ≥ 191, not merely 190.*
+
+**This is Codex's, not ours.** No sealed path was read — JD relayed it in
+conversation — but a station of the correlated chain seeded the final step, so
+**m ≥ 21 as reached here is partially independent, not blind.** The setting was
+ours (the 105 configurations, the two-degree-7 fact, (L7), the dead heat), the
+δ-budget that does the killing is ours and differs from the mechanism Codex
+suggested, and every control is ours. That is a much smaller import than the
+chain's argument, and it was re-derived here rather than trusted — but the
+qualifier belongs on the result. See D-010.
 
 Exactly right, and it is the hinge. The pair count is not just a *lower* bound to
 be met — the amount by which it is exceeded is a **budget**, and overlapping
@@ -48,7 +58,7 @@ explicit objects in checks 2–5):
 
 and four facts:
 
-- **(L2)** Σ_v C(d,2) = Σ_{e<f} |e∩f|, so **X = Σ_{e<f}(|e∩f| − 1)** — JD's reading.
+- **(L2)** Σ_v C(d,2) = Σ_{e<f} |e∩f|, so **X = Σ_{e<f}(|e∩f| − 1)** — Codex's reading.
 - **(L7)** c_ij ≥ M_i + M_j − (m − g(4)): delete both stars, τ ≥ 4 survives on
   m − |E(u_i) ∪ E(u_j)| edges, so that count is ≥ g(4) = 8.
 - **(C2)** |e∩f| ≥ t_ef, hence Σ_{e<f}(t_ef − 1)⁺ ≤ X.
@@ -109,15 +119,39 @@ D-005 is the most dangerous direction for an error to point. So:
 5. **Overlap with 0005 (check 17).** m ≤ 19 has no admissible configuration at
    all here, consistent with 0005 rather than in tension with it.
 
-## Cited-input discipline
+## Cited-input discipline — the citation, read firsthand
 
-The only external input is **f(6) = 13**, and it enters at exactly one place: the
-k=1 cap Δ ≤ m − 13, which is what bounds the admissible profiles. g(4) = 8 (which
-makes (L7) numerical) and N(1..4) = 2,4,6,9 are ours, from certificates 0001 and
-0005. Without f(6) = 13 the floor is **m ≥ 19** (certificate 0005).
+The only external input is **f(6) ≥ 13**, entering at exactly one place: the k=1
+cap Δ ≤ m − 13. Without it the floor is **m ≥ 19** (certificate 0005).
 
-So the honest ledger for m ≥ 21 is: **three lemmas of ours, one exhaustive search
-of ours (N(4) = 9, 52.0M nodes), one published constant.**
+It has now been checked in the source (Abu-Khazneh–Pokrovskiy, arXiv:1409.4938 —
+published literature, which the seal does not cover). It is **proved, not inferred
+from the 13-edge construction**:
+
+- **Theorem 1.1: f(6) = 13**, "also proved independently by Aharoni, Barat and
+  Wanless".
+- §2: "we will first show that f(6) > 12, by proving that f(6) ≠ 12 and then
+  combine it with the result f(6) > 11 established in [11]" — [11] being
+  Mansour–Song–Yuster.
+- **Lemma 2.9 (f(6) ≠ 12)** proceeds by case analysis on Δ(H), and its hard case
+  is stated plainly: "The case Δ(H) = 4 turns out to be more difficult … to settle
+  it we will require some facts concerning the degree structure of intersecting
+  6-partite hypergraphs with 8 hyperedges and a covering number equal to 4."
+
+**That is Lemma 2.8 — the lemma this lab found an arithmetic erratum in, and whose
+corrected form certificate 0005 proves outright.** So the loop closes:
+
+| piece of f(6) ≥ 13 | status here |
+| --- | --- |
+| f(6) ≥ 12 (MSY, f(6) > 11) | **independently ours** — cert 0001 derives g(5) ≥ 12 |
+| Lemma 2.8, the structural input to the hard case | **independently ours** — cert 0005 proves the corrected statement by exhaustion, and re-derives Lemma 2.1's degree-3 clause |
+| **Lemma 2.9 (f(6) ≠ 12), the case analysis itself** | **cited, not reproduced** |
+
+So the external exposure of m ≥ 21 is not a constant but **one lemma: AKP 2.9** —
+whose main structural input we have proven ourselves, and in whose printed
+statement we found (and corrected) an error. The ledger: three lemmas of ours, one
+exhaustive search of ours (N(4) = 9, 52.0M nodes), two counting lemmas of ours,
+one peer-seeded reframing (Codex, re-derived here), one cited lemma.
 
 ## What is NOT claimed
 

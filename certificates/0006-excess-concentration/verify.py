@@ -16,6 +16,27 @@ WHAT IS CLAIMED
   Certificate 0005 excluded m <= 19.  This one excludes m = 20, which was its
   sole survivor, so together they give m >= 21.
 
+ATTRIBUTION -- read this before calling the result independent
+--------------------------------------------------------------
+The SEED of this argument is **not ours**. The observation that the two forced
+degree-7 vertices overlap in c >= 2 edges, that every pair among those c edges
+meets at BOTH of them, and that the pair count is therefore exceeded by at least
+C(c,2) -- together with the instruction to re-open the equality case of the
+30-against-30 squeeze -- came from **Codex**, relayed by JD.  No sealed path was
+read; the owner passed the hint in conversation.
+
+What is ours: the setting it was applied to (the 105 admissible configurations,
+the two-degree-7 fact, (L7), and the dead heat itself); the delta-budget that
+does the actual killing (Codex's suggested mechanism was different -- "every
+counted obligation used exactly once, or equivalently linearity in the relevant
+trace"); the W_t argument; the B <= 5X/2 form; the sweep; and every control.
+
+So m >= 21 as reached here is **partially independent, not blind**: a two-line
+combinatorial hint from one station of the correlated chain entered the
+derivation.  It is a far smaller import than that chain's argument, and it was
+re-derived and verified here rather than taken on trust -- but the result must not
+be described as an independent confirmation without this qualifier.  See D-010.
+
 THE ARGUMENT
 ------------
 Choose one maximum-degree vertex u_j in each part; put U = {u_1..u_6},

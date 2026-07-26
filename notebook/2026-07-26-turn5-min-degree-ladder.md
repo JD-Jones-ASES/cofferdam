@@ -157,7 +157,13 @@ what unlocks it.
 
 # 2026-07-26 · turn 6 (same session) — (L8) closes m = 20; the floor is **m ≥ 21**
 
-## 10. JD's step, and what it turned out to be
+## 10. Codex's hint (relayed by JD), and what it turned out to be
+
+**Attribution corrected after the fact — this was recorded as JD's own and it is
+not.** The hint below is **Codex's**, passed on by JD in conversation; no sealed
+path was read. It matters, because a station of the correlated chain seeded the
+final step, and the honest label on m ≥ 21 is therefore **partially independent,
+not blind**. See D-010.
 
 > *Let x,y be the forced degree-7 vertices, c = |E(x) ∩ E(y)| ≥ 2. Feed that
 > overlap back into the pair-intersection count. The c common-star edges
@@ -212,9 +218,29 @@ arithmetic leaves X = 30.
 ## 12. Ledger for m ≥ 21
 
 Three lemmas of ours ((A),(B),(C)), one exhaustive search of ours (N(4)=9, 52.0M
-nodes), two counting lemmas of ours ((L7),(L8)), and **one published constant,
-f(6) = 13**, entering at exactly one place: the cap Δ ≤ m−13. Without it the floor
-is m ≥ 19. No solver anywhere; no isomorphism-class census anywhere.
+nodes), two counting lemmas of ours ((L7),(L8) — the latter **seeded by Codex and
+re-derived here**), and **one cited lemma**. No solver anywhere; no
+isomorphism-class census anywhere.
+
+**The citation, now read firsthand** (published literature, which the seal does not
+cover — AKP arXiv:1409.4938): f(6) ≥ 13 is *proved*, not inferred from the 13-edge
+construction. Theorem 1.1 gives f(6) = 13, independently obtained by ABW; §2 splits
+it as "f(6) ≠ 12" (Lemma 2.9, a case analysis on Δ) plus MSY's f(6) > 11. And
+Lemma 2.9's hard case is Δ(H) = 4, which the paper says outright "will require some
+facts concerning the degree structure of intersecting 6-partite hypergraphs with 8
+hyperedges and a covering number equal to 4" — **that is Lemma 2.8, the lemma we
+found the erratum in and whose corrected form cert 0005 proves outright.**
+
+So the exposure is not a constant but one lemma:
+
+| piece of f(6) ≥ 13 | status here |
+| --- | --- |
+| f(6) ≥ 12 (MSY) | **independently ours** — cert 0001's g(5) ≥ 12 |
+| Lemma 2.8 (the hard case's structural input) | **independently ours** — cert 0005 |
+| Lemma 2.9's case analysis itself | **cited, not reproduced** |
+
+Our erratum work therefore *shores up* the citation rather than undermining it: we
+have proven the corrected form of the lemma its hardest case depends on.
 
 **Q13 was not answered — it became unnecessary.** It stays the natural next lever:
 NO there would push the floor past 21 through the 0005 ladder alone.

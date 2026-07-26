@@ -2,7 +2,7 @@
 
 Revised 2026-07-26 (turn 6). History is the record; this file is rewritten.
 
-## Where we are — **floor m ≥ 21**, the seeded statement reached independently
+## Where we are — **floor m ≥ 21**, the seeded statement reached (partially independently)
 
 Seal intact (BRIEF §2): no sealed path read by this repo, the main thread, or any
 of the eight subagents run this session.
@@ -26,11 +26,16 @@ by the high-k edges they force, and at m = 20 the two budgets cannot both be pai
 
 ## Next, in order
 
-1. **Verify f(6) ≥ 13 against the literature.** It is the entire external exposure:
-   with it the floor is 21, without it 19. It is the *lower* bound that is needed,
-   and extremal constants are often quoted as best-known constructions. The papers
-   are not sealed; this needs web or PDF access the lab has not had. Our own
-   citation-free bound is g(5) ≥ 12 (cert 0001).
+1. **DONE — f(6) ≥ 13 checked in the source** (AKP arXiv:1409.4938, read firsthand;
+   published literature is not sealed). It is *proved*, not inferred from the 13-edge
+   construction: Theorem 1.1, split in §2 as Lemma 2.9 ("f(6) ≠ 12", a Δ case
+   analysis) plus MSY's f(6) > 11, and independently obtained by ABW. **The hard case
+   of Lemma 2.9 is Δ = 4, which the paper settles using Lemma 2.8 — the lemma we
+   found the erratum in and whose corrected form cert 0005 proves outright.** So the
+   exposure is one lemma, not a constant: f(6) ≥ 12 is independently ours (g(5) ≥ 12)
+   and Lemma 2.8 is independently ours; only Lemma 2.9's case analysis is cited and
+   unreproduced. Reproducing it is now a well-scoped target (a 12-edge τ=5 exhaustion
+   is the same order of work as Q13).
 2. **Push the floor above 21.** Two levers, both live:
    - *(L8) upward*: it leaves 6198 of 43875 configurations alive at m = 21. Adding
      the value-pool ceiling back (deliberately dropped for safety at m=20) and the
