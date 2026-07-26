@@ -11,6 +11,13 @@ or `~/Documents/Grok-Repos/` — and do not delegate reading them to a subagent.
 This lab's only value is that its derivation is its own. See BRIEF §2 and the
 Seal Law in §6.
 
+**Current seal level: S2 — audited.** Peer critiques *of our own work* have been
+read; no peer *derivation* has. Certificates 0001–0007 were all derived at S3
+(blind), and that does not degrade. If you need to learn what a peer concluded,
+do NOT read it — run the airlock in **[INTAKE.md](INTAKE.md)**, which gets you
+their statements without their arguments. Branching does not substitute: git
+isolates files, not context.
+
 ## Routing
 
 | You are here to… | Read, in order |
@@ -18,13 +25,14 @@ Seal Law in §6.
 | Continue the derivation | [PLAN.md](PLAN.md) → latest `notebook/` entry |
 | Check a claimed result | its `certificates/` dir → run `verify.py` |
 | Understand the founding | [BRIEF.md](BRIEF.md) → [DECISIONS.md](DECISIONS.md) |
+| Take in a peer's findings | [INTAKE.md](INTAKE.md) — the airlock; never read the artifact yourself |
 | Brief JD | `reports/` (latest first) — plain language, ends with the one command |
 | Use the machinery | `lib/ryser.py` (edge-wise) · `lib/columns.py` (column-wise) |
 
 ## The laws
 
-Certificate Law · No-Noise Law · **Seal Law** · Cited-input discipline — all four
-stated in [BRIEF.md](BRIEF.md) §6. Two operational consequences worth repeating:
+Certificate Law · No-Noise Law · **Seal Law** (graded, see INTAKE.md) ·
+Cited-input discipline — all four stated in [BRIEF.md](BRIEF.md) §6. Two operational consequences worth repeating:
 
 - **Checkers are stdlib-only.** `python3 verify.py` from a clean shell, no
   installs, no venv, no imports from `lib/`. A certificate that needs the repo's

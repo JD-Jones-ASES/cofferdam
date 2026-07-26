@@ -381,3 +381,46 @@ lists them.
 (Also vindicating D-009: U was kept deliberately weak for safety and turns out to
 be doing no work whatever. A step you kept only as insurance and that proves inert
 is the best possible outcome — it can be deleted from the trust chain outright.)
+
+## D-020 · The seal is graded and repeatable; the airlock is an agent, not a branch (2026-07-26)
+
+BRIEF §2's seal was binary and one-shot: four paths unread, lifting once, for a
+diff. It worked — certificates 0001–0007 are this lab's own. But a one-shot seal
+has a bad endgame. The moment it lifts, the lab either stops being useful as an
+independent station or gets archived and rebuilt somewhere clean. Quarry was
+archived. Cofferdam should not have to be, and the owner asked for the mechanism
+that avoids it.
+
+**The obvious mechanism does not work.** A branch — or a worktree, a submodule, a
+separate clone — isolates *files*. The seal protects *context*. A session that
+reads a peer derivation on `explore/` is contaminated on `main` too, because there
+is no checkout back to not knowing something. "Branch, learn, merge the useful
+lessons later" fails at step two, and it fails silently, which is worse.
+
+**The mechanism that does work is the subagent boundary**, because a subagent's
+context is genuinely destroyed when it returns. A disposable READER reads the
+sealed artifact and emits **statements without arguments**; the lab reads the
+statements and re-derives or refutes them. That is not new law — it is BRIEF §2's
+founding move, *seeded with the statement and never the derivation*, turned from a
+one-time setup into a pipeline that can run whenever a peer produces something.
+Git then supplies what an agent cannot: a durable SHA-pinned ledger, and a merge
+gate that lets nothing onto `main` that has not been re-derived here.
+
+**The seal also needed grades, and the lack of them cost accuracy the same day it
+lifted.** Turn 7 recorded the seal as *spent* after reading one file inside a
+sealed directory — but that file was a peer's critique **of our own work**, not a
+peer's derivation. Those are different acts. The three peer derivations remained
+unread. So the lab had gone S3 → S2, not S3 → S0, and the difference is the
+difference between "needs archiving" and "carry on". Levels S3 blind / S2 audited
+/ S1 briefed / S0 merged are defined in INTAKE.md; descent is one-way; a
+certificate records the level it was derived at, permanently.
+
+**And a leak rule, because this repo is not private to us.** Codex reads it. Peer
+material committed here does not stay here — putting one lab's findings on `main`
+shows them to the other, correlating exactly the two labs whose independence is
+the point. The ledger therefore lives in the brain, not in the repo. This is the
+seal's own failure mode arriving through the back door, and it would have been
+easy to walk into while trying to be organised.
+
+Recorded as an amendment: **BRIEF.md stays frozen.** INTAKE.md carries the
+amendment and the owner's ruling is what makes it law.
