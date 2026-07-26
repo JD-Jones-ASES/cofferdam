@@ -6,10 +6,12 @@
 Stdlib only.  Exact integer arithmetic.  No solver.  No imports from lib/.
 
 RUNTIME, measured, dominated by one exhaustive search (the rho=8 exhaustion):
-  ~8 min   on Python 3.10+ (int.bit_count fast path)
-  ~42 min  on Python 3.9   (bin().count fallback; 3.9 is what macOS ships as
+  ~7 min   on Python 3.10+ (int.bit_count fast path)
+  much longer on Python 3.9 (bin().count fallback; 3.9 is what macOS ships as
            /usr/bin/python3, so this is the figure a reader on a stock Mac sees)
-Both verified green: 40 checks either way.  It is slow, not hung.
+Green either way, and green under `python3 -O`: 49 checks + 5 notes.  A note is a
+stated fact, not a machine test, and is tallied separately so the check count
+cannot imply a test that did not run.  It is slow, not hung.
 
 WHAT IS CLAIMED
 ---------------

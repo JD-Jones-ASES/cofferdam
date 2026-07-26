@@ -4,14 +4,12 @@
 
 ## The claim
 
-A peer lab recorded, as an **explicitly unverified hypothesis** flagged 2026-07-22
-and never checked, a bound of the form
+A bound of the form
 
 > |E| ≥ (r − 1)·Δ + 1
 
-for intersecting r-partite r-uniform hypergraphs, attributed to Király–Tóthmérész.
-It reached this lab as a bare statement through the [INTAKE.md](../INTAKE.md)
-airlock, with no argument attached — which is the protocol working as designed.
+for intersecting r-partite r-uniform hypergraphs, attributed to
+Király–Tóthmérész, was in circulation as an unverified claim.
 
 It was worth checking immediately because if it held with hypotheses matching ours
 it would dominate everything here: at r = 6 it reads |E| ≥ 5Δ + 1, and combined
@@ -51,8 +49,6 @@ regularity. Truncated PG(2,5) is the witness; the counting is the proof.
 
 ## The method note
 
-This is what the airlock is for. A peer's unverified hypothesis arrived as a
-statement with its argument stripped, and it took one construction to kill. Had it
-arrived with a plausible-looking derivation attached it would have been harder to
-disbelieve, not easier — **a bare claim is cheaper to test than a dressed one**,
-which is an argument for the intake protocol quite separate from independence.
+It arrived as a bare claim, with no argument attached, and took one construction to
+kill. Had it come dressed in a plausible derivation it would have been harder to
+disbelieve, not easier. **A bare claim is cheaper to test than a dressed one.**
