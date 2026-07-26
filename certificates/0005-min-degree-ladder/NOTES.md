@@ -1,6 +1,9 @@
 # Certificate 0005 — the minimum-degree ladder; m ≥ 20, and the gap becomes one question
 
-**Status: GREEN.** 40 checks, 810 s, `python3 verify.py`, stdlib only, no solver.
+**Status: GREEN.** 40 checks, `python3 verify.py`, stdlib only, no solver.
+Measured runtime **~8 min on Python 3.10+**, **~42 min on Python 3.9** (which is what
+macOS ships as `/usr/bin/python3`; the fallback popcount is ~5x slower). Green either
+way — it is slow, not hung.
 
 | claim | label |
 | --- | --- |
@@ -172,4 +175,6 @@ witnesses.
 python3 verify.py
 ```
 
-347 s, dominated by check 19 (the ρ=8 exhaustion). Deterministic.
+Deterministic, and dominated by the ρ=8 exhaustion — which visits exactly
+**52,023,309 nodes**, a figure worth checking against if you modify the engine, since
+any change to the traversal moves it. ~8 min on 3.10+, ~42 min on 3.9.

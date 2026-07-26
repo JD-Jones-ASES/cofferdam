@@ -91,7 +91,8 @@ removed.
 The **five green certificates** (0001, 0002, 0003, 0005, 0006) are verified on
 **Python 3.9** — the version macOS ships as `/usr/bin/python3` — as well as on 3.14,
 so a bare interpreter is genuinely enough. 0004 is never-green scaffolding and is
-labelled as such:
+labelled as such. Note the runtimes: certificate 0005 takes ~8 min on Python 3.10+ but
+**~42 min on 3.9**, where it falls back to a slower popcount. It is slow, not hung.
 
 ```bash
 env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/0006-excess-concentration/verify.py
