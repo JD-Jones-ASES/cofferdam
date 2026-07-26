@@ -1,13 +1,18 @@
 # Erratum: Abu-Khazneh–Pokrovskiy Lemma 2.8, as posted on arXiv
 
 **Scope of the claim, stated before anything else.** This concerns
-**arXiv:1409.4938v1** (submitted 17 Sep 2014), which is the **only version on
-arXiv** — checked 2026-07-26; there is no v2, and the arXiv record carries no
-journal reference. A journal version is reported by a secondary source as *J.
-Combin. Math. Combin. Comput.* **103** (2017) 81–104; **we have not seen it**, so
-nothing here is a claim about the published text. The slip is **arithmetic, in the
-statement only**: the surrounding proof derives the correct structure, and
-**f(6) = 13 is unaffected**.
+**arXiv:1409.4938v1** (submitted 17 Sep 2014), which is the **only version on arXiv**
+— checked 2026-07-26; there is no v2, and the arXiv record carries no journal
+reference. A journal version exists: the second author's own publication list gives
+*J. Combin. Math. Combin. Comput.* **103** (2018) 81–104, and the only link it offers
+for the paper is the **arXiv PDF**, i.e. v1 is the copy in circulation. **We have not
+seen the journal text**, so nothing here is a claim about it — if a referee caught
+this, the correction would be there and not on arXiv.
+
+The slip is **arithmetic, in the statement only**: the surrounding proof derives the
+correct structure, and **f(6) = 13 is unaffected**. Nothing in our floor would move
+if the published version reads correctly; the reason to record it at all is the
+dependency check in the last section.
 
 Found by independent enumeration, not by reading.
 
