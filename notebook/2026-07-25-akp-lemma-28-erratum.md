@@ -79,3 +79,16 @@ condition, with the machinery demonstrably working.
 Hence **every f(6)-extremal 13-edge hypergraph has maximum degree exactly 4** — a
 structural fact about the extremal family that neither AKP nor ABW states, and one
 that halves the work at the next rung.
+
+## Addendum (turn 5, after independent re-derivation)
+
+The corrected Lemma 2.8 is no longer only a census observation: certificate 0005
+proves it outright. A part of an (8,4) object has >= 4 vertices; of the eight
+conceivable profiles, three die on the pair count, and (2,2,2,2), (3,1,1,1,1,1)
+and (2,2,2,1,1) die by exhaustive column search (52.0M / 2.8M / 7.0M nodes).
+Exactly **(3,2,2,1) and (3,2,1,1,1)** survive -- the corrected statement, sharp.
+
+An adversarial re-derivation reached the same two profiles from the opposite
+direction: its positive control at (8,4), run with no full-part requirement,
+recovers exactly the two multisets our census recorded (six (3,2,2,1); or five
+(3,2,2,1) plus one (3,2,1,1,1)). Three independent routes now agree.

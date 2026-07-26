@@ -1,6 +1,6 @@
 # Certificate 0005 — the minimum-degree ladder; m ≥ 20, and the gap becomes one question
 
-**Status: GREEN.** 31 checks, 347 s, `python3 verify.py`, stdlib only, no solver.
+**Status: GREEN.** 40 checks, 810 s, `python3 verify.py`, stdlib only, no solver.
 
 | claim | label |
 | --- | --- |
@@ -65,6 +65,28 @@ Two independent agreements, *neither used as an input*:
 with its other five coordinates chosen to meet all eight old edges:
 `(0,2,1,2,2,2)`. τ can only rise, so it is still 4, and part 1 becomes (3,2,2,2).
 
+## Corollary at almost no extra cost: AKP Lemma 2.8, corrected and certified
+
+A part of an (8, τ=4) object is a cover, so it has ≥ 4 vertices; that leaves
+eight conceivable profiles. Three die on the pair count alone, (2,2,2,2) died
+above, and (3,1,1,1,1,1) and (2,2,2,1,1) die by exhaustive search here — 2.8M
+nodes / 31 s and 7.0M nodes / 72 s, both with waste budget 0. What survives is
+exactly **(3,2,2,1) and (3,2,1,1,1)**.
+
+That is Abu-Khazneh–Pokrovskiy Lemma 2.8 with its arithmetic corrected (as
+printed, its second structure sums to 9, not 8 — see the erratum note), now
+**proven here**, and it reproduces the part profiles of this lab's own 5-class
+(8,4) census by a route sharing no machinery with it. It also re-derives AKP
+Lemma 2.1's "a degree-3 vertex in every part" clause as a consequence rather
+than a citation.
+
+## Reading the witness — one trap worth naming
+
+"Part 1" of the 9-edge N(4) witness means **0-indexed coordinate 1**, the second
+coordinate. Coordinate 0 is (4,2,1,1,1) and is *not* full. A checker who reads
+"part 1" as the first coordinate will wrongly reject a good witness. (Caught by
+the adversarial re-derivation, which cost itself time on exactly this.)
+
 ## What the ladder returns
 
 | caps | least surviving m |
@@ -96,6 +118,34 @@ Only three profiles are possible for that part: (4,3,2,2,2), (3,3,3,2,2),
 (3,2,2,2,2,2), with waste budgets 9, 8, 5. **Q13 is open**; see the notebook entry
 for the measured search cost and for the counting-only fallback that came to a
 dead heat (max 30 against a requirement of exactly 30) and therefore fails.
+
+## Independent re-derivation, and what it flagged
+
+The chain was handed to an adversarial re-derivation with instructions to break
+it. It confirmed every step and **re-proved N(4) ≥ 9 by a search of a different
+design** (50.75M nodes, 48 s, zero solutions) whose positive control — the same
+machinery with the full-part requirement dropped — recovers exactly the two
+part-profile multisets the corollary above predicts. Three findings worth
+keeping:
+
+- **Sensitivity.** m ≥ 20 rests on exactly three things: (A)+(B)+(C), N(4) = 9
+  (now ours twice, by two unrelated searches), and the citation f(6) ≥ 13.
+  Perturb any one and the floor falls back to 19 (or to 16 with no N-ladder).
+  **f(6) ≥ 13 is now the single largest unverified load in this lab** — and it
+  is the *lower* bound that is needed, whereas extremal constants are often
+  reported as best-known constructions. Our own citation-free bound is g(5) ≥ 12,
+  and the entire distance from m ≥ 19 to m ≥ 20 lives in 12 versus 13.
+- **No circularity.** Excluding τ(R) = 6 uses cert 0001's m ≥ 18, which cites
+  nothing — not the f(6) figure the same argument is deriving from.
+- **A second lever on m = 20, unused here.** Every one of the 105 profile
+  multisets that reach C(20,2) contains **at least two parts with a degree-7
+  vertex**. So an m=20 counterexample has two degree-7 vertices in different
+  parts, and (L7) forces their stars to share ≥ 2 edges. That does not go through
+  Q13 and is the obvious next thing to push.
+
+Strictly, the 13-edge complement is a witness for **N(5) ≤ 13**; equality needs
+N(5) ≥ g(5) = 13, the cited constant. And "Q13 NO ⟹ N(5) ≥ 14" also uses g(5)=13
+to dispose of the ≤ 12-edge case.
 
 ## Cited-input discipline
 

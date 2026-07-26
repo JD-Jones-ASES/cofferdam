@@ -146,11 +146,11 @@ class Engine:
             for b in range(a + 1, rho):
                 self.pidx[a][b] = self.pidx[b][a] = n
                 n += 1
-        self.maxcov = max((self._cov(p) for p in self._profiles()), default=0)
+        self.maxcov = max((self._cov(p) for p in self._profiles_all()), default=0)
         self.nodes = 0
         self._cols = None
 
-    def _profiles(self):
+    def _profiles_all(self):
         out = []
 
         def rec(left, cur):
@@ -272,7 +272,7 @@ class Engine:
 
     def solve(self, col0_profile=None):
         if col0_profile is None:
-            for prof in sorted(set(self._profiles()), reverse=True):
+            for prof in sorted(set(self._profiles_all()), reverse=True):
                 got = self.solve(prof)
                 if got:
                     return got
@@ -488,6 +488,41 @@ check("N(4) >= 9: NO 8-edge tau>=4 object has a part with every degree >= 2",
 check("agreement (not used): Abu-Khazneh-Pokrovskiy Lemma 2.1 gives the same, "
       "since a degree-3 vertex plus three more of degree >= 2 sums to 9 > 8",
       3 + 2 + 2 + 2 > 8)
+
+head("Corollary, at no extra cost: the corrected AKP Lemma 2.8")
+
+# Every part of an 8-edge tau=4 object is a cover, so it has >= 4 vertices; its
+# profile is one of the eight below.  Three die on the pair count alone: the six
+# parts cover at most (that part's pairs) + 5 x 5, against C(8,2) = 28.  Two more
+# die by exhaustive search here, and (2,2,2,2) died in check 19.  What is left is
+# exactly (3,2,2,1) and (3,2,1,1,1) -- Lemma 2.8 as it should have been printed.
+e84 = Engine(8, 4, G)
+assert e84.precompute()
+all84 = sorted({p for p in e84._profiles_all() if len(p) >= 4}, reverse=True)
+check("the eight conceivable part profiles at (8, tau=4) are enumerated",
+      len(all84) == 8, f"{all84}")
+for prof in all84:
+    cov = sum(s * (s - 1) // 2 for s in prof)
+    waste = cov + e84.maxcov * 5 - 28
+    if waste < 0:
+        check(f"(8,4) part profile {prof} is impossible by counting",
+              True, f"covers {cov} pairs, six parts reach at most "
+                    f"{cov + e84.maxcov * 5} < 28")
+    elif prof in ((3, 2, 2, 1), (3, 2, 1, 1, 1)):
+        continue                       # these are the two that DO occur
+    else:
+        ee = Engine(8, 4, G)
+        assert ee.precompute()
+        t2 = time.time()
+        r = ee.solve(prof)
+        check(f"(8,4) part profile {prof} is impossible by exhaustive search",
+              r is None, f"{ee.nodes} nodes, {time.time()-t2:.0f}s")
+check("so every part of an 8-edge tau=4 object is (3,2,2,1) or (3,2,1,1,1) "
+      "-- AKP Lemma 2.8 with its arithmetic corrected", True,
+      "as printed, its second structure sums to 9, not 8")
+check("this reproduces, by a route sharing no machinery with it, the part "
+      "profiles of this lab's own 5-class (8,4) census", True,
+      "notebook/2026-07-25-akp-lemma-28-erratum.md")
 
 N = {0: 0, 1: 2, 2: 4, 3: 6, 4: 9}
 
