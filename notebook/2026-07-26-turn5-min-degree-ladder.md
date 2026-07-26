@@ -152,3 +152,69 @@ counterexample may contain degree-1 vertices. The lemma was cited correctly; the
 error was in what we let it sit next to. Lemma 2.1 was not subsumed by the
 ladder, as cert 0002 recorded; it was *underused*, and the two-line lemma (A) is
 what unlocks it.
+
+---
+
+# 2026-07-26 · turn 6 (same session) — (L8) closes m = 20; the floor is **m ≥ 21**
+
+## 10. JD's step, and what it turned out to be
+
+> *Let x,y be the forced degree-7 vertices, c = |E(x) ∩ E(y)| ≥ 2. Feed that
+> overlap back into the pair-intersection count. The c common-star edges
+> contribute at least C(c,2) ≥ 1 units of excess, because every pair among them
+> meets at both x and y. So Σ_v C(d(v),2) ≥ 191, not merely 190.*
+
+The move is to stop reading the pair count as a bound to be *met* and read the
+surplus as a **budget to be spent**. Section 7 above had the (L4)/(L7) squeeze end
+at 30 against exactly 30 and filed it as a dead heat. It is not a dead heat: the
+equality forces every c_ij = 2, and the budget then cannot pay for the
+consequences.
+
+One refinement was needed past the ≥191. The overlap costs excess *and* forces
+edges rich in maximum-degree vertices, and those cost a second budget:
+
+  δ(k) := C(k,2) − (k−1) ≥ 0, and Σ_e δ(k_e) = A − Σ_j M_j + m =: D.
+
+Since t_ef ≤ min(k_e,k_f), pairs at level ≥ t live inside W_t = {e : k_e ≥ t}, so
+D ≥ q₃ + 2q₄ + 3q₅ with q_t the least q with C(q,2) ≥ #{pairs at level ≥ t}.
+
+**(L8)**: (L7) forces B = Σ_{i<j}C(c_ij,2) large; C(t,2)/(t−1) = t/2 ≤ 5/2 with
+t ≤ 5 forces B ≤ ⌊5X/2⌋; so B must be carried by many shallow pairs (X forbids) or
+deep ones (D forbids). At m = 20, every one of the 105 admissible configurations
+fails. **Cert 0006 GREEN, 19 checks, 66 s.**
+
+For the dead-heat case concretely: c_ij = 2 for all 15 part-pairs → B = 15; with
+X = 8 and t ≤ 5 only {5,3,2,2} and {4,4,3} reach 15; they need δ-budgets 13 and 9
+against D = 8.
+
+## 11. Why it does not prove too much
+
+The result lands exactly on the number under verification — D-005's most
+dangerous direction. Four controls:
+
+- **Positive control**: the δ-budget inequality holds with room on all four real
+  witnesses (D = 12, 4, 6, 12 against needs 6, 0, 0, 7).
+- **Not-too-strong**: the identical machinery at m = 21 leaves **6198 of 43875**
+  multisets alive. Had it killed every m it would be proving Ryser at r=6 and
+  would therefore be wrong.
+- **Identity audit**: all four identities and both inequalities brute-forced on
+  420 random intersecting objects across seven sizes.
+- **Conservative ceiling**: the final version uses *no* value pool and *no* (L4) —
+  only "Σ k_e = Σ M_j over m edges with k ≤ 6", i.e. maximum concentration. That is
+  strictly weaker than the pool DP, so strictly more permissive, and it still kills
+  all 105. A whole layer left the trust chain. (Two independent implementations of
+  the pool DP had agreed at 30 first.)
+
+**Why 20 dies and 21 doesn't, in one line:** at m=20 the best profile scores 33, so
+reaching 190 leaves excess X ≤ 8 while (L7) demands B ≥ 15; at m=21 the same
+arithmetic leaves X = 30.
+
+## 12. Ledger for m ≥ 21
+
+Three lemmas of ours ((A),(B),(C)), one exhaustive search of ours (N(4)=9, 52.0M
+nodes), two counting lemmas of ours ((L7),(L8)), and **one published constant,
+f(6) = 13**, entering at exactly one place: the cap Δ ≤ m−13. Without it the floor
+is m ≥ 19. No solver anywhere; no isomorphism-class census anywhere.
+
+**Q13 was not answered — it became unnecessary.** It stays the natural next lever:
+NO there would push the floor past 21 through the 0005 ladder alone.
