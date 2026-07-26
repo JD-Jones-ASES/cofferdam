@@ -646,6 +646,46 @@ check("SENSITIVITY: the m = 21 kill needs the cap to be exactly floor(m/2)",
       "survivors at cap 9/10/11/12: %d/%d/%d/%d -- one unit weaker and m = 21 "
       "reopens" % (sens[9], sens[10], sens[11], sens[12]))
 
+# 5g.  THE MARGIN, STATED.  Certificate 0006 set the rule: a certificate that
+# says "conservative" without saying "margin 1" has told the reader the safe
+# half (D-017).  This result has margin exactly one in TWO independent places.
+bands = {}
+for c in all21:
+    v = sum(d2_of(P21[i]) for i in c)
+    if v not in bands:
+        bands[v] = [0, 0]
+    bands[v][0] += 1
+    if not l8_kills(tuple(P21[i] for i in c), 21):
+        bands[v][1] += 1
+lowest_surv = min((v for v in bands if bands[v][1] > 0), default=None)
+check("MARGIN 1 on the cap: the least D2 admitting an (L8) survivor at m = 21 "
+      "is one above the cap", lowest_surv == 11,
+      "cap = 10; bands D2 -> (configurations, survivors): %s"
+      % ", ".join("%d->(%d,%d)" % (v, bands[v][0], bands[v][1])
+                  for v in sorted(bands) if v <= 12))
+note("the m = 21 kill rides on an odd-m rounding",
+     "2*D2 <= 21 gives D2 <= 10. At even m the same lemma gives no such half "
+     "unit -- at m = 22 the cap is 11 and 56,592 configurations survive.")
+
+# 5h.  SENSITIVITY THAT ACTUALLY EXERCISES THIS ROW.  Certificate 0007's control
+# -- falsify N(4) to 8 and m = 20 revives -- does NOT transfer here.  Reusing it
+# under an m >= 22 claim would ship a control that never touches the claim.
+N_N4BAD = {1: 2, 2: 4, 3: 6, 4: 8, 5: 11}
+Pn4s, cap21_n4bad = enumerate_admissible(21, N_N4BAD, cap=10)
+surv_n4 = sum(1 for c in cap21_n4bad
+              if not l8_kills(tuple(Pn4s[i] for i in c), 21))
+check("0007's N(4) control does NOT transfer: falsifying N(4) to 8 leaves "
+      "m = 21 dead", surv_n4 == 0,
+      "%d cap-passers under N(4) = 8, %d survive -- so this row is NOT held up "
+      "by the N-ladder" % (len(cap21_n4bad), surv_n4))
+
+surv_g7 = sum(1 for c in capped21
+              if not l8_kills(tuple(P21[i] for i in c), 21, g4=7))
+check("SENSITIVITY for THIS row: g(4) = 8 is what holds m = 21, with margin one",
+      surv_g7 > 0,
+      "weaken g(4) to 7 and %d of the %d cap-passers survive" % (surv_g7,
+                                                                 len(capped21)))
+
 # 5e.  CONTAINMENT: the cited ladder is a special case, not a rival.
 _, cited21 = enumerate_admissible(21, N_CITED, cap=10)
 Pc21 = sorted(profiles(21, N_CITED), key=sc, reverse=True)
@@ -679,9 +719,14 @@ print("""
   IF (D2) WERE WITHDRAWN the floor returns to m >= 21, certificate 0007,
   citing nothing. Nothing below 21 depends on this file.
 
-  THE LOAD-BEARING STEP IS STILL N(4) = 9 -- one exhaustive search, now with a
-  second independent implementation (turn 7 completeness pass). The sensitivity
-  in certificate 0007 prices it: set N(4) = 8 and m = 20 revives.
+  WHAT HOLDS THE m = 21 ROW UP, measured above and NOT what holds up the rest:
+    the cap itself   margin exactly 1 (D2 = 11 admits 7 survivors, cap is 10)
+    g(4) = 8         margin exactly 1 (weaken to 7 and survivors appear)
+    the delta budget margin exactly 1 (tightest cap-passer misses by one unit)
+    the N-ladder     INERT at m = 21 -- falsify N(4) to 8 and it stays dead
+  So this row has margin one in THREE places at once, and certificate 0007's
+  sensitivity control does not exercise it. For m <= 20 the load-bearing step is
+  still N(4) = 9, as 0007 says; those are different claims with different hinges.
 """)
 
 head("VERDICT")

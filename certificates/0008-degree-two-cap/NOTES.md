@@ -1,8 +1,8 @@
 # Certificate 0008 — the degree-two cap: **m ≥ 22**, citing nothing
 
-**Status: GREEN.** 36 checks + 3 notes, ~2 min, `python3 verify.py`, stdlib only,
-no solver, no imports from `lib/`. Measured on this box: 130 s under Homebrew
-3.14, **123 s under a bare `/usr/bin/python3` (3.9.6)**, 124 s under `-O`.
+**Status: GREEN.** 39 checks + 4 notes, ~2 min, `python3 verify.py`, stdlib only,
+no solver, no imports from `lib/`. Green under Homebrew 3.14, under a bare
+`/usr/bin/python3` (3.9.6), and under `-O`.
 
 | claim | label |
 | --- | --- |
@@ -141,6 +141,36 @@ PLAN.md's summary of it were computed on the **cited** ladder (N(5) = 13). A
 floor built on those numbers would have silently re-imported f(6) = 13 and undone
 certificate 0007. The citation-free run is a different and ~7× larger problem —
 316,591 admissible at m = 21, not 43,875; 2,478 cap-passers, not 567.
+
+## The margin, stated — because "conservative" is a direction, not a number
+
+Certificate 0006 set the rule (D-017): a certificate that says "conservative"
+without saying "margin 1" has told the reader the safe half. **This row has
+margin exactly one in three independent places at once.**
+
+| input | margin |
+| --- | --- |
+| the cap ⌊m/2⌋ | **1** — bands D₂ → (configurations, survivors) at m = 21: 6→(1,0), 7→(14,0), 8→(126,0), 9→(578,0), 10→(1759,0), **11→(4129,7)**, 12→(7920,107). The least D₂ admitting a survivor is one above the cap |
+| g(4) = 8 | **1** — weaken to 7 and **123 of the 2,478** cap-passers survive |
+| the δ-budget | **1** — the tightest cap-passer, (8,3,3,3,2,2)×4 + (7,3,3,3,3,2)×2, misses surviving by D − need = −1 |
+
+And the kill **rides on an odd-m rounding**: 2·D₂ ≤ 21 gives D₂ ≤ 10, a free half
+unit the same lemma does not hand you at even m. At m = 22 the cap is 11 and
+56,592 configurations survive. Of the 2,478 cap-passers at m = 21, **2,383 (96.2%)
+die on the excess/level system before the δ-budget is consulted at all**; 95 reach
+it, and none die on U < L.
+
+## Certificate 0007's negative control does not transfer
+
+0007's sensitivity is "set N(4) = 8 and m = 20 comes back to life." **That control
+does not exercise this row.** Falsified to N(4) = 8, m = 21 stays dead — 7,344
+cap-passers, zero survivors — and N(1), N(2), N(3), N(5) are wholly inert here.
+Reusing 0007's control under an m ≥ 22 claim would have shipped a check that never
+touches the claim it sits under. The certificate now runs the sensitivity that
+does: **g(4) = 8**, plus the cap itself.
+
+For m ≤ 20 the hinge is still N(4) = 9, exactly as 0007 says. Different rungs,
+different hinges — and the ledger in §6 now says so.
 
 ## What this buys, exactly
 
