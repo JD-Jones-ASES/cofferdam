@@ -18,24 +18,35 @@ WHAT IS CLAIMED
 
 ATTRIBUTION -- read this before calling the result independent
 --------------------------------------------------------------
-The SEED of this argument is **not ours**. The observation that the two forced
-degree-7 vertices overlap in c >= 2 edges, that every pair among those c edges
-meets at BOTH of them, and that the pair count is therefore exceeded by at least
-C(c,2) -- together with the instruction to re-open the equality case of the
-30-against-30 squeeze -- came from **Codex**, relayed by JD.  No sealed path was
-read; the owner passed the hint in conversation.
+The seed of this argument is **not ours**.  It came from **Codex**, one of the
+stations whose correlated chain this lab exists to check, and it arrived as exact
+algebra rather than as a heuristic.  Codex's contribution, in substance:
+
+    put c = |E(x) n E(y)| >= 2 for the two forced degree-7 vertices x, y;
+    sum_v C(d(v),2) = sum_{e,f} |e n f|, hence
+    sum_v C(d(v),2) - C(20,2) = sum_{e,f} (|e n f| - 1);
+    the c common-star edges contribute at least C(c,2) >= 1 units of that excess,
+    because every pair among them meets at BOTH x and y;
+    therefore sum_v C(d(v),2) >= 191, not merely 190.
+    Then: re-open the equality case of the 30-against-30 squeeze.
+
+Every one of those identities is exact and is Codex's.  No sealed path was read --
+the statements were passed to this lab in conversation -- but the reframing that
+makes the kill possible, reading the pair count's surplus as a spendable budget,
+originates there and not here.
 
 What is ours: the setting it was applied to (the 105 admissible configurations,
-the two-degree-7 fact, (L7), and the dead heat itself); the delta-budget that
-does the actual killing (Codex's suggested mechanism was different -- "every
-counted obligation used exactly once, or equivalently linearity in the relevant
-trace"); the W_t argument; the B <= 5X/2 form; the sweep; and every control.
+the forced pair of degree-7 vertices, (L7), and the dead heat itself); t_ef <= 5;
+the B <= 5X/2 form; the **delta-budget** that does the actual killing, which is a
+different mechanism from the one Codex suggested (Codex proposed that equality
+might require "every counted obligation to be used exactly once -- or equivalently
+linearity in the relevant trace"); the W_t argument; the sweep over all 105; and
+every control.
 
-So m >= 21 as reached here is **partially independent, not blind**: a two-line
-combinatorial hint from one station of the correlated chain entered the
-derivation.  It is a far smaller import than that chain's argument, and it was
-re-derived and verified here rather than taken on trust -- but the result must not
-be described as an independent confirmation without this qualifier.  See D-010.
+So m >= 21 as reached here is **partially independent, not blind**.  The proving,
+the verification and the controls are this lab's; the pointer that opened the
+route is Codex's.  It must not be described as an independent confirmation of the
+chain's m >= 21.  See D-010.
 
 THE ARGUMENT
 ------------

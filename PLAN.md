@@ -2,7 +2,7 @@
 
 Revised 2026-07-26 (turn 6). History is the record; this file is rewritten.
 
-## Where we are — **floor m ≥ 21**, the seeded statement reached (partially independently)
+## Where we are — **floor m ≥ 21**, reached partially independently (D-010)
 
 Seal intact (BRIEF §2): no sealed path read by this repo, the main thread, or any
 of the eight subagents run this session.
@@ -49,8 +49,10 @@ by the high-k edges they force, and at m = 20 the two budgets cannot both be pai
    ρ=12 exhaustion is the same order of work as Q13.
 4. **Certify Δ = 4 for f(6)-extremal objects** (turn-4 result, still uncertified);
    it tightens Q13's waste budgets from 9/8/5 to 4/3/0.
-5. **The standing audit question (BRIEF §3)** — now sharply posable, since we have
-   our own derivation to compare. Gated on JD's seal ruling.
+5. **The standing audit question (BRIEF §3)** — and note it is now *harder*, not
+   easier, to answer from here: our route is no longer independent of Codex, so it
+   is a weaker cross-check of the chain than a blind derivation would have been.
+   Gated on the owner's seal ruling.
 
 ## Machinery
 

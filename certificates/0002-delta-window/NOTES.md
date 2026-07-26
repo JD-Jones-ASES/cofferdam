@@ -10,7 +10,7 @@
 | **its degree-6 vertex's complement is an f(6)-extremal 13-edge object** | same |
 | the floor is unchanged at m ≥ 19 | — this is a reduction, not an improvement |
 
-## Origin: what JD's pointer to AKP Lemma 2.1 actually bought
+## Origin: what the pointer to AKP Lemma 2.1 actually bought
 
 Abu-Khazneh–Pokrovskiy Lemma 2.1 (arXiv:1409.4938): *an intersecting 6-partite
 hypergraph with 8 edges and τ = 4 contains a degree-3 vertex in each partition,

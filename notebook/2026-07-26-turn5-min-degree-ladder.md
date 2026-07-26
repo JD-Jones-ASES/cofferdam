@@ -9,9 +9,10 @@ seven subagents run this turn — each carried the seal verbatim in its prompt a
 none had web access. Published literature (AKP arXiv:1409.4938) is referenced
 only as an *agreement*, never as an input.
 
-## 1. Where the turn started, and JD's pointer
+## 1. Where the turn started, and Codex's pointer
 
-Certs 0001–0003 left three cases: (19, Δ=6), (20, Δ=6), (20, Δ=7). JD's pointer:
+Certs 0001–0003 left three cases: (19, Δ=6), (20, Δ=6), (20, Δ=7). **Codex** (all
+mathematical pointers this session are Codex's; see D-010):
 
 > You used Lemma 2.1. Inspect the equality case when deleting the stars of two
 > vertices in the same part. Every part of a τ=6 example has at least 6 active
@@ -157,13 +158,13 @@ what unlocks it.
 
 # 2026-07-26 · turn 6 (same session) — (L8) closes m = 20; the floor is **m ≥ 21**
 
-## 10. Codex's hint (relayed by JD), and what it turned out to be
+## 10. Codex's step, stated as exact algebra
 
-**Attribution corrected after the fact — this was recorded as JD's own and it is
-not.** The hint below is **Codex's**, passed on by JD in conversation; no sealed
-path was read. It matters, because a station of the correlated chain seeded the
-final step, and the honest label on m ≥ 21 is therefore **partially independent,
-not blind**. See D-010.
+**Attribution corrected after the fact — both this turn's pointer and turn 5's
+were recorded as the owner's and neither is.** Both are **Codex's**, and this one
+arrived as exact algebra, not a heuristic. No sealed path was read. It matters,
+because a station of the correlated chain seeded both steps, so the honest label
+on m ≥ 20 *and* m ≥ 21 is **partially independent, not blind**. See D-010.
 
 > *Let x,y be the forced degree-7 vertices, c = |E(x) ∩ E(y)| ≥ 2. Feed that
 > overlap back into the pair-intersection count. The c common-star edges

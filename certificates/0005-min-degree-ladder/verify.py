@@ -20,6 +20,33 @@ WHAT IS CLAIMED
   at m = 20 the only surviving maximum degree is 7, and its degree-7 vertex's
   13-edge complement is an f(6)-extremal object whose part all has degree >= 2
 
+ATTRIBUTION -- read this before calling the result independent
+--------------------------------------------------------------
+The seed of this argument is **not ours**.  It came from **Codex**, one of the
+stations whose correlated chain this lab exists to check, and it arrived as
+mathematics rather than as a nudge.  Codex supplied, in substance:
+
+    inspect the equality case when deleting the stars of two vertices in the
+    same part; every part of a tau=6 example has at least 6 active vertices;
+    no active vertex can have degree one; what must that part look like in an
+    eight-edge residual?
+
+Lemmas (A) and (B) below are therefore **statements Codex gave us**, not
+observations of ours -- we supply their (one-line) proofs.  The third clause is
+the question this certificate answers: at 8 edges such a part must be exactly
+(2,2,2,2), and no such object exists.
+
+What is ours: the proofs of (A) and (B); the deletion lemma (C) and the choice of
+N(t) as the right class to minimise over; N(1..4) = 2,4,6,9, including the rho=8
+exhaustion (52.0M nodes) and the 9-edge witness built rather than searched; the
+re-run of the counting ladder; the corrected Abu-Khazneh-Pokrovskiy Lemma 2.8
+proven outright; and every control.
+
+So m >= 20 as reached here is **partially independent, not blind**, and the same
+applies to certificate 0006 and hence to m >= 21.  The proving, the verification
+and the controls are this lab's; the pointers that opened the route are Codex's.
+See D-010.
+
 DEFINITIONS
 -----------
 H is 6-partite and 6-uniform: an edge has exactly one vertex in each part.

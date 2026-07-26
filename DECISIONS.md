@@ -110,7 +110,7 @@ treated as bad news — the bigger the slack, the weaker the argument. Certifica
 0001 and 0002 both report slack that way, and turn 6's (L4)/(L7) squeeze stalled
 at 30 against exactly 30 and was filed as a dead heat.
 
-**Codex's hint** (relayed by JD) inverted it. For the pair count the surplus is not
+**Codex** inverted it. For the pair count the surplus is not
 slack, it is an
 **exact quantity with a structural meaning**:
 
@@ -152,38 +152,49 @@ only") were the easiest thing in the certificate to get subtly wrong.
 by the cheapest sound bound available. Keep whichever version still concludes, and
 prefer the one a reader can check by hand. Strength you do not need is exposure.
 
-## D-010 · A peer hint entering a sealed lab: what it costs, and how to label it (2026-07-26)
+## D-010 · Provenance: the mathematics is Codex's; the owner is not a party to it (2026-07-26)
 
-Certificate 0006's seed — read the pair count's surplus as a budget, and note that
-two overlapping degree-7 stars spend C(c,2) of it — came from **Codex**, one of the
-four stations whose correlated chain this lab exists to check independently. JD
-relayed it in conversation. **No sealed path was read**, so the Seal Law was not
-broken: the seal forbids this lab from reading those artifacts, and it says nothing
-about what the owner may choose to tell it.
+**Both** of this session's mathematical pointers came from **Codex**, one of the four
+stations whose correlated chain this lab exists to check independently:
 
-But something real was lost, and it must be named rather than smoothed over. The
-value of a blind derivation is that it cannot share failure modes with the thing it
-is checking. Once a hint from that chain enters, that guarantee is weaker. So:
+- turn 5 — *inspect the equality case when deleting the stars of two vertices in the
+  same part; every part of a τ=6 example has at least 6 active vertices; no active
+  vertex can have degree one; what must that part look like in an eight-edge
+  residual?* Lemmas (A) and (B) of certificate 0005 are that statement; we supplied
+  their proofs.
+- turn 6 — the excess algebra of certificate 0006, **stated as exact algebra, not a
+  heuristic**: the pair-count identity, the C(c,2) contribution of the c common-star
+  edges, and Σ_v C(d(v),2) ≥ 191.
 
-**The label is "partially independent", never "independent" or "blind."** Concretely
-the certificate now records, in the artifact itself: what came from the peer (a
-two-line combinatorial observation plus the instruction to re-open an equality
-case), and what is ours (the setting it applied to, the δ-budget that actually
-kills — a *different* mechanism from the one suggested — the sweep, and every
-control). A reader can then price the result themselves.
+**No sealed path was read.** The Seal Law binds what this lab reads; it says nothing
+about what reaches it in conversation. But the guarantee a blind derivation buys —
+that it cannot share failure modes with the thing it checks — is materially weaker
+once pointers from that chain enter. So:
 
-**Three rules for next time.**
-1. **Attribute in the artifact, not just the notebook.** A certificate travels; a
-   notebook entry does not. The attribution block belongs in `verify.py`'s docstring.
-2. **An owner-relayed hint is an intake, and intakes get re-derived** (ADR-023). The
-   inequality was re-proved here, audited on 420 objects, and the mechanism replaced.
-   That is the minimum, and it is what keeps the hint from becoming a transcription.
-3. **Ask whose it is before writing it down.** I recorded this step as JD's own for
-   two full turns, in six documents and three commit messages, because I never
-   asked. In a lab whose entire product is a clean provenance ledger, guessing at
-   provenance is the one thing that cannot be allowed to be convenient.
+**The label is "partially independent", never "independent", "blind", or "independent
+confirmation" — and it applies to m ≥ 20 as well as m ≥ 21.** Each certificate now
+carries an attribution block in its own `verify.py` docstring stating what Codex gave
+and what this lab derived, so a reader can price the result without reading the
+notebook. What is ours across both: the proofs, the deletion lemma and the choice of
+N(t) as the class to minimise over, N(1..4) with the ρ=8 exhaustion, the δ-budget
+that actually does the killing (a different mechanism from the one Codex proposed),
+the sweeps, the corrected AKP Lemma 2.8, and every control.
 
-**Open, for JD:** was the turn-5 pointer (Lemma 2.1's equality case, no degree-1
-vertices, the eight-edge residual) also Codex's? Certificate 0005's provenance
-depends on the answer, and I would rather leave the question visible than guess a
-second time.
+Consequence for BRIEF §3: the audit question is now *harder* to answer from here, not
+easier. A derivation seeded twice by one of the chain's own stations is a weaker
+cross-check than the blind one this lab was founded to provide. That should be said
+plainly whenever the floor is reported.
+
+### D-010a · The owner's name does not appear in the mathematical discussion
+
+Standing instruction, and it is not cosmetic. The owner is not a mathematician and is
+not a party to the mathematics; he relays between stations. Attributing a lemma,
+identity or pointer to him is a **provenance error of exactly the kind this lab
+exists to prevent** — and I made it for two full turns, across six documents and
+three commit messages, because I never asked whose a step was.
+
+So: mathematical credit names the station that produced the mathematics (Codex, ABW,
+AKP, MSY, this lab). The owner appears only where the subject is ownership — seal
+rulings, licensing, what to spend machine time on, and the digests addressed to him.
+**Ask whose a step is before recording it, and when the answer is not known, leave
+the question visible in the ledger rather than filling it in with the nearest name.**
