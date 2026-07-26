@@ -1,99 +1,81 @@
 # cofferdam — plan
 
-Revised 2026-07-26 (turn 5). History is the record; this file is rewritten, not
-appended.
+Revised 2026-07-26 (turn 6). History is the record; this file is rewritten.
 
-## Where we are — floor **m ≥ 20**, one case left, one question left
+## Where we are — **floor m ≥ 21**, the seeded statement reached independently
 
 Seal intact (BRIEF §2): no sealed path read by this repo, the main thread, or any
-of the seven subagents run in turn 5.
+of the eight subagents run this session.
 
-**Cert 0005 GREEN (30 checks, ~5 min):** the minimum-degree ladder.
+| cert | result |
+| --- | --- |
+| **0001** (22) | degree-cap ladder; g(1..4) = 1,3,5,8 twice over → m ≥ 18 citing nothing |
+| **0002** (23) | **(L4)** Σ deg ≥ m+5 per edge. Its "AKP 2.1 is subsumed" reading is **superseded** (D-006) |
+| **0003** (12) | **(L5)** low-incidence bound (0005 now kills its case by counting alone) |
+| **0005** (40) | **minimum-degree ladder**: m ≥ 19 citing nothing · **m ≥ 20** citing f(6)=13; corrected AKP 2.8 proven |
+| **0006** (19) | **(L8) excess-concentration**: **m = 20 impossible → m ≥ 21** citing f(6)=13 |
 
-- **(A)** no active vertex of a counterexample has degree 1 — drop a vertex from
-  an edge and the remaining five cannot cover, so some edge meets that edge only
-  there. **(B)** every part has ≥ 6 active vertices — a part is itself a cover.
-- **(C)** deleting k same-part stars leaves a residual whose *surviving vertices
-  of that part keep all their edges*, so it is a witness for **N(6−k)**, where
-  N(t) = least edges with τ ≥ t **and a part all of whose degrees are ≥ 2**.
-- **N(1..4) = 2, 4, 6, 9**, computed exactly. N(4) ≥ 9 by exhaustion (52.0M
-  nodes, 268 s: at 8 edges such a part must be (2,2,2,2), and no such object
-  exists); N(4) ≤ 9 by an explicit 9-edge witness built by hand from our own
-  (8,4) census, not by search.
-- Re-running the pair count over the profiles those permit: **m ≥ 19 citing
-  nothing** (was 18) and **m ≥ 20 citing f(6)=13** (was 19). **m = 19 is dead.**
-  At m = 20 only Δ = 7 survives; the old Δ=5 and Δ=6 cases die by counting alone.
-
-Certs 0001–0003 stand and are reproduced inside 0005 as a control.
-
-## The entire remaining gap
-
-Δ = 7 at m = 20 saturates the k=1 cap (7 = 20 − 13), so the degree-7 vertex's
-complement is a 13-edge τ=5 — f(6)-extremal — object, and by (A)+(B) the relevant
-part has every degree ≥ 2. So the whole question is:
-
-> **Q13.** Is there a 6-partite intersecting hypergraph with 13 edges, τ ≥ 5, and
-> a part all of whose active vertices have degree ≥ 2?
->
-> **NO ⟹ N(5) ≥ 14 ⟹ Δ ≤ m−14 ⟹ m ≥ 21.**  Nothing else is required.
-
-Exactly three profiles are possible for that part, with these waste budgets:
-`(4,3,2,2,2)` → 9 · `(3,3,3,2,2)` → 8 · `(3,2,2,2,2,2)` → 5.
+**The chain, in one paragraph.** (A) no active vertex has degree 1; (B) every part
+has ≥ 6 active vertices; so (C) deleting k same-part stars leaves a residual
+witnessing **N(6−k)** — least edges with τ ≥ t *and a part of minimum degree 2* —
+not merely g(6−k). N(1..4) = 2,4,6,9, the last by exhaustion (52.0M nodes) plus a
+built witness. That kills m ≤ 19 and leaves Δ=7 at m=20. Then (L7): two
+maximum-degree vertices in different parts have |E(u)∩E(w)| ≥ M+M′−(m−g(4)); and
+(L8): the pair count's **surplus is a budget**, spent both by those overlaps and
+by the high-k edges they force, and at m = 20 the two budgets cannot both be paid.
 
 ## Next, in order
 
-1. **Settle Q13.** Two routes, both live:
-   - *direct*: column search with column 0 pinned, 232 disjoint slices for
-     parallelism (`scratchpad/q13par.py` shape). Measured ≈35k nodes/s; profile
-     (3,2,2,2,2,2) is the tightest and should be run first.
-   - *peeling*: (4,3,2,2,2) peels by its 4- and 3-blocks to a **6-edge τ≥3 object
-     with part 0 = (2,2,2)** — an N(3)-extremal seed; (3,3,3,2,2) peels by its
-     three 3-blocks to a **4-edge τ≥2 object with part 0 = (2,2)** — an
-     N(2)-extremal seed. Both seed censuses are tiny; build back up by star
-     attachment. (3,2,2,2,2,2) has no tight peel and needs the direct route.
-2. **If Q13 is YES**, the m=20 Δ=7 case is not yet dead: seven star edges must
-   each restrict to a *rainbow minimum cover* of the 13-edge residual, and
-   τ(H) ≥ 6 iff every minimum cover of the residual is escaped by one of them.
-   That set-cover test is cheap per residual — the cost is producing them, which
-   the Q13 search does anyway.
-3. **Pin N(5) exactly** either way; it is the last unknown rung of the N-ladder
-   and would also make the floor self-contained (N(5) ≥ N(4)+2 = 11 is all we
-   have without citing f(6)=13).
-4. **The standing audit question (BRIEF §3)**, gated on JD's seal ruling. The
-   localisation has improved again: the unverified remainder is one rung, one Δ,
-   one question.
+1. **Verify f(6) ≥ 13 against the literature.** It is the entire external exposure:
+   with it the floor is 21, without it 19. It is the *lower* bound that is needed,
+   and extremal constants are often quoted as best-known constructions. The papers
+   are not sealed; this needs web or PDF access the lab has not had. Our own
+   citation-free bound is g(5) ≥ 12 (cert 0001).
+2. **Push the floor above 21.** Two levers, both live:
+   - *(L8) upward*: it leaves 6198 of 43875 configurations alive at m = 21. Adding
+     the value-pool ceiling back (deliberately dropped for safety at m=20) and the
+     (L4) pointwise bound would cut that set; the question is by how much.
+   - *Q13*: is there a 13-edge τ=5 object with a part of minimum degree 2? NO gives
+     N(5) ≥ 14, hence Δ ≤ m−14, and the 0005 ladder alone then yields m ≥ 21 with
+     the floor moving to 22 when combined with (L8). **Open.** Measured: 44 min on
+     3 cores did not finish 1 of 232 disjoint slices. The untried route is peeling
+     through the N(3)- and N(2)-extremal seeds (6 and 4 edges — both tiny).
+3. **Self-contain the floor.** Pin g(5) exactly (derived ≥ 12, published 13). A
+   ρ=12 exhaustion is the same order of work as Q13.
+4. **Certify Δ = 4 for f(6)-extremal objects** (turn-4 result, still uncertified);
+   it tightens Q13's waste budgets from 9/8/5 to 4/3/0.
+5. **The standing audit question (BRIEF §3)** — now sharply posable, since we have
+   our own derivation to compare. Gated on JD's seal ruling.
 
 ## Machinery
 
-`certificates/0005-min-degree-ladder/verify.py` carries a self-contained copy of
-the column engine. Two measured lessons from turn 5:
+`certificates/000{5,6}/verify.py` each carry a self-contained copy of what they
+need. Measured lessons:
 
-- **Precompute the admissible partition list when it fits** (2220 at ρ=8, and the
-  ρ=8 exhaustion then runs in 268 s); regenerating columns lazily at every node
-  cost >7 min on the same instance without finishing. Lazy generation is for
-  ρ ≥ 11, where the list cannot be built at all.
-- The **per-edge degree lookahead** — edge e meets the other ρ−1 edges only inside
-  its own blocks, so Σ_j (|block_j(e)| − 1) ≥ ρ−1, and the columns not yet fixed
-  can contribute at most (maxb−1) each — is the prune that makes ρ=8 exhaustion
-  feasible at all.
+- **Precompute the admissible partition list when it fits** (2220 at ρ=8 → the
+  exhaustion runs in 268 s); regenerating columns lazily cost >7 min unfinished on
+  the same instance. Lazy generation is for ρ ≥ 11, where the list cannot be built.
+- The **per-edge degree lookahead** is what makes ρ=8 exhaustion feasible at all.
+- **Weaken a bound deliberately when the conclusion survives it.** Cert 0006's
+  ceiling on A dropped the value-pool DP for the crudest concentration bound; the
+  kill survived, and a whole layer left the trust chain.
 
-## Dead ends recorded
+## Dead ends recorded, with the assumptions under which they died
 
-- **Counting alone will not kill m=20 Δ=7.** The (L4) value-pool bound played
-  against the (L7) star-intersection bound kills a fraction of the 105 admissible
-  six-part profile multisets, but all-(7,4,3,2,2,2) survives at exactly 30
-  against a requirement of exactly 30. A dead heat is not a kill.
-- Cert 0002's reading that AKP Lemma 2.1 is "subsumed by the ladder" was **wrong**
-  and is superseded: it rested on allowing degree-1 vertices in a counterexample,
-  which (A) forbids.
+- **The (L4)/(L7) pool squeeze alone** ends at 30 against exactly 30 at m=20 — a
+  dead heat, and *not* a kill. It became one only after the surplus was read as a
+  budget and the δ-cost of high-k edges was added. **Assumption under which it was
+  dead: that the pair count is only a lower bound.** (D-006 in action.)
+- Cert 0002's reading that AKP Lemma 2.1 is "subsumed by the ladder" was wrong;
+  it assumed a counterexample may hold degree-1 vertices.
 
 ## Standing
 
 - Every certificate names its external dependencies and states the floor it would
-  still reach without them.
-- No solver in the trust chain. τ ≤ 5 ships as an explicit five-vertex cover.
-- A search that under-enumerates fakes a proof: every "empty" result ships with
-  its completeness argument and is validated first on g(3)=5, g(4)=8 and the N(4)
-  facts.
-- Guesses about g- or N-values are computed, not inferred from the shape of the
-  expected answer.
+  still reach without them. For m ≥ 21 the ledger is: three lemmas of ours, one
+  exhaustive search of ours, two counting lemmas of ours, one published constant.
+- No solver in the trust chain. No isomorphism-class census in the trust chain.
+- A search that under-enumerates fakes a proof: every "empty" result ships with a
+  completeness argument and is validated on known-answer targets first.
+- **A result that lands on the expected answer gets a not-too-strong control.**
+  (L8) was run at m = 21 precisely to check it does not prove Ryser at r = 6.
