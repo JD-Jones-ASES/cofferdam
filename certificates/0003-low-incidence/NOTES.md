@@ -1,6 +1,8 @@
 # Certificate 0003 — the low-incidence bound; m = 20, Δ = 5 dies
 
-**Status: GREEN.** 12 checks, 0.6 s, `python3 verify.py`, stdlib only, no solver.
+**Status: GREEN.** 10 checks + 2 notes, 0.6 s, `python3 verify.py`, stdlib only,
+no solver. Green under `python3 -O` too. (It advertised 12 checks until the two
+literal-`True` ones were reclassified as notes.)
 
 | claim | label |
 | --- | --- |
@@ -50,4 +52,7 @@ lands exactly where the budget is tight.
 | 19 | **6 only** | 0002: Δ=4 by counting *and* parity, Δ=5 by counting |
 | 20 | **6, 7** | 0002 window; 0003 removes Δ=5 |
 
-Two rungs, three cases. That is the whole unverified remainder of m ≥ 21.
+Two rungs, three cases. That was the whole unverified remainder of m ≥ 21 *at
+turn 3*. All of it is now closed: m = 19 by certificate 0005 citing nothing,
+m = 20 by certificates 0006 and 0007, and the floor m ≥ 21 is
+PROVEN-BY-CERTIFICATE citing nothing.

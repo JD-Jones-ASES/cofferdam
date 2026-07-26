@@ -1,6 +1,8 @@
 # Certificate 0002 — the maximum-degree window; m = 19 reduced to one case
 
-**Status: GREEN.** 23 checks, instant, `python3 verify.py`, stdlib only, no solver.
+**Status: GREEN.** 22 checks + 1 note, instant, `python3 verify.py`, stdlib only,
+no solver. Green under `python3 -O` too. (It advertised 23 checks until the
+literal-`True` one was reclassified as a note — a stated fact, not a machine test.)
 
 | claim | label |
 | --- | --- |
@@ -30,6 +32,15 @@ that part has degree ≤ 3 with at least one equal to 3 — forcing the tail pro
 (3,2,2,1). But cert 0001's 3-, 4- and 5-caps **already force exactly that tail**.
 So Lemma 2.1's content is subsumed by the existing ladder and moves the floor by
 nothing. Worth recording: the ladder turns out to already encode this structure.
+
+> **This paragraph is WRONG and is kept only as the record of the error.** See
+> D-006. The caps do not force that tail uniquely; the reading rested on an
+> unstated assumption of our own — that a counterexample may hold degree-1
+> vertices, which lemma (A) forbids. With (A), the equality case is not
+> constrained but *empty*, and the same lemma moves the floor by a full rung.
+> The failure mode was accepting a *negative* result without auditing the
+> assumptions around it, which is why D-006 now requires a recorded dead end to
+> name the assumptions under which it is dead.
 
 **What did move was the proof technique, not the lemma.** Their Claim 2.3 runs a
 pigeonhole at m = 8 — an edge has 6 vertices and must meet 7 others, so one vertex
@@ -96,7 +107,7 @@ the pair they must join, so the list is never built. That is the next build task
 
 ## m = 20
 
-Three cases survive, and Δ = 5 survives on a slack of 2 — the tightest number
+Three cases survive, and Δ = 5 survives on a slack of 2 — the tightest number at turn 2 (the m = 20 kill's margin of 1, D-017, is tighter)
 anywhere in this lab. It also forces near-uniform structure: essentially every part
 must carry profile (5,5,5,2,2,1). That is the natural next target, and unlike
 m = 19 it needs no classification input.

@@ -104,7 +104,8 @@ at (13,5) *directly*, where the constraints are severe:
 - Δ = 4 exactly (proved above, from the empty Δ=5 branch);
 - per-part caps {1:4, 2:8, 3:10, 4:12}, so the best profile is (4,4,2,2,1) giving
   14 pairs per part, 84 in total against the 78 that "intersecting" demands —
-  **a waste budget of 6**, the tightest constraint anywhere in this lab.
+  **a waste budget of 6**, the tightest constraint in this lab at turn 4 (D-017 later
+  found the m = 20 kill running on a margin of exactly 1).
 
 A waste budget of 6 across 78 pairs is exactly the regime `lib/columns.py` was
 built for: branch on the least uncovered pair, and kill any branch that duplicates

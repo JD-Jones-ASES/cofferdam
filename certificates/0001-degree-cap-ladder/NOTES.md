@@ -81,7 +81,7 @@ Herke, McKay, Wanless), so a counterexample must be non-linear (X ≥ 1) while t
 counting forces it to be barely non-linear. Squeezing that vice is the obvious
 next move and it is not attempted here.
 
-## The lever that is built but not yet used
+## The lever that was built before it was used — it is now (L7)
 
 (L1) was applied only in its **same-part** form, where stars are disjoint and
 degrees add. The general form is stronger and cross-part: for *any* k vertices,
@@ -107,9 +107,11 @@ case elimination. It therefore:
 
 - **corroborates** every rung of the chain up to and including the exclusion of
   m ≤ 18, by an argument that shares no machinery with it;
-- **does not confirm** the exclusion of m = 19 or m = 20. Those two rungs are the
-  entire unverified remainder of the claim, and m = 20 is exactly where the
-  predecessor lab's residual (179 classes at R ≥ 8) was left undecided.
+- **did not, at turn 1, confirm** the exclusion of m = 19 or m = 20. Those two
+  rungs were the entire unverified remainder of the claim, and m = 20 is exactly
+  where the predecessor lab's residual (179 classes at R ≥ 8) was left undecided.
+  Both are now closed — m = 19 by certificate 0005 citing nothing, m = 20 by
+  certificates 0006 and 0007.
 
 Nothing here should be read as evidence for or against m ≥ 21. It narrows what
 would have to be wrong for the claim to fail.
