@@ -88,6 +88,14 @@ No arguments, no installs, no imports from `lib/`. It prints its own checks, its
 external dependencies, and the floor it would still reach with each dependency
 removed.
 
+All six certificates are verified green on **Python 3.9** — the version macOS ships
+as `/usr/bin/python3` — as well as on 3.14, so a bare interpreter is genuinely
+enough:
+
+```bash
+env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/0006-excess-concentration/verify.py
+```
+
 ---
 
 Owner: JD. Researcher: the Brain (Claude). Licensed MIT for code; results are

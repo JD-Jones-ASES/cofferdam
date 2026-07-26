@@ -67,6 +67,14 @@ the deliverable is a census rather than a yes/no.
 
 ## Toolchain
 
+**Certificates must run on the OLDEST `python3` a reader plausibly has, not the
+newest on this box.** macOS ships **3.9.6** at `/usr/bin/python3`, and a bare
+`python3` in a clean environment finds that one — so `int.bit_count()` (3.10+),
+`match`, and friends are out. Bind a fast path behind `hasattr` and fall back.
+Test with `env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/<id>/verify.py`;
+all six certificates are verified green under 3.9. "Runs under a bare python3" is a
+claim about someone else's machine, so it has to be tested against one.
+
 python.org / Homebrew `python3`, stdlib only for anything that ships. `nauty` is
 installed on this box (`/opt/homebrew/bin`: `dreadnaut`, `labelg`, `shortg`, …)
 and may be used for **cross-validating** canonical forms, never as a dependency

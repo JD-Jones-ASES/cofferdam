@@ -245,3 +245,25 @@ have proven the corrected form of the lemma its hardest case depends on.
 
 **Q13 was not answered — it became unnecessary.** It stays the natural next lever:
 NO there would push the floor past 21 through the 0005 ladder alone.
+
+## 13. A portability bug caught on the way out the door
+
+Running the certificates from a genuinely clean environment before handing the repo
+to another lab, certificate 0005 crashed:
+
+    AttributeError: 'int' object has no attribute 'bit_count'
+
+`int.bit_count()` is **Python 3.10+**. macOS ships **3.9.6** as `/usr/bin/python3`,
+and a bare `python3` in a clean PATH finds that, not the Homebrew 3.14 this work was
+developed against. So the Certificate Law's "runs under a bare `python3`" was **false
+for 0005** the whole time, and any reader on stock macOS would have logged it as a
+broken certificate rather than a slow one.
+
+Fixed by binding the fast path behind `hasattr(int, "bit_count")` with a
+`bin(x).count("1")` fallback. The other five certificates were then tested the same
+way and were already clean. All six are now verified green under 3.9 and 3.14.
+
+**The lesson generalises past this repo:** "stdlib only, one command, no installs"
+is a claim about *someone else's machine*, and it cannot be checked by running on
+your own. Test against the oldest interpreter a reader plausibly has. The
+environment that finds the bug is `env -i HOME="$HOME" PATH=/usr/bin:/bin python3`.

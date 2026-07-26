@@ -62,6 +62,16 @@ import sys
 import time
 from math import comb
 
+# int.bit_count() is Python 3.10+, and macOS still ships 3.9 as /usr/bin/python3.
+# A certificate that only runs on a new interpreter is not "runs under a bare
+# python3", so bind the fast path when it exists and fall back when it does not.
+if hasattr(int, "bit_count"):
+    def popcount(x):
+        return int.bit_count(x)
+else:
+    def popcount(x):
+        return bin(x).count("1")
+
 FAIL = []
 COUNT = [0]
 
@@ -253,7 +263,7 @@ class Engine:
         for i, c in enumerate(cols):
             m = 0
             for bl in c:
-                if bl.bit_count() > 1:
+                if popcount(bl) > 1:
                     m |= self.pairs_of(bl)
             while m:
                 low = m & -m
@@ -266,10 +276,10 @@ class Engine:
             col = self._cols[i]
             ok = True
             for bl in col:
-                if bl.bit_count() < 2:
+                if popcount(bl) < 2:
                     continue
                 for A in existing:
-                    if (bl | A).bit_count() > self.cap2:
+                    if popcount((bl | A)) > self.cap2:
                         ok = False
                         break
                 if not ok:
@@ -290,21 +300,21 @@ class Engine:
             cov0 |= self.pairs_of(b)
         reach = [0] * self.rho
         for b in col0:
-            s = b.bit_count()
+            s = popcount(b)
             bb = b
             while bb:
                 low = bb & -bb
                 reach[low.bit_length() - 1] = s - 1
                 bb ^= low
-        waste = cov0.bit_count() + self.maxcov * (self.r - 1) - self.npairs
+        waste = popcount(cov0) + self.maxcov * (self.r - 1) - self.npairs
         if waste < 0:
             return None
-        return self._rec([col0], list(col0), cov0, cov0.bit_count(), reach, waste)
+        return self._rec([col0], list(col0), cov0, popcount(cov0), reach, waste)
 
     def _rec(self, cols, blocks, covered, spent, reach, waste):
         self.nodes += 1
         left = self.r - len(cols)
-        if spent - covered.bit_count() > waste:
+        if spent - popcount(covered) > waste:
             return None
         lim = (self.maxb - 1) * left
         for x in reach:
@@ -322,14 +332,14 @@ class Engine:
             return cols + [pad] * left
         if left == 0:
             return None
-        if (self.all_pairs & ~covered).bit_count() > self.maxcov * left:
+        if popcount((self.all_pairs & ~covered)) > self.maxcov * left:
             return None
         rem = self.all_pairs & ~covered
         p = (rem & -rem).bit_length() - 1
         for col in self.candidates(p, blocks):
             ncov, nsp, nre = covered, spent, list(reach)
             for bl in col:
-                s = bl.bit_count()
+                s = popcount(bl)
                 if s > 1:
                     ncov |= self.pairs_of(bl)
                     nsp += s * (s - 1) // 2
