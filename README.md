@@ -88,9 +88,10 @@ No arguments, no installs, no imports from `lib/`. It prints its own checks, its
 external dependencies, and the floor it would still reach with each dependency
 removed.
 
-All six certificates are verified green on **Python 3.9** — the version macOS ships
-as `/usr/bin/python3` — as well as on 3.14, so a bare interpreter is genuinely
-enough:
+The **five green certificates** (0001, 0002, 0003, 0005, 0006) are verified on
+**Python 3.9** — the version macOS ships as `/usr/bin/python3` — as well as on 3.14,
+so a bare interpreter is genuinely enough. 0004 is never-green scaffolding and is
+labelled as such:
 
 ```bash
 env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/0006-excess-concentration/verify.py
