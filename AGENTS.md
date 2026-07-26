@@ -11,8 +11,11 @@ or `~/Documents/Grok-Repos/` — and do not delegate reading them to a subagent.
 This lab's only value is that its derivation is its own. See BRIEF §2 and the
 Seal Law in §6.
 
-**Current seal level: S2 — audited.** Peer critiques *of our own work* have been
-read; no peer *derivation* has. Certificates 0001–0007 were all derived at S3
+**Current seal level: S0 as of 2026-07-26** — the intake airlock leaked its
+quarantined tier into the calling session on its first run (INTAKE.md, D-021).
+Certificates 0001–0007 were derived at **S3 and remain S3 permanently**; what is
+lost is that *that* session cannot serve as a blind deriver. A fresh session is
+clean and starts at S2 (peer critiques of our own work are on the record). Certificates 0001–0007 were all derived at S3
 (blind), and that does not degrade. If you need to learn what a peer concluded,
 do NOT read it — run the airlock in **[INTAKE.md](INTAKE.md)**, which gets you
 their statements without their arguments. Branching does not substitute: git

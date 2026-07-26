@@ -424,3 +424,38 @@ easy to walk into while trying to be organised.
 
 Recorded as an amendment: **BRIEF.md stays frozen.** INTAKE.md carries the
 amendment and the owner's ruling is what makes it law.
+
+## D-021 · The airlock leaked on its first run: quarantine must be structural (2026-07-26)
+
+INTAKE.md was written and violated inside the hour.
+
+The READER agent was instructed to emit Tier 1 (statements, safe) and Tier 2
+(methods, quarantined, "owner only"). It did exactly that — **as its return
+value.** A subagent's return value goes straight into the calling session's
+context. So the quarantined tier landed in the one place the whole protocol
+existed to keep it out of, and this lab's live session went **S2 → S0**.
+
+The document said *do not read the agent's raw transcript*. That was the wrong
+channel to guard. Nobody read a transcript; the material was handed over through
+the front door, as a normal result, and by then not-reading it was not an option.
+
+**This is D-013 one level up.** There, an identity was displayed but never
+asserted, so nothing tested it. Here, a quarantine was stated but never
+mechanised, so nothing enforced it. Both times the discipline lived in prose while
+the machinery did something else, and both times the prose was believed because it
+was *our own*. A rule you have just written is the one you are least likely to
+audit.
+
+**The fix is structural.** The READER writes Tier 2 to a file and returns a path.
+Nothing quarantined travels in a return value, a summary, a commit message or a
+report. A protocol whose safety depends on someone declining to look at what they
+have already been handed is not a protocol — it is an intention.
+
+**What it cost, and why the cost was bounded.** Certificates 0001–0007 were
+derived at S3 and remain S3 permanently. What is lost is that *that session*
+cannot serve as a blind deriver for the m = 20 lane or the peers' open lemma; a
+fresh session is clean. Had the seal still been the binary one from BRIEF §2, the
+honest reading would have been "cofferdam is contaminated, archive it" — which is
+precisely the outcome the owner asked to avoid, and precisely what grading the
+seal (D-020) prevents. The grading justified itself within an hour of being
+introduced, by absorbing a mistake made while introducing it.

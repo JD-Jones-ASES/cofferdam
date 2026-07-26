@@ -57,9 +57,9 @@ lifted. The seal has levels, and a lab records which one it is at:
 | level | means |
 | --- | --- |
 | **S3 — blind** | no peer material of any kind has been read. Founding state. |
-| **S2 — audited** | peer *critiques of our own work* have been read; no peer *derivation* has. **This lab is here.** |
+| **S2 — audited** | peer *critiques of our own work* have been read; no peer *derivation* has. A fresh session starts here. |
 | **S1 — briefed** | Tier-1 statements from peer derivations have been read. Independence of *re-derivation* is intact; independence of *problem selection* is not. |
-| **S0 — merged** | peer arguments have been read. This lab is no longer a verifier of those results. |
+| **S0 — merged** | peer arguments have been read. No longer a verifier of those results. **The 2026-07-26 session ended here — see the leak below.** |
 
 Descent is one-way. A certificate records the level the lab was at when it was
 derived, and **certificates 0001–0007 were all derived at S3.** That fact is
@@ -103,15 +103,39 @@ source.
 ## Running it
 
 1. Owner rules that intake is open, and on what.
-2. Spawn one READER with the sealed paths, the two-tier output contract, and an
-   explicit instruction that its Tier 1 must carry no argument. Do not read the
-   artifacts yourself, and do not read the agent's raw transcript.
-3. Tier 1 → the brain's peer ledger. Tier 2 → the brain, owner-only, marked
-   quarantined.
+2. Spawn one READER with the sealed paths and the two-tier contract.
+3. **Tier 2 MUST be written by the agent to a file, and the agent must return
+   only Tier 1 plus the file path.** This is not a style preference — see the
+   next section. Tier 1 → the brain's peer ledger. Tier 2 → the brain, owner-only,
+   marked quarantined; the caller does not open it.
 4. Work Tier-1 claims as ordinary open problems: re-derive or refute, certificate
    per usual. A peer claim carries **no evidential weight** until it does — a
    ledger entry is a lead, not a result.
 5. Record the lab's seal level if it changed.
+
+## The leak this protocol suffered on its first run, and the fix
+
+**2026-07-26.** The airlock was written and then leaked on first use, within the
+hour. The READER was told to produce Tier 2 "for the owner only" — and it did,
+correctly, *as part of its return value*. A subagent's return value goes straight
+into the caller's context. So the quarantined section landed in the session that
+was supposed to never see it, and cofferdam's live session dropped **S2 → S0**.
+
+The prose said *do not read the agent's raw transcript*. It did not guard the
+**return value**, which was the actual channel. That is D-013's pattern exactly —
+the discipline was stated but never mechanised — committed inside the document
+warning about it.
+
+**The fix is structural, not a reminder.** The READER writes Tier 2 to a file and
+returns a *path*. Nothing quarantined may travel in a return value, a summary, a
+commit message or a report. A protocol whose safety depends on someone choosing
+not to look at what they have already been handed is not a protocol.
+
+What this cost, precisely, is worth stating because the grading is what limits it:
+certificates 0001–0007 were derived at **S3 and remain S3 permanently**. What is
+lost is that *this* session can no longer serve as a blind deriver for the m = 20
+lane or the peers' open lemma. A fresh session is clean. That recoverability is
+the entire argument for grading the seal rather than treating it as one bit.
 
 ## Why bother, when the peers are usually right
 
