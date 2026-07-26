@@ -70,6 +70,15 @@ citation-free ladder, (L8) kills every m from 12 to 20 and leaves m = 21 alive.
 4. **Δ = 4 for f(6)-extremal objects** — a turn-4 peel-chain result, still
    **uncertified**, used nowhere load-bearing. Cheapest place to find a real error.
 
+**Novelty, checked 2026-07-26.** Six independent literature sweeps plus own
+reading: **no published lower bound on the size of an r = 6 Ryser counterexample
+exists.** The strongest published *statement* bearing on it is m ≥ 13 (f(6) = 13,
+which does cover τ ≥ 6, since MSY defined f on τ ≥ r−1 precisely so it survives
+Ryser failing). The strongest published *consequence*, never stated by its
+authors, is **m ≥ 16** (FHMW Lemma 2.2 + Theorem 2.3). So m ≥ 21 is five clear of
+the literature. Note also that lemmas (A) and (B) are **not new** — they are FHMW
+Lemma 2.1(i)(ii), published 2017; we re-derived them, which is a different thing.
+
 **Demoted, and say so plainly: the literature.** AKP Lemma 2.9 was ranked #1 for
 two turns. It now holds up nothing — 0007 reaches the floor without it. It stays
 interesting as literature (and ABW Thm 2.7 proves f(6)=13 independently, in
@@ -78,14 +87,26 @@ on AKP alone). Do not spend attack time there.
 
 ## Next, in order
 
-1. **A third implementation of the N(4) = 9 exhaustion.** Different author,
-   different method — edge-wise generation, or a column model with different
-   prunes. This is the highest-value work available anywhere in the repo.
-2. **Push the floor above 21.** (L8) leaves 6198 of 43875 configurations alive at
-   m = 21 on the cited ladder. Restoring the value-pool ceiling deliberately
-   dropped for safety (D-009) and adding the (L4) pointwise bound would cut that
-   set; the question is by how much. Note the floor is now citation-free, so any
-   push should keep that property or state plainly where it loses it.
+1. **Settle the degree-2 lever, and with it m ≥ 22.** FHMW Lemma 2.1(iii) — each
+   line holds at most one degree-2 vertex, so 2·D₂ ≤ m — is a constraint this lab
+   never had, and against our own enumeration it kills all 105 multisets at m = 20
+   by itself and, with (L8), all of m = 21. See
+   [notebook/2026-07-26-fhmw-lemma-21.md](notebook/2026-07-26-fhmw-lemma-21.md).
+   **It is not a result yet.** Owing, in this order:
+   - **the not-too-strong control at m = 22, 23, 24.** Started, unfinished. If the
+     same filter kills those, it is being misapplied and none of this stands. Do
+     this before anything else — it is cheap to want it to work.
+   - **(iii) re-derived here**, so the floor stays citation-free. Two lines: if
+     line ℓ holds degree-2 vertices u, v with other lines ℓ_u, ℓ_v, then
+     ℓ∖{u,v} ∪ {x} for any x ∈ ℓ_u ∩ ℓ_v is an (r−1)-cover.
+   - a positive control: the bound must hold on objects that exist.
+2. **Certify Δ = 4 for f(6)-extremal objects** — the turn-4 result, still
+   uncertified and used nowhere load-bearing. The cheapest place a real error
+   could still be hiding, and independent of item 1.
+3. **A third implementation of the N(4) = 9 exhaustion.** Two now agree; a third
+   by a different route would close the last single point of failure.
+4. **The old push-past-21 levers**, now second-string behind item 1: restoring the
+   value-pool ceiling dropped under D-009, or settling Q13.
 3. **Q13** — is there a 13-edge τ=5 object with a part of minimum degree 2? NO
    gives N(5) ≥ 14 and the 0005 ladder alone yields m ≥ 21, with 22 in reach when
    combined with (L8). **Open.** Measured: 44 min on 3 cores did not finish 1 of
