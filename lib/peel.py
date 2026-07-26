@@ -250,13 +250,15 @@ def attach_stars(R: Sequence[Edge], delta: int, t: int, m: int,
             continue
         nfresh = [sum(1 for q in range(R6) if c[q] == FRESH) for c in pats]
         suffix = [0] * (n + 1)
+        pops = [bin(x).count('1') for x in masks]
+        suffmax = [0] * (n + 1)
         for i in range(n - 1, -1, -1):
             suffix[i] = suffix[i + 1] | masks[i]
+            suffmax[i] = max(suffmax[i + 1], pops[i])
+        # the non-fresh coordinates a pattern occupies, for incremental degree caps
+        fixed = [[(q, c[q]) for q in range(R6) if q != p and c[q] != FRESH] for c in pats]
 
         def expand(slots: List[int]):
-            """Assign fresh labels to the chosen patterns, part by part, as set
-            partitions of the star edges marked fresh there. Blocks are ordered by
-            least slot, so each labelling is generated once."""
             v = nsym[p]
             base = [[pats[j][q] for q in range(R6)] for j in slots]
             for row in base:
@@ -292,25 +294,39 @@ def attach_stars(R: Sequence[Edge], delta: int, t: int, m: int,
                 return None
             return rec_q(0, base)
 
-        def rec(start: int, slots: List[int], covered: int):
+        def rec(start: int, slots: List[int], covered: int, deg: Dict):
             need = delta - len(slots)
             if need == 0:
                 if covered != full:
                     return False
                 return bool(expand(slots)) and first_only
             missing = full & ~covered
+            # set-cover prunes: what remains must be coverable, and coverable in
+            # the number of picks left
             if missing & ~suffix[start]:
                 return False
+            if need * suffmax[start] < bin(missing).count('1'):
+                return False
             for idx in range(start, n):
-                # a pattern with no fresh mark yields one edge, so it cannot repeat
+                if need * suffmax[idx] < bin(missing).count('1'):
+                    break
+                d2 = dict(deg)
+                bad = False
+                for (q, sym) in fixed[idx]:
+                    d2[(q, sym)] = d2.get((q, sym), 0) + 1
+                    if d2[(q, sym)] > cap1:
+                        bad = True
+                        break
+                if bad or not profile_ok(d2, caps):
+                    continue
                 nxt = idx if nfresh[idx] else idx + 1
-                if rec(nxt if nxt > idx else idx + 1, slots + [idx], covered | masks[idx]):
-                    return True
-                if nfresh[idx] and rec(idx, slots + [idx], covered | masks[idx]) and first_only:
+                if rec(nxt, slots + [idx], covered | masks[idx], d2):
                     return True
             return False
 
-        if rec(0, [], 0) and first_only:
+        d0 = dict(degR)
+        d0[(p, nsym[p])] = delta
+        if rec(0, [], 0, d0) and first_only:
             break
 
     return list(found.values())

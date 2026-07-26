@@ -12,10 +12,14 @@
 [     1.9s] *** base(5,3,<=3) = 12 [1.0s]
 [     2.0s]       base(m=5,t>=3,maxdeg<=4) level 2: 6
 [     2.2s]       base(m=5,t>=3,maxdeg<=4) level 3: 7
-[     2.7s]       base(m=5,t>=3,maxdeg<=4) level 4: 49
+[     2.6s]       base(m=5,t>=3,maxdeg<=4) level 4: 49
 [     2.9s]       base(m=5,t>=3,maxdeg<=4) level 5: 12
 [     2.9s] *** base(5,3,<=4) = 12 [1.0s]
 [     3.0s]       base(m=6,t>=3,maxdeg<=3) level 2: 6
 [     3.6s]       base(m=6,t>=3,maxdeg<=3) level 3: 48
-[     6.0s]       base(m=6,t>=3,maxdeg<=3) level 4: 508
-[    34.2s]       base(m=6,t>=3,maxdeg<=3) level 5: 13789
+[     6.1s]       base(m=6,t>=3,maxdeg<=3) level 4: 508
+[    33.9s]       base(m=6,t>=3,maxdeg<=3) level 5: 13789
+[   148.0s]       base(m=6,t>=3,maxdeg<=3) level 6: 53906
+[   149.3s] *** base(6,3,<=3) = 53906 [146.4s]
+[   153.4s]   (8,4) Delta=3: 12 residuals -> 5 cumulative [4.1s]
+[   153.5s] *** (8,4) = 5 classes

@@ -61,3 +61,21 @@ degree structures as a filter — an entirely natural thing to do — the fifth 
 would have been silently discarded and the enumeration would have been incomplete
 in a way no downstream check could see. Cited structure gets re-derived before it
 is used as a constraint.
+
+---
+
+## A second finding from the same census
+
+The peeling chain computes (13,5) — the f(6)-extremal hypergraphs — in two
+branches, Δ=5 and Δ=4, those being the maximum degrees certificate 0002 leaves
+alive at (13, τ=5). **The Δ=5 branch is empty.**
+
+Diagnosed rather than assumed, since a silent zero is exactly what a broken search
+looks like. Each of the five 8-edge τ=4 residuals offers 424–453 star patterns and
+carries 185–204 minimum 4-covers; a greedy 5-star escapes 180–198 of them and the
+exhaustive search confirms none escapes all. So the branch dies on the set-cover
+condition, with the machinery demonstrably working.
+
+Hence **every f(6)-extremal 13-edge hypergraph has maximum degree exactly 4** — a
+structural fact about the extremal family that neither AKP nor ABW states, and one
+that halves the work at the next rung.
