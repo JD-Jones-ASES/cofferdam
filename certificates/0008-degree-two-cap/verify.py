@@ -245,9 +245,10 @@ check("the cover test has teeth: breaking step (c) breaks the covers",
 # tau >= r is unreachable for r-partite objects (that IS the counterexample
 # condition), but reachable for general 3-uniform families.  So the conclusion
 # gets tested here, on the non-partite class.
-# tau >= 3 for a 3-uniform intersecting family first becomes possible at 7
-# edges (the Fano plane), so the sweep must reach 7 -- at 5 it finds nothing
-# and the test would pass vacuously.
+# tau >= 3 for a 3-uniform intersecting family first becomes possible at SIX
+# edges (the Fano plane minus a line), so the sweep must reach past 5 -- at 5
+# it finds nothing and the test would pass vacuously.  It runs to 7 because the
+# 7-edge layer is where most such families live.
 taur = withdeg2 = twoinline = 0
 for H in families(range(7), 3, 7):
     if tau_brute(H, range(7)) < 3:
@@ -295,6 +296,93 @@ check("dropping `intersecting` refutes (D2): a witness exists and is exhibited",
               for E in NONINT),
       "%s -- tau = %s, and a line holds two degree-2 vertices"
       % (NONINT, tau_brute(NONINT, range(7)) if NONINT else "n/a"))
+
+# --- 1e.  A POSITIVE CONTROL AT r = 6, which an earlier version of this file
+# said was impossible.  It said the hypothesis class is empty because
+# "intersecting 6-partite with tau = 6" IS the counterexample class.  True --
+# but (III-C) never uses r-partiteness, so its own hypothesis class is
+# intersecting, |E| >= 3, tau >= |E|, and THAT is non-empty at r = 6 and
+# constructible in a second.  Correcting the overstatement rather than
+# repeating it.
+
+def pg2(q):
+    """Points and lines of PG(2,q), q prime.  Line = points orthogonal to a
+    dual point.  Any two lines meet in exactly one point."""
+    pts = ([(1, a, b) for a in range(q) for b in range(q)]
+           + [(0, 1, b) for b in range(q)] + [(0, 0, 1)])
+    L = [frozenset(i for i, p in enumerate(pts)
+                   if (p[0]*d[0] + p[1]*d[1] + p[2]*d[2]) % q == 0)
+         for d in pts]
+    return pts, L
+
+
+PTS5, LINES5 = pg2(5)
+check("PG(2,5) is 6-uniform and pairwise intersecting",
+      len(LINES5) == 31 and all(len(L) == 6 for L in LINES5)
+      and all(len(a & b) == 1 for a, b in itertools.combinations(LINES5, 2)),
+      "31 lines of 6 points, every pair meeting in exactly one")
+
+# A 5-arc: five points, no three collinear.  Delete its ten secants.
+ARC = None
+for cand in itertools.combinations(range(31), 5):
+    if all(len(set(cand) & L) <= 2 for L in LINES5):
+        ARC = cand
+        break
+SEC = [L for L in LINES5 if len(set(ARC) & L) == 2]
+FAM = [L for L in LINES5 if L not in SEC]
+FDEG = degrees_of(FAM)
+FD2 = sum(1 for d in FDEG.values() if d == 2)
+
+no5 = True
+for S in itertools.combinations(sorted(FDEG), 5):
+    s = set(S)
+    if all(s & L for L in FAM):
+        no5 = False
+        break
+check("an intersecting 6-uniform family with tau = 6 = r EXISTS and carries "
+      "degree-2 vertices", len(FAM) == 21 and no5 and FD2 > 0,
+      "PG(2,5) minus the 10 secants of the 5-arc %s: m = %d, D2 = %d, no "
+      "5-cover among C(31,5) = %d subsets, and a line is a 6-cover"
+      % (ARC, len(FAM), FD2, comb(31, 5)))
+check("(D2) HOLDS on it, non-vacuously -- the positive control this file "
+      "previously said could not exist",
+      max(sum(1 for v in L if FDEG[v] == 2) for L in FAM) <= 1
+      and 2 * FD2 <= len(FAM),
+      "every one of the %d lines holds at most one degree-2 vertex; "
+      "2*D2 = %d <= %d = m" % (len(FAM), 2 * FD2, len(FAM)))
+
+# CRITICAL.  This object has tau = r = 6 at m = 21, which section 4 proves
+# impossible -- for 6-PARTITE objects.  If it were 6-partite the floor would be
+# false, so the certificate must show it is not, rather than leave the reader
+# to worry.  A 6-partition with every line meeting each part once is exactly a
+# proper 6-colouring of the collinearity graph (each line is a 6-clique).
+_adj = {v: set() for v in FDEG}
+for L in FAM:
+    for a, b in itertools.combinations(sorted(L), 2):
+        _adj[a].add(b)
+        _adj[b].add(a)
+_order = sorted(FDEG, key=lambda v: -len(_adj[v]))
+_col = {}
+
+
+def _six(i):
+    if i == len(_order):
+        return True
+    v = _order[i]
+    used = set(_col[u] for u in _adj[v] if u in _col)
+    for c in range(6):
+        if c not in used:
+            _col[v] = c
+            if _six(i + 1):
+                return True
+            del _col[v]
+    return False
+
+
+check("and it is NOT 6-partite, so it is not a counterexample and section 4 "
+      "is untouched", not _six(0) and len(FDEG) == 31,
+      "no proper 6-colouring of its collinearity graph exists; independently, "
+      "lemma (B) would force >= 36 vertices and it has 31")
 
 # =========================================================================
 # 2.  THE COUNTING COROLLARY, AND WHAT IT MEANS IN THE PROFILE ENCODING

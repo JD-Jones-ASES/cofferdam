@@ -1,7 +1,7 @@
 # Certificate 0008 — the degree-two cap: **m ≥ 22**, citing nothing
 
-**Status: GREEN.** 39 checks + 4 notes, ~2 min, `python3 verify.py`, stdlib only,
-no solver, no imports from `lib/`. Green under Homebrew 3.14, under a bare
+**Status: GREEN.** 43 checks + 4 notes, `python3 verify.py`, stdlib only, no
+solver, no imports from `lib/`. Green under Homebrew 3.14 (73 s), under a bare
 `/usr/bin/python3` (3.9.6), and under `-O`.
 
 | claim | label |
@@ -63,29 +63,50 @@ applied here to H's own six part-profiles and nowhere else.
 Independently corroborated on real objects: truncated PG(2,2) is intersecting,
 3-partite, τ = 2 = r−1, and has 2·D₂ = 12 > 4 = m.
 
-## The positive control PLAN asked for cannot be run — and what replaces it
+## The positive control: what is impossible, and what is not
 
 PLAN.md owed "a positive control: the bound must hold on objects that exist."
-**That item cannot be discharged, by anyone.** An intersecting 6-partite object
-with τ = 6 *is* a Ryser counterexample, so the hypothesis class is conjecturally
-empty; and for r ≤ 5 it is empty by theorem. Measured: **0 of 67,463** census
-objects have τ = r, and direct exhaustive searches found none at r = 3 (m ≤ 8),
-r = 4 (m ≤ 11), r = 5 (m ≤ 8). More compute does not fix this. The proof carries
-the weight; computation can only rule out a slip in it.
+**On the 6-partite class that cannot be discharged, by anyone** — an intersecting
+6-partite object with τ = 6 *is* a Ryser counterexample, so the class is
+conjecturally empty, and for r ≤ 5 it is empty by theorem. Measured: **0 of
+67,463** census objects have τ = r.
 
-What *is* testable is the lemma's **construction**, which runs on objects
-regardless of τ. §1 does this exhaustively over two bounded classes:
+> **An earlier version of this file said the control was impossible full stop.
+> That was scoped wrong**, and the correction is now §1e. **(III-C) never uses
+> r-partiteness**, so its hypothesis class is *intersecting, |E| ≥ 3, τ ≥ |E|* —
+> non-empty at r = 6 and constructible in a second.
 
-- 12,584 intersecting 3-uniform families on [6] (≤ 5 edges) → 19,560 witnesses
-- 59,535 intersecting 4-uniform families on [7] (≤ 4 edges) → 228,900 witnesses
+§1e ships that control: **PG(2,5) minus the ten secants of a 5-arc.** m = 21,
+6-uniform, intersecting, **τ = 6 exactly** (no 5-cover among all C(31,5) =
+169,911 subsets, and a line is a 6-cover), **D₂ = 5**, and every one of its 21
+lines holds at most one degree-2 vertex. That is (D2)'s *conclusion* tested
+non-vacuously at r = 6, **at exactly the m this certificate kills**.
 
-**Every one of the 248,460 constructed sets is a genuine cover of size ≤ |E|−1.**
-Zero failures, and |U| never exceeded 2.
+The certificate also proves it is **not 6-partite** — no proper 6-colouring of
+its collinearity graph exists, and independently lemma (B) would force ≥ 36
+vertices against its 31 — so it is no counterexample and §4 is untouched. That
+check is not decoration: without it a reader meets a τ = 6 object at m = 21 and
+has every reason to think the floor is refuted.
 
-The conclusion of (D2) is then tested where it is *not* vacuous — on the
-non-partite class, where τ ≥ r is reachable at 7 edges (the Fano plane): **6,330
-families on [7] with τ ≥ 3, of which 3,570 carry a degree-2 vertex, and 0 have
-two in one line.**
+Two things this buys that the old framing denied. **The bound is attained on real
+objects** — 210 intersecting 3-uniform families have 2·D₂ = m exactly, and
+PG(2,4) minus a Baer subplane gives m = 14, τ = 5 = r, 2·D₂ = 14 — so ⌊m/2⌋ is
+**not improvable in general**, which is what the sensitivity in §5 needs. And at
+r = 6 the bound is **nowhere near tight** on anything reachable (best D₂/m ≈ 0.33
+against the 0.5 permitted; at m = 21 itself, D₂ = 5 against a cap of 10), so an
+**r-dependent sharpening may exist and would be the next lever** — §5 shows one
+unit of the cap is worth the whole rung.
+
+Separately, the lemma's **construction** is testable regardless of τ, and §1 does
+that exhaustively over two bounded classes: 12,584 intersecting 3-uniform
+families on [6] (≤ 5 edges) → 19,560 witnesses, and 59,535 intersecting 4-uniform
+families on [7] (≤ 4 edges) → 228,900 witnesses. **All 248,460 constructed sets
+are genuine covers of size ≤ |E|−1**, zero failures, |U| never above 2.
+
+The conclusion is tested on the non-partite class too, where τ ≥ r is reachable
+at **six** edges (the Fano plane minus a line): **6,330 families on [7] with
+≤ 7 edges and τ ≥ 3, of which 3,570 carry a degree-2 vertex, and 0 have two in
+one line.**
 
 ## Controls
 

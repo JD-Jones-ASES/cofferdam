@@ -383,13 +383,22 @@ g(4) = 8. If the two-star residual R could be shown to have a part of minimum
 degree 2, it would take **N(4) = 9** instead and (L7) would tighten by one unit
 everywhere — in a regime where D-017 prices the margin at exactly one.
 
-**It is false, and false exactly where it would have mattered.** The only
-ρ = |R| at which the +1 changes a floor is ρ = 8, and there R is g(4)-extremal.
-Certificate 0005's corrected AKP Lemma 2.8 states every part of an 8-edge τ ≥ 4
-6-partite intersecting object is (3,2,2,1) or (3,2,1,1,1) — each carrying a
-degree-1 vertex. So at ρ = 8 the residual has **no** part of minimum degree 2.
-The property is strictly *stronger* than the conclusion it was meant to buy, and
-any proof of it would have to rule out ρ = 8 first, i.e. already have the goal.
+**The min-degree-2 route is dead, and dead exactly where it would have
+mattered.** The only ρ = |R| at which the +1 changes a floor is ρ = 8. There
+τ(R) ≥ 4 by the peel and τ(R) ≤ 4 because g(5) ≥ 12, so **τ(R) = 4 exactly** —
+and then one line finishes it, with no lemma at all: τ = 4 makes every part a
+cover, so every part has ≥ 4 active vertices, and **the only partition of 8 into
+≥ 4 entries each ≥ 2 is (2,2,2,2)**. So "R has a part of minimum degree 2" *is*
+the statement N(4) ≤ 8. The hypothesis the lever needs is the negation of the
+constant the lever would invoke.
+
+Two scoping notes, both from the verification pass. This kills the
+**min-degree-2 route**, not every route: excluding ρ = 8 by some other argument
+would still give ρ ≥ 9, and the first version of this ADR overstated that as "the
+residual cannot be upgraded." And the argument above needs **no appeal to AKP
+Lemma 2.8** — routing it through 2.8 (as the first version did) invites a reader
+to see an independent leg where there is none, which is the trap PLAN.md already
+warns about: 2.8's derivation consumes the same N(4) search.
 
 Mechanism, and it is the general lesson. Lemma (C) gets N(6−k) because deleting
 k vertices of **one** part never touches the degrees of that part's survivors —
@@ -416,8 +425,16 @@ every m. Measured, with certificate 0007's own `l8_kills` and one line changed:
 loop structure verbatim.
 
 The mechanism the row missed: with (L7) gone, D = A − S + m ≥ 0 still forces
-A ≥ S − m, convexity still forces B_min large, and X still refuses to pay. Every
-no-(L7) survivor sits at exactly D = 0.
+A ≥ S − m, convexity still forces B_min large, and X still refuses to pay. Most
+no-(L7) survivors first survive at D = 0 — measured, the minimum-surviving-D
+histogram is {0:3} at m=20 cited, {0:1} at m=19 free, and **{0:1612, 4:4}** at
+m=20 free.
+
+> **Erratum, ours, same day.** This paragraph first read "Every no-(L7) survivor
+> sits at exactly D = 0." **False** — four of the 1,616 free-m=20 survivors first
+> survive at D = 4, and the union of surviving D values runs 0..27 there. Caught
+> by the verification pass on this very ADR. An entry written to correct an
+> unchecked claim is exactly where a fresh unchecked claim costs most.
 
 **The step actually doing that work has no name anywhere in this repo.** 100%
 survival reproduces only when **B_min(A)** — the convexity lower bound on
@@ -442,12 +459,31 @@ attack; it directs it away.
 ## D-024 · Some controls are impossible, and saying so is the control (2026-07-26, turn 8)
 
 PLAN.md owed "a positive control: the bound must hold on objects that exist" for
-the degree-2 cap. **That cannot be discharged, by anyone.** FHMW 2.1(iii) needs
-τ(H) = r, and an intersecting 6-partite object with τ = 6 *is* a Ryser
-counterexample — the thing being ruled out. For r ≤ 5 the class is empty by
-theorem. Measured: **0 of 67,463** census objects have τ = r; exhaustive searches
-found none at r = 3 (m ≤ 8), r = 4 (m ≤ 11), r = 5 (m ≤ 8). The bound fails even
-at τ = r−1: truncated PG(2,2) has 2·D₂ = 12 against m = 4.
+the degree-2 cap. **On the 6-partite class that cannot be discharged, by anyone**
+— an intersecting 6-partite object with τ = 6 *is* a Ryser counterexample, the
+thing being ruled out, and for r ≤ 5 the class is empty by theorem. Measured:
+**0 of 67,463** census objects have τ = r. The bound fails even at τ = r−1:
+truncated PG(2,2) has 2·D₂ = 12 against m = 4.
+
+> **Erratum, ours, same day.** This ADR first said the control was impossible
+> **full stop**, and certificate 0008 repeated it. That is scoped wrong. The
+> lemma the floor actually rests on — (III-C) — **never uses r-partiteness**, so
+> its hypothesis class is *intersecting, |E| ≥ 3, τ ≥ |E|*, which is non-empty at
+> r = 6 and constructible in a second. **PG(2,5) minus the ten secants of a
+> 5-arc**: m = 21, 6-uniform, intersecting, τ = 6 exactly (no 5-cover among all
+> C(31,5) = 169,911 subsets), D₂ = 5, every one of its 21 lines holding at most
+> one degree-2 vertex. That is (D2)'s *conclusion* tested non-vacuously at r = 6,
+> at exactly the m the floor kills — and it is **not 6-partite** (no proper
+> 6-colouring of its collinearity graph; lemma (B) would force ≥ 36 vertices
+> against its 31), so it is no counterexample and the floor is untouched.
+> Certificate 0008 now ships it. The bound is also **attained** — 210 families at
+> r = 3 have 2·D₂ = m exactly, and PG(2,4) minus a Baer subplane gives m = 14,
+> τ = 5 = r, 2·D₂ = 14 — so ⌊m/2⌋ is not improvable in general.
+>
+> "We could not find a violating object", "no object of that kind exists", and
+> "no object satisfying *this particular strengthening* of the hypotheses exists"
+> are three different sentences. The ADR asserted the second and had only earned
+> the third.
 
 What replaced it: **test the proof, not the conclusion.** The lemma is a
 construction, so it runs on objects regardless of τ — if a line holds degree-2

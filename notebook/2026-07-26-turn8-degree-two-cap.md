@@ -158,7 +158,60 @@ objects — so **N(4) = 9 and the ladder do not move**. Non-extremal censuses do
 - Q13: untouched, and its payoff has fallen again — it reaches m ≥ 21, now two
   rungs below the floor.
 
-## 9. Errors of mine this turn, recorded
+## 9. What the verification pass found in *this turn's* work
+
+Four verifiers re-examined the above. No arithmetic disagreement anywhere — every
+integer that appears in more than one place reproduces on a third-way
+computation, and the anchors (47 profiles and 316,591 admissible at m = 21 free,
+7,159 at m = 20) are unanimous. The proof of (III-C) survived a dedicated
+refutation attempt: **1,392,980 independent replay instances, zero failures**,
+from code sharing nothing with the checker.
+
+What they broke was my own turn-8 record, in four places:
+
+1. **The positive control is NOT impossible.** §7 below and D-024 said it could
+   not be run "by anyone". That is true of the **6-partite** class only. (III-C)
+   never uses r-partiteness, so its hypothesis class is *intersecting, |E| ≥ 3,
+   τ ≥ |E|* — non-empty at r = 6. **PG(2,5) minus the ten secants of a 5-arc**:
+   m = 21, τ = 6 exactly, D₂ = 5, every line holding ≤ 1 degree-2 vertex.
+   Verified here from GF(5) up, and verified **not 6-partite** (no proper
+   6-colouring of its collinearity graph; lemma (B) would force ≥ 36 vertices
+   against 31), so the floor is untouched. Certificate 0008 now ships it as §1e.
+   The bound is also **attained** at r = 3 (210 families with 2·D₂ = m) and r = 5
+   (PG(2,4) minus a Baer subplane, m = 14), so ⌊m/2⌋ is not improvable in general.
+2. **D-023 contained a false sentence.** It read "Every no-(L7) survivor sits at
+   exactly D = 0." Four of the 1,616 free-m=20 survivors first survive at D = 4;
+   the minimum-surviving-D histogram is {0:1612, 4:4}. An ADR written to correct
+   an unchecked claim is where a fresh unchecked claim costs most.
+3. **PLAN's corrected N(4) row mixed ladders** — it quoted 1,445 of 3,664, a
+   *cited*-ladder figure, in a table whose every other row is citation-free. The
+   citation-free values are 8,227 of 180,480 at m = 20 and 6 of 5,705 at m = 19.
+   The same defect class as §1 above, committed while fixing §1 above.
+4. **D-022 overreached and over-cited.** It kills the *min-degree-2 route*, not
+   every route to ρ ≥ 9. And it needs no appeal to AKP 2.8: at ρ = 8, τ(R) = 4
+   exactly, τ = 4 makes every part a cover so every part has ≥ 4 active vertices,
+   and the only partition of 8 into ≥ 4 entries each ≥ 2 is (2,2,2,2). So "R has
+   a part of minimum degree 2" *is* N(4) ≤ 8 — the hypothesis the lever needs is
+   the negation of the constant it would invoke.
+
+Two smaller ones, both fixed: certificate 0008's comment said τ ≥ 3 for a
+3-uniform intersecting family "first becomes possible at 7 edges (the Fano
+plane)" — it is **6** (Fano minus a line), and the range was right for the wrong
+reason; and its NOTES gave "6,330 families on [7]" without stating the ≤ 7-edge
+bound.
+
+**A lead worth recording.** The corollary 2·D₂ ≤ m discards structure: (iii) says
+the two edges through a degree-2 vertex form a pair, and pairs from distinct
+degree-2 vertices are **disjoint** — the degree-2 vertices induce a *matching* of
+size D₂ on the m edges. The cardinality bound is only that matching's shadow, and
+the matching is invisible to the part-profile abstraction. If anything is to be
+squeezed past m = 22 from this lemma, that is the unused half. Relatedly: at
+r = 6 the bound is nowhere near tight on anything reachable (D₂/m ≈ 0.33 against
+0.5 permitted; at m = 21, D₂ = 5 against a cap of 10), so an **r-dependent
+sharpening** may exist — and §5's sensitivity shows one unit of the cap is worth
+the whole rung.
+
+## 10. Errors of mine this turn, recorded
 
 1. Claimed all m = 22 survivors saturate the cap, generalising from the first
    five seen. Measured: 159 of 200. Caught by my own certificate.

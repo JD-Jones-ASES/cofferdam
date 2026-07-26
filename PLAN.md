@@ -103,6 +103,16 @@ asked for was **impossible as written** and has been replaced — see D-024.
 1. **Certify Δ = 4 for f(6)-extremal objects** — the turn-4 result, still
    uncertified and used nowhere load-bearing. The cheapest place a real error
    could still be hiding.
+1b. **The unused half of (D2).** The corollary 2·D₂ ≤ m is only the *cardinality
+   shadow* of what clause (iii) proves: the two edges through a degree-2 vertex
+   form a pair, pairs from distinct degree-2 vertices are disjoint, so the
+   degree-2 vertices induce a **matching of size D₂ on the m edges**. That
+   matching is invisible to the part-profile abstraction everything here filters
+   on, so it is genuinely unconsumed. Relatedly, at r = 6 the bound is nowhere
+   near tight on anything constructible (best D₂/m ≈ 0.33 against 0.5 permitted;
+   at m = 21 itself, D₂ = 5 against a cap of 10), while at r = 3 and r = 5 it is
+   *attained* — so an **r-dependent sharpening** may exist. Certificate 0008's
+   sensitivity shows one unit of the cap is worth a whole rung.
 2. **Attack X, the sole total load-bearer**, and **g(4) = 8** with it. The
    corrected risk table above says X is the only step whose removal leaves 100%
    surviving, and g(4) = 8 carries a margin of exactly one while appearing on no
@@ -171,7 +181,7 @@ was the row this table existed to get right. Measured firsthand with certificate
 | --- | --- |
 | **the excess budget X** | everything — **exactly 100%** survive at every m with a non-empty configuration set. The sole total load-bearer |
 | **(L7)** | the floor breaks (21 → 20 cited, 21 → 19 free) but **most configurations still die**: 3 of 105 survive at m=20 cited (2.9%), 1,616 of 7,159 at m=20 free (22.6%), 1 of 33 at m=19 free |
-| **N(4) = 9** | m = 20 revives (1445 of 3664 with N(4) = 8) — **and m = 19 revives too**, so the floor drops 21 → **19**, not 21 → 20 |
+| **N(4) = 9** | the floor drops 21 → **19**, not 21 → 20 as first published. Citation-free with N(4) = 8: **8,227 of 180,480** survive at m = 20 and **6 of 5,705** at m = 19. (An earlier version quoted 1,445 of 3,664 here — a *cited*-ladder figure, in a table whose every other row is citation-free) |
 | **g(4) = 8** | (L7) goes with it. Weaken to 7 and 649 of 7,159 survive at m = 20 free — the same margin of exactly one, on a constant nobody lists |
 | the δ-budget | **only m = 20** — 12 of the 105 cited, 117 of the 7159 citation-free |
 | the ceiling U | **nothing — inert**, at m = 21 as well as below |
