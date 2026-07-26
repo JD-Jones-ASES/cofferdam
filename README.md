@@ -33,11 +33,11 @@ counterexample exists at 21 or above.
 ## If you are here to attack it
 
 Good — that is what it is for. **[PLAN.md](PLAN.md) § "Where to attack this"**
-carries a ranked list: what rests on the most, checked the least. Two shortcuts
+carries a ranked list: what rests on the most, checked the least. Three shortcuts
 worth knowing before you start:
 
-- **Hit N(4) = 9 first.** Since 0007 removed the citation, the single load-bearing
-  step in the whole repo is one exhaustive search of ours — 52,023,309 nodes,
+- **Hit N(4) = 9 first.** Since 0007 removed the citation, the most fragile step in
+  the chain to 21 is one exhaustive search of ours — 52,023,309 nodes,
   ρ=8 pinned to (2,2,2,2). An under-enumerating search fakes a proof, and 0007's
   sensitivity check prices it exactly: set N(4) = 8 and m = 20 comes back to life.
   A third independent implementation is the most valuable thing anyone could
@@ -106,8 +106,8 @@ The **six green certificates** (0001, 0002, 0003, 0005, 0006, 0007) are verified
 and under **`python3 -O`** as well as plain `python3`. A checker that is green
 normally and broken under `-O` is not a checker (D-015), and 0005 was exactly that
 until 2026-07-26. 0004 is never-green scaffolding and is labelled as such. Note the
-runtimes: certificate 0005 takes ~7.5 min on Python 3.10+ and considerably longer on
-3.9, where it falls back to a slower popcount. It is slow, not hung.
+runtimes: certificate 0005 takes ~6.5–7 min on Python 3.10+ (measured 388 s, 400 s, 422 s
+today) and considerably longer on 3.9, where it falls back to a slower popcount. It is slow, not hung.
 
 Each certificate prints **checks** and **notes** separately. A note is a stated fact
 — a citation, or a step proved by hand — and is *not* machine-tested; keeping the two

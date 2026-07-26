@@ -27,7 +27,8 @@ citation-free ladder, (L8) kills every m from 12 to 20 and leaves m = 21 alive.
 ## Where to attack this — reranked, and it is now one target
 
 1. **N(4) = 9's lower bound — still #1, but no longer unchecked.** Since 0007
-   removed the citation, every certificate funnels through one exhaustive search:
+   removed the citation, the floor of 21 funnels through one exhaustive search
+   (certificates 0001–0003 predate the N-ladder and do not use it):
    ρ=8 pinned to (2,2,2,2), 52,023,309 nodes, 2220 admissible columns, result
    *empty*. 0007's sensitivity check prices it: set N(4) = 8 and m = 20 comes back
    to life among 180,480 configurations.
@@ -75,8 +76,12 @@ reading: **no published lower bound on the size of an r = 6 Ryser counterexample
 exists.** The strongest published *statement* bearing on it is m ≥ 13 (f(6) = 13,
 which does cover τ ≥ 6, since MSY defined f on τ ≥ r−1 precisely so it survives
 Ryser failing). The strongest published *consequence*, never stated by its
-authors, is **m ≥ 16** (FHMW Lemma 2.2 + Theorem 2.3). So m ≥ 21 is five clear of
-the literature. Note also that lemmas (A) and (B) are **not new** — they are FHMW
+authors, is **m ≥ 19** — FHMW's Theorem 2.3 as stated gives Δ ≥ 6 and hence
+m ≥ 16, but the quadratic *inside* its proof, optimised over Δ, reaches 19 (the
+bottleneck is Δ = 9). So m ≥ 21 is **two** clear of what the literature already
+implies, not five. Worth knowing rather than glossing: our m ≥ 19 rung is
+independently reachable from FHMW by a completely different route, which
+corroborates that rung rather than scooping it. The new ground is 20 and 21. Note also that lemmas (A) and (B) are **not new** — they are FHMW
 Lemma 2.1(i)(ii), published 2017; we re-derived them, which is a different thing.
 
 **Demoted, and say so plainly: the literature.** AKP Lemma 2.9 was ranked #1 for
@@ -93,9 +98,11 @@ on AKP alone). Do not spend attack time there.
    by itself and, with (L8), all of m = 21. See
    [notebook/2026-07-26-fhmw-lemma-21.md](notebook/2026-07-26-fhmw-lemma-21.md).
    **It is not a result yet.** Owing, in this order:
-   - ~~the not-too-strong control~~ **DONE and it passes**: six copies of
-     (17,3,3,3,2,2) at m = 30 survives (L8) explicitly. The filter is not
-     vacuously strong. Note the first attempt at this control was wrong — two
+   - **the not-too-strong control — PASSES, but not at the m I first specified.**
+     Six copies of (17,3,3,3,2,2) at m = 30 survives (L8) explicitly, so the
+     filter is not vacuously strong. m = 22, 23, 24 were the values originally
+     named and are still not done; m = 30 answers the "does it kill everything"
+     question, not the "where exactly does it stop" one. Note the first attempt at this control was wrong — two
      copies of `l8_kills` with different return types, `not (False, reason)` is
      `False` — and reported no survivors anywhere. m = 20 and m = 21 re-checked
      and unchanged; **m = 22 is not yet correctly computed** (156,797 of 2,079,883
@@ -110,15 +117,14 @@ on AKP alone). Do not spend attack time there.
 3. **A third implementation of the N(4) = 9 exhaustion.** Two now agree; a third
    by a different route would close the last single point of failure.
 4. **The old push-past-21 levers**, now second-string behind item 1: restoring the
-   value-pool ceiling dropped under D-009, or settling Q13.
-3. **Q13** — is there a 13-edge τ=5 object with a part of minimum degree 2? NO
-   gives N(5) ≥ 14 and the 0005 ladder alone yields m ≥ 21, with 22 in reach when
-   combined with (L8). **Open.** Measured: 44 min on 3 cores did not finish 1 of
-   232 disjoint slices. The untried route is peeling through the N(3)- and
-   N(2)-extremal seeds (6 and 4 edges — both tiny).
-4. **Pin g(5) exactly** (derived ≥ 12, published 13). No longer urgent — it was
+   value-pool ceiling dropped under D-009, or settling **Q13** — is there a 13-edge
+   τ=5 object with a part of minimum degree 2? NO gives N(5) ≥ 14, which on the
+   0005 ladder reaches exactly m ≥ 21 (*not* past it) and needs (L8) to go further.
+   **Open.** Measured: 44 min on 3 cores did not finish 1 of 232 disjoint slices;
+   the untried route peels through the N(3)- and N(2)-extremal seeds (6 and 4
+   edges, both tiny).
+5. **Pin g(5) exactly** (derived ≥ 12, published 13). No longer urgent — it was
    only ever wanted to self-contain the floor, and the floor is self-contained.
-5. **Certify Δ = 4 for f(6)-extremal objects** (turn-4 result, uncertified).
 
 ## Machinery
 

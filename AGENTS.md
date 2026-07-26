@@ -1,7 +1,8 @@
 # cofferdam — operating instructions
 
 The lean rebuild of the Ryser r = 6 floor. Read [BRIEF.md](BRIEF.md) first — it is
-frozen, and §2 (the seal) binds every session in this repo without exception.
+frozen, and it is the founding statement of what this repo is for. Its §2 (the
+seal) has since been opened; see below.
 
 ## The seal
 
