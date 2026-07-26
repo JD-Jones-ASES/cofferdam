@@ -1,5 +1,21 @@
 #!/usr/bin/env python3
-"""cofferdam certificate 0004 — no Ryser r=6 counterexample below 21 edges.
+"""cofferdam certificate 0004 — NEVER GREEN. SCAFFOLDING. SUPERSEDED BY 0006.
+
+    !!  This certificate was written in turn 4 to verify a census of
+    !!  f(6)-extremal 13-edge objects that was never produced.  It has never
+    !!  run green, it verifies nothing, and it exits with
+    !!  "census-13-5.json missing -- nothing to verify".
+    !!
+    !!  m >= 21 IS PROVEN, but by certificate 0006 and by a completely
+    !!  different route: the census this file wanted became UNNECESSARY rather
+    !!  than being computed.  See certificates/0006-excess-concentration/.
+    !!
+    !!  Kept only because a dead end is a result and this repo does not delete
+    !!  them.  Do not spend time attacking it; there is nothing here to break.
+
+Original header follows.
+
+cofferdam certificate 0004 — no Ryser r=6 counterexample below 21 edges.
 
     python3 verify.py            # verify the censuses and the decisive step
     python3 verify.py --full     # also replay the enumeration (hours)
