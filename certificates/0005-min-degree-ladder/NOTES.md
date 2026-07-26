@@ -1,22 +1,35 @@
 # Certificate 0005 — the minimum-degree ladder; m ≥ 20, and the gap becomes one question
 
-**Status: GREEN.** 40 checks, `python3 verify.py`, stdlib only, no solver.
-Measured runtime **~8 min on Python 3.10+**, **~42 min on Python 3.9** (which is what
-macOS ships as `/usr/bin/python3`; the fallback popcount is ~5x slower). Green either
-way — it is slow, not hung.
+**Status: GREEN.** 49 checks + 5 notes, `python3 verify.py`, stdlib only, no solver.
+Measured runtime **~7 min on Python 3.10+** (down from ~12 — it no longer repeats its
+own 52M-node search), considerably longer on Python 3.9, which is what macOS ships as
+`/usr/bin/python3` and whose fallback popcount is ~5× slower. Green either way, and
+green under **`python3 -O`** — it used to die there in 0.05 s (D-015). It is slow, not
+hung.
+
+A **note** is a stated fact — a citation, or a step proved by hand — and is *not*
+machine-tested. The two tallies are kept apart so the check count can never imply a
+test that did not run.
 
 | claim | label |
 | --- | --- |
 | (A) no active vertex has degree 1 · (B) every part has ≥ 6 active vertices | PROVEN (two-line arguments, stated below) |
 | N(1), N(2), N(3), N(4) = 2, 4, 6, 9 | PROVEN-BY-CERTIFICATE |
+| **the corrected AKP Lemma 2.8, BOTH halves** — per-part dichotomy *and* at most one type-B part | **PROVEN-BY-CERTIFICATE** |
 | **a Ryser r=6 counterexample has m ≥ 19** | **PROVEN-BY-CERTIFICATE, citing nothing** |
 | **…has m ≥ 20** | **PROVEN-MODULO-CITATION**, the citation being f(6)=13 |
 | m = 20 leaves exactly Δ = 7, whose 13-edge complement is f(6)-extremal with a full part | same |
-| Q13 answered NO would give m ≥ 21 | the whole remaining gap |
+| Q13 answered NO would give m ≥ 21 | a lever toward 22, no longer a gap |
 
 Certificate 0001 reached m ≥ 18 / m ≥ 19. This moves both rungs by one, using the
 *same* counting argument over a strictly smaller set of admissible profiles.
-Certs 0001–0003 are reproduced inside this one as a control (checks 29–31).
+Certs 0001–0003 are reproduced inside this one as a control.
+
+> **Superseded in strength.** [Certificate 0007](../0007-citation-free-floor) shows
+> the citation above is unnecessary: (L8) on the weaker rung N(5) ≥ 11 — derived here
+> by peeling, citing nothing — kills every m ≤ 20, so the floor of 21 is
+> PROVEN-BY-CERTIFICATE citing nothing. The labels here are accurate about what
+> *this* certificate proves and are left as they stand.
 
 ## Provenance
 

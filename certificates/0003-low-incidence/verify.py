@@ -61,6 +61,16 @@ def check(cond, label):
     if not cond:
         FAILURES.append(label)
 
+NOTES_N = [0]
+
+
+def note(label, detail=""):
+    """A STATED FACT -- a citation, or a step proved by hand and recorded here --
+    and NOT a machine check.  Printed with its own tag and counted separately, so
+    the check count can never imply a test that did not run."""
+    NOTES_N[0] += 1
+    print(f"  [note] {label}" + (f"   {detail}" if detail else ""))
+
 
 def profiles(m, caps, dmax):
     out = []
@@ -161,12 +171,13 @@ def main():
 
     print()
     print("[D] consistency with certificate 0002")
-    check(True, "0002 gave m=20 Delta in {5,6,7}; 0003 removes 5, leaving {6,7}")
-    check(True, "0002 gave m=19 Delta = 6 alone; 0003 does not touch it")
+    note("0002 gave m=20 Delta in {5,6,7}; 0003 removes 5, leaving {6,7}")
+    note("0002 gave m=19 Delta = 6 alone; 0003 does not touch it")
 
     print()
     print("-" * 72)
-    print(f"checks run: {CHECKS[0]}   failures: {len(FAILURES)}")
+    print(f"checks run: {CHECKS[0]}   notes (stated, not tested): {NOTES_N[0]}"
+          f"   failures: {len(FAILURES)}")
     print()
     print("RESULT   m = 20 with Delta = 5 is impossible. With certificate 0002,")
     print("         m = 20 now has only Delta in {6, 7}, and m = 19 only Delta = 6.")

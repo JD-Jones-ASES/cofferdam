@@ -88,6 +88,16 @@ def check(label, cond, detail=""):
         FAIL.append(label)
     print(f"  [{tag}] {COUNT[0]:2d}. {label}" + (f"   {detail}" if detail else ""))
 
+NOTES_N = [0]
+
+
+def note(label, detail=""):
+    """A STATED FACT -- a citation, or a step proved by hand and recorded here --
+    and NOT a machine check.  Printed with its own tag and counted separately, so
+    the check count can never imply a test that did not run."""
+    NOTES_N[0] += 1
+    print(f"  [note] {label}" + (f"   {detail}" if detail else ""))
+
 
 def head(s):
     print(f"\n=== {s} ===")
@@ -292,10 +302,13 @@ class Engine:
             if ok:
                 yield col
 
-    def solve(self, col0_profile=None):
+    def solve(self, col0_profile=None, waste_override=None):
+        """waste_override tightens the excess budget below what the profile alone
+        allows.  Used to decide the global clause of Lemma 2.8: two type-B parts
+        force the excess to be exactly 0, so searching at waste = 0 decides it."""
         if col0_profile is None:
             for prof in sorted(set(self._profiles_all()), reverse=True):
-                got = self.solve(prof)
+                got = self.solve(prof, waste_override)
                 if got:
                     return got
             return None
@@ -312,6 +325,8 @@ class Engine:
                 reach[low.bit_length() - 1] = s - 1
                 bb ^= low
         waste = popcount(cov0) + self.maxcov * (self.r - 1) - self.npairs
+        if waste_override is not None:
+            waste = waste_override      # tighten the excess budget deliberately
         if waste < 0:
             return None
         return self._rec([col0], list(col0), cov0, popcount(cov0), reach, waste)
@@ -440,13 +455,13 @@ head("Lemmas (A) and (B): their content, checked where checkable")
 # and that the witnesses below are consistent with it.
 check("(A) rests on |E \\ {x}| = 5 < 6 = tau, i.e. r - 1 < tau for r = 6",
       6 - 1 < 6, "so no 5-subset of an edge is a cover")
-check("(B) rests on: the active vertices of a part cover H, so |V_i| >= tau = 6",
-      True, "each edge has exactly one vertex per part")
+note("(B) rests on: the active vertices of a part cover H, so |V_i| >= tau = 6",
+     "each edge has exactly one vertex per part")
 
 head("g(1..4) re-derived here: lower bounds by counting, upper by witness")
 
 G = {0: 0, 1: 1}
-check("g(1) = 1", True, "one edge has tau = 1")
+note("g(1) = 1", "one edge has tau = 1 -- stated, not searched")
 
 # lower bounds: a tau>=t object on rho edges has max degree <= rho - g(t-1), so
 # each part covers at most max_profile pairs, and six parts must cover C(rho,2).
@@ -468,7 +483,35 @@ for (t, low, val, W) in [(2, [2], 3, W_G2), (3, [3, 4], 5, W_G3),
 
 head("N(1..3): lower bound 2t is forced, upper bound by witness")
 
-check("N(t) >= 2t: such a part has >= t blocks, each of size >= 2", True)
+# N(t) >= 2t is the rung that supplies N(1), N(2), N(3) = 2, 4, 6 -- the only
+# literal-True in this certificate that was an INPUT to the m >= 21 arithmetic
+# rather than an annotation.  So it is computed, not stated: enumerate every
+# profile a full part could conceivably have and show the range below 2t is empty.
+def full_part_profiles(m, t):
+    """What a FULL part's degree profile could be: at least t active vertices (a
+    part is a cover and tau >= t), each of degree >= 2, degrees summing to m."""
+    out = []
+
+    def rec(left, cur):
+        if left == 0:
+            if len(cur) >= t:
+                out.append(tuple(cur))
+            return
+        for s in range(min(left, cur[-1] if cur else left), 1, -1):
+            rec(left - s, cur + [s])
+    rec(m, [])
+    return out
+
+
+check("N(t) >= 2t, computed rather than asserted: for every t <= 5 and every "
+      "m < 2t, NO profile exists for a part that is full",
+      all(not full_part_profiles(mm, t)
+          for t in range(1, 6) for mm in range(0, 2 * t)),
+      "a part is a cover, so it has >= tau >= t active vertices; each has degree "
+      ">= 2 by (A) and the part being full; degrees in one part sum to m")
+check("and the bound is attained at every t <= 5, so 2t is the right rung and "
+      "not merely a bound", all(full_part_profiles(2 * t, t) for t in range(1, 6)),
+      "e.g. t=3 admits (2,2,2) on 6 edges")
 for (t, val, W) in [(2, 4, W_N2), (3, 6, W_N3)]:
     tt, _ = tau_exact(W)
     full = [j for j in range(6) if min(part_profile(W, j)) >= 2]
@@ -500,7 +543,13 @@ print("       ... exhaustive search, this is the slow one (~4-5 min) ...",
       flush=True)
 t1 = time.time()
 e8 = Engine(8, 4, G)
-assert e8.precompute()
+# NOT an assert.  precompute() builds the engine's column list and pair index and
+# returns False if it blew its limit, so a stripped assert (python -O) leaves the
+# engine unbuilt and the search dies on a missing attribute.  A certificate that
+# is green under python3 and broken under python3 -O is not a certificate.
+built8 = e8.precompute()
+check("the (8, tau=4) engine precomputes its admissible column list",
+      built8 is True, f"{len(getattr(e8, '_cols', ()))} admissible columns")
 got8 = e8.solve((2, 2, 2, 2))
 check("N(4) >= 9: NO 8-edge tau>=4 object has a part with every degree >= 2",
       got8 is None,
@@ -516,35 +565,104 @@ head("Corollary, at no extra cost: the corrected AKP Lemma 2.8")
 # Every part of an 8-edge tau=4 object is a cover, so it has >= 4 vertices; its
 # profile is one of the eight below.  Three die on the pair count alone: the six
 # parts cover at most (that part's pairs) + 5 x 5, against C(8,2) = 28.  Two more
-# die by exhaustive search here, and (2,2,2,2) died in check 19.  What is left is
+# die by exhaustive search here, and (2,2,2,2) died in the N(4) search above.
+# What is left is
 # exactly (3,2,2,1) and (3,2,1,1,1) -- Lemma 2.8 as it should have been printed.
 e84 = Engine(8, 4, G)
-assert e84.precompute()
+built84 = e84.precompute()
+check("the profile-enumeration engine precomputes", built84 is True)
 all84 = sorted({p for p in e84._profiles_all() if len(p) >= 4}, reverse=True)
 check("the eight conceivable part profiles at (8, tau=4) are enumerated",
       len(all84) == 8, f"{all84}")
+
+# (2,2,2,2) is the dominant search in this certificate -- 52.0M nodes, ~274 s --
+# and it was already run above as the lower bound for N(4).  REUSE that verdict
+# rather than repeating the search: recomputing it doubled the certificate's
+# runtime for no extra assurance.
+killed84 = [(2, 2, 2, 2)] if got8 is None else []
+check("(2,2,2,2) is carried over from the N(4) search above, not re-run",
+      (2, 2, 2, 2) in all84 and killed84 == [(2, 2, 2, 2)],
+      f"{e8.nodes} nodes already spent; repeating it cost ~5 min and proved "
+      f"nothing new")
+note("...and note the DIRECTION of that dependency",
+     "the corrected Lemma 2.8 CONSUMES the (2,2,2,2) exhaustion, so it is a "
+     "consequence of N(4) >= 9 and never corroboration of it. N(4) >= 9 rests on "
+     "that one search and nothing else in this repo. AKP Lemma 2.1 would be an "
+     "independent leg, but it is cited, not reproduced, and is not used.")
+
 for prof in all84:
+    if prof == (2, 2, 2, 2):
+        continue                       # settled above, verdict reused
     cov = sum(s * (s - 1) // 2 for s in prof)
     waste = cov + e84.maxcov * 5 - 28
     if waste < 0:
         check(f"(8,4) part profile {prof} is impossible by counting",
-              True, f"covers {cov} pairs, six parts reach at most "
-                    f"{cov + e84.maxcov * 5} < 28")
+              waste < 0, f"covers {cov} pairs, six parts reach at most "
+                         f"{cov + e84.maxcov * 5} < 28")
+        killed84.append(prof)
     elif prof in ((3, 2, 2, 1), (3, 2, 1, 1, 1)):
         continue                       # these are the two that DO occur
     else:
         ee = Engine(8, 4, G)
-        assert ee.precompute()
+        built = ee.precompute()
+        check(f"the engine for profile {prof} precomputes", built is True)
         t2 = time.time()
         r = ee.solve(prof)
         check(f"(8,4) part profile {prof} is impossible by exhaustive search",
               r is None, f"{ee.nodes} nodes, {time.time()-t2:.0f}s")
+        if r is None:
+            killed84.append(prof)
 check("so every part of an 8-edge tau=4 object is (3,2,2,1) or (3,2,1,1,1) "
-      "-- AKP Lemma 2.8 with its arithmetic corrected", True,
-      "as printed, its second structure sums to 9, not 8")
-check("this reproduces, by a route sharing no machinery with it, the part "
-      "profiles of this lab's own 5-class (8,4) census", True,
-      "notebook/2026-07-25-akp-lemma-28-erratum.md")
+      "-- the PER-PART half of AKP Lemma 2.8, arithmetic corrected",
+      sorted(set(all84) - set(killed84)) == [(3, 2, 1, 1, 1), (3, 2, 2, 1)],
+      f"killed {len(killed84)} of {len(all84)}; as printed, the lemma's second "
+      f"structure sums to 9, not 8")
+
+head("...and its GLOBAL half: at most one part is type B")
+
+# The printed lemma is a disjunction of two whole-object degree schemes -- all six
+# parts A = (3,2,2,1), or five A and one B = (3,2,1,1,1).  The per-part dichotomy
+# above does not give that; "at most one B" is a separate statement, and it is the
+# half AKP's Lemma 2.9 actually consumes (its Delta=4 case bounds intersections by
+# 7 + 6*4 = 31 against 32 required -- a margin of ONE, which two B parts erase).
+# Proving only the per-part half and claiming "Lemma 2.8 outright" overstated it.
+covA = sum(comb(s, 2) for s in (3, 2, 2, 1))
+covB = sum(comb(s, 2) for s in (3, 2, 1, 1, 1))
+check("cov(A) = 5 and cov(B) = 4, so six parts cover 30 - b pairs with b type-B",
+      (covA, covB) == (5, 4), f"6*5 = 30, and each B costs one pair")
+check("intersecting forces 30 - b >= C(8,2) = 28, so b <= 2",
+      30 - 2 >= comb(8, 2) and 30 - 3 < comb(8, 2),
+      "b = 3 covers 27 < 28 and dies on counting alone")
+check("and b = 2 forces the excess to be exactly 0", 30 - 2 - comb(8, 2) == 0,
+      "so b = 2 is decided by one search at waste budget 0")
+
+eB = Engine(8, 4, G)
+check("the type-B engine precomputes", eB.precompute() is True)
+t3 = time.time()
+rB = eB.solve((3, 2, 1, 1, 1), waste_override=0)
+check("b = 2 is impossible: no 8-edge tau=4 object has a type-B part and zero "
+      "excess", rB is None, f"exhaustive, {eB.nodes} nodes, {time.time()-t3:.0f}s")
+
+# POSITIVE CONTROL.  An empty search is worthless if the search is empty for
+# systematic reasons, so the identical call with one unit of excess must FIND the
+# 5A+1B object that certificate 0005's own 8-edge witness already exhibits.
+eB1 = Engine(8, 4, G)
+check("the control engine precomputes", eB1.precompute() is True)
+t4 = time.time()
+rB1 = eB1.solve((3, 2, 1, 1, 1), waste_override=1)
+check("POSITIVE CONTROL: at excess 1 the identical search DOES find a 5A+1B "
+      "object, so the zero above is discriminating, not systematic",
+      rB1 is not None, f"{eB1.nodes} nodes, {time.time()-t4:.0f}s")
+
+check("hence the corrected AKP Lemma 2.8 IN FULL: all six parts (3,2,2,1), or "
+      "exactly five (3,2,2,1) and one (3,2,1,1,1)",
+      rB is None and rB1 is not None
+      and sorted(set(all84) - set(killed84)) == [(3, 2, 1, 1, 1), (3, 2, 2, 1)],
+      "per-part dichotomy + at most one B")
+note("this reproduces, by a route sharing no machinery with it, the part "
+     "profiles of this lab's own 5-class (8,4) census",
+     "recorded in notebook/2026-07-25-akp-lemma-28-erratum.md; that census is "
+     "an agreement, and is NOT an input to anything here")
 
 N = {0: 0, 1: 2, 2: 4, 3: 6, 4: 9}
 
@@ -555,7 +673,9 @@ head("N(5): what follows without any citation, and with f(6) = 13")
 # N(4) witness, and the block removed had size >= 2.
 check("N(5) >= N(4) + 2 = 11 by peeling the smallest block of the full part",
       N[4] + 2 == 11)
-check("N(5) >= g(5) = 13 citing f(6) = 13", True, "the cited constant")
+note("N(5) >= g(5) = 13 citing f(6) = 13",
+     "the cited constant -- an external input, not a result of this run. "
+     "Certificate 0007 shows the floor does not need it.")
 
 head("The ladder: maximise the pair count over admissible profiles")
 
@@ -565,7 +685,10 @@ for label, n5, expect in [("citing nothing (N(5) >= 11)", 11, 19),
     NN[5] = n5
     floor = None
     rows = []
-    for m in range(14, 24):
+    # Start at 12, not 14.  m = 12 is the least value lemmas (A)+(B) allow at all
+    # (six active vertices of degree >= 2 per part), and starting higher meant the
+    # loop asserted a floor over a range it had not tested.
+    for m in range(12, 24):
         s = survivors(m, NN)
         rows.append((m, s))
         if s and floor is None:
@@ -626,6 +749,7 @@ print(f"""
   over a strictly smaller set of admissible profiles.
 """)
 
-print(f"{COUNT[0]} checks, {time.time()-T0:.0f}s, "
+print(f"{COUNT[0]} checks + {NOTES_N[0]} notes (stated, not tested), "
+      f"{time.time()-T0:.0f}s, "
       f"{'ALL GREEN' if not FAIL else 'FAILURES: ' + ', '.join(FAIL)}")
 sys.exit(1 if FAIL else 0)

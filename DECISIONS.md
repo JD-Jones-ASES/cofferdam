@@ -174,3 +174,122 @@ Neither convention is about credit as a good in itself. They exist because a
 provenance ledger that is wrong anywhere is untrustworthy everywhere, and because
 this lab's results are meant to be attacked by the other two labs — an attacker needs
 to know which parts to hit, and mis-stated origins waste their time.
+
+## D-011 · The seal is lifted, and it does not come back (2026-07-26, turn 7)
+
+The owner lifted the seal by handing this lab the path to Grok's attack audit,
+the condition in BRIEF §2 having been met: our own derivation of m ≥ 21 was
+committed at 804cfd9. Read this turn, and nothing else from the sealed set:
+`~/Documents/Grok-Brain/Docs/cofferdam-attack-audit.md`, plus a Codex audit filed
+as issue #1 on this repo (never sealed — it is a critique of our work, not
+another lab's derivation). No subagent read any sealed path; all eleven carried
+the seal verbatim.
+
+**What it costs, stated plainly so nobody has to rediscover it.** The seal was
+never a preference, and lifting it is not reversible: you cannot un-read an
+argument. From this turn on **this lab is no longer the independent station.**
+Its derivations through certificate 0007 are its own and were made blind; nothing
+after this turn can claim that. Any future blind verification at r = 6 needs a
+station that has not read this repo.
+
+That price was worth paying only because the seal had already bought what it was
+for. It should not be paid again for convenience.
+
+## D-012 · A peer's wrong inference can carry a right experiment (2026-07-26)
+
+Grok's audit reported that (L8) still killed everything at m = 20 under weakened
+caps, and concluded: "combined with 0005's citation-free m ≥ 19, that would give
+m ≥ 21 with no literature citation." **The conclusion does not follow.** m ≥ 19
+leaves m = 19 *standing*; killing m = 20 alone leaves the floor at 19. The
+inference needed a rung nobody had run.
+
+Running it — (L8) at m = 19 on the citation-free ladder — killed all 33
+configurations, and the floor became citation-free after all (certificate 0007).
+So the audit's conclusion was unearned and its **experiment was the best thing
+anyone contributed this turn.**
+
+Therefore: **from an adversarial report, extract the experiment separately from
+the inference.** Re-run the experiment; re-derive the inference from scratch.
+A peer who runs a sensitivity you did not think to run has given you something
+real even when the conclusion drawn from it is invalid — and a peer whose
+conclusion happens to be right has given you nothing you can use until you have
+re-derived it anyway.
+
+Corollary, and the reason this is a decision rather than an anecdote: the failure
+mode D-005 warns about was live here. The claim flattered — it *upgraded our own
+label* — and it arrived from a friendly source with a plausible argument
+attached. It happened to survive repair. The next one will not.
+
+## D-013 · A displayed identity is an untested identity (2026-07-26)
+
+Certificate 0006 printed, in its docstring and its NOTES, the layer-cake identity
+`D = Σ_{t≥3}(δ(t)−δ(t−1))|W_t|`. It is false: δ(0) = 1, so δ dips at k = 0 → 1,
+and the true statement carries a leading `n₀ = #{e : k_e = 0}`. The certificate's
+**own shipped 5-edge witness has n₀ = 1** and reads 3 where D = 4. The error sat
+in the repo through five certificates and two labs' audits because the code never
+evaluated it — `l8_kills` computes D exactly from (C4) and never forms |W_t|.
+
+**Every identity a certificate displays must also be asserted on the objects the
+certificate already carries.** Prose is not checked by the checker; the moment an
+identity is only printed, it has left the trust chain while still looking like
+part of it. Found by Codex; the direction matters and Codex did not say it — the
+false form *understates* D, and understating D makes a kill harder, so the defect
+was conservative. Had it gone the other way it would have manufactured false
+kills, silently.
+
+## D-014 · Prove the whole statement, or restate what you proved (2026-07-26)
+
+Certificate 0005 proved that every part of an 8-edge τ=4 object is (3,2,2,1) or
+(3,2,1,1,1), and the repo recorded that as "the corrected AKP Lemma 2.8, proven
+outright". The printed lemma has a second half — *all six parts A, or five A and
+one B* — which our checker did not prove. Worse, that global half is precisely
+the one AKP's Lemma 2.9 consumes: its Δ=4 case bounds intersections by 7+6·4 =
+**31** against **32** required, a margin of one that a second B part erases.
+
+**We proved the half that was not load-bearing and claimed the lemma.** The half
+we skipped cost 52 seconds of our own machinery to settle (b ≤ 2 by counting,
+b = 2 forces excess 0, one search at waste budget 0 comes back empty, and its
+positive control at budget 1 finds the 5A+1B object). It is now certified.
+
+Rule: when a result is quoted from a source, **restate the source's statement in
+full and check it clause by clause against what was actually proven.** A partial
+proof recorded as a whole one is not a small inaccuracy — the missing clause is
+disproportionately likely to be the one the source needed, because that is the
+clause the source went to the trouble of stating.
+
+## D-015 · A checker must be green under `python3 -O`, and annotations are not checks (2026-07-26)
+
+Two hygiene failures with one root: **the printed check count was not a count of
+things that ran.**
+
+1. Certificate 0005 held three `assert engine.precompute()` calls. `python3 -O`
+   deletes assert statements, so under `-O` the engine was never built and the
+   certificate died on a missing attribute in 0.05 s. Certificates 0001, 0002 and
+   0004 each *advertise* "no bare assert — `python3 -O` strips those". The rule
+   was written down three times and broken in the one certificate that never
+   states it. (The failure was loud, exit 1, so nothing was ever falsely green.)
+2. Thirteen `check(...)` calls across four certificates passed a literal `True`.
+   Some were honest annotations of un-machine-checkable facts (a citation, a
+   pointer to a notebook). One — `N(t) ≥ 2t` in 0005 — was an **input to the
+   m ≥ 21 arithmetic**, transcribed into 0006's ladder. Being counted among the
+   "40 checks" made it look tested.
+
+Therefore: side effects never go inside `assert`; every certificate replays under
+both `python3` and `python3 -O`; and a stated fact prints through `note()`, which
+has its own tag and its own tally, so the check count can never imply a test that
+did not run. `N(t) ≥ 2t` is now computed rather than stated.
+
+## D-016 · A loop's range is part of its claim (2026-07-26)
+
+Certificate 0005's docstring claims "a counterexample has m ≥ 19"; its ladder loop
+runs `range(14, 24)`, so as executed it never tested m = 12 or 13. Certificate
+0006's check was labelled "m ≤ 19 has no admissible configuration at all" while
+testing exactly `(17, 18, 19)`. Neither claim was false — both ranges are empty —
+but neither was *checked* over the range its label asserts, and a reader auditing
+the chain would have had to notice the gap unaided.
+
+**A test's range is part of what it claims.** State the range in the label, make
+the loop cover it, and where a range is bounded below by an argument rather than
+by a search, check that argument too (here: six parts of ≥ 6 active vertices of
+degree ≥ 2 force m ≥ 12, so 12 is where searching has to start). Certificate 0007
+sweeps m = 12..20 itself rather than inheriting a floor, for exactly this reason.

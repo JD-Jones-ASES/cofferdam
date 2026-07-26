@@ -1,6 +1,8 @@
 # Certificate 0006 — (L8), the excess-concentration incompatibility: **m ≥ 21**
 
-**Status: GREEN.** 19 checks, 66 s, `python3 verify.py`, stdlib only, no solver.
+**Status: GREEN.** 22 checks, 0 notes, 166 s, `python3 verify.py`, stdlib only,
+no solver. Green under `python3 -O` as well as plain `python3`. Everything it
+prints is machine-tested — there are no stated-but-untested lines in this file.
 
 | claim | label |
 | --- | --- |
@@ -12,6 +14,13 @@
 Certificate 0005 excluded m ≤ 19 and left Δ = 7 at m = 20 as its sole survivor.
 This certificate excludes m = 20 outright. Together: **m ≥ 21** — the statement
 this lab was seeded with.
+
+> **Superseded in strength, not in content.** [Certificate 0007](../0007-citation-free-floor)
+> runs this same machinery on the weaker rung N(5) ≥ 11 — which is ours — and
+> still kills every m ≤ 20, so **the floor does not depend on f(6) = 13** and is
+> PROVEN-BY-CERTIFICATE citing nothing. The labels above are left as they stand
+> because they are accurate about what *this* file proves. Read this certificate
+> as the cited-input route to a result 0007 reaches with no citation at all.
 
 ## Origin
 
@@ -45,7 +54,7 @@ Choose one maximum-degree vertex u_j per part; U = {u_1..u_6}, M_j = d(u_j), and
     t_ef = #{j : u_j ∈ e ∩ f}    X = Σ_v C(d(v),2) − C(m,2)
 
 Four identities, each a double count (all four verified by brute force on
-explicit objects in checks 2–5):
+explicit objects, each with its own check):
 
 | | |
 | --- | --- |
@@ -62,12 +71,32 @@ and four facts:
 - **(C2)** |e∩f| ≥ t_ef, hence Σ_{e<f}(t_ef − 1)⁺ ≤ X.
 - **(C3)** t_ef ≤ 5 for distinct edges — agreeing in all six parts means e = f.
 
-Now put δ(k) = C(k,2) − (k−1) ≥ 0, so δ(1)=δ(2)=0, δ(3)=1, δ(4)=3, δ(5)=6. By
-(I1)+(I2), **Σ_e δ(k_e) = A − Σ_j M_j + m =: D.** And since t_ef ≤ min(k_e,k_f),
-every edge-pair at level ≥ t lies inside W_t = {e : k_e ≥ t}, so the number of
-such pairs is at most C(|W_t|,2); δ increasing then gives
+Now put δ(k) = C(k,2) − (k−1) ≥ 0, so **δ(0)=1**, δ(1)=δ(2)=0, δ(3)=1, δ(4)=3,
+δ(5)=6, δ(6)=10. By (I1)+(I2), **Σ_e δ(k_e) = A − Σ_j M_j + m =: D.** And since
+t_ef ≤ min(k_e,k_f), every edge-pair at level ≥ t lies inside W_t = {e : k_e ≥ t},
+so the number of such pairs is at most C(|W_t|,2), i.e. |W_t| ≥ q_t.
 
-  **D = Σ_{t≥3}(δ(t) − δ(t−1))·|W_t| ≥ q₃ + 2q₄ + 3q₅**, q_t = least q with C(q,2) ≥ #{pairs at level ≥ t}.
+δ is *not* increasing — it **dips at k = 0 → 1** (δ(0)=1 > δ(1)=0) and is only
+nondecreasing on k ≥ 1 — so the layer cake cannot be started at t = 3. In full,
+D = m·δ(0) + Σ_{t≥1}(δ(t) − δ(t−1))·|W_t|, where δ(1)−δ(0) = −1 collapses the
+base and t=1 layers to n₀ := #{e : k_e = 0} = m − |W₁|, and δ(2)−δ(1) = 0 kills
+the t=2 layer:
+
+  **(C5)  D = n₀ + |W₃| + 2|W₄| + 3|W₅| + 4|W₆| ≥ q₃ + 2q₄ + 3q₅**, q_t = least q with C(q,2) ≥ #{pairs at level ≥ t}.
+
+Both dropped terms are ≥ 0, so the sweep's bound can only **understate** D — the
+direction that makes a kill harder, never easier.
+
+> **Erratum, ours.** Through 2026-07-26 this note and the certificate docstring
+> printed (C5) as `D = Σ_{t≥3}(δ(t)−δ(t−1))·|W_t|`, omitting n₀. That equality is
+> false, and it is falsified by a witness *this certificate already ships*: the
+> 5-edge g(3) witness has n₀ = 1, so the printed form reads 3 where D = 4. The
+> code was never affected — `l8_kills` computes D exactly from (C4), `A − S + m`,
+> and never forms |W_t| at all — so no result moves. Found by Codex in the
+> adversarial pass; the failure mode is that **an identity which is displayed but
+> never asserted is an identity nobody has tested**, which is why (C5) is now a
+> check rather than prose. Raised by the same reading: had the omission gone the
+> other way it would have *overstated* D and could have manufactured a false kill.
 
 **(L8) is the collision of three demands.** (L7) forces A, hence B, to be large.
 Since C(t,2)/(t−1) = t/2 ≤ 5/2, (C2)+(C3) give **B ≤ ⌊5X/2⌋** — so B can only be
@@ -88,25 +117,26 @@ every c_ij = 2, hence B = 15 exactly, and with X = 8 and t ≤ 5 only two level
 structures reach 15: {5,3,2,2} and {4,4,3}. They need δ-budgets of 13 and 9
 against D = 8. Both bust.
 
-At m = 21 the same arithmetic leaves room: the analogous X is 30, not 8. Hence
-check 18.
+At m = 21 the same arithmetic leaves room: the analogous X is 30, not 8. That is
+what the not-too-strong control exploits.
 
 ## Controls — the reason to believe a negative result
 
 This result lands exactly on the number the lab was asked to check, which by
 D-005 is the most dangerous direction for an error to point. So:
 
-1. **Positive control (check 11).** The δ-budget inequality is the one that does
+1. **Positive control.** The δ-budget inequality is the one that does
    the killing, so it is checked on objects that *exist*: on all four witnesses
    (3, 5, 8 and 9 edges) it holds with room — D = 12, 4, 6, 12 against needs of
    6, 0, 0, 7.
-2. **Not-too-strong control (checks 18–19).** An argument that killed every m
+2. **Not-too-strong control.** An argument that killed every m
    would be proving Ryser at r = 6, an open problem, and would therefore be
    wrong. The identical machinery at m = 21 leaves **6198 of 43875** multisets
    alive. (L8) discriminates.
 3. **Identity audit.** All four identities and both inequalities were also
    verified by brute force on 420 random intersecting objects at seven sizes
-   during development; checks 1–10 keep four deterministic instances.
+   during development; the shipped identity checks keep four deterministic
+   instances.
 4. **Conservative ceiling.** The bound on A uses only "Σ_e k_e = Σ_j M_j over m
    edges with k_e ≤ 6", i.e. maximum concentration — **no value pool and no (L4)
    input at all.** An earlier version used an exact pool DP; dropping it makes the
@@ -114,7 +144,7 @@ D-005 is the most dangerous direction for an error to point. So:
    105. That removes a whole layer of machinery from the trust chain. (The pool DP
    and the weak bound were separately cross-checked to agree at 30 on the dead-heat
    case, by two independent implementations.)
-5. **Overlap with 0005 (check 17).** m ≤ 19 has no admissible configuration at
+5. **Overlap with 0005.** m ≤ 19 has no admissible configuration at
    all here, consistent with 0005 rather than in tension with it.
 
 ## Cited-input discipline — the citation, read firsthand

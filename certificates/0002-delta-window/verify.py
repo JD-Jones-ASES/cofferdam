@@ -84,6 +84,16 @@ def check(cond, label):
     if not cond:
         FAILURES.append(label)
 
+NOTES_N = [0]
+
+
+def note(label, detail=""):
+    """A STATED FACT -- a citation, or a step proved by hand and recorded here --
+    and NOT a machine check.  Printed with its own tag and counted separately, so
+    the check count can never imply a test that did not run."""
+    NOTES_N[0] += 1
+    print(f"  [note] {label}" + (f"   {detail}" if detail else ""))
+
 
 def maxpairs(m, caps):
     """Largest sum of C(d,2) over one part's degrees: they sum to m, and every
@@ -177,13 +187,14 @@ def main():
     print("[E] the consequence at m = 19")
     resid = 19 - 6
     check(resid == G[5], f"m=19, Delta=6: deleting the degree-6 vertex leaves {resid} edges")
-    check(True, "those 13 edges have tau >= 5 (else a 5-cover plus v covers H in 6... "
-                "precisely: a 4-cover of them plus v would give tau(H) <= 5)")
+    note("those 13 edges have tau >= 5 (else a 5-cover plus v covers H in 6... "
+         "precisely: a 4-cover of them plus v would give tau(H) <= 5)")
     check(resid == G[5], "13 = f(6), so the residual is an f(6)-EXTREMAL hypergraph")
 
     print()
     print("-" * 72)
-    print(f"checks run: {CHECKS[0]}   failures: {len(FAILURES)}")
+    print(f"checks run: {CHECKS[0]}   notes (stated, not tested): {NOTES_N[0]}"
+          f"   failures: {len(FAILURES)}")
     print()
     print("RESULT   m = 19 is reduced to a SINGLE case: Delta = 6, with the")
     print("         degree-6 vertex's complement an f(6)-extremal 13-edge object.")

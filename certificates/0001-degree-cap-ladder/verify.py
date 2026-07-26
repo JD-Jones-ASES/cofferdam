@@ -69,6 +69,16 @@ def check(cond, label):
     else:
         print(f"  ok    {label}")
 
+NOTES_N = [0]
+
+
+def note(label, detail=""):
+    """A STATED FACT -- a citation, or a step proved by hand and recorded here --
+    and NOT a machine check.  Printed with its own tag and counted separately, so
+    the check count can never imply a test that did not run."""
+    NOTES_N[0] += 1
+    print(f"  [note] {label}" + (f"   {detail}" if detail else ""))
+
 
 def comb2(n):
     return n * (n - 1) // 2
@@ -331,8 +341,14 @@ W3 = ((0, 0, 0, 0, 0, 0), (0, 1, 1, 1, 1, 1), (1, 0, 1, 1, 1, 1))
 
 CITED = [
     ("f(6) = 13", "the fewest edges in a 6-partite intersecting hypergraph with "
-                  "tau = 5. Aharoni-Barat-Wanless Thm 2.7; independently "
-                  "Abu-Khazneh-Pokrovskiy. Used ONLY to lift the floor from 18 to 19."),
+                  "tau >= 5 -- note the INEQUALITY: what the ladder consumes is a "
+                  "lower bound over tau >= 5, not over tau = 5 exactly, and the "
+                  "two differ by precisely the objects a Ryser counterexample "
+                  "would be. Aharoni-Barat-Wanless Thm 2.7 proves it in that form "
+                  "(arXiv:1409.4833, Graphs Combin. 32 (2016) 1-15); independently "
+                  "Abu-Khazneh-Pokrovskiy Lemma 2.9 (arXiv:1409.4938v1), whose own "
+                  "definition is also tau >= r-1 though its proof text says = 5. "
+                  "Used ONLY to lift the floor from 18 to 19."),
 ]
 
 
@@ -392,7 +408,8 @@ def main():
 
     print()
     print("-" * 72)
-    print(f"checks run: {CHECKS[0]}   failures: {len(FAILURES)}")
+    print(f"checks run: {CHECKS[0]}   notes (stated, not tested): {NOTES_N[0]}"
+          f"   failures: {len(FAILURES)}")
     print()
     print("PROVEN VALUES        g(1)=1  g(2)=3  g(3)=5  g(4)=8   (witness + exhaustion)")
     print("DERIVED              g(5) >= 12")

@@ -16,6 +16,13 @@ WHAT IS CLAIMED
   Certificate 0005 excluded m <= 19.  This one excludes m = 20, which was its
   sole survivor, so together they give m >= 21.
 
+  SUPERSEDED IN STRENGTH, NOT IN CONTENT.  Certificate 0007 runs this same
+  machinery on the weaker rung N(5) >= 11, which is ours, and still kills every
+  m <= 20 -- so the floor of 21 does NOT depend on f(6) = 13 and is
+  PROVEN-BY-CERTIFICATE citing nothing.  This certificate's own labels are left
+  as they stand, because they are accurate about what THIS file proves; read them
+  as the cited-input route to a result 0007 reaches without any citation.
+
 PROVENANCE
 ----------
 Three labs worked this problem in parallel; this one fell behind the others and
@@ -52,11 +59,24 @@ delta(3)=1, delta(4)=3, delta(5)=6, delta(6)=10.  By (I1) and (I2),
   (C4) sum_e delta(k_e) = A - sum_j M_j + m =: D.
 
 Since t_ef <= min(k_e, k_f), every edge-pair at level >= t lies inside
-W_t = {e : k_e >= t}, so #{pairs at level >= t} <= C(|W_t|,2); and because delta
-is increasing,
+W_t = {e : k_e >= t}, so #{pairs at level >= t} <= C(|W_t|,2), hence |W_t| >= q_t.
+Mind delta(0) = 1: delta DIPS at k = 0 -> 1 and is only nondecreasing on k >= 1,
+so the layer-cake expansion cannot be started at t = 3.  In full,
 
-  D = sum_{t>=3} (delta(t)-delta(t-1)) |W_t| >= 1*q_3 + 2*q_4 + 3*q_5,
-      q_t := least q with C(q,2) >= #{pairs at level >= t}.
+  D = m*delta(0) + sum_{t>=1} (delta(t)-delta(t-1)) |W_t|,
+
+where delta(1)-delta(0) = -1 collapses the base and t=1 layers to
+n_0 := #{e : k_e = 0} = m - |W_1|, and delta(2)-delta(1) = 0 kills the t=2 layer:
+
+  (C5) D = n_0 + |W_3| + 2|W_4| + 3|W_5| + 4|W_6| >= 1*q_3 + 2*q_4 + 3*q_5,
+       q_t := least q with C(q,2) >= #{pairs at level >= t}.
+
+Both dropped terms (n_0 and 4|W_6|) are >= 0, so the bound the sweep uses is
+conservative -- it can only understate D, never overstate it, and understating D
+is the direction that makes a kill HARDER.  (C5) is pinned on the witnesses by
+its own check;
+the earlier printed form of it omitted n_0 and was falsified by this
+certificate's own 5-edge witness, where n_0 = 1.
 
 (L8) is the contradiction between three demands: (L7) forces A, hence B, to be
 LARGE; (C2) with C(t,2)/(t-1) = t/2 <= 5/2 forces B <= 5X/2, so B can only be
@@ -66,15 +86,20 @@ forbids.  At m = 20 every admissible configuration fails.
 WHY THIS IS NOT TOO STRONG (the control that matters)
 -----------------------------------------------------
 An argument that killed every m would be "proving" Ryser at r = 6, an open
-problem, and would therefore be wrong.  Check 8 runs the identical machinery at
-m = 21 and finds survivors.  (L8) discriminates; it does not prove too much.
+problem, and would therefore be wrong.  The last two checks run the identical
+machinery at m = 21 and find 6198 survivors of 43875.  (L8) discriminates; it
+does not prove too much.  (Check numbers are deliberately not quoted here: they
+shift whenever a check is added, and a stale cross-reference is a small lie that
+costs a reader real time.)
 
 EXTERNAL DEPENDENCIES, and what is reached without them
 -------------------------------------------------------
-  f(6) = 13 = g(5)  (Aharoni-Barat-Wanless; Abu-Khazneh-Pokrovskiy).  Used only
-      through the k=1 cap Delta <= m - 13, which is what limits the admissible
-      profiles.  Certificate 0005 records the same dependence and reaches m >= 19
-      without it.
+  f(6) = 13 = g(5)  (Aharoni-Barat-Wanless Thm 2.7, which states it in exactly the
+      tau >= 5 form the ladder consumes; independently Abu-Khazneh-Pokrovskiy).
+      Used only through the k=1 cap Delta <= m - 13, which is what limits the
+      admissible profiles.  Certificate 0005 records the same dependence and
+      reaches m >= 19 without it -- and certificate 0007 reaches m >= 21 without
+      it, so this input is removable rather than merely isolated.
   g(4) = 8, proven in certificates 0001 and 0005 -- ours, not cited.  It is what
       makes (L7) numerical.
   N(1..4) = 2,4,6,9, proven in certificate 0005 -- ours.
@@ -98,6 +123,16 @@ def check(label, cond, detail=""):
     if not cond:
         FAIL.append(label)
     print(f"  [{tag}] {COUNT[0]:2d}. {label}" + (f"   {detail}" if detail else ""))
+
+NOTES_N = [0]
+
+
+def note(label, detail=""):
+    """A STATED FACT -- a citation, or a step proved by hand and recorded here --
+    and NOT a machine check.  Printed with its own tag and counted separately, so
+    the check count can never imply a test that did not run."""
+    NOTES_N[0] += 1
+    print(f"  [note] {label}" + (f"   {detail}" if detail else ""))
 
 
 def head(s):
@@ -181,6 +216,56 @@ check("(C4) sum_e delta(k_e) = sum_{i<j} c_ij - sum_j M_j + m",
 check("t_ef <= min(k_e, k_f)",
       all(all(q['t'][(i, j)] <= min(q['k'][i], q['k'][j]) for (i, j) in q['t'])
           for q in res.values()))
+
+# (C5), the layer-cake form of D.  This check exists because the earlier printed
+# form of it dropped n_0, and the 5-edge witness below -- already shipped in this
+# certificate -- falsifies that form (it reads 3 where D = 4).  An identity that
+# is displayed but never asserted is an identity nobody has tested.
+def c5_terms(q):
+    W = {t: sum(1 for x in q['k'] if x >= t) for t in range(1, 7)}
+    n0 = q['m'] - W[1]
+    return n0, W
+
+
+ok_c5, det_c5 = True, []
+for n, q in res.items():
+    D = sum(q['c'].values()) - sum(q['M']) + q['m']            # (C4), exact
+    n0, W = c5_terms(q)
+    lhs = n0 + W[3] + 2 * W[4] + 3 * W[5] + 4 * W[6]
+    bad = W[3] + 2 * W[4] + 3 * W[5] + 4 * W[6]               # the form without n_0
+    if lhs != D:
+        ok_c5 = False
+    det_c5.append(f"{n.split()[1]}: n_0={n0}, D={D}"
+                  + ("" if bad == D else f" (dropping n_0 would give {bad})"))
+check("(C5) D = n_0 + |W_3| + 2|W_4| + 3|W_5| + 4|W_6|, with n_0 = #{e : k_e = 0}",
+      ok_c5, "  ".join(det_c5))
+check("and the same expression WITHOUT n_0 is false on at least one witness, "
+      "which is why (C5) is asserted and not merely displayed",
+      any(c5_terms(q)[0] > 0 for q in res.values()),
+      "delta(0) = 1, so delta dips at k = 0 -> 1; the layer cake cannot start at t = 3")
+# POSITIVE CONTROL on (L7) itself.  Every other identity here is checked on the
+# witnesses, but (L7) -- the inequality that forces A and hence B to be large, and
+# so the one doing half the killing -- was not.  Its general form: for an object
+# with tau = t, deleting two stars in different parts leaves tau >= t-2 on the
+# surviving edges, so that count is >= g(t-2), i.e.
+#     c_ij >= M_i + M_j - (m - g(t-2)).
+# At t = 6 this is (L7) as used.  It must hold on objects that EXIST.
+GLOW = {0: 0, 1: 1, 2: 3, 3: 5, 4: 8}
+ok_l7, det_l7 = True, []
+for n, q in res.items():
+    m_, M_ = q['m'], q['M']
+    tq = {3: 2, 5: 3, 8: 4, 9: 4}[m_]           # tau of each named witness
+    slacks = []
+    for (a, b), cval in q['c'].items():
+        floor = M_[a] + M_[b] - (m_ - GLOW[max(tq - 2, 0)])
+        slacks.append(cval - floor)
+    if min(slacks) < 0:
+        ok_l7 = False
+    det_l7.append(f"{n.split()[1]}: tightest slack {min(slacks)}")
+check("POSITIVE CONTROL: (L7) holds on every object that actually exists, and is "
+      "TIGHT on each -- so it is not vacuously satisfied", ok_l7,
+      "  ".join(det_l7))
+
 check("B <= floor(5X/2) whenever X > 0 (the sharp form of the excess bound)",
       all(sum(comb(v, 2) for v in q['t'].values()) <= (5 * q['X']) // 2
           for q in res.values() if q['X'] > 0))
@@ -317,7 +402,9 @@ check("the pair count (L2) leaves exactly 105 multisets of six profiles",
       len(C20) == 105, f"got {len(C20)}")
 check("every one of them contains at least two parts with a degree-7 vertex",
       all(sum(1 for p in c if p[0] == 7) >= 2 for c in C20),
-      "best d1=7 profile scores 33, best d1<=6 scores 31, and 6x31 = 186 < 190")
+      "best d1=7 profile scores 33, best d1<=6 scores 31: zero sevens reach at "
+      "most 6x31 = 186, ONE seven at most 33 + 5x31 = 188, and both fall short "
+      "of C(20,2) = 190 -- the one-seven case is the half that has to be said")
 
 alive = []
 for combo in C20:
@@ -339,11 +426,21 @@ check("in particular the (L4)/(L7) dead heat, all six parts (7,4,3,2,2,2), dies"
 
 head("Controls")
 
+# The label used to say "m <= 19" while the code tested only (17, 18, 19).  Below
+# m = 12 no profile exists at all -- six parts of size >= 2 need twelve edges --
+# so 12..19 IS the whole range, and it is cheap to test all of it.
+lowm = [mm for mm in range(12, 20) if multisets(mm)[1]]
 check("m <= 19 has no admissible configuration at all (certificate 0005 agrees)",
-      all(len(multisets(mm)[1]) == 0 for mm in (17, 18, 19)),
-      "so this certificate and 0005 overlap consistently rather than conflict")
+      not lowm,
+      "every m from 12 to 19 tested; below 12 no part profile exists at all, "
+      "since six parts of minimum degree 2 need 12 edges")
 
 # THE control: an argument that killed every m would be proving Ryser at r=6.
+# This is the load-bearing control, so it is COMPUTED here rather than asserted
+# from a separately-replayed development run.  Earlier versions stopped at the
+# first survivor while the prose quoted "6198 of 43875" -- a number the
+# certificate did not actually produce.  It costs ~3 min; the control is worth it.
+T21 = time.time()
 P21, C21 = multisets(21)
 surv21 = None
 n21 = 0
@@ -353,15 +450,16 @@ for combo in C21:
         n21 += 1
         if surv21 is None:
             surv21 = (combo, why)
-    if n21 >= 1 and surv21 is not None:
-        break
 check("(L8) is NOT vacuously strong: at m = 21 it leaves survivors",
       surv21 is not None,
-      f"{len(C21)} multisets at m=21; e.g. "
-      f"{'+'.join(str(p[0]) for p in surv21[0]) if surv21 else '-'} "
+      f"{n21} of {len(C21)} multisets at m=21 survive, {time.time()-T21:.0f}s; "
+      f"e.g. {'+'.join(str(p[0]) for p in surv21[0]) if surv21 else '-'} "
       f"{surv21[1] if surv21 else ''}")
-check("so (L8) does not 'prove' Ryser at r = 6, which would falsify it", True,
-      "the m = 20 kill is specific, not an artefact of an over-strong lemma")
+check("the same machinery kills every configuration at m = 20 and leaves "
+      "thousands at m = 21, so it does not 'prove' Ryser at r = 6",
+      not alive and n21 > 0,
+      f"m=20: 0 of {len(C20)} survive.  m=21: {n21} of {len(C21)} survive.  "
+      f"The kill is specific, not an artefact of an over-strong lemma.")
 
 head("Result")
 
@@ -383,6 +481,7 @@ print(f"""
   minimum degree 2).  Q13 became unnecessary, not answered.
 """)
 
-print(f"{COUNT[0]} checks, {time.time()-T0:.0f}s, "
+print(f"{COUNT[0]} checks + {NOTES_N[0]} notes (stated, not tested), "
+      f"{time.time()-T0:.0f}s, "
       f"{'ALL GREEN' if not FAIL else 'FAILURES: ' + ', '.join(FAIL)}")
 sys.exit(1 if FAIL else 0)

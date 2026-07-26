@@ -1,13 +1,33 @@
-# Erratum: Abu-Khazneh–Pokrovskiy Lemma 2.8, as posted on arXiv
+# Erratum: Abu-Khazneh–Pokrovskiy Lemma 2.8, in both published editions
 
-**Scope of the claim, stated before anything else.** This concerns
-**arXiv:1409.4938v1** (submitted 17 Sep 2014), which is the **only version on arXiv**
-— checked 2026-07-26; there is no v2, and the arXiv record carries no journal
-reference. A journal version exists: the second author's own publication list gives
-*J. Combin. Math. Combin. Comput.* **103** (2018) 81–104, and the only link it offers
-for the paper is the **arXiv PDF**, i.e. v1 is the copy in circulation. **We have not
-seen the journal text**, so nothing here is a claim about it — if a referee caught
-this, the correction would be there and not on arXiv.
+**Scope of the claim, stated before anything else.** The slip is present in **both**
+editions, each read firsthand:
+
+- **arXiv:1409.4938v1** (submitted 17 Sep 2014), the only version on arXiv — there
+  is no v2, and the arXiv record carries no journal reference.
+- **the version of record**: *J. Combin. Math. Combin. Comput.* **103** (2017)
+  81–104, publisher-hosted at combinatorialpress.com, Diamond Open Access and
+  freely downloadable (sha256 `b4da4cd8…f86bec81`).
+
+> **Scope widened 2026-07-26 (turn 7).** Until this revision the note read "we have
+> not seen the journal text, so nothing here is a claim about it", and inferred that
+> the arXiv PDF was the copy in circulation. Both statements are now superseded: the
+> journal PDF is freely available, and it carries the error. The reason it read as
+> unreachable is a detail worth recording — **it is a 400-dpi bilevel scan with no
+> text layer**, so `pdftotext` returns 24 bytes of form feeds and a text-based check
+> comes back empty. An empty grep on a scan is not evidence of absence. Raised in the
+> adversarial pass by Codex, verified here by rendering the pages.
+
+**The date.** Every publisher-side and article-side surface says **2017**: the
+publisher page states "Published: 20/03/2017" (and `citation_online_date`
+20/03/2017), the title page is dated March 20 2017, and the p.81 footer reads
+"JCMCC 103 (2017), pp. 81–104". The second author's publication list labels it 2018;
+that is the outlier.
+
+**The journal text is a re-typeset, not a photo-reprint** — arXiv's "8 hyperedges"
+reads "8 edges" in the journal — so the arithmetic survived a copy-editing pass into
+the version of record rather than merely being reprinted. Which settles what the
+earlier version of this note could only speculate about: no referee caught it.
 
 The slip is **arithmetic, in the statement only**: the surrounding proof derives the
 correct structure, and **f(6) = 13 is unaffected**. Nothing in our floor would move
@@ -18,7 +38,16 @@ Found by independent enumeration, not by reading.
 
 ## The printed statement
 
-Lemma 2.8 (arXiv:1409.4938v1, §2):
+It appears **twice in each edition** — once as the Lemma 2.8 statement, once as the
+"Type B" definition that names the same profile:
+
+| | arXiv v1 | journal (JCMCC 103) |
+| --- | --- | --- |
+| Lemma 2.8 statement | §2, pp. 7–8 | printed p. 89 |
+| proof sentence implying **three** | §2 | printed p. 90 |
+| "Type B" definition, repeating **four** | §2 | printed p. 91 |
+
+Lemma 2.8 (arXiv:1409.4938v1, §2; journal p. 89):
 
 > If H′ is an intersecting 6-partite hypergraph with 8 hyperedges and τ(H′) = 4,
 > then H′ has one of the following degree structure:
@@ -48,17 +77,34 @@ by one.
 
 ## The corrected statement, proven here
 
-Certificate 0005 proves it rather than observing it:
+The printed lemma has **two halves**, and until turn 7 this note restated only the
+first — which was an overclaim, caught by Codex in the adversarial pass. Both are now
+certified (cert 0005):
 
-> **Every part of an 8-edge τ=4 intersecting 6-partite hypergraph has degree profile
-> (3,2,2,1) or (3,2,1,1,1).**
+> **Per-part.** Every part of an 8-edge τ=4 intersecting 6-partite hypergraph has
+> degree profile A = (3,2,2,1) or B = (3,2,1,1,1).
+>
+> **Global.** At most one part is B. So the object is all-A, or five A and one B —
+> the disjunction the lemma actually prints.
 
-A part is a cover, so it has ≥ 4 active vertices, leaving eight conceivable profiles.
-Three die on the pair count alone (six parts cover at most that part's pairs plus
-5 × 5, against C(8,2) = 28). Three more die by exhaustive column search: (2,2,2,2) at
-52.0M nodes, (3,1,1,1,1,1) at 2.8M nodes / 31 s, (2,2,2,1,1) at 7.0M nodes / 72 s —
-the last two with waste budget 0. Exactly (3,2,2,1) and (3,2,1,1,1) survive, so the
-corrected lemma is **sharp**.
+*Per-part.* A part is a cover, so it has ≥ 4 active vertices, leaving eight
+conceivable profiles. Three die on the pair count alone (six parts cover at most that
+part's pairs plus 5 × 5, against C(8,2) = 28). Three more die by exhaustive column
+search: (2,2,2,2) at 52.0M nodes, (3,1,1,1,1,1) at 2.8M nodes / 31 s, (2,2,2,1,1) at
+7.0M nodes / 72 s — the last two with waste budget 0. Exactly A and B survive, so the
+per-part half is **sharp**.
+
+*Global.* cov(A) = 5 and cov(B) = 4, so six parts cover 30 − b pairs with b parts of
+type B; intersecting forces 30 − b ≥ C(8,2) = 28, so **b ≤ 2**, and b = 2 forces the
+excess to be exactly **0**. One search settles it: with column 0 pinned to B and the
+waste budget forced to 0 the engine returns nothing. Its positive control — the
+identical call at waste budget 1 — *does* find a 5A+1B object, so the zero
+discriminates rather than being systematic.
+
+**Why the distinction is not pedantic.** The global half is the one AKP's Lemma 2.9
+actually consumes: its Δ=4 case bounds the intersections by 7 + 6·4 = **31** against
+**32** required — a margin of one, which a second B part erases. So the half we had
+*not* proven was precisely the load-bearing half of the citation we lean on.
 
 Two independent confirmations, neither used as an input:
 
