@@ -1,8 +1,9 @@
 # Certificate 0006 — (L8), the excess-concentration incompatibility: **m ≥ 21**
 
 **Status: GREEN.** 22 checks, 0 notes, 166 s, `python3 verify.py`, stdlib only,
-no solver. Green under `python3 -O` as well as plain `python3`. Everything it
-prints is machine-tested — there are no stated-but-untested lines in this file.
+no solver. Green under `python3 -O` as well as plain `python3`. Every `check` is
+machine-tested and there are no `note`s; the closing Result block, like any
+summary, states conclusions rather than testing them.
 
 | claim | label |
 | --- | --- |
@@ -124,9 +125,10 @@ excess bound before the δ-budget is consulted at all; 14 reach it. The tightest
 point in the whole kill is that dead heat at A = 30 under level structure {4,4,3}:
 **D = 8 against need = 9 — a margin of exactly one**, and the need is exact, not a
 bound. Three inputs (g(4) = 8, X, the δ-budget) each flip m = 20 if moved by a
-single unit. Six other quantities are not binding at all — Pc, U, B_cap, the loop
-bounds, the omitted t = 6 level and L were each loosened by large amounts in an
-adversarial pass with no survivors appearing. A certificate that says
+single unit. Five other quantities were loosened by large amounts in an
+adversarial pass with no survivors appearing — Pc, U, B_cap, the loop bounds and
+the omitted t = 6 level. (**L is binding**, and a later pass found it the tightest
+thing in the file; an earlier version of this note wrongly listed it as inert.) A certificate that says
 "conservative" without saying "margin 1" has told the reader the safe half.
 
 At m = 21 the same arithmetic leaves room: the analogous X is 30, not 8. That is
@@ -164,9 +166,11 @@ D-005 is the most dangerous direction for an error to point. So:
    edges with k_e ≤ 6", i.e. maximum concentration — **no value pool and no (L4)
    input at all.** An earlier version used an exact pool DP; dropping it makes the
    ceiling weaker, hence the test strictly more permissive, and it still kills all
-   105. That removes a whole layer of machinery from the trust chain. (The pool DP
-   and the weak bound were separately cross-checked to agree at 30 on the dead-heat
-   case, by two independent implementations.)
+   105. That removes a whole layer of machinery from the trust chain. (On the dead heat the *floor* L is 30
+   and the shipped weak ceiling U is 105; an earlier version of this note said the
+   two ceiling implementations "agree at 30", which confused the floor with the
+   ceiling. The claim that matters is unaffected: the weak ceiling is higher, so
+   the test is more permissive, and it still kills all 105.)
 6. **Overlap with 0005.** m ≤ 19 has no admissible configuration at
    all here, consistent with 0005 rather than in tension with it.
 
@@ -200,8 +204,9 @@ corrected form certificate 0005 proves outright.** So the loop closes:
 
 So the external exposure of m ≥ 21 *for this certificate* is not a constant but
 **one lemma: AKP 2.9** — (certificate 0007 has no external exposure at all) —
-whose main structural input we have proven ourselves, and in whose printed
-statement we found (and corrected) an error. The ledger: three lemmas of ours, one
+whose main structural input, **Lemma 2.8**, we have proven ourselves and in whose
+printed statement we found and corrected an error. (The erratum is in 2.8, not in
+2.9; an earlier phrasing here attached it to the wrong lemma.) The ledger: three lemmas of ours, one
 exhaustive search of ours (N(4) = 9, 52.0M nodes), two counting lemmas of ours,
 one peer-seeded reframing (Codex, re-derived here), one cited lemma.
 

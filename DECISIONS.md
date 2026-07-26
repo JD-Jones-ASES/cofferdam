@@ -70,7 +70,7 @@ parameter with the result stated for each of its possible values.
 ## D-006 · A cited lemma is only as good as what we let it sit next to (2026-07-26)
 
 Certificate 0002 folded Abu-Khazneh–Pokrovskiy Lemma 2.1 into the ladder, worked
-the two-star equality case, found the residual's tail forced to (3,2,1,1,1), saw
+the two-star equality case, found the residual's tail forced to (3,2,2,1), saw
 that the existing caps already forced exactly that, and recorded the lemma as
 *subsumed — moves the floor by nothing*. The lemma was cited correctly. The
 conclusion was wrong, because it was set beside an unstated assumption of our
@@ -215,8 +215,8 @@ Certificate 0006 printed, in its docstring and its NOTES, the layer-cake identit
 `D = Σ_{t≥3}(δ(t)−δ(t−1))|W_t|`. It is false: δ(0) = 1, so δ dips at k = 0 → 1,
 and the true statement carries a leading `n₀ = #{e : k_e = 0}`. The certificate's
 **own shipped 5-edge witness has n₀ = 1** and reads 3 where D = 4. The error sat
-in the repo through five certificates and two labs' audits because the code never
-evaluated it — `l8_kills` computes D exactly from (C4) and never forms |W_t|.
+in the repo through five certificates because the code never evaluated it, and it
+was Codex's audit that found it — `l8_kills` computes D exactly from (C4) and never forms |W_t|.
 
 **Every identity a certificate displays must also be asserted on the objects the
 certificate already carries.** Prose is not checked by the checker; the moment an
@@ -270,8 +270,9 @@ did not run. `N(t) ≥ 2t` is now computed rather than stated.
 
 ## D-016 · A loop's range is part of its claim (2026-07-26)
 
-Certificate 0005's docstring claims "a counterexample has m ≥ 19"; its ladder loop
-runs `range(14, 24)`, so as executed it never tested m = 12 or 13. Certificate
+Certificate 0005's docstring claimed "a counterexample has m ≥ 19" while its ladder
+loop ran `range(14, 24)`, so as executed it never tested m = 12 or 13. (Now
+`range(12, 24)`.) Certificate
 0006's check was labelled "m ≤ 19 has no admissible configuration at all" while
 testing exactly `(17, 18, 19)`. Neither claim was false — both ranges are empty —
 but neither was *checked* over the range its label asserts, and a reader auditing

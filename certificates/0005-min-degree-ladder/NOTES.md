@@ -148,10 +148,20 @@ dead heat (max 30 against a requirement of exactly 30) and therefore fails.
 ## Independent re-derivation, and what it flagged
 
 The chain was handed to an adversarial re-derivation with instructions to break
-it. It confirmed every step and **re-proved N(4) ≥ 9 by a search of a different
-design** (50.75M nodes, 48 s, zero solutions) whose positive control — the same
-machinery with the full-part requirement dropped — recovers exactly the two
-part-profile multisets the corollary above predicts. Three findings worth
+it. It confirmed every step and reported re-proving N(4) ≥ 9 by a search of a
+different design, with a positive control recovering the two part-profile
+multisets the corollary predicts.
+
+> **Corrected 2026-07-26.** That sentence used to read "**re-proved N(4) ≥ 9**
+> (50.75M nodes, 48 s, zero solutions)". Those figures appear **nowhere else in
+> this repo** and no such run is recorded. By this lab's own Certificate Law,
+> *subagent output is fleet-claimed until re-derived here* — so it was never a
+> re-proof, and stating it as one overclaimed independent verification of the
+> single load-bearing step. The genuine second implementation arrived at turn 7
+> (1505 candidate columns against our 2220, 5,713,053 nodes against 52,023,309,
+> same verdict, and it exhibits 8648 near-misses all at τ = 3). Until then
+> N(4) ≥ 9 rested on one search, which is what PLAN.md and README.md said
+> throughout — this file was the one place contradicting them. Three findings worth
 keeping:
 
 - **Sensitivity.** m ≥ 20 rests on exactly three things: (A)+(B)+(C), N(4) = 9
