@@ -293,3 +293,38 @@ the loop cover it, and where a range is bounded below by an argument rather than
 by a search, check that argument too (here: six parts of ≥ 6 active vertices of
 degree ≥ 2 force m ≥ 12, so 12 is where searching has to start). Certificate 0007
 sweeps m = 12..20 itself rather than inheriting a floor, for exactly this reason.
+
+## D-017 · "Conservative" is a claim about direction, not about margin (2026-07-26)
+
+An adversarial pass hunted (L8) for a **false kill** — a configuration reality
+permits that the code rejects — and found none. Loop bounds hold with room, the
+greedy B_min equals the exact DP minimum, the ceiling on A is genuine, the
+δ-budget never exceeds the true requirement. Good. But it also found that the
+repo's own defence of (L8) told only the safe half of the story, in two ways.
+
+**One: the margin is exactly 1.** The tightest point in the entire m = 20 kill is
+the (7,…,7) dead heat at A = 30 under level structure {4,4,3}: **D = 8 against a
+need of 9**, and the need is exact rather than a bound. Three inputs — g(4) = 8,
+X, and the δ-budget — each flip the result if moved by a single unit. Six other
+quantities turned out not to be binding at all, and were loosened by large amounts
+with no survivors appearing. Saying the test is "conservative" while omitting
+"margin 1" invites a reader to hear *robust*. Those are different claims.
+**Report the margin wherever you report conservatism.**
+
+**Two: the relaxation argument does not cover the whole pipeline.** Everything
+inside `l8_kills` is a *relaxation* — it permits configurations reality forbids,
+so a total kill under it is conservative by construction, and both peer audits
+said so correctly. But the configurations it is handed come from `profiles()`,
+which is a **restriction**: it *forbids* via the N-caps and lemmas (A)/(B)/(C).
+That is the opposite direction, and it is the only place a false kill could live.
+The blanket sentence "every relaxation makes survival easier" gave that half a
+free pass — in our writing and in both audits.
+
+The consequence is a sharper ranking than the reassurance was providing: the
+weakest step in the chain is not anything in (L8), it is **N(4) = 9**. Measured:
+N(4) = 8 turns 0 survivors into 1445 of 3664.
+
+**Rule.** For any argument of the form "our test is safe because it is loose",
+state (a) the *margin* at the tightest point, and (b) which parts of the pipeline
+run in the loose direction and which run in the tight one. A defence that applies
+to only half the pipeline is not a defence, however true it is of its half.

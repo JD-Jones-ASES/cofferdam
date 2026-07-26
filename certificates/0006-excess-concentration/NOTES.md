@@ -117,6 +117,16 @@ every c_ij = 2, hence B = 15 exactly, and with X = 8 and t ≤ 5 only two level
 structures reach 15: {5,3,2,2} and {4,4,3}. They need δ-budgets of 13 and 9
 against D = 8. Both bust.
 
+**The margin, stated because "conservative" hides it.** 91 of the 105 die on the
+excess bound before the δ-budget is consulted at all; 14 reach it. The tightest
+point in the whole kill is that dead heat at A = 30 under level structure {4,4,3}:
+**D = 8 against need = 9 — a margin of exactly one**, and the need is exact, not a
+bound. Three inputs (g(4) = 8, X, the δ-budget) each flip m = 20 if moved by a
+single unit. Six other quantities are not binding at all — Pc, U, B_cap, the loop
+bounds, the omitted t = 6 level and L were each loosened by large amounts in an
+adversarial pass with no survivors appearing. A certificate that says
+"conservative" without saying "margin 1" has told the reader the safe half.
+
 At m = 21 the same arithmetic leaves room: the analogous X is 30, not 8. That is
 what the not-too-strong control exploits.
 
@@ -137,14 +147,25 @@ D-005 is the most dangerous direction for an error to point. So:
    verified by brute force on 420 random intersecting objects at seven sizes
    during development; the shipped identity checks keep four deterministic
    instances.
-4. **Conservative ceiling.** The bound on A uses only "Σ_e k_e = Σ_j M_j over m
+4. **Which direction each half runs — and where a false kill could hide.**
+   Everything *inside* `l8_kills` is a **relaxation**: it permits configurations
+   reality forbids, so a total kill under it is conservative, and an adversarial
+   pass confirmed no off-by-one in any loop bound, that the greedy B_min equals the
+   exact DP minimum, and that the δ-budget never exceeds the true requirement. But
+   `profiles()` runs the *other* way — it is a **restriction**, forbidding
+   configurations via the N-caps and lemmas (A)/(B)/(C). **That is the only place a
+   false kill could live**, and the blanket claim that "every relaxation makes
+   survival easier" does not reach it. Measured: N(4) = 8 instead of 9 turns 0
+   survivors into 1445 of 3664. So the weakest step in the chain is N(4) = 9, not
+   anything in this file.
+5. **Conservative ceiling.** The bound on A uses only "Σ_e k_e = Σ_j M_j over m
    edges with k_e ≤ 6", i.e. maximum concentration — **no value pool and no (L4)
    input at all.** An earlier version used an exact pool DP; dropping it makes the
    ceiling weaker, hence the test strictly more permissive, and it still kills all
    105. That removes a whole layer of machinery from the trust chain. (The pool DP
    and the weak bound were separately cross-checked to agree at 30 on the dead-heat
    case, by two independent implementations.)
-5. **Overlap with 0005.** m ≤ 19 has no admissible configuration at
+6. **Overlap with 0005.** m ≤ 19 has no admissible configuration at
    all here, consistent with 0005 rather than in tension with it.
 
 ## Cited-input discipline — the citation, read firsthand
@@ -198,5 +219,11 @@ one peer-seeded reframing (Codex, re-derived here), one cited lemma.
 python3 verify.py
 ```
 
-66 s, deterministic. The m = 21 control is stopped at the first survivor; the full
-sweep there (43875 multisets, 6198 survivors) takes a few minutes.
+166 s, deterministic, green under `python3 -O` as well. The m = 21 control now
+**sweeps the full 43875 and reports 6198 survivors** — it used to stop at the first
+one while this section quoted a number the certificate never computed.
+
+> Caught in the same adversarial pass that produced the (C5) erratum, and it is the
+> same defect one layer out: **prose no check tests.** The status line was updated
+> and the Reproduce block was not. If a certificate's own README can drift from its
+> code inside a single session, assume every unasserted sentence in it has.

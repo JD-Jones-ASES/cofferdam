@@ -63,6 +63,28 @@ own label* — the most dangerous direction an error can point (D-005):
   unrelated question reproduced 33/0 and 7159/0 without being told the result was
   being pursued.
 
+## The false-kill hunt — no hole, but the reassurance was half a story
+
+Both audits argued that every relaxation in (L8) makes survival *easier*, so a
+total kill is conservative and a false kill would need an over-strong step. A
+dedicated adversarial pass tested that to destruction and **found no false kill** —
+loop bounds hold with room, the greedy minimum equals the exact one, the δ-budget
+never overstates. The result stands.
+
+Two things it found anyway, both worth having:
+
+- **The margin is exactly one.** The tightest point in the whole m = 20 kill is
+  the (7,…,7) dead heat: D = 8 against a need of 9, with the need exact rather
+  than a bound. Three inputs flip the result if moved a single unit. "Conservative"
+  and "robust" are different claims, and we had been reporting only the first.
+- **The relaxation argument covers half the pipeline.** Everything inside (L8) is
+  a relaxation and is safe. But the configurations it is handed come from
+  `profiles()`, which *restricts* — and that is the only place a false kill could
+  live. Both audits, and our own notes, gave that half a free pass.
+
+Which sharpens the ranking rather than softening it: the weakest step is not in
+(L8) at all. It is N(4) = 9. (Recorded as D-017.)
+
 ## Where the exposure went
 
 It did not vanish; it moved, and it is now sharper and cheaper to attack.

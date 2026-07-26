@@ -45,12 +45,18 @@ citation-free ladder, (L8) kills every m from 12 to 20 and leaves m = 21 alive.
 
    **Target to match: `None`, at exactly 52,023,309 nodes, 2220 columns.**
 
-2. **(L8)'s δ-budget step** — the newest inequality chain here. The identities are
-   brute-forced on 420 objects, (L7) and the δ-budget both carry positive controls
-   on objects that exist, and the m=21 control shows the lemma is not vacuous. The
-   soundness question that matters: could any step be *over*-strong and produce a
-   **false kill**? Every relaxation we can identify makes survival easier, but that
-   is our own audit of our own code.
+2. **(L8)'s δ-budget step** — hunted for a false kill in the turn-7 pass and none
+   found: no off-by-one in any loop bound (ranges widened by 12, zero admissible
+   tuples outside them), the greedy B_min equals the exact DP minimum, U is a
+   genuine ceiling, and the δ-budget never exceeds the true requirement. **But note
+   the margin: exactly one.** The tightest point is the (7,…,7) dead heat at A = 30
+   under level structure {4,4,3}, D = 8 against need = 9, and the need is exact.
+   Three inputs flip m = 20 if moved a single unit.
+
+   And note *which half* is safe. Everything inside `l8_kills` is a **relaxation**
+   — it permits what reality forbids, so a total kill under it is conservative.
+   `profiles()` is a **restriction** and runs the other way. **A false kill could
+   only live there**, which is another way of saying it could only live in N(4) = 9.
 
 3. **The profile and multiset enumeration** — a single missing admissible part
    profile would hole the kill. Three implementations now agree at 32/105 (cited)
