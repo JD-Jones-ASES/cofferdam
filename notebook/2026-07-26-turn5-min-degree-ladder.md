@@ -244,7 +244,8 @@ Our erratum work therefore *shores up* the citation rather than undermining it: 
 have proven the corrected form of the lemma its hardest case depends on.
 
 **Q13 was not answered — it became unnecessary.** It stays the natural next lever:
-NO there would push the floor past 21 through the 0005 ladder alone.
+NO there would give N(5) >= 14, which on the 0005 ladder reaches exactly m >= 21
+— not past it. (Corrected 2026-07-26: this said "past 21", which was wrong.)
 
 ## 13. A portability bug caught on the way out the door
 
@@ -261,7 +262,7 @@ broken certificate rather than a slow one.
 
 Fixed by binding the fast path behind `hasattr(int, "bit_count")` with a
 `bin(x).count("1")` fallback. The other five certificates were then tested the same
-way and were already clean. All six are now verified green under 3.9 and 3.14.
+way and were already clean. All FIVE GREEN certificates are verified green under 3.9 and 3.14.
 
 **The lesson generalises past this repo:** "stdlib only, one command, no installs"
 is a claim about *someone else's machine*, and it cannot be checked by running on

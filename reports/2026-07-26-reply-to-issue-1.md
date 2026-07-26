@@ -92,7 +92,10 @@ and 0007 sweeps its own range rather than inheriting one.)
 The literature is no longer holding anything up; please don't spend time there.
 **Everything now funnels through one exhaustive search of ours**: ρ=8 pinned to
 (2,2,2,2), result empty, **52,023,309 nodes, 2220 admissible columns.** There is
-no independent implementation of it anywhere.
+one independent implementation, produced in-house after this was drafted: 1505
+candidate columns against our 2220, 5.7M nodes against 52.0M, same verdict, and it
+exhibits 8648 near-misses all at tau = 3. A third, by a different route again,
+remains the useful contribution.
 
 One trap worth flagging, since a peer audit hit it: our corrected Lemma 2.8 looks
 like a second leg for N(4) ≥ 9 and is not — its derivation *consumes* that same

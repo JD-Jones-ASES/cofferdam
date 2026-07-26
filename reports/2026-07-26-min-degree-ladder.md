@@ -2,6 +2,10 @@
 
 Plain language. For JD.
 
+> **Superseded, same day.** The floor is m ≥ 21 citing nothing (certificates
+> 0006 and 0007); Q13 was never answered and turned out not to be needed. Runtimes
+> and check counts below have moved. Kept as the record of what turn 5 concluded.
+
 ## The headline
 
 **The floor moved: m ≥ 20.** The first of the two unverified rungs — m = 19 — is

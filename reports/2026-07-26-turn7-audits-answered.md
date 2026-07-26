@@ -59,7 +59,7 @@ own label* — the most dangerous direction an error can point (D-005):
   cannot be an artefact of that input.
 - **Sensitivity**: falsify N(4) = 9 to 8 and m = 20 comes back to life. So the kill
   genuinely rests on what we say it rests on.
-- **Four implementations agree**, one of them blind — a subagent auditing an
+- **Three implementations agree**, one of them blind — a subagent auditing an
   unrelated question reproduced 33/0 and 7159/0 without being told the result was
   being pursued.
 

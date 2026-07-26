@@ -211,9 +211,9 @@ one peer-seeded reframing (Codex, re-derived here), one cited lemma.
   does not construct.
 - **Q13 is not answered** — the question of whether a 13-edge τ=5 object can have
   a part of minimum degree 2. It became *unnecessary*, not settled. It remains the
-  natural next lever, since answering it NO would push the floor past 21 by the
-  0005 ladder alone — though FHMW Lemma 2.1(iii) now looks like a cheaper one
-  (notebook/2026-07-26-fhmw-lemma-21.md).
+  natural next lever — though answering it NO gives N(5) ≥ 14, which on the 0005
+  ladder reaches exactly 21 rather than past it, and FHMW Lemma 2.1(iii) now looks
+  like the cheaper route (notebook/2026-07-26-fhmw-lemma-21.md).
 - f(6) ≥ 13 is not verified here, and at the time this certificate was written it
   was the whole difference between m ≥ 19 and m ≥ 21. **Certificate 0007 removed
   that dependence**: the floor of 21 holds citing nothing.
