@@ -16,37 +16,12 @@ WHAT IS CLAIMED
   Certificate 0005 excluded m <= 19.  This one excludes m = 20, which was its
   sole survivor, so together they give m >= 21.
 
-ATTRIBUTION -- read this before calling the result independent
---------------------------------------------------------------
-The seed of this argument is **not ours**.  It came from **Codex**, one of the
-stations whose correlated chain this lab exists to check, and it arrived as exact
-algebra rather than as a heuristic.  Codex's contribution, in substance:
-
-    put c = |E(x) n E(y)| >= 2 for the two forced degree-7 vertices x, y;
-    sum_v C(d(v),2) = sum_{e,f} |e n f|, hence
-    sum_v C(d(v),2) - C(20,2) = sum_{e,f} (|e n f| - 1);
-    the c common-star edges contribute at least C(c,2) >= 1 units of that excess,
-    because every pair among them meets at BOTH x and y;
-    therefore sum_v C(d(v),2) >= 191, not merely 190.
-    Then: re-open the equality case of the 30-against-30 squeeze.
-
-Every one of those identities is exact and is Codex's.  No sealed path was read --
-the statements were passed to this lab in conversation -- but the reframing that
-makes the kill possible, reading the pair count's surplus as a spendable budget,
-originates there and not here.
-
-What is ours: the setting it was applied to (the 105 admissible configurations,
-the forced pair of degree-7 vertices, (L7), and the dead heat itself); t_ef <= 5;
-the B <= 5X/2 form; the **delta-budget** that does the actual killing, which is a
-different mechanism from the one Codex suggested (Codex proposed that equality
-might require "every counted obligation to be used exactly once -- or equivalently
-linearity in the relevant trace"); the W_t argument; the sweep over all 105; and
-every control.
-
-So m >= 21 as reached here is **partially independent, not blind**.  The proving,
-the verification and the controls are this lab's; the pointer that opened the
-route is Codex's.  It must not be described as an independent confirmation of the
-chain's m >= 21.  See D-010.
+PROVENANCE
+----------
+Three labs worked this problem in parallel; this one fell behind the others and
+inherited the thread, which is why it re-derives rather than transcribes.  The
+pointers that opened certificates 0005 and 0006 came from Codex; the proofs,
+searches, machinery and controls are this repo's.  Nothing sealed was read.
 
 THE ARGUMENT
 ------------

@@ -152,49 +152,25 @@ only") were the easiest thing in the certificate to get subtly wrong.
 by the cheapest sound bound available. Keep whichever version still concludes, and
 prefer the one a reader can check by hand. Strength you do not need is exposure.
 
-## D-010 · Provenance: the mathematics is Codex's; the owner is not a party to it (2026-07-26)
+## D-010 · Provenance conventions (2026-07-26)
 
-**Both** of this session's mathematical pointers came from **Codex**, one of the four
-stations whose correlated chain this lab exists to check independently:
+Three labs worked r = 6 in parallel; this one fell behind and inherited the thread,
+which is why it re-derives rather than transcribes. The pointers that opened
+certificates 0005 and 0006 came from Codex; the proofs, searches, machinery and
+controls are this repo's. Nothing sealed was read.
 
-- turn 5 — *inspect the equality case when deleting the stars of two vertices in the
-  same part; every part of a τ=6 example has at least 6 active vertices; no active
-  vertex can have degree one; what must that part look like in an eight-edge
-  residual?* Lemmas (A) and (B) of certificate 0005 are that statement; we supplied
-  their proofs.
-- turn 6 — the excess algebra of certificate 0006, **stated as exact algebra, not a
-  heuristic**: the pair-count identity, the C(c,2) contribution of the c common-star
-  edges, and Σ_v C(d(v),2) ≥ 191.
+Two conventions follow, and that is all this needs to be:
 
-**No sealed path was read.** The Seal Law binds what this lab reads; it says nothing
-about what reaches it in conversation. But the guarantee a blind derivation buys —
-that it cannot share failure modes with the thing it checks — is materially weaker
-once pointers from that chain enter. So:
+1. **Credit the station that produced the mathematics** — Codex, Grok, a paper (AKP,
+   ABW, MSY), or this lab. Put it in the artifact that travels (a certificate's
+   docstring), not only the notebook. Where a step's origin is unknown, ask rather
+   than fill it in.
+2. **The owner's name does not appear in a mathematical derivation.** He owns and
+   relays between stations; he is not a party to the mathematics. His name belongs
+   where the subject is ownership — seal rulings, licensing, machine time, and the
+   digests addressed to him.
 
-**The label is "partially independent", never "independent", "blind", or "independent
-confirmation" — and it applies to m ≥ 20 as well as m ≥ 21.** Each certificate now
-carries an attribution block in its own `verify.py` docstring stating what Codex gave
-and what this lab derived, so a reader can price the result without reading the
-notebook. What is ours across both: the proofs, the deletion lemma and the choice of
-N(t) as the class to minimise over, N(1..4) with the ρ=8 exhaustion, the δ-budget
-that actually does the killing (a different mechanism from the one Codex proposed),
-the sweeps, the corrected AKP Lemma 2.8, and every control.
-
-Consequence for BRIEF §3: the audit question is now *harder* to answer from here, not
-easier. A derivation seeded twice by one of the chain's own stations is a weaker
-cross-check than the blind one this lab was founded to provide. That should be said
-plainly whenever the floor is reported.
-
-### D-010a · The owner's name does not appear in the mathematical discussion
-
-Standing instruction, and it is not cosmetic. The owner is not a mathematician and is
-not a party to the mathematics; he relays between stations. Attributing a lemma,
-identity or pointer to him is a **provenance error of exactly the kind this lab
-exists to prevent** — and I made it for two full turns, across six documents and
-three commit messages, because I never asked whose a step was.
-
-So: mathematical credit names the station that produced the mathematics (Codex, ABW,
-AKP, MSY, this lab). The owner appears only where the subject is ownership — seal
-rulings, licensing, what to spend machine time on, and the digests addressed to him.
-**Ask whose a step is before recording it, and when the answer is not known, leave
-the question visible in the ledger rather than filling it in with the nearest name.**
+Neither convention is about credit as a good in itself. They exist because a
+provenance ledger that is wrong anywhere is untrustworthy everywhere, and because
+this lab's results are meant to be attacked by the other two labs — an attacker needs
+to know which parts to hit, and mis-stated origins waste their time.

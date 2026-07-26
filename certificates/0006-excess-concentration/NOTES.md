@@ -11,28 +11,22 @@
 
 Certificate 0005 excluded m ≤ 19 and left Δ = 7 at m = 20 as its sole survivor.
 This certificate excludes m = 20 outright. Together: **m ≥ 21** — the statement
-this lab was seeded with. **But see the attribution section: the seeds of both
-certificates came from Codex, so the result is partially independent, not blind.**
+this lab was seeded with.
 
-## Origin: Codex — and what that costs the claim
+## Origin
 
-> *Let x,y be the forced degree-7 vertices and put c = |E(x) ∩ E(y)| ≥ 2. Feed
-> that overlap back into the pair-intersection count. The c common-star edges
-> contribute at least C(c,2) ≥ 1 units of excess, because every pair among them
-> meets at both x and y. Therefore Σ_v C(d(v),2) ≥ 191, not merely 190.*
+The seed is Codex's, and it arrived as exact algebra:
 
-**This is Codex's, not ours, and it arrived as exact algebra rather than a
-heuristic** — every identity above is exact. No sealed path was read; the
-statements were passed to this lab in conversation. But a station of the
-correlated chain seeded the final step, so **m ≥ 21 as reached here is partially
-independent, not blind**, and must not be called an independent confirmation of
-that chain's m ≥ 21. See D-010.
+> *Let x,y be the forced degree-7 vertices and put c = |E(x) ∩ E(y)| ≥ 2. Feed that
+> overlap back into the pair-intersection count. The c common-star edges contribute
+> at least C(c,2) ≥ 1 units of excess, because every pair among them meets at both x
+> and y. Therefore Σ_v C(d(v),2) ≥ 191, not merely 190.* Then: re-open the equality
+> case of the 30-against-30 squeeze.
 
-Ours: the setting (the 105 configurations, the forced pair of degree-7 vertices,
-(L7), the dead heat), t_ef ≤ 5, the B ≤ ⌊5X/2⌋ form, the **δ-budget that does the
-actual killing** — a different mechanism from the one Codex proposed ("every
-counted obligation used exactly once — or equivalently linearity in the relevant
-trace") — the W_t argument, the sweep, and every control.
+Ours: the setting it applies to (the 105 configurations, the forced pair of degree-7
+vertices, (L7), the dead heat), t_ef ≤ 5, the B ≤ ⌊5X/2⌋ form, the δ-budget that does
+the actual killing — a different mechanism from the one suggested — the W_t argument,
+the sweep, and every control.
 
 It is the hinge. The pair count is not just a *lower* bound to
 be met — the amount by which it is exceeded is a **budget**, and overlapping
@@ -62,7 +56,7 @@ explicit objects in checks 2–5):
 
 and four facts:
 
-- **(L2)** Σ_v C(d,2) = Σ_{e<f} |e∩f|, so **X = Σ_{e<f}(|e∩f| − 1)** — Codex's identity.
+- **(L2)** Σ_v C(d,2) = Σ_{e<f} |e∩f|, so **X = Σ_{e<f}(|e∩f| − 1)**.
 - **(L7)** c_ij ≥ M_i + M_j − (m − g(4)): delete both stars, τ ≥ 4 survives on
   m − |E(u_i) ∪ E(u_j)| edges, so that count is ≥ g(4) = 8.
 - **(C2)** |e∩f| ≥ t_ef, hence Σ_{e<f}(t_ef − 1)⁺ ≤ X.

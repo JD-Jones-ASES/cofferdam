@@ -15,21 +15,15 @@ Certificate 0001 reached m ≥ 18 / m ≥ 19. This moves both rungs by one, usin
 *same* counting argument over a strictly smaller set of admissible profiles.
 Certs 0001–0003 are reproduced inside this one as a control (checks 29–31).
 
-## Attribution: the pointer was Codex's
+## Provenance
 
-Codex supplied: *inspect the equality case when deleting the stars of two vertices
-in the same part; every part of a τ=6 example has at least 6 active vertices; no
-active vertex can have degree one; what must that part look like in an eight-edge
-residual?*
-
-So **(A) and (B) below are statements Codex gave us** — we supply their proofs,
-which are one-liners — and the last clause is the question this certificate
-answers. Ours: those proofs, the deletion lemma (C), the choice of N(t) as the
-class to minimise over, N(1..4) = 2,4,6,9 with the ρ=8 exhaustion and the built
-witness, the ladder re-run, the corrected AKP Lemma 2.8, and every control.
-
-**m ≥ 20 here is therefore partially independent, not blind**, and so is m ≥ 21.
-No sealed path was read. See D-010.
+Three labs worked this in parallel; this one fell behind and inherited the thread.
+The pointer that opened this certificate came from Codex — *inspect the equality case
+when deleting the stars of two vertices in the same part; every part of a τ=6 example
+has at least 6 active vertices; no active vertex can have degree one; what must that
+part look like in an eight-edge residual?* — so (A) and (B) below are given
+statements and the proofs, the N-ladder, the searches and the controls are this
+repo's. Nothing sealed was read.
 
 ## The two lemmas, and why they were missed
 

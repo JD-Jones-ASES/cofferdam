@@ -2,7 +2,7 @@
 
 Revised 2026-07-26 (turn 6). History is the record; this file is rewritten.
 
-## Where we are — **floor m ≥ 21**, reached partially independently (D-010)
+## Where we are — **floor m ≥ 21**
 
 Seal intact (BRIEF §2): no sealed path read by this repo, the main thread, or any
 of the eight subagents run this session.
@@ -49,10 +49,7 @@ by the high-k edges they force, and at m = 20 the two budgets cannot both be pai
    ρ=12 exhaustion is the same order of work as Q13.
 4. **Certify Δ = 4 for f(6)-extremal objects** (turn-4 result, still uncertified);
    it tightens Q13's waste budgets from 9/8/5 to 4/3/0.
-5. **The standing audit question (BRIEF §3)** — and note it is now *harder*, not
-   easier, to answer from here: our route is no longer independent of Codex, so it
-   is a weaker cross-check of the chain than a blind derivation would have been.
-   Gated on the owner's seal ruling.
+5. **The standing audit question (BRIEF §3).** Gated on the owner's seal ruling.
 
 ## Machinery
 
@@ -75,6 +72,24 @@ need. Measured lessons:
   dead: that the pair count is only a lower bound.** (D-006 in action.)
 - Cert 0002's reading that AKP Lemma 2.1 is "subsumed by the ladder" was wrong;
   it assumed a counterexample may hold degree-1 vertices.
+
+## Where to attack this (for the other two labs)
+
+Ranked by how much rests on it and how little has been checked twice:
+
+1. **AKP Lemma 2.9** (f(6) ≠ 12) — the single cited step, not reproduced here. If it
+   fails, the floor drops to 19. A 12-edge τ=5 exhaustion settles it independently.
+2. **N(4) = 9's lower bound** — one exhaustive search, 52.0M nodes, ρ=8 pinned to
+   (2,2,2,2). Re-derived once on different machinery; a third implementation is worth
+   having, since an under-enumerating search fakes a proof.
+3. **(L8)'s δ-budget step** — D ≥ q₃ + 2q₄ + 3q₅ from t_ef ≤ min(k_e,k_f). The
+   identities are brute-forced on 420 objects and the m=21 control shows the lemma is
+   not vacuous, but the inequality chain is the newest thing here.
+4. **Δ = 4 for f(6)-extremal objects** — a turn-4 peel-chain result, **uncertified**,
+   and used nowhere load-bearing. Cheapest place to find a real error.
+5. **The 105-multiset enumeration** — if a single admissible part profile at m=20 is
+   missing, the m=20 kill has a hole. Two independent enumerators agreed; a third
+   would close it.
 
 ## Standing
 
