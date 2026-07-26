@@ -56,7 +56,21 @@ the cross-part union prune was added; both runs returned the same witness.
 
 ## Next, in order
 
-1. **Column-wise star attachment — the one engineering blocker.** `peel.py`
+1. **Lazy partition generation in `columns.py`** — the single change that opens
+   m = 19. Attack (13,5) *directly* rather than bottom-up: there Δ = 4 exactly
+   (proved — the Δ=5 branch is empty), the caps are {1:4, 2:8, 3:10, 4:12}, the
+   best per-part profile (4,4,2,2,1) gives 84 pair-coverings against the 78
+   required, so the **waste budget is 6** — the tightest constraint in the lab and
+   exactly the regime the column engine exploits. It currently materialises the
+   admissible partition list before searching (fine at m=8's 2220, hopeless at
+   m=13's millions); generate them lazily, indexed by the pair they must join.
+
+   *Why not bottom-up:* measured. At (9,4) a residual offers ~220 star patterns
+   per part against only 78 minimum covers, so the set-cover condition barely
+   prunes and the 4-subset search runs to ~10⁸–10⁹ nodes per residual, times
+   53,906 residuals. The enumeration is hardest where the mathematics is loosest.
+
+2. **Old item, superseded:** column-wise star attachment — the one engineering blocker.** `peel.py`
    attaches stars by assigning symbols, allowing up to Δ fresh labels per part
    with no canonical ordering, so isomorphic stars are generated repeatedly and
    deduped afterwards. What actually matters in part q is only the *partition* the

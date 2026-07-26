@@ -70,3 +70,42 @@ was caught by a test; both were caught by re-reading the completeness argument.
 matches nothing on this box, because Homebrew's `python3` is a shim and the process
 command line is the resolved `.../MacOS/Python`. Nine background runs accumulated
 at ~65% CPU each. Recorded in the vault's MACHINE.md.
+
+## 5. The run did not reach m ≥ 21 — measured, with the cause
+
+`enumerate(9,4)` did not finish, and the reason is structural rather than a missing
+prune. Profiling one 5-edge residual at Δ=4:
+
+- **~220 star patterns per part** (≈1320 across the six), and
+- **only 78 minimum covers of R** to escape.
+
+The set-cover condition is what prunes the star selection, and here it is *weak*:
+with so few covers to escape and so many patterns escaping them, almost every
+partial selection survives, so the search over 4-subsets runs to ~10⁸–10⁹ nodes per
+residual. Multiply by 53,906 residuals and the level is out of reach.
+
+This is the opposite of the top of the chain, where τ(R)=5 makes the covers
+numerous and the patterns few, and the same code decides a residual in
+milliseconds. **The enumeration is hardest exactly where the mathematics is
+loosest** — at the bottom, where τ is small and objects proliferate.
+
+### What that means for the route
+
+Building (13,5) bottom-up through (9,4) is the wrong direction. The right one goes
+at (13,5) *directly*, where the constraints are severe:
+
+- Δ = 4 exactly (proved above, from the empty Δ=5 branch);
+- per-part caps {1:4, 2:8, 3:10, 4:12}, so the best profile is (4,4,2,2,1) giving
+  14 pairs per part, 84 in total against the 78 that "intersecting" demands —
+  **a waste budget of 6**, the tightest constraint anywhere in this lab.
+
+A waste budget of 6 across 78 pairs is exactly the regime `lib/columns.py` was
+built for: branch on the least uncovered pair, and kill any branch that duplicates
+more than 6 pair-coverings. The blocker there is the one already recorded — it
+materialises the admissible partition list before searching, which is fine at m=8
+(2220 partitions) and hopeless at m=13 (millions). Generating partitions lazily,
+indexed by the pair they must join, is the single change that opens this.
+
+**Honest status: the floor stands at m ≥ 19.** Three cases remain, each reduced to
+a set cover over minimum covers, and the residual family for two of them is pinned
+to Δ=4. Nothing here confirms m ≥ 21.
