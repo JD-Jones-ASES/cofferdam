@@ -101,3 +101,52 @@ Recorded as a method, not a result: when a bound is tight and its constants are
 already computed exactly, look for a **property the extremal object inherits from
 the context it appears in** and re-minimise over the restricted class. The
 constants stop being the thing to improve.
+
+## D-008 · The surplus in a counting bound is a resource, not slack (2026-07-26)
+
+Every counting lemma in this lab was written as `quantity ≥ threshold`, and the
+amount by which a configuration exceeded the threshold was called "slack" and
+treated as bad news — the bigger the slack, the weaker the argument. Certificates
+0001 and 0002 both report slack that way, and turn 6's (L4)/(L7) squeeze stalled
+at 30 against exactly 30 and was filed as a dead heat.
+
+JD's step inverted it. For the pair count the surplus is not slack, it is an
+**exact quantity with a structural meaning**:
+
+  sum_v C(d(v),2) - C(m,2) = sum_{e<f} (|e n f| - 1) = X,
+
+so X *is* the total repeated agreement in the object, and every structural feature
+that forces two edges to agree twice **spends** it. Two overlapping high-degree
+stars in different parts cost C(c,2) units. Once X is a budget rather than a
+margin, a configuration can be killed by making it buy more than it can afford —
+and that is what closed m = 20 after the same inequalities, read as bounds, had
+tied.
+
+Therefore: **state every counting lemma with its surplus identified as a
+quantity, and ask what spends it.** A bound of the form `A >= B` should be
+recorded as `A - B = <what that difference counts>`. Where the difference has no
+combinatorial meaning, say so; where it does, it is a second lever the bound was
+hiding.
+
+Corollary worth keeping: a dead heat is the *most* promising place to look for a
+kill, not the least. Equality forces every inequality in the chain to be tight,
+which is a very strong structural statement — it was equality that pinned all
+fifteen part-pair overlaps to exactly 2 and made the rest forced.
+
+## D-009 · Weaken a step deliberately if the conclusion survives it (2026-07-26)
+
+Certificate 0006's ceiling on A began as an exact dynamic program over the degree
+value-pool with the (L4) per-edge bound folded in — the most machinery in the
+repo. Replacing it with the crudest possible bound (maximum concentration, no pool,
+no (L4)) makes the test **strictly more permissive**, and it still killed all 105
+configurations at m = 20.
+
+So the weaker version shipped. This is not tidiness: the pool DP was the one part
+of the argument a reader would have had to trust rather than check, and dropping it
+removed a whole layer from the trust chain at zero cost to the result. It also
+removed the layer whose relaxation semantics ("sound in the negative direction
+only") were the easiest thing in the certificate to get subtly wrong.
+
+**Rule:** once a result is established, retry it with each expensive step replaced
+by the cheapest sound bound available. Keep whichever version still concludes, and
+prefer the one a reader can check by hand. Strength you do not need is exposure.
