@@ -123,9 +123,17 @@ vertex u_j, put k_E = |E ∩ {u_j}|, and play (L7) against (L4).
   are expensive in high-degree slots, and the slots are a fixed pool.
 
 105 profile multisets pass the pair count; 10 die on the concentration bound
-alone. The exact pool DP then kills more — but **all six parts (7,4,3,2,2,2)
-survives with maximum 30 against a requirement of exactly 30.** Dead heat. The
-route does not close m = 20 and is recorded as a measured near-miss, not a lever.
+alone. The exact pool DP then kills more — 13 of the first 59 checked, at ~15–30 s
+each — but **all six parts (7,4,3,2,2,2) survives with maximum 30 against a
+requirement of exactly 30.** Dead heat, and it is case 1, so the verdict does not
+depend on finishing the sweep (stopped at 59/95: 46 alive, 13 dead). The route
+does not close m = 20 and is recorded as a measured near-miss, not a lever.
+
+**The unused lever the same enumeration hands over:** every one of the 105
+multisets contains **at least two parts with a degree-7 vertex** — the best d1=7
+profile scores 33 and the best d1≤6 scores 31, so reaching 190 forces it. Two
+degree-7 vertices in different parts then satisfy |star(u) ∩ star(w)| ≥ 2 by (L7).
+That does not go through Q13 at all, and is the obvious next thing to push.
 
 ## 8. Cost data
 
