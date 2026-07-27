@@ -1,6 +1,6 @@
 # cofferdam — plan
 
-Revised 2026-07-27 (turn 10). History is the record; this file is rewritten.
+Revised 2026-07-27 (turn 11). History is the record; this file is rewritten.
 
 ## Where we are — **THE FINITE WINDOW: every critical core has m ∈ [22, 456]**
 
@@ -19,6 +19,7 @@ Revised 2026-07-27 (turn 10). History is the record; this file is rewritten.
 | **0012** (12 + 5) | **(L10) saturation floor — the δ-budget retires**; m = 21 dies at margin ≥ 6 |
 | **0013** (32 + 8) | **THE WINDOW [22, 462]**: every critical core has m ≤ C(11,6) = 462, **ceiling ledger EMPTY**; Ryser r=6 intersecting ⟺ no critical core in the window |
 | **0014** (13 + 4) | **(L11) part-confinement annihilator → THE WINDOW TIGHTENS TO [22, 456]**; the peer-claimed 456 is an in-house theorem (consumes (A) + 0013) |
+| **0015** (19 + 3) | **(CC) the critical-cover inequality** (per-edge + global, ledger: 0013 only) **→ X ≥ 2 for every critical core at m = 22** — the floor rung is in the nonlinear regime; kill margin exactly one unit, computed in-transcript |
 
 All green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O` (D-015).
 Both 0013 and 0014 were adversarially fleet-verified before certification
@@ -42,13 +43,16 @@ Criticality → private disjoint covers → Katona-style disjoint events →
 
 ## Where to attack — reranked after turn 10
 
-1. **The m = 22 frontier, now armed with core structure.** The window
-   framing makes every core lemma a two-sided asset. Peer-claimed leads
-   on file (notebook turn-9 §13, all re-derive-before-use): the
-   critical-cover inequality (CC)/(GCC) (desk-checked sound,
-   uncertified) · **X ≥ 2 for critical cores at m = 22** (would open the
-   nonlinear regime; unverified) · Farkas-dual clustering. First
-   concrete rung: certify (CC), then price the X ∈ {0,1} exclusion.
+1. **The m = 22 frontier — the X = 2 stratum.** DONE at turn 11: (CC)
+   certified (0015; ledger 0013 only) and **X ≥ 2 proven at m = 22**
+   (the peer sketch did NOT close — 52 survivors measured; repaired
+   with the per-edge corollaries + star-disjointness). Next rungs on
+   this lane: (a) the **9,224 X = 2 survivors** are the frontier field
+   — stratify them (X = 2 means exactly two λ = 2 pairs or one λ = 3
+   pair: very rigid); (b) per-edge (CC) with real b-profiles (the
+   cover-free min over b was not needed at X ≤ 1; at X = 2 it may
+   bite); (c) the peer's (GCC) global-with-cover-structure form, still
+   uncertified · Farkas-dual clustering still on file.
 2. **Squeeze the ceiling — combinatorially, not dimensionally.** The
    audit's derivation lane measured the six functionals as the
    COMPLETE annihilator (the transversal-wedge span EQUALS the 456-dim
