@@ -15,7 +15,7 @@ N(4) = 9 is the hinge of the floor. Certificate 0007's own closing words:
 "the load-bearing step is no longer a citation. It is N(4) = 9, one
 exhaustive search of ours at 52.0M nodes... A third independent
 implementation of that search is now the single most valuable thing anyone
-could contribute." PLAN item 3 asked for that third implementation — and
+could contribute." PLAN item 3 (as of turn 8) asked for that third implementation — and
 warned that it should match "the verdict and a structurally different route,
 not the node count."
 

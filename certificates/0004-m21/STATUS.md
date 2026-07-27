@@ -13,7 +13,9 @@ routes unrelated to this file.** The census this file was built around became *u
 than being computed: the (L8) counting argument closes m = 20 without ever
 classifying a 13-edge object. The open question this file's route depended on — Q13,
 whether a 13-edge τ=5 object can have a part of minimum degree 2 — is still open and
-still interesting, but nothing rests on it.
+still interesting, but nothing rests on it. *(2026-07-27: answered YES —
+certificate 0009, by an object certificate 0008 already shipped; nothing here
+changes, the route stays abandoned.)*
 
 Kept because a dead end is a result and this repo does not delete them. The honest
 record of *why* the route was abandoned is in

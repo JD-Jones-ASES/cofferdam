@@ -297,7 +297,8 @@ the (7,…,7) dead heat at A = 30 under level structure {4,4,3}: **D = 8 against
 need of 9**, and the need is exact rather than a bound. Three inputs — g(4) = 8,
 X, and the δ-budget — each flip the result if moved by a single unit. Six other
 quantities turned out not to be binding at all, and were loosened by large amounts
-with no survivors appearing. Saying the test is "conservative" while omitting
+with no survivors appearing. *(Corrected in 0006's NOTES, 2026-07-26: five, not
+six — the count wrongly included L, which a later pass found binding.)* Saying the test is "conservative" while omitting
 "margin 1" invites a reader to hear *robust*. Those are different claims.
 **Report the margin wherever you report conservatism.**
 
@@ -608,3 +609,24 @@ was going to be hardest.
 two of its target, do not shelve it as indecisive — extract the equality
 conditions and enumerate the forced class. PLAN's attack list now carries
 the systematic version (the equality-regime scan).
+
+## D-030 · A saturated cap is a structure statement, and fresh theorems pay same-day (2026-07-27, turn 9)
+
+The k=1 cap Δ ≤ m − N(5) reads as a ceiling. Its equality case is a
+construction: deg(v) = m − 13 hands you a 13-edge τ ≥ 5 complement, i.e. a
+member of the exact class certificate 0011 had just bounded, and the bound
+transfers back as the overlap floor (L10). The 43 configurations the
+δ-budget alone could kill at m = 21 were precisely the ≥-2-saturated ones —
+the δ-budget was paying numerically for structure that saturation gives as
+a theorem.
+
+**Why:** extremal inputs are consumed as numbers, but wherever a
+configuration SITS at a cap, the cap's equality case is a hypothesis it
+satisfies — usually a much stronger statement than the number. And a
+theorem proved "for completeness" (0011 was PLAN's lowest-stakes item)
+can become load-bearing the day it exists, because floors compose.
+
+**How to apply:** when a kill needs its narrowest-margin step, first list
+which caps the surviving configurations saturate, and ask what object each
+saturation constructs. Check whether an existing certificate already bounds
+that object's class. (L10) took three lines once the question was asked.

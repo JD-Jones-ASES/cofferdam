@@ -16,6 +16,7 @@ Revised 2026-07-27 (turn 9). History is the record; this file is rewritten.
 | **0009** (38 + 13) | **g(5) = N(5) = 13 citing nothing**; Q13 answered YES; the free ladder now EQUALS the cited ladder |
 | **0010** (24 + 3) | **N(4) = 9 BY HAND** — the hinge is a theorem, not a search |
 | **0011** (61 + 12) | **Δ = 4 for 13-edge τ ≥ 5 objects** — the last uncertified turn-4 result, closed; the (8,4) census proven complete twice over |
+| **0012** (12 + 5) | **(L10) saturation floor — the δ-budget retires**: m = 21 dies on floors + convexity, margin ≥ 6 (median 24) |
 
 All green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O` (D-015).
 
@@ -27,18 +28,28 @@ N(5) by the m = 12 dead-heat forcing + an 11,520-design exhaustion, thrice
 implemented (0009). Then the pair count, (L7), (L8) — whose internals now
 carry names: the excess budget X, and **(L9)** the water-filling floor for B
 (proved + audited over 262,729 instances, zero mismatches). (D2) caps
-2·D₂ ≤ m. Under the pinned ladder every m ≤ 20 dies before (L8) is
-consulted; **(L8) is load-bearing at exactly one rung, m = 21, on exactly
-567 configurations.**
+2·D₂ ≤ m, and **(L10)** the saturation floor (a cap-saturating vertex's
+13-edge complement is certificate 0011's class, so its degrees cap at 4).
+**No rung consumes the δ-budget, the level system, qmin, or U** (0012):
+m ≤ 19 admits nothing on the pinned ladder, m = 20 dies on the cap, m = 21
+on (L7)+(L10) floors + (L9) convexity + B ≤ ⌊5X/2⌋ at margin ≥ 6.
+Certificates 0006/0007 stay green as the weak-ladder record.
 
 ## Where to attack — reranked after turn 9
 
-1. **Hand-kill m = 21's 567 configurations.** (L8) is consulted at one rung.
-   The triple-method that hand-proved N(4) = 9 (0010) and the forcing
-   geometry that collapsed m = 12 (0009) are both built for exactly this
-   shape of problem. If the 567 fall to structure, the δ-budget machinery —
-   the narrowest-margin code in the repo, the target of both peer audits —
-   **leaves the trust chain entirely**. Highest value per unit work.
+1. **QUEUED — NEXT SESSION: literature work, the τ-critical ceiling.**
+   A minimum counterexample is τ-critical (delete any edge of a minimum one
+   and τ drops — one line). Retrieval spec: (a) the classical size bounds
+   for τ-critical r-uniform hypergraphs (Lovász-style; also Tuza, and any
+   later sharpenings) — exact statements, exact constants; (b) whether they
+   apply verbatim to our class (6-partite is a subclass; τ = 6 = r); (c) the
+   explicit ceiling M for r = 6, however astronomical; (d) verify the
+   τ* ≤ r/2 attribution used in the turn-9 grail note (Füredi?); (e) verify
+   FHMW's linear-Ryser scope while in the literature. Deliverable: a
+   notebook entry + a window statement **m ∈ [22, M], PROVEN-MODULO-CITATION**
+   beside (never replacing) the citing-nothing floor. Reading literature is
+   seal-clean: the seal covered the chain, not the field (BRIEF §2). Done at
+   turn 9: the hand-kill of m = 21's 567 (cert 0012 — was item 1 here).
 2. **Re-derive the stronger per-part claim at the desk**: every part of an
    8-edge τ ≥ 4 object carries a degree-1 vertex (fleet-claimed complete
    proof, turn 9). Lands the corrected AKP 2.8 consequence by hand and
@@ -66,23 +77,26 @@ at m = 22 (priced by full-field sensitivity, two implementations: survivors
 down to D₂ = 5 on every ladder; **declined**) · Q13 (answered YES — 0009;
 its 232-slice search is retired unrun) · N(5) ≥ 14 (impossible — N(5) = 13
 exactly) · the N(4) = 9 tightening of (L7) (D-022, turn 8) · AKP 2.9 as an
-attack surface (demoted turn 7).
+attack surface (demoted turn 7) · **the δ-budget, the level system, qmin and U as load-bearing steps** (retired from the minimal chain by 0012; green in 0006/0007 as the weak-ladder record).
 
 ## Risk decomposition — updated for turn 9
 
 | step | what stands under it now |
 | --- | --- |
-| **X + (L9) + A ≥ S−m** | the m = 21 kill's engine. (L9) proved + audited (262,729 comparisons, incl. every (floors,A) pair the certs consult); X's identities brute-forced over 1.86M audits (turn 8). Attack #1 above would retire the whole row |
+| **X + (L9) + A ≥ S−m** | still the m = 21 kill's engine — **the turn-9 prediction that the hand-kill would retire this row was WRONG**: cert 0012's kill consumes A ≥ S−m, (L9) and X's B-cap exactly as before; what left was the δ-budget/levels/qmin/U. (L9) proved + audited (262,729 comparisons); X's identities brute-forced over 1.86M audits (turn 8) |
 | **N(4) = 9** | a hand theorem (0010) + two agreeing searches. No longer a single point of failure. The theorem's inputs: g(2) ≥ 3, g(3) ≥ 5 only |
 | **N(5) = 13** | dead-heat forcing (margin one, all four caps load-bearing) + 11,520-design census, three implementations + the witness. Rung closed permanently |
 | **g(4) = 8** | margin one, and turn 9 found its "two proofs" were ONE argument in two code forms (the 0001 absence search never branches — the waste-budget root prune IS the counting kill, D-028). A genuinely independent definitions-only brute force closed m ≤ 6 but hit its 200M-node ceiling per quarter at (7,4) — **UNDECIDED, priced at > 800M nodes for this engine**. The counting proof itself is three lines from g(3) = 5, machine-checked in certs 0009/0010/0011 §1, and is not in doubt; what was wrong was the *bookkeeping of independence* |
-| the δ-budget | m = 21 only, margin one (0008's table). Attack #1 would retire it |
-| the cap ⌊m/2⌋ | m = 21 only, margin one, odd-m rounding. Same |
+| the δ-budget | **RETIRED from the minimal chain (0012)** — replaced by (L10)+(L9) at margin ≥ 6 where its margin was one. Stays green inside 0006/0007 |
+| the cap ⌊m/2⌋ | m = 20 (105 all fail it) and the D₂ ≤ 10 gate at m = 21; margin one, odd-m rounding (0008) |
+| **(L10) via 0011's Δ ≤ 4** | the new m = 21 load-bearer beside (L9): weaken 0011 to Δ ≤ 5 and 65 of 567 revive (0012's sensitivity). 0011's own weight sits on its twice-built (8,4) census |
 
 ## Machinery — lessons that earned their line
 
-- **Measure before theorising** (turn 9's cap matrix killed PLAN item 1b in
-  an hour; the alternative was a week of matching theory for nothing).
+- **Measure before theorising**: turn 9's cap matrix killed the r-dependent
+  (D2) sharpening in an hour, and the classification of the 567 found the
+  δ-budget's true load (43 configs, all cap-saturated) before any theory was
+  attempted — (L10) fell out of the saturation structure (D-030).
 - **Diff design sets, not headline counts** — the blind C reproduction's
   over-strong prune produced 6,912 of 11,520, a flattering subset that
   headline comparison would have blessed (D-005 in the wild, caught).

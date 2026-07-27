@@ -24,7 +24,7 @@ nothing here.
 
 ## Why this exists
 
-It is **PLAN item 1** — the turn-4 peel-chain result that was still
+It is **PLAN item 1 (as of turn 8)** — the turn-4 peel-chain result that was still
 uncertified, and that PLAN itself named "the cheapest place a real error could
 still be hiding." Nothing downstream moves if it is wrong; that is exactly why
 it was worth writing down properly instead of carrying as a remembered fact.

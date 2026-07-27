@@ -249,3 +249,26 @@ ladder, deliberately, so it does not sit downstream of the hinge.
 3. Cert 0009's NOTES were drafted citing the blind reproductions before they
    had returned; had they disagreed, the file was wrong at write time. They
    agreed; the order of operations was still backwards.
+
+## 12. Continuation, same day: certificate 0012 — the δ-budget retires
+
+JD said continue with the PLAN, so attack #1 ran immediately, measurement
+first. The 567 configurations (L8) carried at m = 21 classify, under the old
+guards, as 502 dead on (L9)+B_cap+A ≥ S−m, 22 on level feasibility, 43 on
+the δ-budget proper — and **every δ-needer has ≥ 2 parts saturating the k=1
+cap** Δ ≤ m − N(5) = 8. Saturation is structure: a degree-8 vertex's
+complement at m = 21 is a 13-edge τ ≥ 5 object — certificate 0011's class —
+so **(L10), the saturation floor**: |E(v) ∩ E(u)| ≥ deg(u) − 4 for u outside
+v's part. One unit over (L7) per saturated pair, compounding at A₀ under
+(L9)'s convexity: **all 567 die on one B_min evaluation each, margin ≥ 6,
+median 24, max 46** — against the δ-budget's margin of exactly one. Bonus
+from the in-cert sweep: on the pinned ladder m ≤ 19 admits no configuration
+at all; m = 20's 105 all fail the cap. The minimal chain for m ≥ 22 now
+contains no δ-budget, no level system, no qmin, no U, at any rung —
+0006/0007 stay green as the weak-ladder record. Controls: m = 22 survives
+the same reduced test (12th cap-passer scanned); Δ ≤ 5 revives exactly 65;
+B_min monotonicity proved and spot-checked. Certificate 0011 was
+"load-bearing nowhere" for one afternoon (D-030). One prediction of this
+entry's own §-era PLAN died in the process and is corrected there: the
+hand-kill did NOT retire the X+(L9)+A≥S−m row — 0012's kill still consumes
+all three; only the δ-budget/levels/qmin/U left the chain.

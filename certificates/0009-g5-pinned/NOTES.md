@@ -31,7 +31,7 @@ one has an explicit 4-cover**. m = 12 is dead, and g(5) ≥ 13.
 Nobody asked it any other question. Its part 1 is (4,3,2,2,2): a **full
 part**, every active vertex of degree ≥ 2. So the same object is: the g(5) ≤
 13 witness, the N(5) ≤ 13 witness, and the **YES answer to Q13** — the open
-question certificate 0005 posed and PLAN item 5 priced at a 232-slice search
+question certificate 0005 posed and PLAN item 5 (as of turn 8) priced at a 232-slice search
 (44 min on 3 cores unfinished). The search was for an object the repo already
 shipped. With N(5) ≥ g(5) = 13: **N(5) = 13 exactly**, and the rung can never
 be raised — the 'Q13 NO ⟹ N(5) ≥ 14' lever is not open, it is dead.
@@ -79,8 +79,10 @@ be raised — the 'Q13 NO ⟹ N(5) ≥ 14' lever is not open, it is dead.
 Everything below m = 21 now runs through: lemmas (A), (B), (C) + the pair
 count + **N(4) = 9** (certificate 0010's theorem, plus two searches) +
 **N(5) = 13** (this certificate) + (D2). (L8) is consulted at exactly one
-rung, m = 21, now on the 567-configuration cited-equals-free set. The
-external-input ledger for the entire floor remains **empty**.
+rung, m = 21, now on the 567-configuration cited-equals-free set. *(Since
+superseded: certificate 0012 kills those 567 on (L7)+(L10) floors + (L9)
+convexity, so the δ-budget is consulted nowhere.)* The external-input
+ledger for the entire floor remains **empty**.
 
 ## Reproduce
 

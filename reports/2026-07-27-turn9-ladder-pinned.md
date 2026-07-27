@@ -5,7 +5,8 @@
 ## The headline
 
 The floor did not move, exactly as you said it needn't. What moved is
-everything underneath it. Three new certificates today:
+everything underneath it. Four new certificates today (0012 landed after
+this digest's first draft — its section is below):
 
 **Certificate 0009 — g(5) = N(5) = 13, citing nothing.** The last daylight
 between "our ladder" and "the ladder that cited the literature" is closed.
@@ -28,6 +29,20 @@ that double-build control earned its keep **live**: a prototype bug
 produced a silently smaller census (4 classes instead of 5, the flattering
 direction), and only the second route caught it.
 
+## Certificate 0012 — the machinery both peer labs attacked now holds up nothing
+
+Your PLAN's new attack #1 (hand-kill the 567 configurations at m = 21)
+closed the same session it was ranked. Measurement said 43 of the 567
+genuinely needed the delta-budget — and every one of the 43 saturates the
+degree cap in at least two parts. A saturating vertex's complement is
+exactly the class certificate 0011 just bounded, which yields a three-line
+lemma — (L10), the saturation floor — strong enough that **all 567 die on a
+single convexity evaluation each, margin at least six, median 24**, where
+the old machinery's margin was exactly one. The floor's minimal chain now
+contains no delta-budget, no level system, none of the code the audits went
+after. Certificate 0011, shipped this morning as "used nowhere
+load-bearing," was load-bearing by the afternoon.
+
 ## The free gift
 
 Your open question Q13 — "is there a 13-edge τ≥5 object with a part of
@@ -49,7 +64,7 @@ measurement replaced a week of doomed theory.
 ## Checks on our own work (the part you asked for first)
 
 - All seven existing certificates replayed green, twice each, before
-  anything was touched. All ten now green under both interpreters.
+  anything was touched. All eleven now green under both interpreters.
 - The B_min convexity bound — the step our corrected risk table said was
   carrying the load with no name — is now **(L9)**: stated, proved, and
   audited at every point the certificates actually use it. Zero mismatches
