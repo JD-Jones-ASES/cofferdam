@@ -272,3 +272,70 @@ B_min monotonicity proved and spot-checked. Certificate 0011 was
 entry's own §-era PLAN died in the process and is corrected there: the
 hand-kill did NOT retire the X+(L9)+A≥S−m row — 0012's kill still consumes
 all three; only the δ-budget/levels/qmin/U left the chain.
+
+## 13. End-of-turn corrections and the finite window, made concrete
+
+An outside review commissioned by JD (of the report bundle, not the
+certificates) arrived mid-turn. Per house law its claims were triaged as
+peer-claimed and re-derived where load-bearing. Three outcomes.
+
+**Correction: §8's "Fact 3" was false, and an object we already host kills
+it.** This entry claimed τ* ≤ r/2 = 3 for intersecting 6-partite families as
+literature. **False**: the truncated PG(2,5) — remove a point and its six
+lines — is 6-partite (the six deleted lines minus the point are the parts,
+and every surviving line is a transversal), intersecting, 5-regular, 25
+edges on 30 points; edge-weights 1/5 and vertex-weights 1/6 are both
+feasible at value 5, so **τ* = ν* = 5**. Verified firsthand from GF(5) up
+this turn. Nothing consumed the false claim (it was flagged
+context-not-chain), but it was written as "Fact," and the magnitude call
+next to it ("the ceiling is expected astronomically far") was equally
+uncomputed — see next item. Both are the D-017 failure shape: direction
+asserted, number never taken. The queued literature task "verify the τ*
+attribution" becomes "the claim is dead; find what the actual theorem says."
+
+**The finite window is [22, 462], and the ceiling is hand-provable citing
+nothing.** Re-derived at the desk this turn, in full: any counterexample H
+contains an edge-minimal **critical core** K (delete edges while τ stays 6;
+K is still 6-partite 6-uniform intersecting, still a counterexample, so
+**m(K) ≥ 22** by our floor). For each e ∈ K, τ(K − e) = 5 exactly (drops by
+criticality; by at most one since a 5-cover of K − e plus any vertex of e
+covers K), so pick a 5-cover T_e of K − e: then **e ∩ T_e = ∅** (else T_e
+covers K) and **e ∩ T_f ≠ ∅** for f ≠ e (T_f covers K − f ∋ e). That is a
+skew set-pair system with |e| = 6, |T_e| = 5, and the permutation argument
+closes it with no citation: for a uniform order on any ground set, the
+events "all of e precedes all of T_e" are pairwise disjoint (x ∈ f ∩ T_e
+and y ∈ e ∩ T_f would need y < x < y), each event has probability
+6!·5!/11! = 1/462, so **m(K) ≤ C(11,6) = 462**. Arithmetic verified
+(6!·5!·462 = 11!); the disjointness core machine-sanity-checked on a small
+system. **Ryser r = 6 intersecting ⟺ no critical core with m ∈ [22, 462].**
+Certificate 0013 material: a hand proof the length of 0010's, plus a
+criticality-scope note (the window statement quantifies over cores; the
+floor certificates quantify over all counterexamples, which is stronger and
+covers cores a fortiori).
+
+**Peer-claimed leads taken on board, each flagged re-derive-before-use:**
+- a **partite refinement 456 = C(11,6) − 6** via a skew-Bollobás argument in
+  exterior algebra (six functionals q_i ∧ · annihilate the transversal-wedge
+  span). Desk-read plausible, NOT re-derived; needs an in-house audit and a
+  literature check (partite/subspace Bollobás variants exist);
+- a **critical-cover inequality (CC)**: with d_i the degrees on e and b_i =
+  |T_e ∩ V_i|, 2·Σ_i Φ(d_i−1, 5−b_i) ≤ 3(X − x_e), Φ the balanced-split
+  pair minimum, x_e = Σ_{v∈e} d(v) − (m+5)... desk-checked sound (the
+  ab ≤ (3/2)(s−1) corner is tight at s = 5), applies to critical cores,
+  uncertified here; its global form 2·Σ_e P(d(e)) ≤ 3(m−2)X likewise;
+- an **independent third m = 21 kill** (LP relaxation + exact rational
+  Farkas certificates, (L8)-free), whose reconstruction of our pinned
+  ladder independently matched **45 part profiles and 567 systems** — two
+  numbers now agreed by three parties; the kill itself is unreplayed here;
+- a claimed **X ≥ 2 for critical cores at m = 22** (X ∈ {0,1} excluded via
+  (CC) + the D₂ cap) — unverified, promising, exactly the stratification
+  the m = 22 frontier wants;
+- method: **cluster Farkas duals into human lemmas** (most of the 567 die
+  on one-line inequalities); and a **split-and-repair** constructive route
+  seeded at truncated PG(2,5) — recorded with BRIEF §5's standing warning
+  (the object is rigid; τ breaks before it rises) and with the trust-chain
+  rule intact (solvers scout; objects and certificates ship).
+
+Not imported: the review's own conditional acceptances (it could not replay
+certificates — the bundle carried reports only), and nothing above enters
+any chain until re-derived under our own laws.

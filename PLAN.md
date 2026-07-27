@@ -37,19 +37,29 @@ Certificates 0006/0007 stay green as the weak-ladder record.
 
 ## Where to attack — reranked after turn 9
 
-1. **QUEUED — NEXT SESSION: literature work, the τ-critical ceiling.**
-   A minimum counterexample is τ-critical (delete any edge of a minimum one
-   and τ drops — one line). Retrieval spec: (a) the classical size bounds
-   for τ-critical r-uniform hypergraphs (Lovász-style; also Tuza, and any
-   later sharpenings) — exact statements, exact constants; (b) whether they
-   apply verbatim to our class (6-partite is a subclass; τ = 6 = r); (c) the
-   explicit ceiling M for r = 6, however astronomical; (d) verify the
-   τ* ≤ r/2 attribution used in the turn-9 grail note (Füredi?); (e) verify
-   FHMW's linear-Ryser scope while in the literature. Deliverable: a
-   notebook entry + a window statement **m ∈ [22, M], PROVEN-MODULO-CITATION**
-   beside (never replacing) the citing-nothing floor. Reading literature is
-   seal-clean: the seal covered the chain, not the field (BRIEF §2). Done at
-   turn 9: the hand-kill of m = 21's 567 (cert 0012 — was item 1 here).
+1. **QUEUED — NEXT SESSION, part A: certificate 0013, the finite window
+   [22, 462] CITING NOTHING.** The ceiling is not astronomical and needs no
+   literature: any counterexample contains an edge-minimal critical core K
+   (still a counterexample, so m(K) ≥ 22); criticality hands every edge a
+   private 5-cover T_e with e ∩ T_e = ∅ and e ∩ T_f ≠ ∅, and the permutation
+   count (events "e wholly precedes T_e" are pairwise disjoint, each of
+   probability 6!·5!/11! = 1/462) gives **m(K) ≤ C(11,6) = 462**. Hand proof
+   re-derived at the desk, arithmetic verified — turn-9 notebook §13. Scope
+   with care: the window quantifies over critical cores; the floor
+   quantifies over all counterexamples. **Ryser r = 6 intersecting ⟺ no
+   critical core in [22, 462].**
+   **Part B: the narrowed literature list** (seal-clean; the seal covered
+   the chain, not the field): (a) attribution for the set-pair bound
+   (Bollobás 1965) and for τ-criticality bounds generally — cite, don't
+   consume; (b) is the **456 = C(11,6) − 6 partite refinement** (peer-claimed,
+   exterior algebra, desk-read plausible) already in the literature
+   (partite/subspace skew-Bollobás variants), and audit it in-house either
+   way; (c) what the REAL fractional theorem says — "τ* ≤ r/2 for
+   intersecting 6-partite" is **FALSE**, killed firsthand by truncated
+   PG(2,5) with τ* = ν* = 5 (notebook §13); (d) FHMW's linear-Ryser scope;
+   (e) the claimed March-2026 survey (arXiv 2603.04704) stating intersecting
+   r ≥ 6 still open. Done at turn 9: the hand-kill of m = 21's 567
+   (cert 0012 — was item 1 here).
 2. **Re-derive the stronger per-part claim at the desk**: every part of an
    8-edge τ ≥ 4 object carries a degree-1 vertex (fleet-claimed complete
    proof, turn 9). Lands the corrected AKP 2.8 consequence by hand and
@@ -78,6 +88,16 @@ down to D₂ = 5 on every ladder; **declined**) · Q13 (answered YES — 0009;
 its 232-slice search is retired unrun) · N(5) ≥ 14 (impossible — N(5) = 13
 exactly) · the N(4) = 9 tightening of (L7) (D-022, turn 8) · AKP 2.9 as an
 attack surface (demoted turn 7) · **the δ-budget, the level system, qmin and U as load-bearing steps** (retired from the minimal chain by 0012; green in 0006/0007 as the weak-ladder record).
+
+**Peer-claimed leads on file (outside review via JD, turn 9 — re-derive
+before any use; notebook §13 has the full triage):** the critical-cover
+inequality (CC)/(GCC) for cores (desk-checked sound, uncertified) · an
+(L8)-free third m = 21 kill via exact Farkas certificates (its ladder
+reconstruction independently matched our 45 profiles / 567 systems) ·
+**X ≥ 2 for critical cores at m = 22** (would start the m = 22 frontier in
+the nonlinear regime; unverified) · Farkas-dual clustering into human
+lemmas · split-and-repair construction seeded at truncated PG(2,5)
+(BRIEF §5's rigidity warning stands; solvers scout, never ship).
 
 ## Risk decomposition — updated for turn 9
 

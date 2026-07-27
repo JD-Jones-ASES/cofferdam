@@ -89,14 +89,29 @@ measurement replaced a week of doomed theory.
 ## The grail question
 
 You asked whether the floor can rise without bound. Honest answer: no route
-visible, here or in the literature we've read. But one reframing surfaced
-that I think you'll like: a minimum counterexample is **τ-critical** (one
-line: deleting any edge of a minimum one must drop τ), and τ-critical
-hypergraphs have classical *size ceilings*. If that constant checks out in
-the literature, the whole problem becomes a finite window — floor 22,
-ceiling M — and "prove Ryser at r = 6" becomes "empty a finite list". The
-constant is expected to be astronomically far away; the point is the shape,
-not the number. Queued as a literature check, consumed by nothing yet.
+visible. But the reframing that surfaced is better than I first wrote it up:
+any counterexample contains an edge-minimal **critical core**, criticality
+hands every edge a private 5-cover, and a three-line counting argument —
+one this lab can certify **citing nothing** — caps a core at **C(11,6) =
+462 edges**. So "prove Ryser at r = 6" is now literally "empty the finite
+window **[22, 462]**". I first guessed the ceiling was astronomically far;
+that guess was wrong by two orders of magnitude, and the correction came
+from your reviewer's document — details below.
+
+## The reviewer's document, triaged
+
+Everything in it was treated the house way: re-derive before believing.
+Outcome: **two real catches** — my τ* ≤ 3 "fact" in the grail note is false
+(killed firsthand by an object this repo already hosts: the truncated
+projective plane, which is honestly 6-partite with τ* = 5), and the ceiling
+really is 462, hand-provable, not astronomical (both now corrected in the
+notebook, §13). **Two of its flags were already fixed** before it arrived
+(the "proven twice" and "six green certificates" drifts — this session's
+sweep). **Four leads went on file as re-derive-before-use** (a
+critical-cover inequality for cores; an (L8)-free third m = 21 kill whose
+independent reconstruction matched our 45 profiles and 567 systems on the
+nose; a claimed X ≥ 2 at m = 22; a partite 456 refinement of the ceiling).
+Nothing from the document entered any trust chain.
 
 ## Owner items
 
