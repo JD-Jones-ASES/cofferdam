@@ -594,8 +594,10 @@ t0 = time.time()
 CF2 = [c for c in scan(2) if sum(S22[i] for i in c) == TARGET + 2]
 alive2 = sum(1 for c in CF2 if judge(c) == "ALIVE")
 check("NOT TOO STRONG: at X = 2 the same judge leaves 9,224 of 210,713 "
-      "configurations alive -- the floor lands at exactly X >= 2, not "
-      "higher; the theorem stops where its evidence stops",
+      "configurations alive -- THIS certificate's rules do not decide "
+      "the X = 2 layer, and its claim stops at X >= 2 (the layer is "
+      "certificate 0016's claim, by a sharper corner unavailable to "
+      "this judge; NOTES erratum 2026-07-27)",
       len(CF2) == 210713 and alive2 == 9224, "%.1fs" % (time.time() - t0))
 
 revlist = [c for c in CF1 if judge(c, use_stars=False) == "ALIVE"]

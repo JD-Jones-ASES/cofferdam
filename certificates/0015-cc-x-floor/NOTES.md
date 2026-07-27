@@ -30,7 +30,8 @@ X ≥ 2: it is in the nonlinear regime the moment it exists.**
 ## Margins and teeth
 
 - **Not too strong**: at X = 2 the same judge leaves 9,224 of 210,713
-  configurations alive — the floor lands exactly at 2. And the τ = 5
+  configurations alive — this judge's evidence stops at X ≥ 2 (see the
+  erratum below). And the τ = 5
   rehearsal core (rebuilt from 0013) *realizes* X = 0 — (CC) does not
   forbid low excess in general; the m = 22 kill is that rung's
   pair-count tension.
@@ -91,6 +92,19 @@ Two guessed constants in drafts (the D2-drop revival count; the
 "thousands" nonvacuity threshold) were caught by the run itself and
 replaced by measured values — the D-017 shape, caught twice more by
 the machinery built to catch it.
+
+## Erratum (2026-07-27, applied with certificate 0016)
+
+The original not-too-strong label read "the floor lands exactly at 2" —
+a claim about the **floor**, where only a claim about **this judge**
+was proven (the judge leaves 9,224 X = 2 configurations alive; that
+count is true and still asserted). Certificate 0016, same commit,
+closes the X = 2 layer by a sharper corner (the triangle lemma):
+**X ≥ 3 for every critical core at m = 22**. Every mathematical claim
+of this certificate — (CC) and X ≥ 2 — is unaffected. The verify.py
+label was reworded the same day; the check's condition is untouched;
+re-verified green under bare 3.9.6 and `-O` after the edit. Caught by
+the turn-12 adversarial fleet (refuter lens).
 
 ## Reproduce
 

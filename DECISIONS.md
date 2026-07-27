@@ -696,3 +696,51 @@ claimed bounds: measure the CLAIM's pattern at tiny scale first.
 m, or t), first compute the ground truth at the smallest nontrivial
 parameter by exhaustion; hand the result to whoever attempts the
 derivation as a constraint their proof must explain.
+
+## D-034 · Errata against green certificates: same-commit, dated, condition-untouched (2026-07-27, turn 12)
+
+Certificate 0016 disproved a sentence living inside green certificate
+0015 — the check-18 LABEL "the floor lands at exactly X ≥ 2, not
+higher", a claim about the floor where only a claim about that judge
+was proven (the judge's count, alive2 == 9224, remains true). The
+policy enacted: reword the label to what was actually proven, add a
+dated erratum section to the certificate's NOTES naming what changed
+and why, leave the check's CONDITION byte-identical, re-verify green
+under both interpreters, and land the erratum in the same commit as
+the certificate that forced it, which cross-references it. Append-only
+artifacts (notebook entries) are never edited; their corrections live
+in the later entry.
+
+**Why:** a green transcript is the lab's word. Silently rewording it
+is history-editing; leaving a refuted sentence in it is worse. The
+narrow path is an erratum that is loud, dated, and provably changes no
+mathematics — the condition diff is empty, the rerun is green.
+
+**How to apply:** when new work falsifies prose inside a green
+certificate, fix label + NOTES erratum + same-commit cross-ref +
+rerun ×2. If new work would falsify a CONDITION, that is not an
+erratum — the certificate was wrong, and it is retracted, not amended.
+
+## D-035 · A margin is stated in the coordinate of every consumed cap, and the binding one is named (2026-07-27, turn 12)
+
+0016's kill looked comfortable in its own coordinate — field minimum
+W = 27..28 against a bound of 24 — and is knife-edge in a consumed
+certificate's coordinate: W ≤ 24 alone leaves 843 configurations whose
+minimum D2 is 12, exactly one above 0008's cap. One more degree-2
+vertex and the theorem does not close. The refuter found it; the
+certificate now quotes the (D2) sweep as THE margin and the W cliff as
+secondary. Same turn, same lesson in miniature: the drafted enactment
+fed size-<5 covers to 5-class Φ terms — systematically UNDERSTATING
+its left side — a weakened test wearing the label of the real one;
+repaired by padding to the hypothesis and re-pinning.
+
+**Why:** D-017 demands margins be computed; this sharpens WHERE. A
+kill that consumes k caps has k margin coordinates, and the flattering
+one is usually not the binding one. An error (or a slack statement)
+that flatters the expected answer is the worst kind a verifier makes.
+
+**How to apply:** for every certificate consumed by a kill, run the
+sensitivity sweep in THAT certificate's coordinate; name the binding
+coordinate in the margin statement; and when an enactment's hypothesis
+has a fixed size or count, construct the test AT the hypothesis (pad,
+don't approximate) so the label and the code test the same claim.
