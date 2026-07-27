@@ -1,8 +1,9 @@
 # Certificate 0009 — the g(5) rung pinned: g(5) = N(5) = 13, citing nothing
 
-**Status: GREEN.** Checks + notes and runtime in the run log; `python3
-verify.py`, stdlib only, no solver, no imports from `lib/`. Green under a
-bare `/usr/bin/python3` (3.9.6) and under `python3 -O`.
+**Status: GREEN.** 38 checks + 13 notes; ~12 min (measured 706 s Homebrew
+3.14, 740 s bare 3.9.6, 741 s under `-O`, on a loaded box); `python3
+verify.py`, stdlib only, no solver, no imports from `lib/`. The heavy step
+is the exact-cover census.
 
 | claim | label |
 | --- | --- |

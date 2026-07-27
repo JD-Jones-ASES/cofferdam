@@ -1,231 +1,108 @@
 # cofferdam — plan
 
-Revised 2026-07-26 (turn 7). History is the record; this file is rewritten.
+Revised 2026-07-27 (turn 9). History is the record; this file is rewritten.
 
-## Where we are — **floor m ≥ 21, citing nothing**
+## Where we are — **floor m ≥ 22, citing nothing, on a pinned ladder**
 
 | cert | result |
 | --- | --- |
-| **0001** (22 + 0 notes) | degree-cap ladder; g(1..4) = 1,3,5,8 twice over → m ≥ 18 citing nothing |
-| **0002** (22 + 1 note) | **(L4)** Σ deg ≥ m+5 per edge. Its "AKP 2.1 is subsumed" reading is **superseded** (D-006) |
-| **0003** (10 + 2 notes) | **(L5)** low-incidence bound |
-| **0005** (49 + 5 notes) | **minimum-degree ladder**: m ≥ 19 citing nothing · m ≥ 20 citing f(6)=13; **the corrected AKP Lemma 2.8, now BOTH halves** |
-| **0006** (22 + 0 notes) | **(L8) excess-concentration**: m = 20 impossible → m ≥ 21 citing f(6)=13 |
-| **0007** (18 + 1 note) | **the citation is unnecessary**: (L8) on the weaker rung N(5) ≥ 11 kills every m ≤ 20 → **m ≥ 21 citing NOTHING** |
+| **0001** (22 + 0) | degree-cap ladder; g(1..4) = 1,3,5,8 → m ≥ 18 citing nothing |
+| **0002** (22 + 1) | **(L4)** Σ deg ≥ m+5 per edge |
+| **0003** (10 + 2) | **(L5)** low-incidence bound |
+| **0005** (49 + 5) | **minimum-degree ladder**: m ≥ 19 citing nothing; corrected AKP Lemma 2.8 |
+| **0006** (22 + 0) | **(L8) excess-concentration**: m = 20 impossible (cited ladder) |
+| **0007** (18 + 1) | (L8) on the weak ladder kills every m ≤ 20 → **m ≥ 21 citing nothing** |
+| **0008** (43 + 4) | **(D2)** degree-two cap kills m = 21 → **m ≥ 22 citing nothing** |
+| **0009** (38 + 13) | **g(5) = N(5) = 13 citing nothing**; Q13 answered YES; the free ladder now EQUALS the cited ladder |
+| **0010** (24 + 3) | **N(4) = 9 BY HAND** — the hinge is a theorem, not a search |
+| **0011** (61 + 12) | **Δ = 4 for 13-edge τ ≥ 5 objects** — the last uncertified turn-4 result, closed; the (8,4) census proven complete twice over |
 
-All six green under `python3` **and** `python3 -O` (D-015).
+All green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O` (D-015).
 
-**The chain, in one paragraph.** (A) no active vertex has degree 1; (B) every part
-has ≥ 6 active vertices; so (C) deleting k same-part stars leaves a residual
-witnessing **N(6−k)** — least edges with τ ≥ t *and a part of minimum degree 2*.
-N(1..4) = 2,4,6,9, the last by exhaustion (52.0M nodes). Peeling gives N(5) ≥ 11
-citing nothing. Then (L7): two maximum-degree vertices in different parts satisfy
-|E(u)∩E(w)| ≥ M+M′−(m−g(4)); and (L8): the pair count's **surplus is a budget**,
-spent both by those overlaps and by the high-k edges they force. Run over the
-citation-free ladder, (L8) kills every m from 12 to 20 and leaves m = 21 alive.
+**The chain, one paragraph.** (A) no active degree-1 vertex · (B) every part
+has ≥ 6 active vertices · (C) deleting k same-part stars leaves a residual
+witnessing N(6−k), with the ladder now **pinned exactly**: N(1..5) =
+2, 4, 6, 9, 13 — N(4) by a hand theorem with two agreeing searches (0010),
+N(5) by the m = 12 dead-heat forcing + an 11,520-design exhaustion, thrice
+implemented (0009). Then the pair count, (L7), (L8) — whose internals now
+carry names: the excess budget X, and **(L9)** the water-filling floor for B
+(proved + audited over 262,729 instances, zero mismatches). (D2) caps
+2·D₂ ≤ m. Under the pinned ladder every m ≤ 20 dies before (L8) is
+consulted; **(L8) is load-bearing at exactly one rung, m = 21, on exactly
+567 configurations.**
 
-## Where to attack this — reranked, and it is now one target
+## Where to attack — reranked after turn 9
 
-1. **N(4) = 9's lower bound — still #1, but no longer unchecked.** Since 0007
-   removed the citation, the floor of 21 funnels through one exhaustive search
-   (certificates 0001–0003 predate the N-ladder and do not use it):
-   ρ=8 pinned to (2,2,2,2), 52,023,309 nodes, 2220 admissible columns, result
-   *empty*. 0007's sensitivity check prices it: set N(4) = 8 and m = 20 comes back
-   to life among 180,480 configurations.
+1. **Hand-kill m = 21's 567 configurations.** (L8) is consulted at one rung.
+   The triple-method that hand-proved N(4) = 9 (0010) and the forcing
+   geometry that collapsed m = 12 (0009) are both built for exactly this
+   shape of problem. If the 567 fall to structure, the δ-budget machinery —
+   the narrowest-margin code in the repo, the target of both peer audits —
+   **leaves the trust chain entirely**. Highest value per unit work.
+2. **Re-derive the stronger per-part claim at the desk**: every part of an
+   8-edge τ ≥ 4 object carries a degree-1 vertex (fleet-claimed complete
+   proof, turn 9). Lands the corrected AKP 2.8 consequence by hand and
+   makes 0010's theorem per-part rather than full-part.
+3. **The equality-regime scan — RUN (turn 9), and the answer is sobering.**
+   Gap = (6 × capped max) − C(m,2), on the pinned ladders: t = 5 hits **0 at
+   m = 12 and nowhere else** (+12 at 13, +29 at 14, growing); t = 6 crosses
+   from −9 (m = 19) straight to +8 (m = 20), then +30, +57, +89 — never
+   inside [0, 2]. The m = 12 dead heat was the unique free forcing in the
+   visible grid; every future rung needs structure, not counting. (Stable
+   pattern worth keeping: every t = 6 maximizer is (Δ, 4, 3, 2, 2, 2) with
+   Δ saturating the m − 13 cap.) Cheap extensions to *conditioned* classes
+   (fixed Δ, fixed D₂ band, full-part subclasses) remain untried.
+4. **Lit-check the τ-critical ceiling** (turn-9 notebook §8): a minimum
+   counterexample is τ-critical in one line, and τ-critical size bounds
+   would make the whole problem a finite window [22, M]. Context, not
+   chain — but it reframes the grail.
+5. **The m = 23 frontier** — only behind a new lemma. Measured today: no
+   counting-shaped lever in-house reaches m = 22 (cap sharpening needs
+   2·D₂ ≤ m − 14; ladder pinned; 30,436 (L8) survivors on the pinned
+   ladder). Do not spend rung effort here without new structure.
 
-   **A second, structurally different search now agrees** (turn 7, completeness
-   pass): 1505 candidate columns, 5,713,053 nodes, same verdict — and it is a
-   *better* control than ours, because it exhibits what it rejects: **8648 full
-   pair-covers built, every one at τ = 3**. A search that returns empty tells you
-   nothing about whether it looked; one that hands you 8648 near-misses does. The
-   least-uncovered-pair reduction the two searches share was closed by brute force
-   separately.
+**Closed levers, so nobody reopens them silently:** the (D2) cap sharpening
+at m = 22 (priced by full-field sensitivity, two implementations: survivors
+down to D₂ = 5 on every ladder; **declined**) · Q13 (answered YES — 0009;
+its 232-slice search is retired unrun) · N(5) ≥ 14 (impossible — N(5) = 13
+exactly) · the N(4) = 9 tightening of (L7) (D-022, turn 8) · AKP 2.9 as an
+attack surface (demoted turn 7).
 
-   Beware a trap. It is tempting to treat our corrected Lemma 2.8 as a further leg
-   — it is not. **Lemma 2.8's derivation consumes that same search**, so it is
-   downstream of N(4) ≥ 9 and can never corroborate it. AKP Lemma 2.1 *would* be a
-   genuine independent leg, but we cite it and mark it not-used.
+## Risk decomposition — updated for turn 9
 
-   **What a third implementation should match is the verdict and a structurally
-   different route — not the node count.** Matching 52,023,309 nodes would only
-   prove someone reimplemented our prunes.
-
-2. **(L8)'s δ-budget step** — hunted for a false kill in the turn-7 pass and none
-   found: no off-by-one in any loop bound (ranges widened by 12, zero admissible
-   tuples outside them), the greedy B_min equals the exact DP minimum, U is a
-   genuine ceiling, and the δ-budget never exceeds the true requirement. **But note
-   the margin: exactly one.** The tightest point is the (7,…,7) dead heat at A = 30
-   under level structure {4,4,3}, D = 8 against need = 9, and the need is exact.
-   Three inputs flip m = 20 if moved a single unit.
-
-   And note *which half* is safe. Everything inside `l8_kills` is a **relaxation**
-   — it permits what reality forbids, so a total kill under it is conservative.
-   `profiles()` is a **restriction** and runs the other way. **A false kill could
-   only live there**, which is another way of saying it could only live in N(4) = 9.
-
-3. **The profile and multiset enumeration** — a single missing admissible part
-   profile would hole the kill. Three implementations now agree at 32/105 (cited)
-   and 34/7159 (citation-free); a fourth would still be worth having, because all
-   three descend from the same written description of lemmas (A)(B)(C).
-
-4. **Δ = 4 for f(6)-extremal objects** — a turn-4 peel-chain result, still
-   **uncertified**, used nowhere load-bearing. Cheapest place to find a real error.
-
-**Novelty, checked 2026-07-26.** Six independent literature sweeps plus own
-reading: **no published lower bound on the size of an r = 6 Ryser counterexample
-exists.** The strongest published *statement* bearing on it is m ≥ 13 (f(6) = 13,
-which does cover τ ≥ 6, since MSY defined f on τ ≥ r−1 precisely so it survives
-Ryser failing). The strongest published *consequence*, never stated by its
-authors, is **m ≥ 19** — FHMW's Theorem 2.3 as stated gives Δ ≥ 6 and hence
-m ≥ 16, but the quadratic *inside* its proof, optimised over Δ, reaches 19 (the
-bottleneck is Δ = 9). So m ≥ 21 is **two** clear of what the literature already
-implies, not five. Worth knowing rather than glossing: our m ≥ 19 rung is
-independently reachable from FHMW by a completely different route, which
-corroborates that rung rather than scooping it. The new ground is 20 and 21. Note also that lemmas (A) and (B) are **not new** — they are FHMW
-Lemma 2.1(i)(ii), published 2017; we re-derived them, which is a different thing.
-
-**Demoted, and say so plainly: the literature.** AKP Lemma 2.9 was ranked #1 for
-two turns. It now holds up nothing — 0007 reaches the floor without it. It stays
-interesting as literature (and ABW Thm 2.7 proves f(6)=13 independently, in
-exactly the τ ≥ 5 form the ladder consumes, so even the cited route never rested
-on AKP alone). Do not spend attack time there.
-
-## Next, in order
-
-**Item 1 is DONE — certificate 0008, `m ≥ 22` citing nothing.** (D2) re-derived
-here via a strictly more general constructive lemma, the sweep run on the
-**citation-free** ladder (the notebook's table had been computed on the cited
-one, which would have silently re-imported f(6)=13), and reproduced by a blind
-second implementation. The lever buys **one rung and stops**: m = 22 survives,
-56,592 of 307,420 cap-passers citation-free. The positive control this file
-asked for was **impossible as written** and has been replaced — see D-024.
-
-1. **Certify Δ = 4 for f(6)-extremal objects** — the turn-4 result, still
-   uncertified and used nowhere load-bearing. The cheapest place a real error
-   could still be hiding.
-1b. **The unused half of (D2).** The corollary 2·D₂ ≤ m is only the *cardinality
-   shadow* of what clause (iii) proves: the two edges through a degree-2 vertex
-   form a pair, pairs from distinct degree-2 vertices are disjoint, so the
-   degree-2 vertices induce a **matching of size D₂ on the m edges**. That
-   matching is invisible to the part-profile abstraction everything here filters
-   on, so it is genuinely unconsumed. Relatedly, at r = 6 the bound is nowhere
-   near tight on anything constructible (best D₂/m ≈ 0.33 against 0.5 permitted;
-   at m = 21 itself, D₂ = 5 against a cap of 10), while at r = 3 and r = 5 it is
-   *attained* — so an **r-dependent sharpening** may exist. Certificate 0008's
-   sensitivity shows one unit of the cap is worth a whole rung.
-2. **Attack X, the sole total load-bearer**, and **g(4) = 8** with it. The
-   corrected risk table above says X is the only step whose removal leaves 100%
-   surviving, and g(4) = 8 carries a margin of exactly one while appearing on no
-   attack list. Neither peer audit touched either.
-3. **A third implementation of the N(4) = 9 exhaustion.** Two agree; a third by a
-   different route would close the last single point of failure. It is now the
-   hinge for m ≤ 20 under (D2) as well, since (L8) is not consulted there.
-4. **Fix `lib/ryser.py`'s duplicate-edge bug** (D-025) and recount anything that
-   used the non-extremal censuses. `enumerate(6,3)` is 53,871, not 53,906. The
-   extremal counts 12 and 5 are unaffected, so the ladder does not move.
-5. **The old push-past-22 levers.** Q13 — is there a 13-edge τ=5 object with a
-   part of minimum degree 2? Measured: 44 min on 3 cores did not finish 1 of 232
-   disjoint slices; the untried route peels through the N(3)- and N(2)-extremal
-   seeds (6 and 4 edges, both tiny). Note its payoff has fallen further: it
-   reaches m ≥ 21, which is now two rungs below the floor.
-6. **Pin g(5) exactly** (derived ≥ 12, published 13). Not urgent.
-
-**Dead end, closed this turn (D-022): the (L7) tightening to N(4) = 9.** The only
-ρ = |R| where the +1 changes a floor is ρ = 8, and there R is g(4)-extremal — and
-certificate 0005's corrected AKP Lemma 2.8 says every part of an 8-edge τ ≥ 4
-object is (3,2,2,1) or (3,2,1,1,1), each carrying a degree-1 vertex. **So at the
-only ρ that matters the residual provably has no part of minimum degree 2.** The
-property is strictly stronger than the conclusion it would buy. Machine-checked
-too: 15 of 15 two-star residuals of W8 and 15 of 15 of W9 have no such part. And
-it would not have been enough anyway — running (L7) with g(4) = 9 still leaves
-950 survivors at m = 21 citation-free.
-
-## Machinery
-
-`certificates/000{5,6,7}/verify.py` each carry a self-contained copy of what they
-need. Measured lessons:
-
-- **Precompute the admissible partition list when it fits** (2220 at ρ=8 → the
-  exhaustion runs in ~5 min); regenerating columns lazily cost >7 min unfinished
-  on the same instance. Lazy generation is for ρ ≥ 11.
-- The **per-edge degree lookahead** is what makes ρ=8 exhaustion feasible at all.
-- **Weaken a bound deliberately when the conclusion survives it** (D-009). Cert
-  0006's ceiling dropped the value-pool DP for the crudest concentration bound;
-  the kill survived, and a whole layer left the trust chain. 0007 is the same move
-  applied to an *input*: weaken N(5) from 13 to 11 and the kill still lands.
-- **Never repeat an expensive search for bookkeeping.** 0005 ran its 52M-node
-  exhaustion twice for no extra assurance; reusing the verdict saved ~5 min.
-
-## Dead ends recorded, with the assumptions under which they died
-
-- **The (L4)/(L7) pool squeeze alone** ends at 30 against exactly 30 at m=20 — a
-  dead heat, and *not* a kill. It became one only after the surplus was read as a
-  budget and the δ-cost of high-k edges was added. **Assumption under which it was
-  dead: that the pair count is only a lower bound.** (D-006 in action.)
-- Cert 0002's reading that AKP Lemma 2.1 is "subsumed by the ladder" was wrong; it
-  assumed a counterexample may hold degree-1 vertices.
-- **"The citation is load-bearing"** — believed for two turns, recorded in four
-  files, and false. It died when the sweep was rerun on the weaker rung. The
-  assumption under which it was true: that the *pair count* was the only thing
-  consuming N(5). (L8) consumes it far more cheaply.
-
-## Risk decomposition — what each step actually carries
-
-Measured by ablation in the turn-7 completeness pass, and it relocates the risk:
-
-**Corrected 2026-07-26 turn 8. The (L7) row published here was false**, and it
-was the row this table existed to get right. Measured firsthand with certificate
-0007's own `l8_kills`, one line changed:
-
-| step | what fails without it |
+| step | what stands under it now |
 | --- | --- |
-| **the excess budget X** | everything — **exactly 100%** survive at every m with a non-empty configuration set. The sole total load-bearer |
-| **(L7)** | the floor breaks (21 → 20 cited, 21 → 19 free) but **most configurations still die**: 3 of 105 survive at m=20 cited (2.9%), 1,616 of 7,159 at m=20 free (22.6%), 1 of 33 at m=19 free |
-| **N(4) = 9** | the floor drops 21 → **19**, not 21 → 20 as first published. Citation-free with N(4) = 8: **8,227 of 180,480** survive at m = 20 and **6 of 5,705** at m = 19. (An earlier version quoted 1,445 of 3,664 here — a *cited*-ladder figure, in a table whose every other row is citation-free) |
-| **g(4) = 8** | (L7) goes with it. Weaken to 7 and 649 of 7,159 survive at m = 20 free — the same margin of exactly one, on a constant nobody lists |
-| the δ-budget | **only m = 20** — 12 of the 105 cited, 117 of the 7159 citation-free |
-| the ceiling U | **nothing — inert**, at m = 21 as well as below |
-| B ≤ ⌊5X/2⌋ inside X | **nothing — inert.** A second dead step: it is implied by the level budget, which already does the work |
+| **X + (L9) + A ≥ S−m** | the m = 21 kill's engine. (L9) proved + audited (262,729 comparisons, incl. every (floors,A) pair the certs consult); X's identities brute-forced over 1.86M audits (turn 8). Attack #1 above would retire the whole row |
+| **N(4) = 9** | a hand theorem (0010) + two agreeing searches. No longer a single point of failure. The theorem's inputs: g(2) ≥ 3, g(3) ≥ 5 only |
+| **N(5) = 13** | dead-heat forcing (margin one, all four caps load-bearing) + 11,520-design census, three implementations + the witness. Rung closed permanently |
+| **g(4) = 8** | margin one, and turn 9 found its "two proofs" were ONE argument in two code forms (the 0001 absence search never branches — the waste-budget root prune IS the counting kill, D-028). A genuinely independent definitions-only brute force closed m ≤ 6 but hit its 200M-node ceiling per quarter at (7,4) — **UNDECIDED, priced at > 800M nodes for this engine**. The counting proof itself is three lines from g(3) = 5, machine-checked in certs 0009/0010/0011 §1, and is not in doubt; what was wrong was the *bookkeeping of independence* |
+| the δ-budget | m = 21 only, margin one (0008's table). Attack #1 would retire it |
+| the cap ⌊m/2⌋ | m = 21 only, margin one, odd-m rounding. Same |
 
-**And the real load-bearer has no name.** 100% survival is reproducible only if
-you *also* zero **B_min(A)** — the convexity lower bound on B = Σ C(c_ij,2) given
-Σ c_ij = A — which is no part of (L7). With floors *and* B_min zeroed: 105/105
-and 7159/7159 survive. So the step carrying the other 77.4% of the m = 20
-citation-free kills is **the convexity bound on B_min, together with A ≥ S − m
-(from (C4) and δ ≥ 0) and B_cap (from X)**. That step appears in no risk table,
-no ledger line and no certificate label. Five implementations agree, one keeping
-0007's loop structure verbatim.
+## Machinery — lessons that earned their line
 
-Three consequences. **The convexity bound and X are what to defend** — not the
-pair (L7)+X. **g(4) = 8 belongs on the attack list above and is not on it** — it
-carries the same single-unit margin D-017 prices for the δ-budget, and unlike the
-δ-budget (whose failure only drops the floor to 20) a failure of g(4) takes (L7)
-with it. And **a table published to direct attack, that misstates one step's load
-by a factor of 35 and omits the step doing the work, sends the attack to the
-wrong place** — D-019 failing on its own terms (D-023).
-
-**What did survive the attack, and it is most of the chain.** (L2), X's
-definition, (C2), (C3), B_cap = ⌊5X/2⌋, (C5) in its corrected form, δ(k), `need`
-and `qmin` were each brute-forced over **1,859,176 audits on explicit objects,
-zero failures** — each also run under two deliberately wrong choices of u_j, so
-the identities are tested as identities. The intersecting hypothesis was *priced*
-rather than assumed: drop it and Σ(t_ef−1)⁺ ≤ X fails 5,167 times in 39,721
-non-intersecting families, with an explicit witness. And the relaxation property
-itself — that no real object's true point falls outside any guard — was checked
-directly: **1,924 instances from real objects with τ computed, all 16 guards
-inside `l8_kills` pass at the object's true (A, B, n₂..n₅, D)**.
+- **Measure before theorising** (turn 9's cap matrix killed PLAN item 1b in
+  an hour; the alternative was a week of matching theory for nothing).
+- **Diff design sets, not headline counts** — the blind C reproduction's
+  over-strong prune produced 6,912 of 11,520, a flattering subset that
+  headline comparison would have blessed (D-005 in the wild, caught).
+- **Inventory your own witnesses** (D-026): Q13 sat answered in the repo for
+  a full turn while a search for its object was being priced.
+- **A dead heat is a forcing, not a failure** (D-029): equality pins every
+  profile and X = 0; the search space collapses from hopeless to 553 s.
+- Precompute admissible columns when they fit; lazy generation for ρ ≥ 11
+  (turn 5). Never repeat an expensive search for bookkeeping (turn 5).
+  Weaken deliberately when the conclusion survives (D-009).
 
 ## Standing
 
-- Every certificate names its external dependencies and states the floor it would
-  still reach without them. For m ≥ 21 that ledger is now **empty**.
-- No solver in the trust chain. No isomorphism-class census in the trust chain.
-- A search that under-enumerates fakes a proof: every "empty" result ships with a
-  completeness argument and is validated on known-answer targets first. The b=2
-  search in 0005 ships with a positive control at excess 1 for exactly this reason.
-- **A result that lands on the expected answer gets a not-too-strong control.**
-  (L8) is run at m = 21 in both 0006 and 0007 precisely to check it does not prove
-  Ryser at r = 6.
-- **A displayed identity is an untested identity** (D-013), **a loop's range is
-  part of its claim** (D-016), and **a `check` whose condition is a literal `True`
-  is a note, not a check** (D-015).
+- Every certificate names its external dependencies; for the floor the
+  ledger is **empty**, and after 0009 the cited/free distinction is gone —
+  there is one ladder and it is ours.
+- No solver in the trust chain. No isomorphism census in the trust chain
+  (0009's 11,520 is a count of search outputs, each individually verified;
+  no class structure is consumed).
+- Every "empty" ships completeness arguments and known-answer controls
+  (415,800 closed form; AG(2,3) = 12; W-recovery on all seven peels).
+- **A result that lands on the expected answer gets a not-too-strong
+  control** — 0009 checks m = 13 survives; 0011 checks W exists with Δ = 4.
