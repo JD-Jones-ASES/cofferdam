@@ -149,10 +149,12 @@ dead heat (max 30 against a requirement of exactly 30) and therefore fails.
 > witness is certificate 0008's own 13-edge τ = 5 object, shipped there to
 > falsify (D2) one rung down; its part 1 is (4,3,2,2,2), the first of the
 > three profiles above. See certificate 0009 (which also pins g(5) = 13, so
-> N(5) = 13 **exactly**, citing nothing) and D-026. Two footnotes to the list
-> above: strictly it presupposed Δ ≤ 4 for such objects — the fourth
-> partition of 13 into ≥ 5 parts each ≥ 2 is (5,2,2,2,2) — and that
-> presupposition is now discharged by certificate 0011 (Δ = 4 exactly).
+> N(5) = 13 **exactly**, citing nothing) and D-026. A footnote to the list
+> above: strictly it presupposes Δ ≤ 4 for such objects — the fourth
+> partition of 13 into ≥ 5 parts each ≥ 2 is (5,2,2,2,2), excluded here via
+> the cap d₁ ≤ 13 − N(4) = 4, i.e. standing on N(4) = 9. Certificate 0011
+> now proves Δ = 4 exactly by an independent route (g(4) ≥ 8 and g(5) ≥ 12
+> only), so the list no longer leans on the floor's hinge from either side.
 
 ## Independent re-derivation, and what it flagged
 

@@ -523,3 +523,88 @@ f **not already in H** such that H + f has property P", and for a hereditary P
 the difference is silent — it inflates counts without ever producing an invalid
 object. A census engine needs a simplicity assertion on its output, not just on
 its logic.
+## D-026 · Inventory your own witnesses (2026-07-27, turn 9)
+
+Q13 — is there a 13-edge τ ≥ 5 object with a full part? — was posed at turn
+5, priced at turn 8 (232 search slices, 44 min on 3 cores unfinished), and
+listed as PLAN item 5. The answer had been sitting in certificate 0008 since
+the day before the pricing: its 13-edge (D2)-falsifier W has part 1 =
+(4,3,2,2,2), a full part. W was built to answer one question and nobody
+asked it any other.
+
+**Why:** an object's certificate records the properties its *purpose*
+needed. Every other property is invisible until someone looks — and a search
+for an object you already own is the most expensive form of not looking.
+
+**How to apply:** when a new named object enters the repo (witness,
+falsifier, control), run it once against the standing open questions —
+today: does it have a full part, what is its Δ, what are its part profiles,
+what is its D₂. One screenful of properties per object, recorded in the
+certificate that ships it. And when pricing any search, first ask what
+existing object is closest to the target.
+
+## D-027 · (L9): the unnamed load-bearer now has a name, a proof and an audit (2026-07-27, turn 9)
+
+D-023 found that the step carrying 77.4% of the m = 20 kills appeared in no
+table, ledger or label. It is now **(L9), the water-filling floor for B**:
+over integer vectors c ≥ floors with Σc = A, the greedy that always
+increments a current-minimum entry attains min Σ C(c_i, 2) exactly;
+minimizers are exactly the levelled-above-floors vectors; the value is
+tie-break independent. Proved by exchange argument; audited against
+exhaustive brute force and an independent DP over 262,729 instances
+including **every (floors, A) pair certificates 0007/0008 actually
+consult** — zero mismatches.
+
+**Why:** the audit is not decoration. The greedy evaluates the objective at
+a *feasible* vector, so its value can never sit below the true minimum —
+which means its only possible failure mode is B_min **too high**, i.e.
+false kills, the D-005 direction. A bound whose error modes are all
+dangerous must be exact, and exactness is checkable.
+
+**How to apply:** when a risk decomposition names a new load-bearer, the
+follow-through is mechanical: state it, prove it, audit it at its actual
+points of use, and put its name in the certificate docs so the next ablation
+has something to ablate.
+
+## D-028 · "Proven twice" must mean two arguments, not one argument in two code forms (2026-07-27, turn 9)
+
+Certificate 0001's lower bounds for g(2), g(3), g(4) were believed proven
+twice: counting, and "exhaustive absence" searches. Instrumented replay
+shows the searches **never branch** — at every sub-threshold m the root
+waste-budget prune (6·maxcov < C(m,2)) kills immediately, and that prune IS
+the (L1)+(L2) counting argument. One proof, two costumes. Two 0001 doc
+claims fell with it: "counting alone is not tight there" (it is tight
+through g(5) — the dead heat at m = 12 is where it first fails to *decide*)
+and "runtime dominated by the m = 7 absence check" (that check is one node;
+the runtime is the m = 8 witness re-find).
+
+**Why:** independence claims are load-bearing in a verification lab — the
+whole point of a second proof is that it can catch the first one. A search
+whose prunes encode the counting argument cannot catch an error in the
+counting argument.
+
+**How to apply:** before recording two verifications as independent, ask
+what the second one would DO differently if the first were wrong. If the
+answer is nothing, it is the same verification. Instrument node/branch
+counts when in doubt — a search that "confirms" in one node is a
+restatement. (The genuine second leg for the g-ladder — a definitions-only
+brute force with no (L1)/(L2) — was run this turn; see the notebook.)
+
+## D-029 · A dead heat is a forcing, not a failure (2026-07-27, turn 9)
+
+The counting ladder's equality case at (m, t) = (12, 5) — capped per-part
+maximum 11, 6 × 11 = 66 = C(12,2) exactly — sat unread in certificate
+0001's own output for eight turns, filed mentally as "counting cannot decide
+m = 12". Read as a forcing, it pins every part to (4,3,2,2,1), sets X = 0,
+forbids repeated edges, and collapses the rung to an 11,520-design
+exhaustion that runs in minutes and closed g(5) = N(5) = 13.
+
+**Why:** an inequality that closes with slack kills a rung; an inequality
+that closes with equality *describes the survivors*. The second is worth
+more: it hands over structure for free, at exactly the rungs where the kill
+was going to be hardest.
+
+**How to apply:** at any rung where a counting bound comes within a unit or
+two of its target, do not shelve it as indecisive — extract the equality
+conditions and enumerate the forced class. PLAN's attack list now carries
+the systematic version (the equality-regime scan).
