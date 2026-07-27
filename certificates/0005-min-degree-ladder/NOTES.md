@@ -19,7 +19,7 @@ test that did not run.
 | **a Ryser r=6 counterexample has m ≥ 19** | **PROVEN-BY-CERTIFICATE, citing nothing** |
 | **…has m ≥ 20** | **PROVEN-MODULO-CITATION**, the citation being f(6)=13 |
 | m = 20 leaves exactly Δ = 7, whose 13-edge complement is f(6)-extremal with a full part | same |
-| Q13 answered NO would give m ≥ 21 | a lever toward 22, no longer a gap |
+| Q13 answered NO would give m ≥ 21 | **DEAD 2026-07-27: Q13 is answered YES** (certificate 0009 — the witness was certificate 0008's own 13-edge object, whose part 1 is (4,3,2,2,2)); N(5) = 13 exactly, this lever cannot fire |
 
 Certificate 0001 reached m ≥ 18 / m ≥ 19. This moves both rungs by one, using the
 *same* counting argument over a strictly smaller set of admissible profiles.
@@ -144,6 +144,15 @@ Only three profiles are possible for that part: (4,3,2,2,2), (3,3,3,2,2),
 (3,2,2,2,2,2), with waste budgets 9, 8, 5. **Q13 is open**; see the notebook entry
 for the measured search cost and for the counting-only fallback that came to a
 dead heat (max 30 against a requirement of exactly 30) and therefore fails.
+
+> **Answered 2026-07-27 (turn 9): Q13 = YES**, and no search was needed — the
+> witness is certificate 0008's own 13-edge τ = 5 object, shipped there to
+> falsify (D2) one rung down; its part 1 is (4,3,2,2,2), the first of the
+> three profiles above. See certificate 0009 (which also pins g(5) = 13, so
+> N(5) = 13 **exactly**, citing nothing) and D-026. Two footnotes to the list
+> above: strictly it presupposed Δ ≤ 4 for such objects — the fourth
+> partition of 13 into ≥ 5 parts each ≥ 2 is (5,2,2,2,2) — and that
+> presupposition is now discharged by certificate 0011 (Δ = 4 exactly).
 
 ## Independent re-derivation, and what it flagged
 

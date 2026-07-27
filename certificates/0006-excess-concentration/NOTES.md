@@ -219,6 +219,20 @@ one peer-seeded reframing (Codex, re-derived here), one cited lemma.
   natural next lever — though answering it NO gives N(5) ≥ 14, which on the 0005
   ladder reaches exactly 21 rather than past it, and FHMW Lemma 2.1(iii) now looks
   like the cheaper route (notebook/2026-07-26-fhmw-lemma-21.md).
+  *(2026-07-27: Q13 has since been answered YES — certificate 0009, D-026 —
+  so the "NO" branch is permanently closed and N(5) = 13 exactly.)*
+
+## For anyone re-deriving (L8) from this file's prose — one implicit constraint
+
+A turn-9 blind reimplementation from these NOTES alone reproduced every
+number **after** one correction: the survival condition requires **D ≥ 0 as
+its own guard**, not merely D ≥ need when need > 0. D = A − S + m equals
+Σ_e δ(k_e) ≥ 0 identically, so any (A, …) tuple with D < 0 corresponds to no
+real object even when the level structure is all-2s and `need` = 0. This is
+implicit in (C5) and the code enforces it, but the prose never states it;
+omitting it over-reports survivors (e.g. a spurious m = 21 band-10 survivor
+at Ms = (7,7,7,7,7,7), X = 0, D = −6). Stated here so the next re-deriver
+does not re-find it the hard way.
 - f(6) ≥ 13 is not verified here, and at the time this certificate was written it
   was the whole difference between m ≥ 19 and m ≥ 21. **Certificate 0007 removed
   that dependence**: the floor of 21 holds citing nothing.

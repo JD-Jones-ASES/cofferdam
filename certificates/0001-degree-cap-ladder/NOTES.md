@@ -33,12 +33,24 @@ g(t); walk t upward from g(1)=1 for the ladder.
 
 ## Where the numbers come from
 
-Counting alone is not tight at the bottom, so g(2), g(3), g(4) are settled by
-**exhaustive search plus an explicit witness** — both directions, in the
-certificate. The engine represents the hypergraph as 6 partitions of the edge
-set: a block is a vertex, its size is that vertex's degree, intersecting means
-the partitions jointly cover all C(m,2) pairs, and τ is the least number of
-blocks covering [m].
+g(2), g(3), g(4) are settled by **absence search plus an explicit witness** —
+both directions, in the certificate. The engine represents the hypergraph as 6
+partitions of the edge set: a block is a vertex, its size is that vertex's
+degree, intersecting means the partitions jointly cover all C(m,2) pairs, and
+τ is the least number of blocks covering [m].
+
+> **Corrected 2026-07-27 (turn 9).** This file used to open the paragraph with
+> "counting alone is not tight at the bottom". That is **false** — the
+> (L1)+(L2) counting ladder walked from g(1)=1 returns exactly 3, 5, 8, 12,
+> tight through g(5) — and worse, instrumented replay shows the absence
+> searches **never branch**: at every sub-threshold m the root waste-budget
+> prune (6·maxcov < C(m,2)) kills in one node, and that prune *is* the
+> counting argument. So the two "directions" are real (witness vs absence),
+> but the two *lower-bound routes* this lab believed it had were one argument
+> in two code forms (D-028). The genuinely independent second route — a
+> definitions-only brute force with no (L1)/(L2) — is recorded in the turn-9
+> notebook. A hand-readable statement of the counting kills now lives in
+> certificates 0009 §1 and 0010 §1.
 
 The g(3)=5 witness is worth keeping: columns 0–4 realise a proper 5-edge-colouring
 of K₅ (pair {i,j} takes colour i+j mod 5), so each is a matching on the five
@@ -122,4 +134,8 @@ would have to be wrong for the claim to fail.
 python3 verify.py
 ```
 
-Runtime ~96 s, dominated by the exhaustive m=7 τ≥4 absence check. Deterministic.
+Runtime ~96 s on an idle box (~227 s measured under load, turn 9).
+**Corrected 2026-07-27:** the runtime is dominated by the section [C] witness
+re-finding at m = 8 (3,702,067 nodes), **not** by the m=7 absence check — that
+one is a single node (its root prune is the counting kill; see the correction
+above). Deterministic.

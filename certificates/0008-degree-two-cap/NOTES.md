@@ -97,6 +97,17 @@ against the 0.5 permitted; at m = 21 itself, D₂ = 5 against a cap of 10), so a
 **r-dependent sharpening may exist and would be the next lever** — §5 shows one
 unit of the cap is worth the whole rung.
 
+> **The lever was priced at m = 22 and declined (2026-07-27, turn 9).** Full-field
+> sensitivity, two independent implementations agreeing on every cell: at m = 22
+> the (L8) survivors span **D₂ = 5..32** (a survivor exists at D₂ = 5 on both
+> ladders), and cumulative survivors by hypothetical cap run 56,592 / 20,585 /
+> 5,565 / 1,158 / 179 / 18 / 1 / **0** at caps 11 / 10 / 9 / 8 / 7 / 6 / 5 / 4.
+> Emptying m = 22 needs 2·D₂ ≤ 8 = m − 14 — no (D2)-shaped lemma reaches that.
+> "One unit of the cap is worth the whole rung" is an **m = 21 statement only**;
+> §5a's "survivors crowd the ceiling" describes its exhibited first-200 sample,
+> not the field. The matching structure (§9's lead) stays interesting for
+> per-class structure above the floor, not as a floor lever.
+
 Separately, the lemma's **construction** is testable regardless of τ, and §1 does
 that exhaustively over two bounded classes: 12,584 intersecting 3-uniform
 families on [6] (≤ 5 edges) → 19,560 witnesses, and 59,535 intersecting 4-uniform

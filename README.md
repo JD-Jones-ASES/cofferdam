@@ -22,12 +22,16 @@ literature constant, no unreproduced lemma, no solver.
 | [0006](certificates/0006-excess-concentration) | **(L8) excess-concentration** → m = 20 impossible, so **m ≥ 21** citing f(6)=13 |
 | [0007](certificates/0007-citation-free-floor) | **the citation is unnecessary** — (L8) run on the weaker rung N(5) ≥ 11, which is ours, kills every m ≤ 20 → **m ≥ 21 citing nothing** |
 | [0008](certificates/0008-degree-two-cap) | **the degree-two cap** — each line holds ≤ 1 degree-2 vertex, so 2·D₂ ≤ m; kills m = 21 → **m ≥ 22 citing nothing** |
+| [0009](certificates/0009-g5-pinned) | **the ladder is pinned** — g(5) = N(5) = 13 citing nothing (the m = 12 dead heat forces the shape; 11,520 designs, all τ = 4); Q13 answered YES; the citation-free ladder now *equals* the cited one |
+| [0010](certificates/0010-n4-by-hand) | **N(4) = 9 by hand** — the floor's hinge is a readable theorem; the two exhaustive searches drop to corroboration |
+| [0011](certificates/0011-extremal-delta) | **Δ = 4 exactly** for 13-edge τ ≥ 5 objects — the last uncertified structural result |
 
-0007 and 0008 are the load-bearing ones. 0007 runs the machinery on a *strictly
-weaker* input — 7159 admissible configurations at m = 20 rather than 105 — and
-still kills everything, so the floor cannot be an artefact of the cited constant.
-0008 adds one constraint and sweeps m = 12..21 itself rather than inheriting a
-lower range.
+0007 and 0008 are the load-bearing ones for the floor itself. 0007 runs the
+machinery on a *strictly weaker* input — 7159 admissible configurations at m = 20
+rather than 105 — and still kills everything, so the floor cannot be an artefact
+of the cited constant. 0008 adds one constraint and sweeps m = 12..21 itself
+rather than inheriting a lower range. 0009 and 0010 then harden what the floor
+stands on: one ladder, entirely in-house, with its hinge a theorem.
 
 **What 0008 does and does not claim.** The floor is new; the lemma is not. The
 degree-two cap is clause (iii) of Lemma 2.1 of Francetić–Herke–McKay–Wanless
@@ -45,13 +49,14 @@ Good — that is what it is for. **[PLAN.md](PLAN.md) § "Where to attack this"*
 carries a ranked list: what rests on the most, checked the least. Three shortcuts
 worth knowing before you start:
 
-- **Hit N(4) = 9 first.** Since 0007 removed the citation, the most fragile step in
-  the chain is one exhaustive search of ours — 52,023,309 nodes,
-  ρ=8 pinned to (2,2,2,2). An under-enumerating search fakes a proof, and 0007's
-  sensitivity check prices it exactly: set N(4) = 8 and m = 20 comes back to life
-  — **and so does m = 19**, so that failure drops the floor to 19, not 20.
-  A third independent implementation is the most valuable thing anyone could
-  contribute. Do not attack the literature — it is no longer holding anything up.
+- **Hit N(4) = 9 first — it is now a theorem, so attack the proof.** Through
+  turn 8 this rung was one exhaustive search (then two); certificate 0010 made
+  it a hand proof whose finite case checks run in seconds, with the searches as
+  corroboration. The sensitivity is unchanged: set N(4) = 8 and m = 20 comes
+  back to life — **and so does m = 19**, so that failure drops the floor to 19.
+  Breaking the theorem's case analysis is now the single most valuable thing
+  anyone could contribute. Do not attack the literature — it is no longer
+  holding anything up.
 - **Then the excess budget X, and g(4) = 8.** PLAN.md's corrected risk table
   (D-023) says X is the *sole* step whose removal leaves 100% of configurations
   surviving; the previously published claim that (L7) does the same was false.
@@ -120,14 +125,15 @@ No arguments, no installs, no imports from `lib/`. It prints its own checks, its
 external dependencies, and the floor it would still reach with each dependency
 removed.
 
-The **seven green certificates** (0001, 0002, 0003, 0005, 0006, 0007, 0008) are
-verified on **Python 3.9** — the version macOS ships as `/usr/bin/python3` — as
-well as on 3.14, and under **`python3 -O`** as well as plain `python3`.
-Certificate 0008 measures 123 s under bare 3.9.6, 124 s under `-O`, 130 s on 3.14. A checker that is green
-normally and broken under `-O` is not a checker (D-015), and 0005 was exactly that
-until 2026-07-26. 0004 is never-green scaffolding and is labelled as such. Note the
-runtimes: certificate 0005 takes ~6.5–7 min on Python 3.10+ (measured 388 s, 400 s, 422 s
-today) and considerably longer on 3.9, where it falls back to a slower popcount. It is slow, not hung.
+The **ten green certificates** (0001–0003, 0005–0011, with 0004 never-green
+scaffolding, labelled as such) are verified on **Python 3.9** — the version
+macOS ships as `/usr/bin/python3` — as well as on 3.14, and under **`python3
+-O`** as well as plain `python3`. A checker that is green normally and broken
+under `-O` is not a checker (D-015), and 0005 was exactly that until
+2026-07-26. Runtimes to expect: 0008 ~2 min; 0005 ~6.5–7 min on 3.10+
+(slower on 3.9, where it falls back from `int.bit_count`); **0009 ~12 min**
+(its exact-cover census is the heavy step); 0010 ~30 s; 0011 ~3 min. They are
+slow, not hung.
 
 Each certificate prints **checks** and **notes** separately. A note is a stated fact
 — a citation, or a step proved by hand — and is *not* machine-tested; keeping the two

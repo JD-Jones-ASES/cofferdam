@@ -20,6 +20,20 @@ no solver. Green under `python3 -O` as well.
 Certificates 0005 and 0006 reached m ≥ 21 as PROVEN-MODULO-CITATION. The number
 does not change. What changes is that **nothing external stands behind it.**
 
+> **Superseded upward, 2026-07-27 (turn 9).** Certificate 0009 pins
+> **N(5) = 13 citing nothing** (and g(5) = 13), so the weak rung (P) this
+> certificate deliberately ran on is no longer the best citation-free input —
+> the free ladder now *equals* the old cited one. Everything here stands
+> a fortiori (this certificate solved a strictly harder problem than it had
+> to: 7,159 multisets at m = 20 where 105 now suffice). Two footnotes from
+> the turn-9 measurements: N(5) ≥ g(5) ≥ 12 was already available
+> citation-free from certificate 0001 when this was written — one free unit
+> nobody used — and, measured at m = 21/22, the rung value 11 vs 12 changes
+> **nothing** (the k = 2 cap dominates; the profile sets are identical), so
+> the conservatism was real but cost-free. The closing plea below for "a
+> third independent implementation of N(4) = 9" was answered by certificate
+> 0010 — with a hand proof rather than a third search.
+
 ## Where the citation was, and why it was never needed
 
 f(6) = 13 entered at exactly one place — the k=1 rung of the (C) ladder, as the

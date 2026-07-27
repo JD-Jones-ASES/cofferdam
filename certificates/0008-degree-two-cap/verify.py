@@ -651,12 +651,20 @@ check("NOT TOO STRONG: the same machinery leaves m = 22 alive",
 # An earlier version of this file claimed all m = 22 survivors saturate the
 # cap.  They do not -- that was generalised from the first five seen, and this
 # check caught it.  What is true is that the cap is still BITING at m = 22:
-# it removes most of the field, and the survivors sit high against it.
+# it removes most of the field.
+# SCOPE (corrected 2026-07-27, turn 9): the distribution below describes the
+# FIRST 200 survivors in enumeration order (profiles sorted by score), and
+# ONLY them.  The full-field measurement (turn-9 sensitivity, two independent
+# implementations) finds survivors spanning D2 = 5..32 -- one lives at
+# D2 = 5, six below the cap -- so "survivors crowd the ceiling" is a fact
+# about this exhibited sample, not about the field.  Emptying m = 22 by a
+# sharpened cap would need D2 <= 4; the cap lever does not extend one rung.
 dist = {}
 for c in surv22:
     v = sum(d2_of(P22[i]) for i in c)
     dist[v] = dist.get(v, 0) + 1
-check("the cap still bites at m = 22 -- survivors crowd the ceiling",
+check("the cap still bites at m = 22 -- the first-200 exhibited survivors "
+      "sit high against it (full field spans D2 = 5..32; see NOTES)",
       min(dist) >= 8 and max(dist) == 11,
       "D2 distribution over %d exhibited survivors: %s (cap = 11)"
       % (len(surv22), ", ".join("%d:%d" % (k, dist[k])

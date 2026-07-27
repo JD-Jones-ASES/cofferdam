@@ -48,9 +48,15 @@ the left side of (L2) over admissible profiles, and if the maximum falls short o
 C(m,2) then no such H exists -- so g(t) > m. Walking m upward gives g(t), and
 walking t upward from g(1) = 1 gives the ladder.
 
-The exact small values g(2), g(3), g(4) are settled by exhaustive search rather
-than by counting, because counting alone is not tight there. Both directions are
-checked: an explicit witness at the claimed value, and exhaustive absence below it.
+The exact small values g(2), g(3), g(4) are checked in both directions: an
+explicit witness at the claimed value, and absence below it.  [Corrected
+2026-07-27, turn 9: this docstring used to say the absence side was
+"exhaustive search rather than counting, because counting alone is not tight
+there".  Both halves of that were wrong -- the counting ladder is tight
+through g(5), and the absence searches below never branch: their root
+waste-budget prune (6*maxcov < C(m,2)) IS the counting kill, one node per m
+(D-028).  The searches are the counting argument in code form; the
+genuinely independent absence route lives in the turn-9 notebook.]
 """
 
 import sys
@@ -402,9 +408,13 @@ def main():
                      f"6*{v6c}={R*v6c} vs C(19,2)={comb2(19)}]")
 
     print()
-    print("[E] consistency with the published record (not proof -- a smoke test)")
+    print("[E] published-record consistency -- PLUS one load-bearing rung "
+          "(corrected 2026-07-27: the m=5 absence check below is NOT a smoke "
+          "test; g(4) = 8 needs m = 5, 6, 7 all dead and section [B] covers "
+          "only 6 and 7)")
     check(m5 <= 13, "the derived g(5) >= 12 does not overshoot the published f(6) = 13")
-    check(exists_with_tau(5, 4, g) is None, "no tau>=4 family below the witness size")
+    check(exists_with_tau(5, 4, g) is None,
+          "no tau>=4 family at m = 5 -- LOAD-BEARING for g(4) = 8")
 
     print()
     print("-" * 72)
