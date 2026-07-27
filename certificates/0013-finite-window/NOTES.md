@@ -87,17 +87,44 @@ rides on it.
 
 ## Attribution (recorded, not consumed)
 
-The set-pair inequality behind the ceiling is classical — Bollobás (1965),
-with the random-permutation proof classical as well; bounding τ-critical
-hypergraphs by set-pair systems is the classical route (Tuza's school).
-The proof here is re-derived from first principles and machine-checked, so
-the certificate stands without any citation — but a result must never look
-more novel than it is: **the argument is classical machinery re-derived;
-what is ours is the window** — the composition with the in-house floor,
-both ends certified, plus the enactment and controls. The turn-10
-notebook entry carries the literature sweep's exact attributions,
-including for the skew variant (which this certificate neither uses nor
-certifies — our cores give both cross directions).
+The ceiling's machinery is classical, and the turn-10 literature sweep
+pinned it exactly (fetched sources; details in the turn-10 notebook entry):
+
+- **The set-pair inequality**: Bollobás 1965 (Acta Math. Acad. Sci.
+  Hungar. 16, 447–452) — stated there in a different lemma form; the
+  modern symmetric statement was conjectured by Ehrenfeucht–Mycielski and
+  proved by **Katona (JCTA 17 (1974) 265–266) with exactly the
+  random-permutation argument used here** (Jukna argues for
+  "Bollobás–Katona"); the uniform statement was independently
+  rediscovered by Jaeger–Payan (1971).
+- **The application to τ-critical hypergraphs**: Jaeger–Payan (C. R.
+  Acad. Sci. Paris 273 (1971) A221–A223 — their title *is* the maximum
+  edge count of τ-critical hypergraphs of rank h); the set-pair method
+  for critical systems is Tuza's school (JCTB 39 (1985) 134–145 gives
+  the *vertex* bounds; his surveys catalogue the method). The general
+  edge formula C(r+t−1, r) appears explicitly as Remark 3.3 of Li,
+  arXiv:2512.24850 (Dec 2025), whose main theorem is the (3,3) case
+  ≤ 10 = C(5,3).
+- **Nobody instantiates the formula at Ryser r = 6 intersecting**: the
+  sweep found the set-pair and Ryser literatures disjoint (zero
+  cross-hits across the DeBiasio–Kamel–McCourt–Sheats survey, FHMW, and
+  2026 full texts); the Ryser literature's only counterexample ceiling
+  is the Erdős–Rado sunflower bound r!·cʳ ≈ 3.36×10⁷ at r = 6. The
+  window [22, 462] — a certified floor paired with the 462 ceiling —
+  appears nowhere.
+- **The skew variant** (one cross direction only): same C(a+b, a) bound,
+  by exterior algebra (Lovász 1977; Frankl 1982; Kalai 1984) — not used
+  here; the weighted skew bound is NOT 1 (Frankl–Hegedüs, EJC 120
+  (2024) 103983). Our use is symmetric-uniform and unaffected.
+
+The proof here is re-derived from first principles and machine-checked,
+so the certificate stands without any citation — but a result must never
+look more novel than it is: **the argument is classical machinery
+re-derived; what is ours is the window.** (Floor context moved during
+this session: Sivashankar, arXiv:2606.24878, June 2026, proves
+g(r) ≥ 3r−4 for r-uniform intersecting with τ = r, so every
+counterexample has m ≥ 14 by one-line specialization — verified
+firsthand from the abstract; the in-house floor stands 8 above it.)
 
 ## Annex (context, not chain)
 

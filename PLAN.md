@@ -1,142 +1,148 @@
 # cofferdam — plan
 
-Revised 2026-07-27 (turn 9). History is the record; this file is rewritten.
+Revised 2026-07-27 (turn 10). History is the record; this file is rewritten.
 
-## Where we are — **floor m ≥ 22, citing nothing, on a pinned ladder**
+## Where we are — **THE FINITE WINDOW: every critical core has m ∈ [22, 456]**
 
 | cert | result |
 | --- | --- |
 | **0001** (22 + 0) | degree-cap ladder; g(1..4) = 1,3,5,8 → m ≥ 18 citing nothing |
 | **0002** (22 + 1) | **(L4)** Σ deg ≥ m+5 per edge |
 | **0003** (10 + 2) | **(L5)** low-incidence bound |
-| **0005** (49 + 5) | **minimum-degree ladder**: m ≥ 19 citing nothing; corrected AKP Lemma 2.8 |
+| **0005** (49 + 5) | **minimum-degree ladder**: m ≥ 19 citing nothing; (A)(B)(C); corrected AKP 2.8 |
 | **0006** (22 + 0) | **(L8) excess-concentration**: m = 20 impossible (cited ladder) |
 | **0007** (18 + 1) | (L8) on the weak ladder kills every m ≤ 20 → **m ≥ 21 citing nothing** |
 | **0008** (43 + 4) | **(D2)** degree-two cap kills m = 21 → **m ≥ 22 citing nothing** |
-| **0009** (38 + 13) | **g(5) = N(5) = 13 citing nothing**; Q13 answered YES; the free ladder now EQUALS the cited ladder |
-| **0010** (24 + 3) | **N(4) = 9 BY HAND** — the hinge is a theorem, not a search |
-| **0011** (61 + 12) | **Δ = 4 for 13-edge τ ≥ 5 objects** — the last uncertified turn-4 result, closed; the (8,4) census proven complete twice over |
-| **0012** (12 + 5) | **(L10) saturation floor — the δ-budget retires**: m = 21 dies on floors + convexity, margin ≥ 6 (median 24) |
+| **0009** (38 + 13) | **g(5) = N(5) = 13 citing nothing** (≡ published f(6) = 13); the free ladder EQUALS the cited ladder |
+| **0010** (24 + 3) | **N(4) = 9 BY HAND** — the hinge is a theorem |
+| **0011** (61 + 12) | **Δ = 4 for 13-edge τ ≥ 5 objects**; the (8,4) census proven complete twice |
+| **0012** (12 + 5) | **(L10) saturation floor — the δ-budget retires**; m = 21 dies at margin ≥ 6 |
+| **0013** (32 + 8) | **THE WINDOW [22, 462]**: every critical core has m ≤ C(11,6) = 462, **ceiling ledger EMPTY**; Ryser r=6 intersecting ⟺ no critical core in the window |
+| **0014** (13 + 4) | **(L11) part-confinement annihilator → THE WINDOW TIGHTENS TO [22, 456]**; the peer-claimed 456 is an in-house theorem (consumes (A) + 0013) |
 
 All green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O` (D-015).
+Both 0013 and 0014 were adversarially fleet-verified before certification
+(six and five lenses; zero mathematical errors either time; every catch
+fixed pre-green — D-031/D-032 record the policy outcomes).
 
-**The chain, one paragraph.** (A) no active degree-1 vertex · (B) every part
-has ≥ 6 active vertices · (C) deleting k same-part stars leaves a residual
-witnessing N(6−k), with the ladder now **pinned exactly**: N(1..5) =
-2, 4, 6, 9, 13 — N(4) by a hand theorem with two agreeing searches (0010),
-N(5) by the m = 12 dead-heat forcing + an 11,520-design exhaustion, thrice
-implemented (0009). Then the pair count, (L7), (L8) — whose internals now
-carry names: the excess budget X, and **(L9)** the water-filling floor for B
-(proved + audited over 262,729 instances, zero mismatches). (D2) caps
-2·D₂ ≤ m, and **(L10)** the saturation floor (a cap-saturating vertex's
-13-edge complement is certificate 0011's class, so its degrees cap at 4).
-**No rung consumes the δ-budget, the level system, qmin, or U** (0012):
-m ≤ 19 admits nothing on the pinned ladder, m = 20 dies on the cap, m = 21
-on (L7)+(L10) floors + (L9) convexity + B ≤ ⌊5X/2⌋ at margin ≥ 6.
-Certificates 0006/0007 stay green as the weak-ladder record.
+**The problem is now finite.** A counterexample exists iff an
+edge-critical one exists with m ∈ [22, 456] and ≤ 6·456 active vertices.
+The floor certificates quantify over ALL counterexamples; the ceiling
+quantifies over critical cores — which suffices, because every
+counterexample contains one. 435 values of m remain.
 
-## Where to attack — reranked after turn 9
+**The chain, one paragraph.** (A) no degree-1 active vertex · (B) every
+part ≥ 6 active · (C) same-part star deletion → the pinned ladder
+N(1..5) = 2, 4, 6, 9, 13. Then the pair count, (L7)+(L10) floors, (L9)
+convexity, B ≤ ⌊5X/2⌋, (D2) → **m ≥ 22** (0012's ledger is the
+transitive authority: 0005/0006/0008–0012; 0007 the weak-ladder record).
+Criticality → private disjoint covers → Katona-style disjoint events →
+**m ≤ 462 citing nothing** (0013). Part-confinement in Λ⁶(R¹¹) + (A) →
+**m ≤ 456** (0014).
 
-1. **QUEUED — NEXT SESSION, part A: certificate 0013, the finite window
-   [22, 462] CITING NOTHING.** The ceiling is not astronomical and needs no
-   literature: any counterexample contains an edge-minimal critical core K
-   (still a counterexample, so m(K) ≥ 22); criticality hands every edge a
-   private 5-cover T_e with e ∩ T_e = ∅ and e ∩ T_f ≠ ∅, and the permutation
-   count (events "e wholly precedes T_e" are pairwise disjoint, each of
-   probability 6!·5!/11! = 1/462) gives **m(K) ≤ C(11,6) = 462**. Hand proof
-   re-derived at the desk, arithmetic verified — turn-9 notebook §13. Scope
-   with care: the window quantifies over critical cores; the floor
-   quantifies over all counterexamples. **Ryser r = 6 intersecting ⟺ no
-   critical core in [22, 462].**
-   **Part B: the narrowed literature list** (seal-clean; the seal covered
-   the chain, not the field): (a) attribution for the set-pair bound
-   (Bollobás 1965) and for τ-criticality bounds generally — cite, don't
-   consume; (b) is the **456 = C(11,6) − 6 partite refinement** (peer-claimed,
-   exterior algebra, desk-read plausible) already in the literature
-   (partite/subspace skew-Bollobás variants), and audit it in-house either
-   way; (c) what the REAL fractional theorem says — "τ* ≤ r/2 for
-   intersecting 6-partite" is **FALSE**, killed firsthand by truncated
-   PG(2,5) with τ* = ν* = 5 (notebook §13); (d) FHMW's linear-Ryser scope;
-   (e) the claimed March-2026 survey (arXiv 2603.04704) stating intersecting
-   r ≥ 6 still open. Done at turn 9: the hand-kill of m = 21's 567
-   (cert 0012 — was item 1 here).
-2. **Re-derive the stronger per-part claim at the desk**: every part of an
-   8-edge τ ≥ 4 object carries a degree-1 vertex (fleet-claimed complete
-   proof, turn 9). Lands the corrected AKP 2.8 consequence by hand and
-   makes 0010's theorem per-part rather than full-part.
-3. **The equality-regime scan — RUN (turn 9), and the answer is sobering.**
-   Gap = (6 × capped max) − C(m,2), on the pinned ladders: t = 5 hits **0 at
-   m = 12 and nowhere else** (+12 at 13, +29 at 14, growing); t = 6 crosses
-   from −9 (m = 19) straight to +8 (m = 20), then +30, +57, +89 — never
-   inside [0, 2]. The m = 12 dead heat was the unique free forcing in the
-   visible grid; every future rung needs structure, not counting. (Stable
-   pattern worth keeping: every t = 6 maximizer is (Δ, 4, 3, 2, 2, 2) with
-   Δ saturating the m − 13 cap.) Cheap extensions to *conditioned* classes
-   (fixed Δ, fixed D₂ band, full-part subclasses) remain untried.
-4. **Lit-check the τ-critical ceiling** (turn-9 notebook §8): a minimum
-   counterexample is τ-critical in one line, and τ-critical size bounds
-   would make the whole problem a finite window [22, M]. Context, not
-   chain — but it reframes the grail.
-5. **The m = 23 frontier** — only behind a new lemma. Measured today: no
-   counting-shaped lever in-house reaches m = 22 (cap sharpening needs
-   2·D₂ ≤ m − 14; ladder pinned; 30,436 (L8) survivors on the pinned
-   ladder). Do not spend rung effort here without new structure.
+## Where to attack — reranked after turn 10
 
-**Closed levers, so nobody reopens them silently:** the (D2) cap sharpening
-at m = 22 (priced by full-field sensitivity, two implementations: survivors
-down to D₂ = 5 on every ladder; **declined**) · Q13 (answered YES — 0009;
-its 232-slice search is retired unrun) · N(5) ≥ 14 (impossible — N(5) = 13
-exactly) · the N(4) = 9 tightening of (L7) (D-022, turn 8) · AKP 2.9 as an
-attack surface (demoted turn 7) · **the δ-budget, the level system, qmin and U as load-bearing steps** (retired from the minimal chain by 0012; green in 0006/0007 as the weak-ladder record).
+1. **The m = 22 frontier, now armed with core structure.** The window
+   framing makes every core lemma a two-sided asset. Peer-claimed leads
+   on file (notebook turn-9 §13, all re-derive-before-use): the
+   critical-cover inequality (CC)/(GCC) (desk-checked sound,
+   uncertified) · **X ≥ 2 for critical cores at m = 22** (would open the
+   nonlinear regime; unverified) · Farkas-dual clustering. First
+   concrete rung: certify (CC), then price the X ∈ {0,1} exclusion.
+2. **Squeeze the ceiling — combinatorially, not dimensionally.** The
+   audit's derivation lane measured the six functionals as the
+   COMPLETE annihilator (the transversal-wedge span EQUALS the 456-dim
+   subspace; no seventh exists generically), so more linear algebra on
+   the same embedding buys nothing. The live routes below 456:
+   (a) **consume intersecting-ness of the e's** — the one core axiom
+   the abstract system never uses (fleet-claimed: it alone forces
+   m ≤ 2^(r−1) on binary supports); (b) the **C(2r−2, r−1) abstract
+   conjecture** (truth at r = 2, 3; would give 252 at r = 6; r = 4
+   open in [17, 35] — settle r = 4 first, D-033 style); (c) desk
+   re-derivation of the fleet-claimed **Theorem A** (m ≤ C(2r−1,r)−1
+   free of hypotheses) and its tiling method, which may compose with
+   (*). Also: certify the general form m ≤ C(2r−1, r) − r for r ≥ 3
+   (cheap; the r = 3 analog is already fleet-verified end-to-end).
+3. **Mine the field's complementary finite framings** (turn-10 sweep):
+   extract DeBiasio–Kamel–McCourt–Sheats Table 2 (the 173 surviving
+   r = 6 signatures) and cross it with the window; read Pokrovskiy
+   arXiv:2507.05842 (Ryser ⟺ bounded-diameter); fetch Barát's 18×18
+   PG(2,5) incidence matrix (§7) against our truncated-plane machinery.
+4. **Re-derive the stronger per-part claim at the desk** (unchanged from
+   turn 9): every part of an 8-edge τ ≥ 4 object carries a degree-1
+   vertex (fleet-claimed complete). Lands corrected AKP 2.8 by hand.
+5. **Conditioned-class equality scans** (unchanged): fixed Δ, D₂ bands,
+   full-part subclasses. The m = 12 dead heat remains the only free
+   forcing in the visible grid.
+6. **The abstract partite set-pair maximum — answered at r = 3, open
+   at r = 4.** Turn-10 audit: r = 2 → 2, r = 3 → 6 (exhaustive; the
+   cube-minus-antipodal witness desk-verified), r = 4 ∈ [17, 35]
+   (fleet-claimed 17-witness kills the exponential pattern; the
+   C(2r−2, r−1) pattern predicts 20). Settling r = 4 exactly is the
+   cheapest decisive measurement on the ceiling's true shape — folds
+   into attack #2(b).
 
-**Peer-claimed leads on file (outside review via JD, turn 9 — re-derive
-before any use; notebook §13 has the full triage):** the critical-cover
-inequality (CC)/(GCC) for cores (desk-checked sound, uncertified) · an
-(L8)-free third m = 21 kill via exact Farkas certificates (its ladder
-reconstruction independently matched our 45 profiles / 567 systems) ·
-**X ≥ 2 for critical cores at m = 22** (would start the m = 22 frontier in
-the nonlinear regime; unverified) · Farkas-dual clustering into human
-lemmas · split-and-repair construction seeded at truncated PG(2,5)
-(BRIEF §5's rigidity warning stands; solvers scout, never ship).
+**Closed levers (do not reopen silently):** everything from turn 9's
+list, plus: **the 456 audit (RESOLVED — cert 0014)** · the "τ* ≤ r/2"
+attribution question (RESOLVED: it is Lovász's τ ≤ (R/2)τ*, Mat. Lapok
+1975; Füredi 1981 gives τ* ≤ (r−1)ν for r-partite, sharp at truncated
+planes) · the 2603.04704 "survey" characterization (it is a research
+paper; the survey is DeBiasio et al. 2021).
 
-## Risk decomposition — updated for turn 9
+## Novelty ledger — re-measured 2026-07-27 (turn 10)
+
+- **Floor**: best published-preprint comparator is now **m ≥ 14**
+  (Sivashankar arXiv:2606.24878, June 2026: g(r) ≥ 3r−4, one-line
+  specialization; verified firsthand). Ours: **m ≥ 22, eight clear** —
+  but the neighborhood is HOT (first Erdős–Lovász improvement in ~50
+  years; two papers in 15 months). Publication timing is JD's call —
+  flagged in `awaiting_jd`.
+- **Ceiling**: the generic formula C(r+t−1, r) is classical
+  (Jaeger–Payan 1971; Tuza's school; Li arXiv:2512.24850 Remark 3.3).
+  Its Ryser instantiation appears NOWHERE (set-pair and Ryser
+  literatures fully disjoint across three full-text scans); the field's
+  only ceiling is Erdős–Rado ≈ 3.36×10⁷. **The two-sided window is
+  ours; the 456 has no published counterpart at all.**
+- **Name the function** (D-031): three distinct published 13s and three
+  9s live near our ladder — the disambiguation table is in the turn-10
+  notebook §5. Our g(5) ≡ published f(6); our g(4)/N(4) is NOT
+  Tripathi's q(4).
+
+## Risk decomposition — updated for turn 10
 
 | step | what stands under it now |
 | --- | --- |
-| **X + (L9) + A ≥ S−m** | still the m = 21 kill's engine — **the turn-9 prediction that the hand-kill would retire this row was WRONG**: cert 0012's kill consumes A ≥ S−m, (L9) and X's B-cap exactly as before; what left was the δ-budget/levels/qmin/U. (L9) proved + audited (262,729 comparisons); X's identities brute-forced over 1.86M audits (turn 8) |
-| **N(4) = 9** | a hand theorem (0010) + two agreeing searches. No longer a single point of failure. The theorem's inputs: g(2) ≥ 3, g(3) ≥ 5 only |
-| **N(5) = 13** | dead-heat forcing (margin one, all four caps load-bearing) + 11,520-design census, three implementations + the witness. Rung closed permanently |
-| **g(4) = 8** | margin one, and turn 9 found its "two proofs" were ONE argument in two code forms (the 0001 absence search never branches — the waste-budget root prune IS the counting kill, D-028). A genuinely independent definitions-only brute force closed m ≤ 6 but hit its 200M-node ceiling per quarter at (7,4) — **UNDECIDED, priced at > 800M nodes for this engine**. The counting proof itself is three lines from g(3) = 5, machine-checked in certs 0009/0010/0011 §1, and is not in doubt; what was wrong was the *bookkeeping of independence* |
-| the δ-budget | **RETIRED from the minimal chain (0012)** — replaced by (L10)+(L9) at margin ≥ 6 where its margin was one. Stays green inside 0006/0007 |
-| the cap ⌊m/2⌋ | m = 20 (105 all fail it) and the D₂ ≤ 10 gate at m = 21; margin one, odd-m rounding (0008) |
-| **(L10) via 0011's Δ ≤ 4** | the new m = 21 load-bearer beside (L9): weaken 0011 to Δ ≤ 5 and 65 of 567 revive (0012's sensitivity). 0011's own weight sits on its twice-built (8,4) census |
+| the floor m ≥ 22 | unchanged from turn 9 (0012's row); nothing in turn 10 touched it |
+| **m ≤ 462 (0013)** | criticality + drop-by-one + private covers + Katona argument; adversarially verified ×6; enacted by exhaustion at two scales; saturated witness shows the abstract argument is tight |
+| **m ≤ 456 (0014)** | 0013's construction + (A) + exact rank-6 witness (sensitivity-controlled) + 246 pattern witnesses; adversarially verified ×5; independently reimplemented; the r = 2 calibration guards the shape |
+| g(5) = 13 | now ALSO the published f(6) = 13 (two independent published proofs) — the rung's risk class improves again |
+| the ladder coincidences | the 9s/13s zoo is a documented confusion hazard, not a math risk — D-031 |
 
-## Machinery — lessons that earned their line
+## Machinery — lessons that earned their line (turn-10 additions)
 
-- **Measure before theorising**: turn 9's cap matrix killed the r-dependent
-  (D2) sharpening in an hour, and the classification of the 567 found the
-  δ-budget's true load (43 configs, all cap-saturated) before any theory was
-  attempted — (L10) fell out of the saturation structure (D-030).
-- **Diff design sets, not headline counts** — the blind C reproduction's
-  over-strong prune produced 6,912 of 11,520, a flattering subset that
-  headline comparison would have blessed (D-005 in the wild, caught).
-- **Inventory your own witnesses** (D-026): Q13 sat answered in the repo for
-  a full turn while a search for its object was being priced.
-- **A dead heat is a forcing, not a failure** (D-029): equality pins every
-  profile and X = 0; the search space collapses from hopeless to 553 s.
-- Precompute admissible columns when they fit; lazy generation for ρ ≥ 11
-  (turn 5). Never repeat an expensive search for bookkeeping (turn 5).
-  Weaken deliberately when the conclusion survives (D-009).
+- **Calibrate a claimed refinement at the smallest r before deriving**
+  (D-033): the r = 2 truth (max = 2, not 1) cost twenty minutes, killed
+  the naive "−r" reading, and forced the audit to locate exactly which
+  hypothesis buys the six units. Tiny-r truth tables before proof
+  attempts.
+- **A guessed constant in a check is a lie waiting to be caught** — 0013
+  draft 1 pinned three; the run caught them (D-017's shape, again).
+- **State ledgers transitively** (D-032): 0013 draft 1 shipped three
+  mutually inconsistent floor-dependency lists; the authority is the
+  consumed certificate's OWN ledger, followed transitively.
+- Prior lessons (turn 9 and earlier) stand: measure before theorising ·
+  diff design sets, not headline counts · inventory your own witnesses ·
+  a dead heat is a forcing · weaken deliberately when the conclusion
+  survives.
 
 ## Standing
 
-- Every certificate names its external dependencies; for the floor the
-  ledger is **empty**, and after 0009 the cited/free distinction is gone —
-  there is one ladder and it is ours.
-- No solver in the trust chain. No isomorphism census in the trust chain
-  (0009's 11,520 is a count of search outputs, each individually verified;
-  no class structure is consumed).
-- Every "empty" ships completeness arguments and known-answer controls
-  (415,800 closed form; AG(2,3) = 12; W-recovery on all seven peels).
-- **A result that lands on the expected answer gets a not-too-strong
-  control** — 0009 checks m = 13 survives; 0011 checks W exists with Δ = 4.
+- Every certificate names its dependencies; the ceiling of 0013 has
+  **none** (external or in-house); 0014's are 0005 + 0013, external
+  NONE. The floor's ledger is empty of external inputs, as before.
+- No solver in the trust chain. Both fleets' outputs entered no chain
+  until re-derived at the desk (Certificate Law); the adversarial
+  records live in each certificate's NOTES.
+- Attribution is recorded, not consumed (D-031): 0013 stands without
+  citations while NOTES/notebook carry Bollobás 1965 · Katona 1974 ·
+  Jaeger–Payan 1971 · Tuza 1985 · Li 2025 exactly.

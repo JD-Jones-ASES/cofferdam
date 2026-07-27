@@ -630,3 +630,69 @@ can become load-bearing the day it exists, because floors compose.
 which caps the surviving configurations saturate, and ask what object each
 saturation constructs. Check whether an existing certificate already bounds
 that object's class. (L10) took three lines once the question was asked.
+
+## D-031 · Attribution is recorded, not consumed — and novelty statements name the exact function (2026-07-27, turn 10)
+
+Certificate 0013 re-derives classical machinery (Bollobás 1965 / Katona
+1974 / Jaeger–Payan 1971) from first principles and ships citing
+nothing; the attribution lives in NOTES.md and the notebook, stated as
+precisely as the lit sweep could pin it. Separately: the turn-10 sweep
+found three distinct published 13s and three distinct 9s adjacent to
+our ladder (q(5), f(6), 8r/3−3; q(4), f(5), our N(4)) — functions with
+different domains that collide numerically.
+
+**Why:** a certificate that silently consumes a citation is fragile,
+and one that hides a re-derivation's ancestry overclaims novelty. Both
+failure modes are cheap to avoid if attribution is a *recorded*
+artifact rather than a dependency. And a numerically colliding function
+zoo is exactly how a future session mis-cites its own results.
+
+**How to apply:** re-derived classical machinery ships with an
+ATTRIBUTION section (recorded, not consumed) in the certificate's
+docstring and exact citations in NOTES; every novelty statement names
+the function and its domain, never the bare value. The disambiguation
+table lives in the turn-10 notebook §5.
+
+## D-032 · Ledgers are stated transitively, and CONTROL-ONLY is a ledger category (2026-07-27, turn 10)
+
+Certificate 0013's first draft shipped three mutually inconsistent
+floor-dependency lists (a hand-picked subset, a dash range, and a §7
+note); the adversarial pass caught it. The fix: the authority for a
+composed input is the consumed certificate's OWN ledger, followed
+transitively (the floor = 0005/0006/0008–0012 per 0012). Separately,
+0013 consumes 0009's g(5) = 13 in exactly one consistency check on a
+rehearsal object — disclosed under a new ledger category, CONTROL-ONLY,
+with the fail-safe direction stated (an error there can only redden the
+certificate, never wrongly green it).
+
+**Why:** "the ledger, in full" that is neither full nor unique is worse
+than no ledger — it teaches readers to distrust the honest ones. And a
+control that consumes a sibling certificate is a real edge in the trust
+graph even when no claim stands on it; undisclosed, it looks like a
+hidden input the day someone diffs the imports.
+
+**How to apply:** one ledger, transitive, with the consumed cert's own
+ledger as authority; every consumption that is not an input to a claim
+gets the CONTROL-ONLY label plus its fail-safe direction.
+
+## D-033 · Calibrate a claimed refinement at the smallest parameter before deriving (2026-07-27, turn 10)
+
+Before the 456 audit fleet launched, the abstract transversal set-pair
+maximum was computed at r = 2 by hand and machine: it is 2 = C(3,2) −
+(r−1), not C(3,2) − r. That single data point proved no uniform "−r"
+refinement can be a pure set-pair theorem, was handed to the fleet in
+its briefing, and forced the derivation to locate exactly which
+hypothesis buys the six units (the concentration lemma (*), which is
+UNSATISFIABLE at r = 2 — the boundary case explains itself).
+
+**Why:** a claimed refinement arrives shaped like a formula, and the
+cheapest place a formula breaks is the smallest parameter. Twenty
+minutes at r = 2 bought the audit its sharpest constraint and turned
+"desk-read plausible" into "mechanism located, boundary understood."
+This is D-020's measure-before-theorising, sharpened to the audit of
+claimed bounds: measure the CLAIM's pattern at tiny scale first.
+
+**How to apply:** when auditing any claimed bound parametrized by r (or
+m, or t), first compute the ground truth at the smallest nontrivial
+parameter by exhaustion; hand the result to whoever attempts the
+derivation as a constraint their proof must explain.
