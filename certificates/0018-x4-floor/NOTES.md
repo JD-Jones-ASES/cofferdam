@@ -12,7 +12,12 @@ and under `python3 -O`. Deterministic (fixed-seed hand-rolled LCG, seed 20260728
 | pair-sum maxima: star 24 · triangle 27 · path 27 · P3+K2 28 · 3K2 30 (all identification patterns × degrees exhausted) | **PROVEN-BY-CERTIFICATE** |
 | the (0,0,1) field survivor dies for every shape (all-light shared sets cap the pair-sum at 24 < 27) | **PROVEN-BY-CERTIFICATE** |
 | 3K2 at W = 30: splits forced to {7,7}/{8,6}; subcase A dies 2 > 1, subcase B dies 7 > 4 | **PROVEN-BY-CERTIFICATE** |
-| **X ≥ 4 for every critical core at m = 22** | **PROVEN-BY-CERTIFICATE** (in-house: 0005/0008/0009/0012/0013, 0015 (2)–(3) + L1.2, 0016 (T) + X ≥ 3, 0017 C1 + C2; **external NONE**) |
+| **X ≥ 4 for every critical core at m = 22** | **PROVEN-BY-CERTIFICATE** (in-house: 0005/0008/0009/0012/0013, 0015 (2)–(3), 0016 (T) + X ≥ 3, 0017 C1 + C2; **external NONE**) |
+
+(ERRATUM 2026-07-28: this row originally read "0015 (2)–(3) + L1.2" — the same
+inflated dependency the phase-3 outside reader struck from the header, banner
+and ledger; the claim table missed the strike. Caught by the second outside
+audit. No check touched.)
 
 ## Provenance — the outside-audit lane's first fruit, and the law it ran under
 

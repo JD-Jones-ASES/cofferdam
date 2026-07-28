@@ -119,8 +119,11 @@ MANDATORY HONESTY NOTES
      HOLDS on it.  WHETHER (CC+)'s END-TO-END CONCLUSION SURVIVES AT
      X = 5 IS OPEN.  A 120,000-trial hunt by the phase-2 refuter found
      no counterexample AND zero enactments with a positive left side --
-     no evidence either way.  This certificate claims the corner at
-     X <= 4 and flags X = 5 as open.
+     no evidence either way.  This certificate claims the c = 1 corner
+     at X <= 4, the 4/3 PER-PAIR corner AT X = 5 (check 9), and flags
+     the constant-one end-to-end conclusion at X = 5 as open.
+     (ERRATUM 2026-07-28: this sentence originally deflated C1's own
+     4/3 rung; caught by the second outside audit.  Comment only.)
 
  (2) C2 IS A COMPLEMENT TO PLAIN (CC), NOT A STRENGTHENING.  Its
      per-pair coefficient sum_{u in f cap g}(deg u - 2) <= 5(Delta - 2)
@@ -177,9 +180,12 @@ THE LEDGER, in full
                           certificate, never green it.
 
 WHAT THIS DOES NOT CLAIM.  No core is claimed to exist -- every law
-here is conditional on a critical core at that m.  Nothing is claimed
-at X = 5 beyond the corner's failure.  The laws are VACUOUS on
-m in [23, 26], which is exactly the band no certificate holds.
+here is conditional on a critical core at that m.  At X = 5, nothing
+beyond what C1-C3 state: the c = 1 corner fails (witness), the 4/3
+per-pair corner HOLDS (check 9), C2/C3 carry no X restriction; open is
+the constant-one end-to-end conclusion.  (ERRATUM 2026-07-28: comment
+only; the original line deflated C1's 4/3 rung.)  The laws are VACUOUS
+on m in [23, 26], which is exactly the band no certificate holds.
 """
 
 import itertools

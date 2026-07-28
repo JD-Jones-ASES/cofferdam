@@ -787,3 +787,28 @@ every claimed theorem is re-derived blind + refuted before its
 statement is consumed; the peer is credited in NOTES provenance and
 cited by zero proof steps. When checking a peer bound, enumerate —
 never hand-derive a smaller number and prefer it for being yours.
+
+## D-037 — Full-text peer intake: the received proof goes only to refuters (2026-07-28, turn 15)
+
+D-036 covered peer claims arriving as statements. Turn 15's second outside
+audit arrived as statements PLUS a complete proof. The routing that was used,
+now law: **the desk reads and desk-checks the received text first** (its own
+script, exact arithmetic, before any lane flies); **blind lanes receive
+statements plus one-line mechanisms only** — never the text; **the received
+text itself is handed only to hostile refuter lanes**, whose brief is to break
+it; the certificate consumes only in-house derivations, and its provenance
+section states plainly that full text was received and how it was routed.
+
+**Why:** turn 15 measured the value of each half. The blind lanes returned two
+INDEPENDENT alternative proofs — evidence agreement-checking cannot produce —
+and the refuter lanes, reading the text adversarially, found the one real
+defect in it (a circular degree-cap step) that the desk's own first read had
+missed. Route the text to sympathetic readers and you get transcription; route
+it to refuters and you get the defect.
+
+**How to apply:** on receipt of peer proof text — desk-check, then fleet with
+the split above; the NOTES provenance must say "full proof text received" when
+it was (claiming statements-only intake when text was read is a provenance
+falsehood); any defect found in the received text is stated concretely in the
+certificate, with the repair, so agreement-on-the-statement is never mistaken
+for agreement-on-the-proof.

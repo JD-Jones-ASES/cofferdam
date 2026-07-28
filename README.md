@@ -40,19 +40,23 @@ solver anywhere in the trust chain.
    every critical core has **m ∈ [22, 456]** — so the whole question is one
    finite check (certs 0013–0014: a Katona-style disjoint-events argument,
    then part-confinement in Λ⁶(R¹¹)).
-3. **The excess floor**: a critical core at m = 22 must carry pair-excess
-   **X ≥ 4** (certs 0015–0016: (CC) then the triangle lemma give X ≥ 3;
-   cert 0018 empties the entire X = 3 layer by an eight-shape census — the
-   λ4 pair alone would force m ≤ 20, two rungs below the floor).
+3. **The excess floor, window-wide** (cert 0019): **every critical core has
+   X ≥ 5**, at every m in the window — and **X = 5 is only possible at
+   m ≤ 26**, so **m ≥ 27 forces X ≥ 6**. Two counting lemmas carry it (the
+   defect-hub bound Δ ≤ 5 + X and the star-collision inequality D ≤ R) plus
+   a census engine: 3,056 exhaustive runs, every one empty. The earlier
+   floor-local chain still stands on its own (0015–0016: X ≥ 2, X ≥ 3 at
+   m = 22; 0018: the eight-shape census gives X ≥ 4 there — now also a
+   corollary of 0019, which does not consume it).
 4. **The growth laws** (cert 0017): excess grows across the whole window —
-   **X ≥ 3 already by m = 27**, X ≥ 10 from m = 38, X ≥ 100 from m = 108,
-   and **X ≥ 2259 at the ceiling m = 456** (a linear law from the cover
-   structure, an integrality lift, and a second-moment Jensen law). Any
-   near-linear counterexample (X ≤ 2) is confined to **m ∈ {23,…,26}**.
-5. **The frontier**: the X = 4 layer at m = 22 (12,171 degree
-   configurations pass the current judges) and the thin rungs
-   m ∈ {23,…,26}, the window's only arithmetic-free sizes. The turn-13
-   λ4 frontier is gone — killed outright by 0018.
+   X ≥ 10 from m = 38, X ≥ 100 from m = 108, and **X ≥ 2259 at the ceiling
+   m = 456** (a linear law from the cover structure, an integrality lift,
+   and a second-moment Jensen law).
+5. **The frontier**: **X = 5 on m ∈ {22,…,26}** — the only place a
+   minimum-excess core can live, five excess partitions in all. The
+   12,171-configuration X = 4 field of turn 14 closed **without enumerating
+   a single configuration**, and the window no longer has any
+   arithmetic-free rung.
 
 | cert | one line |
 | --- | --- |
@@ -63,12 +67,16 @@ solver anywhere in the trust chain.
 | [0016](certificates/0016-ccplus-x3) | the triangle lemma + (CC⁺) → **X ≥ 3** at m = 22 (margin: one unit of the (D2) cap) |
 | [0017](certificates/0017-growth-laws) | the corner ladder ((CC⁺) holds through X ≤ 4) + the linear and second-moment **growth laws** across the window |
 | [0018](certificates/0018-x4-floor) | the eight-shape census empties the X = 3 layer → **X ≥ 4** at m = 22 (margin: one unit of (D2) again; two shapes at zero W-slack, killed by census clash) |
+| [0019](certificates/0019-star-collision) | the defect-hub + star-collision lemmas → **X ≥ 5 everywhere; X = 5 ⟹ m ≤ 26; m ≥ 27 ⟹ X ≥ 6** (margins: m = 27/28 kill at zero slack by divisibility; the X = 4 max-2 cell at m = 22 is the named pressure point) |
 
-The theorem in 0018 was **proposed by an outside audit** (GPT 5.6 Sol Pro,
-reading this public repo) and re-proven entirely in-house under the
-statement-level intake law (D-036): statements in, proofs never; blind
-derivation lanes + hostile refuters before anything is consumed. The
-outside-audit lane this repo went public for is live and has produced.
+The theorems in 0018 and 0019 were both **proposed by outside audits**
+(GPT 5.6 Sol Pro, reading this public repo — one day apart) and re-proven
+entirely in-house under the peer-intake laws (D-036/D-037): statements to
+blind derivation lanes, received proof text only to hostile refuters, the
+desk re-deriving everything before anything is consumed. 0019's intake also
+caught and repaired a circular step in the received proof — agreement on a
+statement is not agreement on a proof. The outside-audit lane this repo
+went public for is live and has produced two theorems in two days.
 
 A floor says where the object *cannot* be. Nothing here claims a
 counterexample exists — at 22, 456, or anywhere.
@@ -82,19 +90,21 @@ public. **[PLAN.md](PLAN.md) § "Where to attack"** carries the ranked list
 - **Replay any certificate**: one command each, all sub-minute except the
   floor's heavy ones (see "Checking a claim" below). A red run on your
   machine is a finding; please report it.
-- **Attack the newest first**: 0018's field side closes by **exactly one
-  unit** of the degree-two cap — all five surviving configurations sit ON
-  the (D2) boundary, and relaxing it by one degree-2 vertex re-opens 46
-  (the sweep is check 32) — and its triangle/path kills close at **zero
-  units of W**, carried by a census clash. 0016 has the same one-unit
-  (D2) margin one layer down. All margins are documented per house law
-  D-017/D-035 rather than hidden; **the (D2) cap (cert 0008) is the
-  highest-leverage thing an outside reader can scrutinise.**
+- **Attack the newest first**: 0019's two thinnest rungs (m = 27, 28) kill
+  at **zero slack** — D is forced to equal R = 14 exactly, and the kills
+  are divisibility facts, not size — and its named pressure-point cell
+  (X = 4 max-2 at m = 22) **revives under five of its nine mutants**, each
+  a one-unit move. Its measured (D2) exposure is exactly three
+  configurations, all named. 0018's field side closes by one unit of (D2);
+  0016 the same one layer down. All margins are documented per house law
+  D-017/D-035 rather than hidden; **the (D2) cap (cert 0008) and 0019's
+  degree caps are the highest-leverage things an outside reader can
+  scrutinise.**
 - **The known soft spots are listed, not buried**: each certificate's
   NOTES.md carries its adversarial record, its margins in every consumed
   coordinate, and its OPEN flags (e.g. whether (CC⁺)'s end-to-end
-  conclusion survives at X = 5 is **open**; the corner itself dies there,
-  witness in 0017).
+  conclusion survives at X = 5 is **open**; the c = 1 corner dies there —
+  witness in 0017 — while the 4/3 rung holds).
 - The lab's own error log is public: guessed constants caught by runs, a
   Φ(8,5) miscomputation caught by the fleet, dated prose/tally errata
   (D-034), and turn 14's pair — the desk wrongly "corrected" an outside

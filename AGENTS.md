@@ -76,7 +76,7 @@ newest on this box.** macOS ships **3.9.6** at `/usr/bin/python3`, and a bare
 `python3` in a clean environment finds that one — so `int.bit_count()` (3.10+),
 `match`, and friends are out. Bind a fast path behind `hasattr` and fall back.
 Test with `env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/<id>/verify.py`;
-every green certificate (0001-0003, 0005-0012) is verified under 3.9 AND under `python3 -O` (0004 is never-green scaffolding). "Runs under a bare python3" is a
+every green certificate (0001–0003, 0005–0019) is verified under 3.9 AND under `python3 -O` (0004 is never-green scaffolding). "Runs under a bare python3" is a
 claim about someone else's machine, so it has to be tested against one.
 
 python.org / Homebrew `python3`, stdlib only for anything that ships. `nauty` is

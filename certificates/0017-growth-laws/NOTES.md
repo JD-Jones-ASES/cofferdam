@@ -133,7 +133,8 @@ would have killed a genuine edge-critical core.
 
 **Whether (CC⁺)'s END-TO-END conclusion survives at X = 5 is OPEN.**
 
-What is proven is that the **corner** dies at X = 5, and the certificate exhibits
+What is proven is that the **c = 1 corner** dies at X = 5 — the 4/3 rung of C1
+holds there, and C2/C3 are X-unrestricted — and the certificate exhibits
 the repaired witness (§2, check 13–15):
 
 ```
@@ -246,7 +247,13 @@ its one-line proof, never for its strength.
 ## What this does not claim
 
 Nothing about existence — every law here is conditional on a critical core at
-that m. Nothing at X = 5 beyond the corner's failure. And the laws are **vacuous
+that m. At X = 5, nothing beyond what C1–C3 already state — the c = 1 corner
+fails (witness), **the 4/3 corner holds**, and C2/C3 carry no X restriction;
+the OPEN item is (CC⁺)'s constant-one end-to-end conclusion, §"THE OPEN FLAG".
+(ERRATUM 2026-07-28: this sentence and the OPEN-FLAG opener originally said
+"nothing at X = 5 beyond the corner's failure" — a deflation of the
+certificate's own C1: the 4/3 rung IS an X = 5 claim, certified. Caught by
+the second outside audit. No check touched.) And the laws are **vacuous
 on m ∈ [23, 26]**, which is named in check 47 rather than buried: those four
 integers are the only m in the whole window where the arithmetic forces
 *nothing*, and the field campaign must do that work by hand.
