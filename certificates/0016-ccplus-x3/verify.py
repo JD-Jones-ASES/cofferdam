@@ -202,7 +202,10 @@ THE LEDGER, in full
 WHAT THIS DOES NOT CLAIM.  Nothing about m >= 23.  No core is claimed to
 exist.  The constant 24 is an X = 2 statement built from the X = 2
 trichotomy; section 9 shows it does not transfer to X = 3, where (T) no
-longer forbids a = 2 and (CC+) is unavailable.
+longer forbids a = 2.  (ERRATUM 2026-07-27: this line originally added
+"and (CC+) is unavailable" -- false as written.  The corner survives
+through X <= 4, because a = 2 at X <= 4 forces b = 0 or s = 3, never a
+violation; certificate 0017.  The 24-does-not-transfer half stands.)
 """
 
 import itertools
@@ -1204,13 +1207,18 @@ check("and the W floor moves with the rung: over the X = 3 configurations "
       "X = 2).  Re-derived here, matching the independent "
       "reimplementation's measurement",
       len(c3) > 0 and min(SW[3][k] for k in c3) == 30)
-note("STATED, NOT TESTED, and it is a warning: at X = 3 the triangle "
-     "lemma no longer forbids a = |f cap g cap e| = 2, so (CC+) is "
-     "UNAVAILABLE and the constant 24 DOES NOT TRANSFER.  The whole "
-     "lambda-case analysis of section 5 must be redone at X = 3 -- the "
-     "shape space there includes a lambda-4 pair and a codegree-3 "
-     "triangle, neither of which occurs at X = 2.  Anyone reusing 24 one "
-     "rung up is reusing an X = 2 theorem outside its hypothesis")
+note("STATED, NOT TESTED, and it is a warning (REWORDED BY ERRATUM "
+     "2026-07-27 -- the original said '(CC+) is UNAVAILABLE' at X = 3, "
+     "which is false as written; see NOTES).  At X = 3 the triangle "
+     "lemma no longer forbids a = 2 -- but a = 2 then forces s = 2 and "
+     "b = 0, so the sharpened corner and (CC+) in fact survive through "
+     "X <= 4 (certificate 0017).  What IS true and stays: the constant "
+     "24 DOES NOT TRANSFER (it is built from the X = 2 trichotomy), and "
+     "the whole lambda-case analysis of section 5 must be redone at "
+     "X = 3 -- the shape space there includes a lambda-4 pair and a "
+     "codegree-3 triangle, neither of which occurs at X = 2.  Anyone "
+     "reusing 24 one rung up is reusing an X = 2 theorem outside its "
+     "hypothesis")
 
 # ==========================================================================
 # 10.  tau = 5 enactment on 0013's real rehearsal core

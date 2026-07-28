@@ -1,162 +1,141 @@
 # cofferdam
 
-A small lab — its first seven certificates derived under a since-opened seal
-(D-011) — establishing a **floor** on the size of a
-counterexample to Ryser's conjecture at r = 6 — the first open case.
+> ## ⚠️ Read this first
+>
+> **AI disclaimer.** The mathematics in this repository was produced by AI
+> systems (Anthropic Claude as the resident researcher, with other models as
+> adversarial reviewers), operated by a human owner who is **not a
+> mathematician** and does not vouch for the content personally. Every claim
+> should be treated as machine-generated until a qualified human has checked
+> it.
+>
+> **Beta-testing repo — work in progress.** This is a live lab notebook, not
+> a publication. **No strong claims are being made.** Results are stated as
+> "proven-by-certificate," meaning exactly and only: a self-contained Python
+> script asserts the listed checks and exits green. Certificates have been
+> wrong before; two carry dated errata for overclaiming *labels* (the checks
+> themselves stood). If you are looking for peer-reviewed mathematics, move
+> along — if you are looking for something to break, welcome; start at
+> [PLAN.md](PLAN.md) § "Where to attack."
 
-Ryser's conjecture says τ ≤ (r−1)ν. In the intersecting case (ν = 1) that reads
-τ ≤ r−1, proven for r ≤ 5 (Tuza) and open at r = 6. A counterexample would be a
-6-partite 6-uniform intersecting hypergraph with τ ≥ 6. The question here is how
-few edges such an object could possibly have.
+A small mathematics lab working on the first open case of **Ryser's
+conjecture**: r = 6, intersecting. The conjecture says τ ≤ (r−1)ν; for
+intersecting r-partite r-uniform hypergraphs (ν = 1) it reads τ ≤ r−1,
+proven for r ≤ 5 (Tuza) and open at r = 6. A counterexample would be a
+6-partite 6-uniform intersecting hypergraph with τ ≥ 6. This repo bounds
+what such an object could look like.
 
-## Where it stands
+## Where it stands (2026-07-27)
 
-**A Ryser r=6 intersecting counterexample has at least 22 edges.**
-**PROVEN-BY-CERTIFICATE, citing nothing.** There is no external input: no
-literature constant, no unreproduced lemma, no solver.
+**The problem is finite, and the shape of a counterexample is pinned from
+five sides.** Every claim below is proven-by-certificate with an **empty
+external-input ledger** — no literature constant, no unreproduced lemma, no
+solver anywhere in the trust chain.
 
-| certificate | result |
+1. **The floor**: any counterexample has **m ≥ 22 edges**
+   (certs 0001–0012, eleven green certificates culminating in the pinned
+   degree ladder).
+2. **The window**: every counterexample contains an edge-critical core, and
+   every critical core has **m ∈ [22, 456]** — so the whole question is one
+   finite check (certs 0013–0014: a Katona-style disjoint-events argument,
+   then part-confinement in Λ⁶(R¹¹)).
+3. **The excess floor**: a critical core at m = 22 must carry pair-excess
+   **X ≥ 3** — it is nonlinear the moment it exists (certs 0015–0016: the
+   critical-cover inequality (CC), then the triangle lemma sharpening it by
+   a factor 3/2).
+4. **The growth laws** (cert 0017): excess grows across the whole window —
+   **X ≥ 3 already by m = 27**, X ≥ 10 from m = 38, X ≥ 100 from m = 108,
+   and **X ≥ 2259 at the ceiling m = 456** (a linear law from the cover
+   structure, an integrality lift, and a second-moment Jensen law). Any
+   near-linear counterexample (X ≤ 2) is confined to **m ∈ {23,…,26}**.
+5. **The frontier**: the X = 3 layer at m = 22 — 186,086 degree
+   configurations, of which 1,580 survive the current judges, 1,549 of them
+   consistent only with a λ = 4 edge-pair. That is where the next
+   certificate aims.
+
+| cert | one line |
 | --- | --- |
-| [0001](certificates/0001-degree-cap-ladder) | the degree-cap ladder; g(1..4) = 1,3,5,8, each with witness + counting kill (one lower-bound argument, two code forms — D-028) → m ≥ 18 citing nothing |
-| [0002](certificates/0002-delta-window) · [0003](certificates/0003-low-incidence) | the maximum-degree window; the low-incidence bound |
-| [0005](certificates/0005-min-degree-ladder) | the **minimum-degree ladder** → m ≥ 19 citing nothing, **m ≥ 20** citing f(6)=13; and the corrected AKP Lemma 2.8, both halves |
-| [0006](certificates/0006-excess-concentration) | **(L8) excess-concentration** → m = 20 impossible, so **m ≥ 21** citing f(6)=13 |
-| [0007](certificates/0007-citation-free-floor) | **the citation is unnecessary** — (L8) run on the weaker rung N(5) ≥ 11, which is ours, kills every m ≤ 20 → **m ≥ 21 citing nothing** |
-| [0008](certificates/0008-degree-two-cap) | **the degree-two cap** — each line holds ≤ 1 degree-2 vertex, so 2·D₂ ≤ m; kills m = 21 → **m ≥ 22 citing nothing** |
-| [0009](certificates/0009-g5-pinned) | **the ladder is pinned** — g(5) = N(5) = 13 citing nothing (the m = 12 dead heat forces the shape; 11,520 designs, all τ = 4); Q13 answered YES; the citation-free ladder now *equals* the cited one |
-| [0010](certificates/0010-n4-by-hand) | **N(4) = 9 by hand** — the floor's hinge is a readable theorem; the two exhaustive searches drop to corroboration |
-| [0011](certificates/0011-extremal-delta) | **Δ = 4 exactly** for 13-edge τ ≥ 5 objects — the last uncertified structural result, and (L10)'s input |
-| [0012](certificates/0012-delta-budget-retired) | **the δ-budget retires** — (L10), the saturation floor, + convexity kill all 567 m = 21 configurations at margin ≥ 6; the minimal chain consumes no δ-budget, level system, qmin or U |
+| [0001–0012](certificates/) | the floor m ≥ 22, citing nothing (see each NOTES.md) |
+| [0013](certificates/0013-finite-window) | the window [22, 462]; Ryser r = 6 intersecting ⟺ no critical core in the window |
+| [0014](certificates/0014-window-456) | part-confinement → **[22, 456]** |
+| [0015](certificates/0015-cc-x-floor) | (CC) + **X ≥ 2** at m = 22 (margin: one unit) |
+| [0016](certificates/0016-ccplus-x3) | the triangle lemma + (CC⁺) → **X ≥ 3** at m = 22 (margin: one unit of the (D2) cap) |
+| [0017](certificates/0017-growth-laws) | the corner ladder ((CC⁺) holds through X ≤ 4) + the linear and second-moment **growth laws** across the window |
 
-On the pinned ladder the load-bearing set is 0008 + 0009 + 0010 + 0011 + 0012
-(plus 0005's lemmas): one ladder, entirely in-house, its hinge a theorem, and
-m = 21 killed on floors and convexity alone. 0006 and 0007 remain green as the
-weak-ladder record — 0007 ran the machinery on a *strictly weaker* input (7,159
-admissible configurations at m = 20 rather than 105) and still killed
-everything, so the floor was never an artefact of a cited constant — but they
-are retired from the minimal chain, not refuted.
-
-**What 0008 does and does not claim.** The floor is new; the lemma is not. The
-degree-two cap is clause (iii) of Lemma 2.1 of Francetić–Herke–McKay–Wanless
-(2017), re-derived in full here so the floor cites nothing — but re-deriving a
-published lemma is a different act from finding one. The lab's lemmas (A) and (B)
-are that paper's 2.1(ii) and 2.1(i) and are in the same position. The lever buys
-**one rung and stops**: m = 22 survives.
-
-A floor says where the object *cannot* be, not where it is. Nothing here claims a
-counterexample exists at 22 or above.
+A floor says where the object *cannot* be. Nothing here claims a
+counterexample exists — at 22, 456, or anywhere.
 
 ## If you are here to attack it
 
-Good — that is what it is for. **[PLAN.md](PLAN.md) § "Where to attack"**
-carries a ranked list: what rests on the most, checked the least. Three shortcuts
-worth knowing before you start:
+Good — that is what this repo is for, and outside audit is the reason it is
+public. **[PLAN.md](PLAN.md) § "Where to attack"** carries the ranked list
+(what rests on the most, checked the least). Standing invitations:
 
-- **Hit N(4) = 9 first — it is now a theorem, so attack the proof.** Through
-  turn 8 this rung was one exhaustive search (then two); certificate 0010 made
-  it a hand proof whose finite case checks run in seconds, with the searches as
-  corroboration. The sensitivity is unchanged: set N(4) = 8 and m = 20 comes
-  back to life — **and so does m = 19**, so that failure drops the floor to 19.
-  Breaking the theorem's case analysis is now the single most valuable thing
-  anyone could contribute. Do not attack the literature — it is no longer
-  holding anything up.
-- **Then the excess budget X, and g(4) = 8.** PLAN.md's corrected risk table
-  (D-023) says X is the *sole* step whose removal leaves 100% of configurations
-  surviving; the previously published claim that (L7) does the same was false.
-  And g(4) = 8 carries a margin of exactly one — weaken it to 7 and 649 of 7,159
-  survive at m = 20 — while appearing on no attack list until now.
-- **The δ-budget holds up nothing anymore.** Certificate 0012 retired it from
-  the minimal chain: m ≤ 19 admits no configuration on the pinned ladder,
-  m = 20 dies on the (D2) cap, and m = 21 dies on (L7)+(L10) floors + (L9)
-  convexity at margin ≥ 6. Attack (L10)'s input instead — certificate 0011's
-  Δ ≤ 4, which rests on the twice-built (8,4) census; weakening it to Δ ≤ 5
-  revives 65 of the 567.
-- The load-bearing control is that the identical machinery, run at m = 21, still
-  leaves survivors — had it killed every m it would be "proving" Ryser at r = 6 and
-  would therefore be wrong. **Certificate 0006 computes it in full: 6198 of 43875.**
-  Certificate 0007's control is on the weaker ladder and stops at the first
-  survivor, which is what that control needs and all it claims. If you can break
-  either, you have broken the certificate it belongs to.
-- 0006's ceiling was deliberately weakened to the crudest concentration bound, so an
-  earlier value-pool argument is **no longer in the trust chain** — don't spend time
-  on it.
-
-The standing law here is that a search which under-enumerates fakes a proof, so
-every "no such object exists" ships with its completeness argument and is validated
-first on targets with known answers. Those are the joints to lever.
-
-## Why a cofferdam
-
-A cofferdam is a watertight enclosure pumped dry so you can build on the
-riverbed — you hold the water back in order to work on the floor. This repo did
-both: it was given the *statement* and nothing else, and re-derives rather than
-transcribes. [BRIEF.md](BRIEF.md) §2 names what was sealed and why; the seal has
-since been opened and spent (D-011). Provenance conventions and the full origin
-story live in D-010 — the short of it: pointers came from peers twice, and every
-proof, search and control is this repo's.
+- **Replay any certificate**: one command each, all sub-minute except the
+  floor's heavy ones (see "Checking a claim" below). A red run on your
+  machine is a finding; please report it.
+- **Attack the newest first**: 0016's field kill closes by **exactly one
+  unit** of the degree-two cap (its NOTES states the near-miss
+  configuration in full), and 0017's second-moment law has only
+  direction-controls as enactment — both margins are documented per house
+  law D-017/D-035 rather than hidden.
+- **The known soft spots are listed, not buried**: each certificate's
+  NOTES.md carries its adversarial record, its margins in every consumed
+  coordinate, and its OPEN flags (e.g. whether (CC⁺)'s end-to-end
+  conclusion survives at X = 5 is **open**; the corner itself dies there,
+  witness in 0017).
+- The lab's own error log is public: guessed constants caught by runs,
+  a Φ(8,5) miscomputation caught by the fleet, two label errata (D-034) —
+  see DECISIONS.md and the notebook. An error that flatters the expected
+  answer is the failure mode this lab is built around.
 
 ## The design commitment
 
-**No solver appears anywhere in the trust chain.** τ ≤ 5 is witnessed by five
-vertices, which any reader checks by inspection; "no counterexample below m
-edges" is exactly the claim that every candidate has such a witness. So the
-expensive half of the work is exhaustive generation plus a list of explicit
-covers. Nothing rests on a SAT solver's unsupported word, and every checker runs
-under a bare `python3` with no installs.
+**No solver appears anywhere in the trust chain.** τ ≤ 5 is witnessed by
+five vertices, checkable by inspection; "no such object below m edges" is
+exactly the claim that every candidate has such a witness. Every checker
+runs under a bare `python3` (3.9+) with no installs, prints its checks and
+its **notes** (stated-not-tested facts) in separate tallies, names its
+dependency ledger transitively, and states the floor it would still reach
+with each dependency removed.
 
 ## Layout
 
 ```
 BRIEF.md        frozen founding brief — the seed, the seal, the laws
 AGENTS.md       operating instructions; which engine to use when
-PLAN.md         the living plan
-DECISIONS.md    the ADR log (D-001..D-030)
-lib/ryser.py    edge-wise engine: canonical forms, exact tau, census
-lib/columns.py  column-wise engine: the hypergraph as r partitions of the
-                edge set — orders of magnitude faster for existence questions
+PLAN.md         the living plan — state, attack list, risk decomposition
+DECISIONS.md    the ADR log (D-001..D-035)
+lib/            two engines (edge-wise census; column-wise existence)
 certificates/   one directory per result; each has a standalone verify.py
-notebook/       append-only technical entries
+                and a NOTES.md with margins + adversarial record
+notebook/       append-only technical entries (errata recorded, never edited)
 reports/        plain-language digests for the owner
 ```
 
 ## Checking a claim
 
-Every certificate is self-contained:
-
 ```bash
-python3 certificates/0001-degree-cap-ladder/verify.py
+python3 certificates/0016-ccplus-x3/verify.py
 ```
 
-No arguments, no installs, no imports from `lib/`. It prints its own checks, its
-external dependencies, and the floor it would still reach with each dependency
-removed.
-
-The **eleven green certificates** (0001–0003, 0005–0012, with 0004 never-green
-scaffolding, labelled as such) are verified on **Python 3.9** — the version
-macOS ships as `/usr/bin/python3` — as well as on 3.14, and under **`python3
--O`** as well as plain `python3`. A checker that is green normally and broken
-under `-O` is not a checker (D-015), and 0005 was exactly that until
-2026-07-26. Runtimes to expect: 0008 ~2 min; 0005 ~6.5–7 min on 3.10+
-(slower on 3.9, where it falls back from `int.bit_count`); **0009 ~12 min**
-(its exact-cover census is the heavy step); 0010 ~30 s; 0011 ~3 min;
-0012 ~80 s. They are slow, not hung.
-
-Each certificate prints **checks** and **notes** separately. A note is a stated fact
-— a citation, or a step proved by hand — and is *not* machine-tested; keeping the two
-tallies apart is what stops a check count from implying a test that never ran.
+No arguments, no installs, no imports from `lib/`. Every green certificate
+is verified on **Python 3.9** (macOS's `/usr/bin/python3`) and 3.14, under
+`python3 -O` as well as plain — a checker that breaks under `-O` is not a
+checker (D-015). Recent certificates run in seconds; the floor's heavy ones
+(0005, 0009) take minutes and say so.
 
 ```bash
-env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/0006-excess-concentration/verify.py
+env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/0017-growth-laws/verify.py
 ```
 
 ---
 
-Owner: JD. Researcher: the Brain (Claude). Licensed MIT for code; results are
+Owner: JD. Researcher: the Brain (Claude); adversarial review by
+multi-model fleets, with every consumed step re-derived at the desk
+(Certificate Law). Licensed MIT for code; mathematical results are
 unlicensed until first publication, which is the owner's call alone.
 
-An erratum note on a published lemma lives at
+An erratum note on a published lemma (AKP Lemma 2.8, both editions read
+firsthand) lives at
 [notebook/2026-07-25-akp-lemma-28-erratum.md](notebook/2026-07-25-akp-lemma-28-erratum.md).
-It is now scoped to **both** editions — arXiv:1409.4938v1 and the version of record,
-*JCMCC* **103** (2017) 81–104 — each read firsthand. The journal PDF is an image-only
-scan with no text layer, which is why a text-based check of it comes back empty; that
-is not evidence of absence.

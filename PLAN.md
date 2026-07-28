@@ -1,8 +1,8 @@
 # cofferdam — plan
 
-Revised 2026-07-27 (turn 12). History is the record; this file is rewritten.
+Revised 2026-07-27 (turn 13). History is the record; this file is rewritten.
 
-## Where we are — **THE FINITE WINDOW [22, 456], AND X ≥ 3 AT ITS FLOOR**
+## Where we are — **[22, 456]; X ≥ 3 AT THE FLOOR; THE WINDOW NONLINEAR ALMOST EVERYWHERE**
 
 | cert | result |
 | --- | --- |
@@ -20,7 +20,8 @@ Revised 2026-07-27 (turn 12). History is the record; this file is rewritten.
 | **0013** (32 + 8) | **THE WINDOW [22, 462]**; ceiling ledger EMPTY; Ryser r=6 ⟺ no critical core in the window |
 | **0014** (13 + 4) | **(L11) part-confinement → [22, 456]**; the peer-claimed 456 is an in-house theorem |
 | **0015** (19 + 3) | **(CC)** + **X ≥ 2 at m = 22**; margin one unit (231 vs 232). Erratum 2026-07-27: its "floor lands exactly at 2" label overclaimed; reworded, check untouched |
-| **0016** (45 + 8) | **(T) the triangle lemma** (a ≥ 2 ⟹ X ≥ 3, self-contained) + **(CC+)** I_e ≤ X − x_e at X ≤ 2 (3/2 sharper) + **X ≥ 3 FOR EVERY CRITICAL CORE AT m = 22** — the 9,224-config X = 2 "frontier field" of turn 11 is EMPTY; margin ONE UNIT of (D2) |
+| **0016** (45 + 8) | **(T) the triangle lemma** (a ≥ 2 ⟹ X ≥ 3, self-contained) + **(CC+)** I_e ≤ X − x_e at X ≤ 2 (3/2 sharper) + **X ≥ 3 FOR EVERY CRITICAL CORE AT m = 22** — the 9,224-config X = 2 "frontier field" of turn 11 is EMPTY; margin ONE UNIT of (D2). Erratum 2026-07-27 (turn 13): its "(CC+) unavailable at X=3" notes were false as written; reworded, checks untouched |
+| **0017** (61 + 12) | **THE EXCESS-GROWTH LAWS**, window-wide: the corner ladder (**(CC+) holds through X ≤ 4**; dies at X = 5, witness; end-to-end at X = 5 OPEN) · the unconditional pair-sum (complement to (CC)) · linear law 2m + 5x_e ≤ 52 + 3X → lifted **X ≥ 3/3/4 at m = 27/28/29, 290 at 456** · coupling **X ≤ 2 ⟹ m ≤ 26, X ≤ 4 ⟹ m ≤ 28** · **(G) second-moment law: X ≥ 2259 at m = 456**, crossover m = 67 · combined profile: forced X ≥ 1 on 431/435 m-values — **the only arithmetic-free rungs are m ∈ {23,24,25,26}** |
 
 All green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O` (D-015).
 0016 was built through three fleet phases (derive → adversarial ×3 → draft +
@@ -35,33 +36,45 @@ kills the 3/2 corner at X ≤ 2 → (CC+) → per-edge budgets 2/1/0 → the
 λ-trichotomy prices the excess-carrying vertices → W ≤ 24 vs field minimum
 27 under (D2) → **X ≥ 3** (0016).
 
-## Where to attack — reranked after turn 12
+## Where to attack — reranked after turn 13
 
-1. **The X = 3 frontier — a different world.** 186,086 configurations,
-   15,340 alive under (D2) + plain-(CC) W ≤ 90. At X = 3, a = 2 is legal,
-   (CC+) is gone, 24 does not transfer. The rungs, in order:
-   (a) **rigidity of the a = 2 world**: prove a = 2 at X = 3 occurs ONLY as
-   the codegree-3 triangle (three edges through two common vertices,
-   consuming the whole excess) — then the shape space splits into
-   "triangle" vs "triangle-free", and on the triangle-free side (CC+)
-   survives at X = 3 with budgets 3 − x_e; (b) redo §5's λ-case analysis
-   per shape (λ=4 pair · λ=3+λ=2 · three λ=2's · the triangle) with the
-   shared-vertex budgets; (c) the banked cover-side theorems (B3 window,
-   B6 (CC*) cover-degree caps) and the L1 degree-array judge as finishers.
-2. **Verify the excess-growth spin-off, then aim it at the ceiling.**
-   Fleet-claimed, desk-unverified: Φ(n,k) ≥ n−k inside (CC) ⟹
-   X ≥ 2m(m−26)/(3m−10) — X ≥ 289 at m = 456. If it verifies, the window's
-   top is not a flat sea: pair it with the intersecting-ness axiom lane
-   (2(b) of turn 10) and the C(2r−2, r−1) → 252 conjecture (abstract r = 4
-   still open in [17, 35]; settle r = 4 first, D-033 style).
-3. **Mine the field's complementary finite framings** (unchanged): DeBiasio
+1. **The λ4-pair rung at X = 3, m = 22.** Turn-13 census (fleet-verified,
+   banked in the t13 notebook §3, NOT yet certified): shape-blind W ≤ 48
+   leaves 1,580 of 186,086, and **1,549 are consistent only with the
+   λ = 4 pair** — two edges with x = 3, all twelve degrees ≤ 6, row sums
+   exactly 30, shared 4-set across 4 parts. That is transversal-level
+   structure the degree field cannot see: build the two-edge local judge
+   (the L1 degree-array machinery is written down) and certify the
+   census + star kill (bound 24 < floor 27, Claim-B-free) on the way.
+   Joint per-shape bounds need vertex-identification enumeration to be
+   cert-grade (census lane's loud flag). X = 3 already impossible at
+   m ≥ 28 (0017's coupling).
+2. **The m ∈ {23,24,25,26} thin rungs.** 0017 names them: the only sizes
+   in the window with NO forced excess. 0016's lemmas ((T), (CC+),
+   W-bounds) are m-free; only the field scan was m = 22. Re-run the
+   X ≤ 2 field machinery at m = 23..26 (cheap; X ≤ 2 cores are confined
+   to exactly these m by 0017) — a kill there would make **X ≥ 3
+   universal on the whole window**.
+3. **(G)'s successors at the ceiling.** The Jensen step is now certified
+   machinery: (a) the b-aware hybrid Φ ≥ max(ψ(d), d−6+b) to smooth the
+   m = 67 crossover; (b) an UPPER bound on X — with X ≳ m²/90 forced
+   from below, any sub-quadratic upper bound caps m outright (the
+   window would shrink from 456); candidates: the intersecting-ness
+   axiom lane, C(2r−2, r−1) → 252 (abstract r = 4 open in [17, 35],
+   settle it first, D-033 style).
+4. **Mine the field's complementary finite framings** (unchanged): DeBiasio
    Table 2 (173 signatures) × the window; Pokrovskiy 2507.05842; Barát's
    18×18 PG(2,5) incidence matrix vs our truncated-plane machinery.
-4. **Re-derive the stronger per-part hand claim** (unchanged from turn 9):
+5. **Re-derive the stronger per-part hand claim** (unchanged from turn 9):
    every part of an 8-edge τ ≥ 4 object carries a degree-1 vertex.
-5. **Conditioned-class equality scans** (unchanged).
+6. **Conditioned-class equality scans** (unchanged).
 
 **Closed levers (do not reopen silently):** turn 10's list, plus:
+**the growth-law verification (turn 13: DONE, cert 0017 — the spin-off,
+its integrality lift, and (G) all certified; the m²/90 asymptote is a
+note, never a bound)** · **OPEN flag on file: whether (CC+)'s end-to-end
+conclusion survives at X = 5 (the corner dies there; the witness kills
+only the middle step)** ·
 **PLAN-11 rung (b) — per-edge (CC) with real b-profiles — CLOSED NEGATIVE
 (turn 12, lane B's B5)**: the min-over-b equals the Φ(·,5) relaxation
 whenever Σ(6−dᵢ)⁺ ≥ 5, which (L4) forces at m = 22 for every X ≤ 4; first

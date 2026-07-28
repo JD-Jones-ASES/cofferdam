@@ -129,7 +129,9 @@ the same field and shows W ≤ 24 empties it.
 superseded wording): `PLAN.md` line 50 — "the **9,224 X = 2 survivors** are the
 frontier field" — and `notebook/2026-07-27-turn11-cc-x-floor.md` line 91 — "The
 X = 2 layer's 9,224 survivors are the new frontier field". The real frontier is
-the X = 3 layer; see *What this opens*.
+the X = 3 layer; see *What this opens*. *(Done at the turn-12 close-out:
+PLAN.md was rewritten; the turn-11 notebook entry stands as append-only history
+with the correction recorded in the turn-12 entry.)*
 
 ## Provenance — in-house, and no sketch was consumed
 
@@ -242,14 +244,18 @@ of which **15,340** survive everything currently available.
 Three things change at X = 3, and none of them is cosmetic:
 
 1. **a = 2 becomes legal.** (T) no longer forbids a triple sharing two vertices —
-   in fact the codegree-3 triangle consumes exactly X = 3. So **(CC⁺) is
-   unavailable** and the budgets revert to plain (CC)'s factor 3/2.
+   in fact the codegree-3 triangle consumes exactly X = 3. *(Erratum
+   2026-07-27: this item originally concluded "(CC⁺) is unavailable" — false
+   as written. a = 2 at X ≤ 4 forces b = 0 or s = 3, never a corner
+   violation, so (CC⁺) survives through X ≤ 4 — certificate 0017.)*
 2. **The constant 24 does not transfer.** It is built from the X = 2
    trichotomy. The X = 3 shape space additionally contains a λ = 4 pair and the
    codegree-3 triangle. The whole λ-case analysis of §5 must be redone.
 3. **The λ-shape lever weakens where a = 2 is realised**, because on the
    triangle's three edges x_e = 2, where (CC⁺)'s bound X − x_e = 1 and plain
    (CC)'s ⌊3(X−x_e)/2⌋ = 1 coincide.
+   *(This item is unaffected by the erratum: on the triangle's edges the two
+   bounds coincide, so there the sharpening genuinely buys nothing.)*
 
 Two leads follow. First, prove the a = 2 world at X = 3 is *exactly* the
 codegree-3 triangle — a rigidity statement, and the natural next lemma. Second,
@@ -257,6 +263,19 @@ the induced degree-array judge (L1) built during this turn's derivation is not
 decisive on its own at either strength (most X = 2 configurations do admit a
 valid array), but it is the machinery the X ≥ 3 rung will reuse, and it is
 already written down.
+
+## Erratum against this certificate (2026-07-27, applied with certificate 0017)
+
+Section 9's warning note and one docstring line said **"(CC⁺) is UNAVAILABLE"**
+at X = 3. False as written: only the *naive* a ≤ 1 argument dies there. An
+a = 2 triple at X ≤ 4 forces (a, b, s) ∈ {(2,0,2), (2,0,3), (2,1,3)}, never a
+corner violation, so the sharpened corner — hence (CC⁺) — survives through
+X ≤ 4 and first fails at X = 5 (certificate 0017 exhausts the ladder). The two
+companion statements were and remain true: the constant 24 does not transfer,
+and the λ-case analysis must be redone at X = 3. No check condition changes;
+the reworded note and docstring line are marked in place; re-verified green
+under bare 3.9.6 and `-O` after the edit. Caught by the turn-13 fleet
+(both derivation lanes independently).
 
 ## Reproduce
 
