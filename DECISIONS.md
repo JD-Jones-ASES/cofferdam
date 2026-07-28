@@ -744,3 +744,46 @@ sensitivity sweep in THAT certificate's coordinate; name the binding
 coordinate in the margin statement; and when an enactment's hypothesis
 has a fixed size or count, construct the test AT the hypothesis (pad,
 don't approximate) so the label and the code test the same claim.
+
+## D-036 · Outside-audit intake is statement-level, and a deflation is an error too (2026-07-28, turn 14)
+
+The repo's first outside audit (GPT 5.6 Sol Pro, one day after the
+public flip) proposed turn 14's theorem — the X = 3 layer dies at the
+floor — with an eight-case route and field numbers matching ours
+digit-for-digit. The intake protocol that handled it, now law:
+statements and claimed constants come IN; proofs are never ingested
+(here none were even available — the audit's documents were not
+fetched). The lab re-derives at the desk, blind fleet lanes re-derive
+from a definitions pack alone, hostile refuters attack the desk
+versions, and the certificate consumes only in-house derivations, with
+the audit's role recorded in NOTES as provenance (D-031: recorded, not
+consumed). Corroboration is counted in implementations, not authority:
+the field facts entered the cert only after six in-house computations
+agreed.
+
+Two failure modes this turn adds to the ledger. First: the desk
+"corrected" the audit's path-shape bound 27 to 26 — and the desk was
+wrong; three refuter lanes restored 27 by exhaustive enumeration.
+**Deflating a peer's correct number inside a "correction" is the
+mirror image of the flattering overclaim** — skepticism must be
+symmetric, and an identification pattern you did not enumerate is an
+identification pattern you missed. Second: both the audit's summary
+and the desk's first write-up asserted a forced census split ("one
+(7,7), two (8,6)") where the argument only proved "at most one (7,7)"
+— the zero-(7,7) case needed its own kill. Equality analyses must
+ENUMERATE their assignment dichotomies, not narrate them.
+
+**Why:** the outside-audit lane multiplies eyes without importing
+trust; it stays sound only if the boundary (statements in, proofs
+never, derivations in-house) is mechanical. And D-017's flattering-
+error law needs its mirror stated once: an error that DEFLATES a
+peer's correct claim survives review just as easily, because it wears
+the costume of rigor.
+
+**How to apply:** peer claims arrive as a statement list with the
+peer's constants. Every constant is reproduced in-house (>= 2
+independent implementations) before it may appear in a certificate;
+every claimed theorem is re-derived blind + refuted before its
+statement is consumed; the peer is credited in NOTES provenance and
+cited by zero proof steps. When checking a peer bound, enumerate —
+never hand-derive a smaller number and prefer it for being yours.

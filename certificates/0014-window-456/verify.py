@@ -494,8 +494,11 @@ print("""
   false abstractly -- the calibration that forced honesty), generic
   impossibility proven in-transcript at r = 3, 4 (r = 6 fleet-measured,
   notebook).  Every identity and witness THIS transcript relies on is
-  exact integer arithmetic; the 5 notes are stated, not tested, and say
-  so.  435 values of m remain.
+  exact integer arithmetic; the 4 notes are stated, not tested, and say
+  so.  435 values of m remain.  (ERRATUM 2026-07-28: this line originally
+  said "the 5 notes" -- a hand count that included the note() helper's def
+  line; the transcript prints 4 and there are exactly 4 call sites.  Prose
+  only; no check touched.  Caught by the outside audit.)
 """, flush=True)
 
 print("%d checks + %d notes (stated, not tested), %.0fs, %s"

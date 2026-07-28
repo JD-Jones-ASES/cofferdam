@@ -21,8 +21,11 @@ window-wide, and the one m = 22 fact it uses is cited from 0016, not re-derived.
 
 ## Why this certificate exists
 
-Certificates 0013–0016 are **m = 22 statements**: their lemmas are m-free but
-their kills are field scans at the window floor. 0017 is the opposite shape — it
+Certificates 0015–0016 are **m = 22 statements**: their lemmas are m-free but
+their kills are field scans at the window floor (0013/0014 are the window's two
+halves — floor consolidation and ceiling — not m = 22 kills; ERRATUM 2026-07-28,
+this sentence originally lumped them in as "0013–0016", caught by the outside
+audit). 0017 is the opposite shape — it
 carries **no field scan at all** and quantifies over the whole window at once.
 
 The mechanism is one relaxation and one convexity argument applied to the same
@@ -254,12 +257,16 @@ m ≈ 1000. It is a note about the shape of the law, not a bound.
 
 ## Tally
 
-61 checks, 10 notes (stated-not-tested facts). Sections: 1 Φ, ψ and the linear
+61 checks, 12 notes (stated-not-tested facts). Sections: 1 Φ, ψ and the linear
 floor (6) · 2 the corner ladder and the X = 5 witness (9 + 2 notes) · 3 the
-unconditional pair-sum (6 + 3) · 4 the per-edge linear law (6) · 5 the summed law
-and the lift (7) · 6 the coupling (2 + 1) · 7 (G) and its mutants (10 + 2) ·
+unconditional pair-sum (6 + 4) · 4 the per-edge linear law (6) · 5 the summed law
+and the lift (7) · 6 the coupling (2 + 2) · 7 (G) and its mutants (10 + 2) ·
 8 the window profile (2 + 1) · 9 the τ = 5 direction control (4 + 1) ·
 10 criticality teeth (3) · 11 the margins (6).
+(ERRATUM 2026-07-28: this tally originally read "10 notes" with §3 at 3 and §6
+at 1; the transcript prints 12 — §3 has 4 notes and §6 has 2. The header's
+"61 + 12" was always correct. Counting drift only; no check or note touched.
+Caught by the outside audit.)
 
 Runtime: **~13 s** on a bare `/usr/bin/python3` (3.9.6), **~9 s** on 3.14.6;
 `-O` makes no difference to either. Every heavy step reports its own wall clock
