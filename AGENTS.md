@@ -62,7 +62,11 @@ the deliverable is a census rather than a yes/no.
 1. Re-read the seal. Confirm nothing in the session's plan requires breaking it.
 2. Work the agreed scope in PLAN.md. Notebook entries are append-only, dated,
    technical. A dead end is a result and gets written down as one.
-3. Close: digest in `reports/`, PLAN.md revised, commit.
+3. Close: digest in `reports/`, PLAN.md revised, **README.md "Where it
+   stands" + the GitHub repo description synced to the new state** (the
+   repo is public; a stale front page misstates the lab to its auditors
+   — this line exists because both lagged a full turn once, caught by an
+   outside reviewer 2026-07-28), commit.
 4. Publishing anything, anywhere, is JD's line — always.
 
 ## Toolchain
