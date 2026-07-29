@@ -128,9 +128,14 @@ it buys.)
 ### (L-d) The weight w and its monotonicity
 
 C(j,2) ≥ j − 1 for every integer j ≥ 0, so Φ(n,k) ≥ n − k; Φ is nonincreasing in
-the class count k. Hence **Φ(d−1, 5−b) ≥ Φ(d−1, 5) = w(d)** for every b ≥ 0 —
-whatever the private cover T_e does with its five cells. The table at d = 2..11
-is **0, 0, 0, 0, 0, 1, 2, 3, 4, 5**, and w(d) ≥ d − 6 for all d. ∎
+the class count k. Hence **Φ(d−1, 5−b) ≥ Φ(d−1, 5) = w(d)** for 0 ≤ b ≤ 4 —
+whatever the private cover T_e does with its five cells; **if bᵢ = 5**,
+monotonicity is not invoked: the inherited covering branch (0015 step (1))
+forces dᵢ = 1, so the term and its w-relaxation are both zero. (Scope
+clarification 2026-07-28, third outside audit: the sentence originally said
+"for every b ≥ 0", though the check runs b = 0..4.) The table at d = 2..11
+is **0, 0, 0, 0, 0, 1, 2, 3, 4, 5**, and w(d) ≥ d − 6 for all d — w is an
+**integer at every d** (Φ is a count; w(12) = 7). ∎
 
 ### (L-e) The per-edge budget
 
@@ -203,22 +208,36 @@ Three facts about (SC), each a must-fail control in §2 rather than a remark:
 - **The bound is sharp**: 62 of the 849 hypothesis-satisfying families hit
   equality.
 
-### The Δ ≤ 5 + X repair (what the outside audit got wrong, and how)
+### The Δ ≤ 5 + X strengthening — and an erratum owed to the audit (2026-07-28)
 
-The audit's proof text *was* received in full and read at the desk (see
-**Provenance** below), so the defect can be stated concretely rather than
-gestured at. Its route to a degree cap ran: the per-edge budget gives a w-sum
-of at most 16/3 at the relevant excess, ⌊16/3⌋ = 5, therefore Δ ≤ 11. The
-flooring step is where it closes on itself — reading the w-sum as an integer
-presupposes that the degrees it is summing over are already capped, which is
-the very conclusion being derived. The **statement** was right; the argument
-was circular. **(DH) is the repair, not a transcription**: its derivation uses
-only partiteness, intersecting-ness, and the definition of X — no degree bound
-anywhere, at any step — and it returns the strictly stronger **Δ ≤ 5 + X**,
-free of any flooring. Two of the three hostile refuter lanes flagged the
-circularity independently; the desk's first read did not. This paragraph exists
-so that no reader mistakes agreement-on-the-statement for
-agreement-on-the-proof.
+**ERRATUM (caught by the third outside audit, same day).** This section
+originally stated that the received proof's degree-cap step — w-sum ≤ 16/3,
+⌊16/3⌋ = 5, therefore Δ ≤ 11 — "was circular as written: reading the w-sum as
+an integer presupposes that the degrees are already capped." **That charge is
+false of the received text.** There, w(d) := Φ(d−1, 5), and Φ is a count — an
+integer at *every* d (w(12) = 7, not "≥ 6") — so the w-sum is a sum of
+integers and the flooring is valid with no cap presupposed anywhere. The
+circularity was real only in the **desk's transcription** handed to the
+refuter lanes, which restated w as the d ≤ 11 table plus the inequality
+w(d) ≥ d − 6 above it; under that weakened spec integrality genuinely fails to
+follow, and the two refuters who flagged it were **correct about their
+input** — though even there the step was unjustified-but-**inert**: the pack's
+own w(d) ≥ d − 6 closes d ≥ 12 against 16/3 directly, so no downstream
+conclusion depended on the flooring (fourth-audit-lane refinement, same day).
+The desk then recorded their finding as the peer's defect without
+re-checking it against the original — a deflation of a peer's correct *step*,
+the same failure D-036 names for numbers, now committed one level up. D-038
+is the law this bought: refuters read the verbatim received text, and a
+defect found in transcribed material is checked against the original before
+it is recorded as the peer's.
+
+What stands unchanged: **(DH) is independently derived** — partiteness,
+intersecting-ness, and the definition of X, no flooring at any step — and it
+is **strictly stronger** (Δ ≤ 5 + X = 10 at X = 5, against the received
+text's 11). It is an improvement over a valid argument, not a repair of a
+broken one. This paragraph exists so that no reader mistakes either direction:
+agreement-on-the-statement is not agreement-on-the-proof, and *disagreement
+with a transcription is not a defect in the source*.
 
 ---
 
@@ -344,11 +363,13 @@ layer lanes re-derived the eliminations, two of them by **independent routes
 the audit text does not contain** (a negative-discriminant quadratic for X ≤ 3;
 a (d−3)(d−5) second-moment functional for X = 4); the received text itself went
 only to **three hostile refuter lanes**, whose job was to break it. Two
-refuters flagged its one defect — the ⌊16/3⌋ = 5 ⟹ Δ ≤ 11 step is circular as
-written, since integrality of the w-sum presupposes the degree cap it is
-deriving — and the desk repaired it with the strictly stronger free cap
-Δ ≤ 5 + X read directly off (DH). **Attribution recorded, not consumed: no
-step cites the audit.** The lanes, in full:
+refuters flagged a circularity in the ⌊16/3⌋ degree-cap step **as it appeared
+in the desk's transcription** (ERRATUM 2026-07-28: originally recorded here as
+"its one defect", i.e. the received proof's — false; the received text's
+Φ-defined w is integer at every d and its flooring was valid; see "The
+Δ ≤ 5 + X strengthening" above and D-038). The desk's (DH) supplies the
+strictly stronger free cap Δ ≤ 5 + X independently. **Attribution recorded,
+not consumed: no step cites the audit.** The lanes, in full:
 
 - **2 blind lemma lanes** on (DH)/(SC) from the definitions pack alone, with
   1M+ enactments between them;
@@ -357,17 +378,17 @@ step cites the audit.** The lanes, in full:
   route to X = 4. Both are **banked in the turn-15 notebook, not consumed**;
 - a **numeric lane** re-deriving the tables and the two summed laws;
 - **2 dependency audits** on the ledger;
-- **3 hostile refuters** — the only lanes to receive the audit's proof text;
-  **zero fatal, zero major**, and two of the three caught the circularity;
+- **3 hostile refuters** — the only lanes to receive the argument;
+  **zero fatal, zero major**; two flagged the transcription's circularity
+  (see the erratum above);
 - a desk re-derivation with its own 35-check script, then this file.
-
-An audit that proposes two true theorems by an argument with a circular step is
-still worth having; it is not worth transcribing. It was not transcribed.
 
 ### The catches, kept on the record (D-017/D-036)
 
-- **The ⌊16/3⌋ circularity**, repaired by (DH) with a strictly stronger cap.
-  Caught by two of the three refuter lanes, not by the desk's first read.
+- **The ⌊16/3⌋ misattribution** (ERRATUM 2026-07-28): the desk transcribed w
+  into a weaker spec, the refuters correctly broke the transcription, and the
+  desk recorded the break as the peer's defect. The received step was valid;
+  (DH) is a strengthening, not a repair. Caught by the third outside audit.
 - **The m = 26 census was dead code** — C3 already caps that branch at m ≤ 25.
   Kept anyway, as a triple-redundant tooth, because it is a zero-margin rung.
 - **The n₇ = 1 invocation in tooth (c) was implicit** in the desk's first

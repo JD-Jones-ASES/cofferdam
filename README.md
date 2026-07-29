@@ -40,23 +40,23 @@ solver anywhere in the trust chain.
    every critical core has **m ∈ [22, 456]** — so the whole question is one
    finite check (certs 0013–0014: a Katona-style disjoint-events argument,
    then part-confinement in Λ⁶(R¹¹)).
-3. **The excess floor, window-wide** (cert 0019): **every critical core has
-   X ≥ 5**, at every m in the window — and **X = 5 is only possible at
-   m ≤ 26**, so **m ≥ 27 forces X ≥ 6**. Two counting lemmas carry it (the
-   defect-hub bound Δ ≤ 5 + X and the star-collision inequality D ≤ R) plus
-   a census engine: 3,056 exhaustive runs, every one empty. The earlier
-   floor-local chain still stands on its own (0015–0016: X ≥ 2, X ≥ 3 at
-   m = 22; 0018: the eight-shape census gives X ≥ 4 there — now also a
-   corollary of 0019, which does not consume it).
-4. **The growth laws** (cert 0017): excess grows across the whole window —
-   X ≥ 10 from m = 38, X ≥ 100 from m = 108, and **X ≥ 2259 at the ceiling
-   m = 456** (a linear law from the cover structure, an integrality lift,
-   and a second-moment Jensen law).
-5. **The frontier**: **X = 5 on m ∈ {22,…,26}** — the only place a
-   minimum-excess core can live, five excess partitions in all. The
-   12,171-configuration X = 4 field of turn 14 closed **without enumerating
-   a single configuration**, and the window no longer has any
-   arithmetic-free rung.
+3. **The excess floor, window-wide** (certs 0019–0020): **every critical
+   core has X ≥ 6**, at every m in the window — and a **staircase** above
+   it: **m ≥ 27 forces X ≥ 7, m ≥ 29 forces X ≥ 8, m ≥ 30 forces X ≥ 9,
+   m ≥ 32 forces X ≥ 10**. The machinery is a family of counting lemmas
+   (the defect-hub bound; the balanced form F(d) ≤ s(z); the **strict**
+   form F + q_max ≤ s, whose extra unit is what empties X = 5; the global
+   P + H ≤ R) driving exhaustive census engines — 3,056 runs in 0019,
+   35 + 92 cells in 0020, one structural kill. The earlier floor-local
+   chain (0015–0018) still stands on its own underneath.
+4. **The growth laws** (certs 0017 + 0020): excess grows **quadratically**
+   across the window — **X ≥ ⌈m(m−25)/38⌉** everywhere (cert 0020's law
+   m(m−25) + Σ₅ + 10H ≤ 38X), which reads **X ≥ 5173 at the ceiling
+   m = 456** — more than double 0017's Jensen bound there, and itself
+   provably far from tight.
+5. **The frontier**: **X = 6 on m ∈ {22,…,26}** — the minimum-excess band.
+   The window has no arithmetic-free rung, and every layer X ≤ 5 is empty
+   at every m.
 
 | cert | one line |
 | --- | --- |
@@ -67,16 +67,21 @@ solver anywhere in the trust chain.
 | [0016](certificates/0016-ccplus-x3) | the triangle lemma + (CC⁺) → **X ≥ 3** at m = 22 (margin: one unit of the (D2) cap) |
 | [0017](certificates/0017-growth-laws) | the corner ladder ((CC⁺) holds through X ≤ 4) + the linear and second-moment **growth laws** across the window |
 | [0018](certificates/0018-x4-floor) | the eight-shape census empties the X = 3 layer → **X ≥ 4** at m = 22 (margin: one unit of (D2) again; two shapes at zero W-slack, killed by census clash) |
-| [0019](certificates/0019-star-collision) | the defect-hub + star-collision lemmas → **X ≥ 5 everywhere; X = 5 ⟹ m ≤ 26; m ≥ 27 ⟹ X ≥ 6** (margins: m = 27/28 kill at zero slack by divisibility; the X = 4 max-2 cell at m = 22 is the named pressure point) |
+| [0019](certificates/0019-star-collision) | the defect-hub + star-collision lemmas → **X ≥ 5 everywhere; X = 5 ⟹ m ≤ 26** (margins: m = 27/28 kill at zero slack by divisibility) |
+| [0020](certificates/0020-strict-star-collision) | the **strict** star-collision family (q ≤ 3 · F ≤ s · F + q_max ≤ s · P + H ≤ R) → **X ≥ 6 everywhere; the staircase; the quadratic law X ≥ ⌈m(m−25)/38⌉, X ≥ 5173 at m = 456** (92-cell staircase sweep (D2)-free; one structural kill, its key constraint measurably load-bearing) |
 
-The theorems in 0018 and 0019 were both **proposed by outside audits**
-(GPT 5.6 Sol Pro, reading this public repo — one day apart) and re-proven
-entirely in-house under the peer-intake laws (D-036/D-037): statements to
-blind derivation lanes, received proof text only to hostile refuters, the
-desk re-deriving everything before anything is consumed. 0019's intake also
-caught and repaired a circular step in the received proof — agreement on a
-statement is not agreement on a proof. The outside-audit lane this repo
-went public for is live and has produced two theorems in two days.
+The theorems in 0018, 0019 and 0020 were all **proposed by outside audits**
+(GPT 5.6 Sol Pro, reading this public repo — three reviews in two days) and
+re-proven entirely in-house under the peer-intake laws (D-036/D-037/D-038):
+statements to blind derivation lanes, received proof text **verbatim** to
+hostile refuters and retained in `notebook/raw/`, the desk re-deriving
+everything before anything is consumed. The lane's record is honest in both
+directions: turn 15 briefly misattributed a circularity to the second
+review's valid proof (the defect was in the desk's own transcription — the
+third review caught it, the record is corrected everywhere, and the law it
+bought is D-038), and the third review's own proof carried one real gap (an
+incomplete case list at one staircase cell), found independently by three
+refuter lanes and repaired in-house before certification.
 
 A floor says where the object *cannot* be. Nothing here claims a
 counterexample exists — at 22, 456, or anywhere.
@@ -90,16 +95,18 @@ public. **[PLAN.md](PLAN.md) § "Where to attack"** carries the ranked list
 - **Replay any certificate**: one command each, all sub-minute except the
   floor's heavy ones (see "Checking a claim" below). A red run on your
   machine is a finding; please report it.
-- **Attack the newest first**: 0019's two thinnest rungs (m = 27, 28) kill
-  at **zero slack** — D is forced to equal R = 14 exactly, and the kills
-  are divisibility facts, not size — and its named pressure-point cell
-  (X = 4 max-2 at m = 22) **revives under five of its nine mutants**, each
-  a one-unit move. Its measured (D2) exposure is exactly three
-  configurations, all named. 0018's field side closes by one unit of (D2);
-  0016 the same one layer down. All margins are documented per house law
-  D-017/D-035 rather than hidden; **the (D2) cap (cert 0008) and 0019's
-  degree caps are the highest-leverage things an outside reader can
-  scrutinise.**
+- **Attack the newest first**: 0020's staircase has exactly **one cell the
+  arithmetic cannot kill** — (X, m, partition) = (8, 30, (3,3,1,1)) — closed
+  only by a structural profile argument whose key constraint (every
+  high-degree vertex lies in ≥ 2 shared sets) is *measured* load-bearing:
+  drop it and the kill genuinely fails (mutant M10, 1090 > 1066). Its
+  thinnest arithmetic kill is **2 units** ((8,30,(3,2,2,1))), its X = 6
+  floor needs (D2) at m = 22–23 (11 cells reopen without it) and n ≥ 36
+  everywhere. 0019's m = 27/28 rungs kill at zero slack by divisibility.
+  All margins are documented per house law D-017/D-035 rather than hidden;
+  **the (D2) cap (cert 0008), the strict-lemma guard τ ≥ q_max + 2, and
+  0020's structural cell are the highest-leverage things an outside reader
+  can scrutinise.**
 - **The known soft spots are listed, not buried**: each certificate's
   NOTES.md carries its adversarial record, its margins in every consumed
   coordinate, and its OPEN flags (e.g. whether (CC⁺)'s end-to-end

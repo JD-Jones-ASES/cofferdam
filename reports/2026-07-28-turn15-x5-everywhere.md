@@ -20,7 +20,8 @@ three more auditors before it went green.
 - The four "arithmetic-free" rungs m ∈ {23, 24, 25, 26} are gone as a category:
   arithmetic now forces excess everywhere.
 
-**The review's proof had one real defect** — a circular step in its degree
+**The review's proof had one real defect** *(wrong — see the erratum at the
+end of this report)* — a circular step in its degree
 bound. Two of our refuter lanes caught it (the desk's first read did not); the
 repair is a strictly stronger lemma. That story is written into the
 certificate: agreement on a statement is not agreement on a proof.
@@ -43,3 +44,12 @@ Check it yourself:
 ```
 cd ~/Documents/repos/cofferdam/certificates/0019-star-collision && python3 verify.py
 ```
+
+---
+
+**Erratum (2026-07-28, next turn).** This report said the review's proof "had
+one real defect — a circular step in its degree bound." That was wrong: the
+step was valid, and the apparent circularity was an artifact of how the desk
+restated the proof for its attack lanes. The third outside review caught our
+misattribution; the record is corrected in certificate 0019 and D-038. The
+theorems, the certificate, and the stronger in-house lemma are unaffected.

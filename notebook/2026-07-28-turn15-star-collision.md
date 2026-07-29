@@ -40,7 +40,8 @@ discriminants −559/−143/−47/−175 — both **banked here, not consumed**)
 the c-free links + the 4/3 per-pair corner; "no universal vertex" and n ≥ 36
 were NOT-IN-REPO → derived-in-cert); 3 hostile refuters (SOUND ×3, zero fatal:
 caught the audit text's one defect — ⌊16/3⌋ = 5 ⟹ Δ ≤ 11 is circular, repaired
-by Δ ≤ 5 + X — plus the C3 dead-code find and the n₇-invocation explicitness).
+by Δ ≤ 5 + X **(FALSE — see the ERRATUM at the end of this entry)** — plus the
+C3 dead-code find and the n₇-invocation explicitness).
 Then the build: drafter (green ×2 first try on the mathematics) + 3-lens cert
 audit (PASS-WITH-FIXES ×3: a deflation in check 26's headline — the census DOES
 kill m = 26 outright — an inert mutant M7 advertised as load-bearing, a
@@ -76,7 +77,8 @@ The desk's spec parenthetical claimed the m = 26 no-(D2) census run has exactly
 one survivor — false, it has two (the second dies by (SC) at D = 20 > 12); the
 fixer measured and enacted the truth instead of the instruction. And the desk's
 first read of the audit text missed the ⌊16/3⌋ circularity that two refuter
-lanes caught. Both recorded in 0019's NOTES.
+lanes caught **(misattributed — see the ERRATUM below)**. Both recorded in
+0019's NOTES.
 
 ## State after turn 15
 
@@ -85,3 +87,17 @@ m ∈ [27, 456].** The 12,171-configuration X = 4 frontier is closed without
 enumerating a single configuration. The thin rungs m ∈ {23..26} are no longer
 arithmetic-free — every rung now carries forced excess ≥ 5. The next field is
 X = 5 on five rungs, five excess partitions.
+
+---
+
+## ERRATUM 2026-07-28 (turn 16, caught by the third outside audit)
+
+This entry twice records "the audit text's one defect — ⌊16/3⌋ = 5 ⟹ Δ ≤ 11
+is circular" and credits two refuter lanes with catching it. **False of the
+received text**: there w = Φ(d−1,5), an integer at every degree, so the
+flooring was valid with no cap presupposed. The circularity existed only in
+the desk's refuter-lane transcription (w restated as a table plus an
+inequality above d = 11); the refuters were right about their input and the
+desk misattributed the finding. (DH) remains independently derived and
+strictly stronger (Δ ≤ 10 vs 11). Full account: 0019 NOTES "The Δ ≤ 5 + X
+strengthening", D-038.

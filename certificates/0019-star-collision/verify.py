@@ -37,9 +37,13 @@ WHAT IS CLAIMED
 
   (DH) THE DEFECT-HUB BOUND.  For z not in f,
           d(z) <= (r-1) + sum_{{e,g} in E(z)} q_eg <= (r-1) + X - x_f,
-      and hence GLOBALLY Delta <= 5 + X at r = 6.  This is the repair
-      of the outside audit's 16/3-circularity: the degree cap is now
-      derived from X alone, with no appeal to the bound it feeds.
+      and hence GLOBALLY Delta <= 5 + X at r = 6.  Derived from X
+      alone, with no appeal to any degree bound, and strictly stronger
+      than the received text's Delta <= 11.  (ERRATUM 2026-07-28: this
+      line originally called (DH) "the repair of the outside audit's
+      16/3-circularity" -- the received text's flooring was VALID, its
+      w = Phi(d-1,5) being an integer at every d; the circularity lived
+      only in the desk's refuter-lane transcription.  See NOTES.)
 
 NOTATION.  As in 0015-0018.  K edge-critical, 6-partite (V_1..V_6),
 6-uniform, intersecting, tau(K) = 6, tau(K - e) = 5.  A VERTEX is a cell
@@ -113,13 +117,17 @@ MANDATORY HONESTY NOTES
      FULL PROOF TEXT.  Per D-036 that proof text entered no chain:
      the desk read it and re-derived every step independently, the
      blind fleet lanes received STATEMENTS plus one-line mechanisms
-     only, and the received text itself went only to three hostile
-     refuter lanes whose job was to break it.  Two refuters flagged
-     its one defect -- the floor(16/3) = 5 => Delta <= 11 step is
-     circular as written, since integrality of the w-sum presupposes
-     the degree cap it is deriving -- and the desk repaired it with
-     the strictly stronger free cap Delta <= 5 + X read directly off
-     (DH).  Attribution recorded, not consumed: no step cites the
+     only, and the argument went to three hostile refuter lanes whose
+     job was to break it.  (ERRATUM 2026-07-28: this note originally
+     said two refuters caught "its one defect", a circular flooring
+     step.  FALSE OF THE RECEIVED TEXT: there w = Phi(d-1,5) is an
+     integer at every d, so floor(16/3) = 5 => Delta <= 11 is valid.
+     The refuters attacked the DESK'S TRANSCRIPTION, which restated w
+     above d = 11 as a mere inequality; their finding was correct for
+     that pack and was misattributed.  Caught by the third outside
+     audit; see NOTES and D-038.)  (DH) stands on its own terms --
+     independently derived, no flooring, and strictly stronger
+     (Delta <= 10 at X = 5).  Attribution recorded, not consumed: no step cites the
      audit.  NOTES.md carries the full intake record.
  (2) (D2) IS CONSUMED, AND THE MUTATION SUITE SAYS SO.  Section 5
      measures it rather than assuming it: relax 0008's cap to
@@ -841,8 +849,10 @@ check("(DH) IN BOTH PUBLISHED FORMS, AND THE CONSTANT r-1 IS PINNED BY "
       "sc_tight does for (SC).  The global form is the one the caps "
       "spend, and it is what makes DELTA <= 5 + X at r = 6 a theorem "
       "about X alone: no degree cap is assumed anywhere in its "
-      "derivation, which is exactly the circularity the outside "
-      "audit's own write-up contained",
+      "derivation.  (ERRATUM 2026-07-28: this text originally added "
+      "'which is exactly the circularity the outside audit's own "
+      "write-up contained' -- false; the received write-up's integer "
+      "flooring was valid.  Condition untouched.)",
       ACC["dh_n"] == 14730 and ACC["dh_bad"] == 0 and ACC["glob_bad"] == 0
       and ACC["dh_tight"] == 201 and ACC["glob_tight"] == 344
       and ACC["dh_tight"] > 0 and ACC["glob_tight"] > 0,
@@ -1729,7 +1739,7 @@ print("""
   Two lemmas do the whole job.  A vertex z outside an edge f must send
   every one of its edges into f, and f's cell in z's own part can take
   none of them -- so d(z) beyond r-1 is paid for in collisions, and the
-  collisions are excess: DELTA <= 5 + X, with no circularity.  Summed
+  collisions are excess: DELTA <= 5 + X, from X alone.  Summed
   over all vertices, the same count says the total defect D cannot
   exceed R = sum q(q+1).  After that the problem is arithmetic: two
   moments, 36 vertices, a degree-2 cap, and eight branches of X <= 4

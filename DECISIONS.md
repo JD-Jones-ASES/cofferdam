@@ -801,10 +801,14 @@ section states plainly that full text was received and how it was routed.
 
 **Why:** turn 15 measured the value of each half. The blind lanes returned two
 INDEPENDENT alternative proofs — evidence agreement-checking cannot produce —
-and the refuter lanes, reading the text adversarially, found the one real
-defect in it (a circular degree-cap step) that the desk's own first read had
-missed. Route the text to sympathetic readers and you get transcription; route
-it to refuters and you get the defect.
+and the refuter lanes, reading adversarially, flagged a circular degree-cap
+step. (ERRATUM 2026-07-28, caught by the third outside audit: the refuters
+were in fact reading the DESK'S TRANSCRIPTION, not the received text, and the
+circularity lived only in the transcription — the received step was valid.
+The routing principle stands; the motivating example was misattributed. The
+repair is D-038.) Route the text to sympathetic readers and you get
+transcription; route it to refuters and you get defects — which is exactly
+why the refuters must get the *verbatim* text.
 
 **How to apply:** on receipt of peer proof text — desk-check, then fleet with
 the split above; the NOTES provenance must say "full proof text received" when
@@ -812,3 +816,41 @@ it was (claiming statements-only intake when text was read is a provenance
 falsehood); any defect found in the received text is stated concretely in the
 certificate, with the repair, so agreement-on-the-statement is never mistaken
 for agreement-on-the-proof.
+
+## D-038 — A transcription is a claim: refuters read the verbatim text (2026-07-28, turn 16)
+
+Turn 15 routed the received proof to its refuter lanes through a desk-written
+transcription. The transcription restated the weight function w = Φ(d−1, 5) —
+an integer at every degree — as a finite table plus the inequality
+w(d) ≥ d − 6 above d = 11. Under that weakened spec, the received proof's
+integer-flooring step genuinely fails; two refuters correctly flagged it; and
+the desk recorded their finding as the peer's defect. The third outside audit
+caught it: the received step was valid, and the lab's public record briefly
+charged a correct proof with a nonexistent circularity.
+
+**The law:** (1) refuter lanes receive the received text VERBATIM — the file
+itself or an exact copy, never a desk compression; (2) any defect found in
+transcribed or restated material is re-verified against the original before it
+is recorded as the peer's; (3) errata to the lab's own provenance narrative
+rank with certificate errata — same-commit, dated, condition-untouched — and
+the corrected record must name what the desk got wrong, not merely restate
+the truth; (4) **every received peer text is retained verbatim in
+`notebook/raw/` the turn it arrives** — turn 15's text was not retained, so
+its erratum rests on a session-transcript reconstruction rather than an
+artifact, which is exactly the deficiency this clause closes (turn-16 lane
+catch; the turn-16 text is the first retained under this clause).
+
+**Refinement (turn 16, same day):** the transcription's flagged step was
+unjustified-but-INERT — even under the weakened pack, w(d) ≥ d − 6 closes
+d ≥ 12 against 16/3 with no integrality, so no conclusion depended on the
+flooring. The desk's record was thus wrong twice over: the charge was false
+of the received text AND consequence-free even of the transcription.
+
+**Why:** D-036 named the deflating "correction" of a peer's number; turn 15
+committed the same failure one level up, against a peer's proof step, through
+an unfaithful intermediate artifact. A transcription is itself a mathematical
+claim ("this restates the original faithfully") and it was never verified.
+The blind lanes' packs are transcriptions BY DESIGN — that is what makes them
+blind — so the asymmetry is the point: blind lanes get the desk's statements
+and their findings bind only the pack; refuters get the original and their
+findings may bind the peer.
