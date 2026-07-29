@@ -31,17 +31,18 @@ what such an object could look like.
 Good — that is what this repo is for, and outside audit is the reason it is
 public. **The thinnest things first, so you can aim:**
 
-- **0020's staircase has exactly one cell the arithmetic cannot kill** —
-  (X, m, partition) = (8, 30, (3,3,1,1)) — closed only by a structural
-  profile argument whose key constraint (every high-degree vertex lies in at
-  least two shared sets) is *measured* load-bearing: drop it and the kill
-  genuinely fails (mutant M10, 1090 > 1066).
-- **The thinnest arithmetic kill is 2 units**, at (8,30,(3,2,2,1)); 0019's
-  m = 27 and m = 28 rungs kill at **zero** slack, by divisibility alone.
+- **0021 has one zero-margin cell**: the (m, degrees) = (23, (10,9)) case
+  clears its moment requirement at exactly Ψ = Λ = 59 and dies *only* by a
+  census-and-profile count. Its three one-unit cells include the one that
+  closes the whole X = 6 band (70 vs 71 at m = 26).
+- **The knapsack cost convention is a named hazard**: reading the cost as
+  f instead of F flips 15 cells from dead to alive (mutant M-f) — the
+  fourth review computed correctly but *stated* the weaker form.
 - **(D2) — certificate 0008 — is the most-consumed input in the repo.**
-  0020's X ≥ 6 floor needs it at m = 22–23 (11 cells reopen without it), and
-  0016/0018 each close by one unit of it.
-- After those: the strict-lemma guard τ ≥ q_max + 2, and n ≥ 36.
+  A one-unit relaxation reopens 6 of 0021's cells (measured after three
+  verification lanes disagreed); 0016/0018 each close by one unit of it.
+- After those: the (7,27) kill's C3 triangle exclusion (without it the cell
+  ties at exactly Λ), the residual-pairing bounds, and n ≥ 36.
 
 **[PLAN.md](PLAN.md) § "Where to attack"** carries the full ranked list.
 Every certificate replays with one command (see "Checking a claim" below) —
@@ -63,31 +64,33 @@ literature constant, no unreproduced lemma, no solver in the trust chain.
 1. **The window** — every counterexample contains an edge-critical core, and
    every critical core has **m ∈ [22, 456]**, so the whole question is one
    finite check (0013–0014).
-2. **The excess floor** — every critical core has **X ≥ 6**, at every m, with
-   a staircase above it (**m ≥ 27 ⟹ X ≥ 7 · m ≥ 29 ⟹ X ≥ 8 · m ≥ 30 ⟹
-   X ≥ 9 · m ≥ 32 ⟹ X ≥ 10**) and a quadratic law window-wide,
-   **X ≥ ⌈m(m−25)/38⌉**, which reads **X ≥ 5173 at m = 456** (0019–0020).
+2. **The excess floor** — every critical core has **X ≥ 7**, at every m, with
+   a staircase above it (**m ≥ 27 ⟹ X ≥ 8 · m ≥ 29 ⟹ X ≥ 9 · m ≥ 30 ⟹
+   X ≥ 10**) and a quadratic law window-wide, **X ≥ ⌈m(m−25)/38⌉**, which
+   reads **X ≥ 5173 at m = 456** (0019–0021).
 
-**The frontier is X = 6 on m ∈ {22,…,26}**, the minimum-excess band. No rung
-of the window is arithmetic-free, and every layer X ≤ 5 is empty at every m.
+**The frontier is X = 7 on m ∈ {22,…,26}**, the minimum-excess band — already
+sieved at its top rung m = 26 to two or three excess shapes (two under a
+sharper bound 0021 derives but deliberately does not impose). Every layer
+X ≤ 6 is empty at every m.
 
 *Underneath, each still standing on its own*: the floor m ≥ 22 (0001–0012)
 and the floor-local excess chain X ≥ 2/3/4 at m = 22 (0015–0018).
 
 | attack these first | |
 | --- | --- |
-| [0020](certificates/0020-strict-star-collision) | X ≥ 6 everywhere · the staircase · the quadratic law — the newest, and the thinnest |
+| [0021](certificates/0021-qmax-debit-x7) | X ≥ 7 everywhere · the staircase at 26/28/29 — the newest, with a zero-margin cell |
 | [0013](certificates/0013-finite-window) + [0014](certificates/0014-window-456) | the window itself — nothing supersedes it, and everything rests on it |
 | [0008](certificates/0008-degree-two-cap) | the (D2) cap — the most-consumed input in the chain |
 
-The rest of `certificates/` — 0001–0012 (the floor) and 0015–0019 (the excess
+The rest of `certificates/` — 0001–0012 (the floor) and 0015–0020 (the excess
 chain) — each carry a `NOTES.md` with margins and adversarial record.
 
-The theorems in 0018–0020 were proposed by outside audits (GPT 5.6 Sol Pro,
-reading this public repo) and re-proven in-house under the peer-intake law:
-statements to blind derivation lanes, received text **verbatim** to hostile
-refuters and retained in `notebook/raw/`, and no proof step citing a peer
-([DECISIONS.md](DECISIONS.md) D-036).
+The theorems in 0018–0021 were proposed by outside audits (GPT 5.6 Sol Pro,
+reading this public repo — four reviews, four theorems) and re-proven in-house
+under the peer-intake law: statements to blind derivation lanes, received text
+**verbatim** to hostile refuters and retained in `notebook/raw/`, and no proof
+step citing a peer ([DECISIONS.md](DECISIONS.md) D-036).
 
 A floor says where the object *cannot* be. Nothing here claims a
 counterexample exists — at 22, 456, or anywhere.
