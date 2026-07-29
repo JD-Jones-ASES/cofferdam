@@ -8,8 +8,9 @@ seal) has since been opened; see below.
 
 Certificates 0001–0007 were derived without reading any peer derivation. The seal
 has since been opened, so this repo is no longer a blind verifier — don't present
-it as one. How the lab takes in peer work is a Brain-level question and lives
-there. Here, the mathematics.
+it as one. How the lab takes in peer work **used to be a Brain-level question; it
+is now law in this repo** — see the fifth law below and [DECISIONS.md](DECISIONS.md)
+D-036.
 
 ## Routing
 
@@ -23,8 +24,13 @@ there. Here, the mathematics.
 
 ## The laws
 
-Certificate Law · No-Noise Law · **Seal Law** · Cited-input discipline — all four
-stated in [BRIEF.md](BRIEF.md) §6. Two operational consequences worth repeating:
+Certificate Law · No-Noise Law · ~~Seal Law~~ (spent, see above) · Cited-input
+discipline — stated in [BRIEF.md](BRIEF.md) §6. **A fifth law has since been
+added here, and it governs every turn since 14: peer intake** — statements go to
+blind derivation lanes, the received text goes to hostile refuters **verbatim**
+and is retained in `notebook/raw/` on arrival, the desk re-derives before
+anything is consumed, and no proof step ever cites a peer ([DECISIONS.md](DECISIONS.md)
+D-036/D-037/D-038). Two operational consequences worth repeating:
 
 - **Checkers are stdlib-only.** `python3 verify.py` from a clean shell, no
   installs, no venv, no imports from `lib/`. A certificate that needs the repo's
@@ -59,14 +65,16 @@ the deliverable is a census rather than a yes/no.
 
 ## Session shape
 
-1. Re-read the seal. Confirm nothing in the session's plan requires breaking it.
+1. If peer work is in play, route it per the intake law above — verbatim to
+   refuters, retained in `notebook/raw/` before anything else happens.
 2. Work the agreed scope in PLAN.md. Notebook entries are append-only, dated,
    technical. A dead end is a result and gets written down as one.
-3. Close: digest in `reports/`, PLAN.md revised, **README.md "Where it
-   stands" + the GitHub repo description synced to the new state** (the
-   repo is public; a stale front page misstates the lab to its auditors
-   — this line exists because both lagged a full turn once, caught by an
-   outside reviewer 2026-07-28), commit.
+3. Close: digest in `reports/`, PLAN.md revised, **and the public face synced
+   to the new state — README.md "Where it stands", the GitHub repo
+   description, and this file's cert list + laws** (the repo is public; a
+   stale front page misstates the lab to its auditors — both lagged a full
+   turn once, caught by an outside reviewer 2026-07-28, and this file itself
+   then lagged three turns, caught by an internal sweep 2026-07-29), commit.
 4. Publishing anything, anywhere, is JD's line — always.
 
 ## Toolchain
@@ -76,7 +84,7 @@ newest on this box.** macOS ships **3.9.6** at `/usr/bin/python3`, and a bare
 `python3` in a clean environment finds that one — so `int.bit_count()` (3.10+),
 `match`, and friends are out. Bind a fast path behind `hasattr` and fall back.
 Test with `env -i HOME="$HOME" PATH=/usr/bin:/bin python3 certificates/<id>/verify.py`;
-every green certificate (0001–0003, 0005–0019) is verified under 3.9 AND under `python3 -O` (0004 is never-green scaffolding). "Runs under a bare python3" is a
+every green certificate (0001–0003, 0005–0020) is verified under 3.9 AND under `python3 -O` (0004 is never-green scaffolding). "Runs under a bare python3" is a
 claim about someone else's machine, so it has to be tested against one.
 
 python.org / Homebrew `python3`, stdlib only for anything that ships. `nauty` is

@@ -117,7 +117,17 @@ Two scars, kept on purpose (D-017):
 Nothing about m ≥ 23 — the thin rungs m ∈ {23, 24, 25, 26} remain the
 window's arithmetic-free stretch (0017 C7), and X = 3 was already impossible
 at m ≥ 28 by 0017's coupling; this certificate empties the one rung where
-X = 3 met a live field. No core is claimed to exist. Lemma D9 (X = 3 ⟹
+X = 3 met a live field.
+
+> **SCOPE CLAUSE 2026-07-29 (internal doc sweep).** "Arithmetic-free" is a
+> statement about 0017's *laws* and it is still true — those four rungs are the
+> only m in the window where the arithmetic forces nothing. It does **not**
+> mean unattacked, and an auditor must not read it as an open stretch: **0019**
+> (T-A: X ≥ 5 window-wide; T-B: X = 5 ⟹ m ≤ 26) and **0020** (T-A20: X ≥ 6 for
+> every critical core in [22, 456]) force X ≥ 6 on m ∈ {23..26} by census. No
+> check condition changes.
+
+No core is claimed to exist. Lemma D9 (X = 3 ⟹
 Δ ≤ 8, window-wide, m > 9) is fleet-proven and desk-verified but **not
 consumed** here; it and the degree-descent alternative proof live in the
 turn-14 notebook, cited not consumed.

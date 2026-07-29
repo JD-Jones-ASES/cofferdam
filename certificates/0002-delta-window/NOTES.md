@@ -104,6 +104,10 @@ even the admissible partition list. The engine materialises the full partition l
 before searching, which is fine at m = 8 (2220 partitions) and hopeless at m = 13.
 The fix is engineering, not mathematics — generate partitions lazily, indexed by
 the pair they must join, so the list is never built. That is the next build task.
+*(ERRATUM 2026-07-29, internal doc sweep: not a build task any more. m = 19 was
+closed by certificate 0005 and m = 20 by 0006/0007, all citation-free, none of
+them needing the extremal classification or the lazy enumerator. No check
+condition changes.)*
 
 ## m = 20
 
@@ -111,3 +115,6 @@ Three cases survive, and Δ = 5 survives on a slack of 2 — the tightest number
 anywhere in this lab. It also forces near-uniform structure: essentially every part
 must carry profile (5,5,5,2,2,1). That is the natural next target, and unlike
 m = 19 it needs no classification input.
+*(ERRATUM 2026-07-29, internal doc sweep: target taken. m = 20 was closed by
+certificates 0006 and 0007 — the three surviving cases and the Δ = 5 slack of 2
+are history, not a queue. No check condition changes.)*

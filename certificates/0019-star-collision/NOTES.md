@@ -62,8 +62,7 @@ above m = 26 the floor is X ≥ 6.
 **Cited through C1, not separately consumed.** 0016's (T) as generalized by
 0017 **check 7**, and 0013's **(3a)**, are inputs to 0017 **C1** — they reach
 this file only through C1's own ledger. An earlier draft billed both directly
-to (L-e) *and* cited C1's conclusion in the same proof, which is the L1.2
-disease: cite the conclusion or its ingredients, never both. Rows dropped.
+to (L-e) *and* cited C1's conclusion in the same proof; rows dropped (D-032).
 
 **Derived in-certificate** (proofs below, enacted in-run): (L-a) no universal
 vertex · (L-b) n ≥ 36 and the per-part structure · (L-c) n₂ ≤ ⌊m/2⌋ · (L-d)
@@ -211,33 +210,17 @@ Three facts about (SC), each a must-fail control in §2 rather than a remark:
 ### The Δ ≤ 5 + X strengthening — and an erratum owed to the audit (2026-07-28)
 
 **ERRATUM (caught by the third outside audit, same day).** This section
-originally stated that the received proof's degree-cap step — w-sum ≤ 16/3,
-⌊16/3⌋ = 5, therefore Δ ≤ 11 — "was circular as written: reading the w-sum as
-an integer presupposes that the degrees are already capped." **That charge is
-false of the received text.** There, w(d) := Φ(d−1, 5), and Φ is a count — an
-integer at *every* d (w(12) = 7, not "≥ 6") — so the w-sum is a sum of
-integers and the flooring is valid with no cap presupposed anywhere. The
-circularity was real only in the **desk's transcription** handed to the
-refuter lanes, which restated w as the d ≤ 11 table plus the inequality
-w(d) ≥ d − 6 above it; under that weakened spec integrality genuinely fails to
-follow, and the two refuters who flagged it were **correct about their
-input** — though even there the step was unjustified-but-**inert**: the pack's
-own w(d) ≥ d − 6 closes d ≥ 12 against 16/3 directly, so no downstream
-conclusion depended on the flooring (fourth-audit-lane refinement, same day).
-The desk then recorded their finding as the peer's defect without
-re-checking it against the original — a deflation of a peer's correct *step*,
-the same failure D-036 names for numbers, now committed one level up. D-038
-is the law this bought: refuters read the verbatim received text, and a
-defect found in transcribed material is checked against the original before
-it is recorded as the peer's.
-
-What stands unchanged: **(DH) is independently derived** — partiteness,
-intersecting-ness, and the definition of X, no flooring at any step — and it
-is **strictly stronger** (Δ ≤ 5 + X = 10 at X = 5, against the received
-text's 11). It is an improvement over a valid argument, not a repair of a
-broken one. This paragraph exists so that no reader mistakes either direction:
-agreement-on-the-statement is not agreement-on-the-proof, and *disagreement
-with a transcription is not a defect in the source*.
+originally charged the received proof's degree-cap step — w-sum ≤ 16/3,
+⌊16/3⌋ = 5, hence Δ ≤ 11 — with circularity. **False of the received text:**
+there w(d) := Φ(d−1, 5) is a count, an **integer at every d** (w(12) = 7), so
+the flooring was valid and presupposed no cap. The circularity lived only in
+the **desk's transcription** given to the refuter lanes, which restated w above
+d = 11 as w(d) ≥ d − 6 — and even there the step was unjustified but **inert**,
+since w(d) ≥ d − 6 closes d ≥ 12 against 16/3 with no integrality at all.
+**The desk recorded the refuters' finding as the peer's defect without
+re-checking it against the original** (D-036, D-038). **(DH) is a
+strengthening, not a repair:** independently derived, no flooring at any step,
+and Δ ≤ 5 + X = 10 at X = 5 against the received text's 11.
 
 ---
 
@@ -363,13 +346,10 @@ layer lanes re-derived the eliminations, two of them by **independent routes
 the audit text does not contain** (a negative-discriminant quadratic for X ≤ 3;
 a (d−3)(d−5) second-moment functional for X = 4); the received text itself went
 only to **three hostile refuter lanes**, whose job was to break it. Two
-refuters flagged a circularity in the ⌊16/3⌋ degree-cap step **as it appeared
-in the desk's transcription** (ERRATUM 2026-07-28: originally recorded here as
-"its one defect", i.e. the received proof's — false; the received text's
-Φ-defined w is integer at every d and its flooring was valid; see "The
-Δ ≤ 5 + X strengthening" above and D-038). The desk's (DH) supplies the
-strictly stronger free cap Δ ≤ 5 + X independently. **Attribution recorded,
-not consumed: no step cites the audit.** The lanes, in full:
+refuters flagged the ⌊16/3⌋ degree-cap step; the desk misrecorded that as the
+peer's defect (ERRATUM 2026-07-28 — corrected record above, "The Δ ≤ 5 + X
+strengthening"; D-038). **Attribution recorded, not consumed: no step cites
+the audit.** The lanes, in full:
 
 - **2 blind lemma lanes** on (DH)/(SC) from the definitions pack alone, with
   1M+ enactments between them;
@@ -379,16 +359,11 @@ not consumed: no step cites the audit.** The lanes, in full:
 - a **numeric lane** re-deriving the tables and the two summed laws;
 - **2 dependency audits** on the ledger;
 - **3 hostile refuters** — the only lanes to receive the argument;
-  **zero fatal, zero major**; two flagged the transcription's circularity
-  (see the erratum above);
+  **zero fatal, zero major**; two flagged the ⌊16/3⌋ step (erratum above);
 - a desk re-derivation with its own 35-check script, then this file.
 
 ### The catches, kept on the record (D-017/D-036)
 
-- **The ⌊16/3⌋ misattribution** (ERRATUM 2026-07-28): the desk transcribed w
-  into a weaker spec, the refuters correctly broke the transcription, and the
-  desk recorded the break as the peer's defect. The received step was valid;
-  (DH) is a strengthening, not a repair. Caught by the third outside audit.
 - **The m = 26 census was dead code** — C3 already caps that branch at m ≤ 25.
   Kept anyway, as a triple-redundant tooth, because it is a zero-margin rung.
 - **The n₇ = 1 invocation in tooth (c) was implicit** in the desk's first
@@ -408,9 +383,7 @@ not consumed: no step cites the audit.** The lanes, in full:
   (check 16), and an explicit universal-vertex branch that **re-counts them as
   evidence for control 2** instead of failures — **eighteen** survive the
   generator fix (the nineteenth lived on the broken near-pencil), and check 22
-  pins exactly those eighteen. *An enactment that does not
-  verify its own hypotheses is not evidence — and a violation count is a
-  question, not an answer.*
+  pins exactly those eighteen.
 
 ---
 
@@ -488,9 +461,8 @@ exactly what must be redone if 0008 is ever weakened (the same maintenance law
 as 0016/0018, D-017). **T-B carries no such clause: it is (D2)-free both ways.**
 
 **M4 came out weaker than the spec predicted** — one survivor at m = 22, not a
-spread over m = 22..25. Recorded as measured rather than rounded up to the
-expectation. A cap with one tooth is still a tooth, but it should be described
-as one.
+spread over m = 22..25. Recorded as measured, not rounded up to the
+expectation (D-005).
 
 ## What this certificate does **not** claim
 
@@ -498,10 +470,18 @@ as one.
   core at that m.
 - **Nothing at X ≥ 6.** T-B says X = 5 ⟹ m ≤ 26; it says nothing about what
   happens at X = 6 anywhere.
-- **X = 5 on m ∈ [22, 26] is NOT emptied.** T-B confines X = 5 to those five
-  rungs and stops. That band — with m ∈ {23..26} still the window's
-  arithmetic-free stretch — is now the only place a critical core can sit with
-  X = 5, and it is the next field.
+- **X = 5 on m ∈ [22, 26] is not emptied *by this certificate*.** T-B confines
+  X = 5 to those five rungs and stops.
+  *(ERRATUM 2026-07-29, internal doc sweep. This bullet originally continued:
+  that band "is now the only place a critical core can sit with X = 5, and it
+  is the next field", with m ∈ {23..26} "still the window's arithmetic-free
+  stretch". **Superseded: certificate 0020 §3 (T-A20) emptied the band — 35
+  cells, zero survivors — so no critical core has X = 5 at any m, and 0020
+  proves X ≥ 6 for every critical core in [22, 456].** The live band is now
+  **X = 6 on m ∈ [22, 26]**. The m ∈ {23..26} rungs are still arithmetic-free
+  in the sense 0017 C7 means — no arithmetic law forces anything there — but
+  they are **not** unattacked: 0019 and 0020 force X ≥ 6 on them by census.
+  No check condition changes.)*
 - **The banked alternative proofs are not consumed.** The negative-discriminant
   X ≤ 3 route and the (d−3)(d−5) X = 4 route live in the turn-15 notebook.
 - **Enactment prices the lemmas, not the layers.** §2's 1,423 families price

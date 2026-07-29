@@ -39,11 +39,8 @@ WHAT IS CLAIMED
           d(z) <= (r-1) + sum_{{e,g} in E(z)} q_eg <= (r-1) + X - x_f,
       and hence GLOBALLY Delta <= 5 + X at r = 6.  Derived from X
       alone, with no appeal to any degree bound, and strictly stronger
-      than the received text's Delta <= 11.  (ERRATUM 2026-07-28: this
-      line originally called (DH) "the repair of the outside audit's
-      16/3-circularity" -- the received text's flooring was VALID, its
-      w = Phi(d-1,5) being an integer at every d; the circularity lived
-      only in the desk's refuter-lane transcription.  See NOTES.)
+      than the received text's Delta <= 11 -- a strengthening, not a
+      repair.
 
 NOTATION.  As in 0015-0018.  K edge-critical, 6-partite (V_1..V_6),
 6-uniform, intersecting, tau(K) = 6, tau(K - e) = 5.  A VERTEX is a cell
@@ -118,14 +115,10 @@ MANDATORY HONESTY NOTES
      the desk read it and re-derived every step independently, the
      blind fleet lanes received STATEMENTS plus one-line mechanisms
      only, and the argument went to three hostile refuter lanes whose
-     job was to break it.  (ERRATUM 2026-07-28: this note originally
-     said two refuters caught "its one defect", a circular flooring
-     step.  FALSE OF THE RECEIVED TEXT: there w = Phi(d-1,5) is an
-     integer at every d, so floor(16/3) = 5 => Delta <= 11 is valid.
-     The refuters attacked the DESK'S TRANSCRIPTION, which restated w
-     above d = 11 as a mere inequality; their finding was correct for
-     that pack and was misattributed.  Caught by the third outside
-     audit; see NOTES and D-038.)  (DH) stands on its own terms --
+     job was to break it.  (ERRATUM 2026-07-28: the desk misrecorded a
+     defect of its own transcription as the peer's; this file's prose
+     is corrected throughout and the record is in NOTES.  D-038.)
+     (DH) stands on its own terms --
      independently derived, no flooring, and strictly stronger
      (Delta <= 10 at X = 5).  Attribution recorded, not consumed: no step cites the
      audit.  NOTES.md carries the full intake record.
@@ -150,9 +143,14 @@ MANDATORY HONESTY NOTES
      (section 5), which is why every cap carries a mutant.
  (5) WHAT THIS DOES NOT CLAIM.  No core is claimed to exist.  Nothing
      is claimed at X >= 6.  The X = 5 field on m in [22, 26] is NOT
-     emptied -- T-B confines X = 5 to those five rungs and stops.  The
-     thin rungs m in {23..26} remain the window's arithmetic-free
-     stretch for X = 5.
+     emptied BY THIS CERTIFICATE -- T-B confines X = 5 to those five
+     rungs and stops.  The thin rungs m in {23..26} remain the window's
+     arithmetic-free stretch for X = 5 in the sense 0017 C7 means -- no
+     arithmetic law forces anything there -- which does NOT mean
+     unattacked.  (ERRATUM 2026-07-29, internal doc sweep: certificate
+     0020 section 3 (T-A20) has since emptied that band, 35 cells, zero
+     survivors, and proves X >= 6 for every critical core in [22, 456].
+     Conditions untouched; see NOTES.)
 
 THE LEDGER, in full
 -------------------
@@ -849,10 +847,7 @@ check("(DH) IN BOTH PUBLISHED FORMS, AND THE CONSTANT r-1 IS PINNED BY "
       "sc_tight does for (SC).  The global form is the one the caps "
       "spend, and it is what makes DELTA <= 5 + X at r = 6 a theorem "
       "about X alone: no degree cap is assumed anywhere in its "
-      "derivation.  (ERRATUM 2026-07-28: this text originally added "
-      "'which is exactly the circularity the outside audit's own "
-      "write-up contained' -- false; the received write-up's integer "
-      "flooring was valid.  Condition untouched.)",
+      "derivation",
       ACC["dh_n"] == 14730 and ACC["dh_bad"] == 0 and ACC["glob_bad"] == 0
       and ACC["dh_tight"] == 201 and ACC["glob_tight"] == 344
       and ACC["dh_tight"] > 0 and ACC["glob_tight"] > 0,
@@ -1718,9 +1713,13 @@ note("STATED, NOT TESTED: certificate 0018 remains the authority for "
 note("STATED, NOT TESTED -- WHAT REMAINS OPEN.  X = 5 on m in [22, 26] "
      "is NOT emptied by this certificate: T-B confines X = 5 to those "
      "five rungs and stops there.  Nothing here bears on X >= 6, on "
-     "existence, or on the arithmetic-free stretch m in {23..26}, "
-     "which is now the only place a critical core could hide with "
-     "X = 5")
+     "existence, or on the arithmetic-free stretch m in {23..26}.  "
+     "(ERRATUM 2026-07-29, internal doc sweep: this note originally "
+     "called that stretch 'the only place a critical core could hide "
+     "with X = 5'.  Certificate 0020 section 3 emptied it -- 35 cells, "
+     "zero survivors -- and proves X >= 6 window-wide, so no critical "
+     "core has X = 5 at any m.  'Arithmetic-free' remains true of "
+     "0017's laws and never meant unattacked.  Condition untouched.)")
 
 # ==========================================================================
 

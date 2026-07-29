@@ -1,5 +1,25 @@
 # cofferdam — decisions
 
+## Standing law — read these before working here
+
+The twelve entries below are operative rules. Everything else here is the
+**incident record** — the reasoning behind a decision, kept because the reasoning
+is the value and a rule stripped of its evidence is the first thing a later turn
+talks itself out of. The numbering skips **D-020 and D-021**: never issued.
+
+- **D-002** — no solver in the trust chain; checkers are stdlib-only under a bare `python3`.
+- **D-004** — a cited constant is a named dependency, printed with the floor reached without it.
+- **D-005** — ladder values are computed, never guessed; an error that flatters the expected answer is the worst kind.
+- **D-010** — credit the station that produced the mathematics; the owner's name never enters a derivation.
+- **D-015** — green under `python3 -O`; a stated fact prints through `note()`, never as a check.
+- **D-016** — a loop's range is part of its claim: state it, then cover it.
+- **D-017** — claim conservatism only with the margin at the tightest point, and say which half runs loose.
+- **D-032** — one ledger, transitive; a consumption feeding no claim is CONTROL-ONLY, with its fail-safe direction.
+- **D-034** — certificate errata: reworded label, dated NOTES erratum, CONDITION untouched, same commit.
+- **D-035** — k consumed caps means k margin coordinates: sweep each, name the binding one.
+- **D-036** — peer intake: statements in, proofs never, text verbatim to refuters and retained; a deflation is an error too.
+- **D-038** — see D-036: refuters read the original, never a desk transcription; received texts are kept in `notebook/raw/`.
+
 ## D-001 · The lab is seeded with the statement, never the derivation (2026-07-25)
 
 The claim m ≥ 21 arrived through a correlated chain: GPT 5.6 Sol Pro proposed,
@@ -181,8 +201,9 @@ Certificates 0001–0007 were derived without reading any peer derivation. That
 does not change. The seal has since been opened, so a later session in this repo
 is not a blind verifier and should not be presented as one.
 
-How this lab takes in peer work is a Brain-level question and lives there, not
-here. This repo is about the mathematics.
+This entry originally routed the question of how the lab takes in peer work to the
+Brain as an out-of-scope matter. That stopped being true at turn 14: **intake is
+house law and it lives here — see D-036.**
 
 ## D-012 · A peer's wrong inference can carry a right experiment (2026-07-26)
 
@@ -351,70 +372,45 @@ our prunes.
 ## D-019 · State which step carries what, or the attack goes to the wrong place (2026-07-26)
 
 > **Corrected by [D-023](#d-023--a-risk-decomposition-is-a-claim-and-ours-was-wrong-2026-07-26-turn-8).**
-> The (L7) sentence below is **false** — removing (L7) leaves 2.9%–22.6%
-> surviving, not 100%. The rule this ADR states survives; its own table did not.
+> The turn-7 ablation table this entry published was **false in its (L7) row** —
+> removing (L7) leaves 2.9%–22.6% surviving, not 100%. The rule below survives;
+> the table did not, and D-023 carries its corrected numbers.
 
-Ablation across the whole chain (turn 7): remove **(L7)** and 100% of
-configurations survive at every m. Remove the **excess budget X** and the same.
-Remove **N(4) = 9** and m = 20 revives. Remove the **δ-budget** and *only* m = 20
-revives — below it, the kills come from (L7) + X alone, with a margin of 16 at
-m = 19. Remove the **concentration ceiling U** and nothing happens at all: it is
-inert.
-
-Both peer audits ranked the δ-budget as the thing to attack, and so did we — it
-is the newest inequality and the least checked. It is also the one that can cost
-the least: **a δ-budget failure drops the floor from m ≥ 21 to m ≥ 20, still
-citing nothing.** Meanwhile (L7) and X, which carry everything, appeared on
-nobody's list, precisely because they are old, simple, and were never in doubt.
+Both peer audits ranked the δ-budget as the thing to attack, and so did we —
+newest inequality, least checked. It is also the one that costs least: **a
+δ-budget failure drops the floor from m ≥ 21 to m ≥ 20, still citing nothing.**
+The steps carrying the load were on nobody's list. One row survived the
+correction: the **concentration ceiling U is inert**, vindicating D-009 — a step
+kept only as insurance and proved inert can be deleted outright.
 
 **Rule.** Publish a risk decomposition beside the attack surface: for each step,
 what the result degrades to if that step fails. "Newest and least checked" is a
-proxy for fragility, and it is a bad one — it correlates with *attention*, not
-with *load*. The steps most worth defending are the ones so settled that nobody
-lists them.
-
-(Also vindicating D-009: U was kept deliberately weak for safety and turns out to
-be doing no work whatever. A step you kept only as insurance and that proves inert
-is the best possible outcome — it can be deleted from the trust chain outright.)
+bad proxy for fragility — it correlates with *attention*, not with *load*. The
+steps most worth defending are the ones so settled that nobody lists them.
 
 ## D-022 · The residual of a cross-part peel keeps nothing (2026-07-26, turn 8)
 
-The lever that looked free: (L7) reads `c_ij >= M_i + M_j - (m - g(4))` with
-g(4) = 8. If the two-star residual R could be shown to have a part of minimum
-degree 2, it would take **N(4) = 9** instead and (L7) would tighten by one unit
-everywhere — in a regime where D-017 prices the margin at exactly one.
+The lever that looked free: if the two-star residual R had a part of minimum
+degree 2, (L7) would take **N(4) = 9** in place of g(4) = 8 and tighten by one
+unit everywhere — where D-017 prices the margin at exactly one.
 
-**The min-degree-2 route is dead, and dead exactly where it would have
-mattered.** The only ρ = |R| at which the +1 changes a floor is ρ = 8. There
-τ(R) ≥ 4 by the peel and τ(R) ≤ 4 because g(5) ≥ 12, so **τ(R) = 4 exactly** —
-and then one line finishes it, with no lemma at all: τ = 4 makes every part a
-cover, so every part has ≥ 4 active vertices, and **the only partition of 8 into
-≥ 4 entries each ≥ 2 is (2,2,2,2)**. So "R has a part of minimum degree 2" *is*
-the statement N(4) ≤ 8. The hypothesis the lever needs is the negation of the
-constant the lever would invoke.
+**The min-degree-2 route is dead exactly where it would have mattered.** The only
+ρ = |R| at which the +1 changes a floor is ρ = 8, and there **τ(R) = 4 exactly**
+(≥ 4 by the peel, ≤ 4 because g(5) ≥ 12) — so every part is a cover with ≥ 4
+active vertices, and the only partition of 8 into ≥ 4 entries each ≥ 2 is
+(2,2,2,2). "R has a part of minimum degree 2" *is* the statement N(4) ≤ 8: the
+hypothesis the lever needs is the negation of the constant it would invoke.
+Machine-checked, 15 of 15 two-star residuals of W8 and 15 of 15 of W9 have no such
+part. (Scope: this kills the min-degree-2 route, not every route — the first
+version overstated it — and it needs **no appeal to AKP Lemma 2.8**, whose
+derivation consumes the same N(4) search.)
 
-Two scoping notes, both from the verification pass. This kills the
-**min-degree-2 route**, not every route: excluding ρ = 8 by some other argument
-would still give ρ ≥ 9, and the first version of this ADR overstated that as "the
-residual cannot be upgraded." And the argument above needs **no appeal to AKP
-Lemma 2.8** — routing it through 2.8 (as the first version did) invites a reader
-to see an independent leg where there is none, which is the trap PLAN.md already
-warns about: 2.8's derivation consumes the same N(4) search.
-
-Mechanism, and it is the general lesson. Lemma (C) gets N(6−k) because deleting
-k vertices of **one** part never touches the degrees of that part's survivors —
-an edge has exactly one vertex per part. A **cross-part** peel destroys precisely
-that guarantee: part i loses M_j − c_ij degree units through u_j, part j loses
-M_i − c_ij, and every other part loses the full m − ρ. Nothing stops a degree-2
-vertex dropping to 1.
-
-Machine-checked: 15 of 15 two-star residuals of W8 and 15 of 15 of W9 have no
-part of minimum degree 2. And the lever would not have sufficed anyway — (L7)
-with g(4) = 9 still leaves 950 survivors at m = 21 citation-free.
-
-**Rule.** A same-part peel and a cross-part peel are not the same operation. Only
-the first preserves the degree structure the N-ladder is defined by. Before
-carrying any per-part hypothesis across a deletion, ask which part paid for it.
+**Rule.** A same-part peel and a cross-part peel are not the same operation.
+Lemma (C) gets N(6−k) because deleting k vertices of **one** part never touches
+that part's survivors — an edge has exactly one vertex per part — while a
+cross-part peel destroys that guarantee, so nothing stops a degree-2 vertex
+dropping to 1. Before carrying a per-part hypothesis across a deletion, ask which
+part paid for it.
 
 ## D-023 · A risk decomposition is a claim, and ours was wrong (2026-07-26, turn 8)
 
@@ -422,14 +418,10 @@ D-019 published a table so that attack would go to the right place. **Its (L7)
 row was false.** It said removing (L7) leaves 100% of configurations surviving at
 every m. Measured, with certificate 0007's own `l8_kills` and one line changed:
 **3 of 105 survive at m = 20 cited (2.9%), 1,616 of 7,159 at m = 20 free (22.6%),
-1 of 33 at m = 19 free.** Four implementations agree, one of them keeping 0007's
-loop structure verbatim.
-
-The mechanism the row missed: with (L7) gone, D = A − S + m ≥ 0 still forces
-A ≥ S − m, convexity still forces B_min large, and X still refuses to pay. Most
-no-(L7) survivors first survive at D = 0 — measured, the minimum-surviving-D
-histogram is {0:3} at m=20 cited, {0:1} at m=19 free, and **{0:1612, 4:4}** at
-m=20 free.
+1 of 33 at m = 19 free**, four implementations agreeing. With (L7) gone, D ≥ 0
+still forces A ≥ S − m, convexity still forces B_min large, and X still refuses
+to pay; most no-(L7) survivors first survive at D = 0, the minimum-surviving-D
+histogram at m = 20 free being **{0:1612, 4:4}**.
 
 > **Erratum, ours, same day.** This paragraph first read "Every no-(L7) survivor
 > sits at exactly D = 0." **False** — four of the 1,616 free-m=20 survivors first
@@ -439,17 +431,13 @@ m=20 free.
 
 **The step actually doing that work has no name anywhere in this repo.** 100%
 survival reproduces only when **B_min(A)** — the convexity lower bound on
-B = Σ C(c_ij,2) subject to Σ c_ij = A — is zeroed *as well as* the (L7) floors.
-It is in no risk table, no ledger line, no certificate label. The lab spent two
-turns ranking the δ-budget (which costs at most one rung) above a step it never
-wrote down.
-
-X, by contrast, reproduces at **exactly** 100% everywhere — it is the other total
-load-bearer. And the same pass found **g(4) = 8** carrying a margin of one
-(weaken it to 7 and 649 of 7,159 survive at m = 20 free), on no attack list
-anywhere; plus a second inert step inside X (`B <= floor(5X/2)` is implied by the
-level budget). The N(4) = 8 row was numerically right but **understated**: m = 19
-revives too, so that failure drops the floor to 19, not 20.
+B = Σ C(c_ij,2) subject to Σ c_ij = A — is zeroed *as well as* the (L7) floors,
+and it is in no risk table, ledger line or certificate label. The lab spent two
+turns ranking the δ-budget (worth at most one rung) above a step it never wrote
+down. The same pass found **g(4) = 8** carrying a margin of one (weaken it to 7
+and 649 of 7,159 survive at m = 20 free), on no attack list anywhere, and the
+N(4) = 8 row numerically right but **understated** — m = 19 revives too, so that
+failure drops the floor to 19, not 20.
 
 **Rule.** D-019 stands; this is D-019 applied to itself. A published risk
 decomposition is a load-bearing claim and gets the same treatment as any other —
@@ -460,26 +448,16 @@ attack; it directs it away.
 ## D-024 · Some controls are impossible, and saying so is the control (2026-07-26, turn 8)
 
 PLAN.md owed "a positive control: the bound must hold on objects that exist" for
-the degree-2 cap. **On the 6-partite class that cannot be discharged, by anyone**
-— an intersecting 6-partite object with τ = 6 *is* a Ryser counterexample, the
-thing being ruled out, and for r ≤ 5 the class is empty by theorem. Measured:
-**0 of 67,463** census objects have τ = r. The bound fails even at τ = r−1:
-truncated PG(2,2) has 2·D₂ = 12 against m = 4.
+the degree-2 cap. **On the 6-partite class that cannot be discharged, by anyone** —
+an intersecting 6-partite object with τ = 6 *is* a Ryser counterexample. Measured:
+**0 of 67,463** census objects have τ = r.
 
 > **Erratum, ours, same day.** This ADR first said the control was impossible
 > **full stop**, and certificate 0008 repeated it. That is scoped wrong. The
 > lemma the floor actually rests on — (III-C) — **never uses r-partiteness**, so
-> its hypothesis class is *intersecting, |E| ≥ 3, τ ≥ |E|*, which is non-empty at
-> r = 6 and constructible in a second. **PG(2,5) minus the ten secants of a
-> 5-arc**: m = 21, 6-uniform, intersecting, τ = 6 exactly (no 5-cover among all
-> C(31,5) = 169,911 subsets), D₂ = 5, every one of its 21 lines holding at most
-> one degree-2 vertex. That is (D2)'s *conclusion* tested non-vacuously at r = 6,
-> at exactly the m the floor kills — and it is **not 6-partite** (no proper
-> 6-colouring of its collinearity graph; lemma (B) would force ≥ 36 vertices
-> against its 31), so it is no counterexample and the floor is untouched.
-> Certificate 0008 now ships it. The bound is also **attained** — 210 families at
-> r = 3 have 2·D₂ = m exactly, and PG(2,4) minus a Baer subplane gives m = 14,
-> τ = 5 = r, 2·D₂ = 14 — so ⌊m/2⌋ is not improvable in general.
+> its hypothesis class is non-empty at r = 6 and constructible in a second;
+> certificate 0008 ships that witness (PG(2,5) minus the ten secants of a 5-arc,
+> not 6-partite, so the floor is untouched) with its full spec.
 >
 > "We could not find a violating object", "no object of that kind exists", and
 > "no object satisfying *this particular strengthening* of the hypotheses exists"
@@ -487,20 +465,16 @@ truncated PG(2,2) has 2·D₂ = 12 against m = 4.
 > the third.
 
 What replaced it: **test the proof, not the conclusion.** The lemma is a
-construction, so it runs on objects regardless of τ — if a line holds degree-2
-vertices u,v with other lines ℓ_u, ℓ_v, then (ℓ∖{u,v}) ∪ {x} must be a genuine
-cover of size ≤ r−1 for every x ∈ ℓ_u ∩ ℓ_v. Certificate 0008 does this
-exhaustively over two bounded classes: **248,460 constructed sets, zero
-failures**, with a mutant drawing x from outside ℓ_u ∩ ℓ_v failing 3,780 of 3,780
-to prove the test has teeth.
+construction, so it runs on objects regardless of τ — exhaustively, in certificate
+0008: **248,460 constructed sets, zero failures**, with a mutant drawing x from
+outside ℓ_u ∩ ℓ_v failing 3,780 of 3,780 to prove the test has teeth.
 
-**Rule.** When a lemma's hypothesis class is conjecturally empty, no amount of
-compute produces a positive control on its conclusion, and an open checklist item
-demanding one will sit there forever looking like diligence. Test the
-*construction* instead — a proof by explicit witness is runnable wherever its
-construction is defined, which is a strictly larger class than where its
-conclusion holds. And record the impossibility, because "we could not find a
-violating object" and "no object of that kind exists" are different sentences.
+**Rule.** When a lemma's hypothesis class is conjecturally empty, no compute
+produces a positive control on its conclusion, and a checklist item demanding one
+sits there forever looking like diligence. Test the *construction* instead: a
+proof by explicit witness runs wherever its construction is defined, a strictly
+larger class than where its conclusion holds. Record the impossibility in the
+exact scope earned.
 
 ## D-025 · `extension_edges` returns edges already present (2026-07-26, turn 8)
 
@@ -524,6 +498,7 @@ f **not already in H** such that H + f has property P", and for a hereditary P
 the difference is silent — it inflates counts without ever producing an invalid
 object. A census engine needs a simplicity assertion on its output, not just on
 its logic.
+
 ## D-026 · Inventory your own witnesses (2026-07-27, turn 9)
 
 Q13 — is there a 13-edge τ ≥ 5 object with a full part? — was posed at turn
@@ -689,8 +664,10 @@ UNSATISFIABLE at r = 2 — the boundary case explains itself).
 cheapest place a formula breaks is the smallest parameter. Twenty
 minutes at r = 2 bought the audit its sharpest constraint and turned
 "desk-read plausible" into "mechanism located, boundary understood."
-This is D-020's measure-before-theorising, sharpened to the audit of
-claimed bounds: measure the CLAIM's pattern at tiny scale first.
+This is D-005's compute-never-infer, sharpened to the audit of claimed
+bounds: measure the CLAIM's pattern at tiny scale first. (ERRATUM
+2026-07-29: this line cited "D-020", an ADR that was never issued —
+the numbering skips D-020 and D-021. Caught by an internal doc sweep.)
 
 **How to apply:** when auditing any claimed bound parametrized by r (or
 m, or t), first compute the ground truth at the smallest nontrivial
@@ -745,112 +722,79 @@ coordinate in the margin statement; and when an enactment's hypothesis
 has a fixed size or count, construct the test AT the hypothesis (pad,
 don't approximate) so the label and the code test the same claim.
 
-## D-036 · Outside-audit intake is statement-level, and a deflation is an error too (2026-07-28, turn 14)
+## D-036 · Peer intake: statements in, proofs never, verbatim text to refuters (2026-07-28, turns 14–16)
 
-The repo's first outside audit (GPT 5.6 Sol Pro, one day after the
-public flip) proposed turn 14's theorem — the X = 3 layer dies at the
-floor — with an eight-case route and field numbers matching ours
-digit-for-digit. The intake protocol that handled it, now law:
-statements and claimed constants come IN; proofs are never ingested
-(here none were even available — the audit's documents were not
-fetched). The lab re-derives at the desk, blind fleet lanes re-derive
-from a definitions pack alone, hostile refuters attack the desk
-versions, and the certificate consumes only in-house derivations, with
-the audit's role recorded in NOTES as provenance (D-031: recorded, not
-consumed). Corroboration is counted in implementations, not authority:
-the field facts entered the cert only after six in-house computations
-agreed.
+The lab's intake law for outside review, settled over three turns; D-037 and
+D-038 point back here.
 
-Two failure modes this turn adds to the ledger. First: the desk
-"corrected" the audit's path-shape bound 27 to 26 — and the desk was
-wrong; three refuter lanes restored 27 by exhaustive enumeration.
-**Deflating a peer's correct number inside a "correction" is the
-mirror image of the flattering overclaim** — skepticism must be
-symmetric, and an identification pattern you did not enumerate is an
-identification pattern you missed. Second: both the audit's summary
-and the desk's first write-up asserted a forced census split ("one
-(7,7), two (8,6)") where the argument only proved "at most one (7,7)"
-— the zero-(7,7) case needed its own kill. Equality analyses must
-ENUMERATE their assignment dichotomies, not narrate them.
+**Turn 14 — statements only, and the deflation mirror.** The first outside audit
+(GPT 5.6 Sol Pro) proposed turn 14's theorem, its field numbers matching ours
+digit-for-digit. Statements and claimed constants come IN; proofs are never
+ingested. The desk re-derives, blind lanes re-derive from a definitions pack
+alone, refuters attack the desk versions, the certificate consumes only in-house
+derivations, and the peer is credited in NOTES provenance (D-031) but cited by
+zero proof steps — corroboration counted in implementations, not authority. Two
+scars: the desk "corrected" the audit's path-shape bound 27 to 26 and was itself
+wrong (refuters restored 27 by enumeration); and both the audit and the desk
+asserted a forced census split ("one (7,7), two (8,6)") where the argument proved
+only "at most one (7,7)".
+**Deflating a peer's correct number inside a "correction" is the mirror image of
+the flattering overclaim** — skepticism must be symmetric, and equality analyses
+must ENUMERATE their dichotomies, not narrate them.
 
-**Why:** the outside-audit lane multiplies eyes without importing
-trust; it stays sound only if the boundary (statements in, proofs
-never, derivations in-house) is mechanical. And D-017's flattering-
-error law needs its mirror stated once: an error that DEFLATES a
-peer's correct claim survives review just as easily, because it wears
-the costume of rigor.
-
-**How to apply:** peer claims arrive as a statement list with the
-peer's constants. Every constant is reproduced in-house (>= 2
-independent implementations) before it may appear in a certificate;
-every claimed theorem is re-derived blind + refuted before its
-statement is consumed; the peer is credited in NOTES provenance and
-cited by zero proof steps. When checking a peer bound, enumerate —
-never hand-derive a smaller number and prefer it for being yours.
-
-## D-037 — Full-text peer intake: the received proof goes only to refuters (2026-07-28, turn 15)
-
-D-036 covered peer claims arriving as statements. Turn 15's second outside
-audit arrived as statements PLUS a complete proof. The routing that was used,
-now law: **the desk reads and desk-checks the received text first** (its own
-script, exact arithmetic, before any lane flies); **blind lanes receive
-statements plus one-line mechanisms only** — never the text; **the received
-text itself is handed only to hostile refuter lanes**, whose brief is to break
-it; the certificate consumes only in-house derivations, and its provenance
-section states plainly that full text was received and how it was routed.
-
-**Why:** turn 15 measured the value of each half. The blind lanes returned two
-INDEPENDENT alternative proofs — evidence agreement-checking cannot produce —
-and the refuter lanes, reading adversarially, flagged a circular degree-cap
-step. (ERRATUM 2026-07-28, caught by the third outside audit: the refuters
+**Turn 15 — routing, when full text arrives.** The second audit came as statements
+PLUS a complete proof. The desk desk-checks the received text first, before any
+lane flies; blind lanes get statements and one-line mechanisms only, never the
+text; the text goes only to hostile refuters. Both halves paid — two INDEPENDENT
+alternative proofs from the blind lanes, a circular degree-cap step flagged by the
+refuters. (ERRATUM 2026-07-28, caught by the third outside audit: the refuters
 were in fact reading the DESK'S TRANSCRIPTION, not the received text, and the
 circularity lived only in the transcription — the received step was valid.
 The routing principle stands; the motivating example was misattributed. The
-repair is D-038.) Route the text to sympathetic readers and you get
-transcription; route it to refuters and you get defects — which is exactly
-why the refuters must get the *verbatim* text.
+repair is D-038.)
 
-**How to apply:** on receipt of peer proof text — desk-check, then fleet with
-the split above; the NOTES provenance must say "full proof text received" when
-it was (claiming statements-only intake when text was read is a provenance
-falsehood); any defect found in the received text is stated concretely in the
-certificate, with the repair, so agreement-on-the-statement is never mistaken
-for agreement-on-the-proof.
+**Turn 16 — verbatim to refuters, retained on arrival.** The retraction, in the
+words it was published in: Turn 15 routed the received proof to its refuter lanes
+through a desk-written transcription. The transcription restated the weight
+function w = Φ(d−1, 5) — an integer at every degree — as a finite table plus the
+inequality w(d) ≥ d − 6 above d = 11. Under that weakened spec, the received
+proof's integer-flooring step genuinely fails; two refuters correctly flagged it;
+and the desk recorded their finding as the peer's defect. The third outside audit
+caught it: the received step was valid, and the lab's public record briefly
+charged a correct proof with a nonexistent circularity. (The step was also INERT —
+w(d) ≥ d − 6 closes d ≥ 12 against 16/3 with no integrality — so the record was
+wrong twice over: false of the received text, and consequence-free even of the
+transcription.) **A transcription is itself a mathematical
+claim, and this one was never verified.** Hence: refuters receive the text
+VERBATIM; a defect found in restated material is re-verified against the original
+before it is recorded as the peer's; errata to the lab's own provenance narrative
+rank with certificate errata (D-034); and **every received peer text is retained
+in `notebook/raw/` on arrival**.
+
+**Why:** the lane multiplies eyes without importing trust, and stays sound only if
+the boundary — statements in, proofs never, derivations in-house — is mechanical.
+Route text to sympathetic readers and you get transcription; route it to refuters
+and you get defects. The blind lanes' packs are transcriptions BY DESIGN, so their
+findings bind only the pack while refuters' may bind the peer. And D-017's
+flattering-error law needs its mirror: an error that DEFLATES a peer's correct
+claim survives review just as easily, because it wears the costume of rigor.
+
+**How to apply:** every peer constant is reproduced in-house (>= 2 independent
+implementations) before it may appear in a certificate, and every claimed theorem
+is re-derived blind + refuted before its statement is consumed. NOTES must say
+"full proof text received" when it was — claiming statements-only intake when text
+was read is a provenance falsehood — and any defect found in the text is stated
+concretely with its repair. When checking a peer bound, enumerate; never
+hand-derive a smaller number and prefer it for being yours.
+
+## D-037 — Full-text peer intake: the received proof goes only to refuters (2026-07-28, turn 15)
+
+Merged into **D-036** (turn-15 clause), which carries this entry's routing
+protocol and its ERRATUM verbatim. Kept as a pointer: cited by name in PLAN.md
+and README.md.
 
 ## D-038 — A transcription is a claim: refuters read the verbatim text (2026-07-28, turn 16)
 
-Turn 15 routed the received proof to its refuter lanes through a desk-written
-transcription. The transcription restated the weight function w = Φ(d−1, 5) —
-an integer at every degree — as a finite table plus the inequality
-w(d) ≥ d − 6 above d = 11. Under that weakened spec, the received proof's
-integer-flooring step genuinely fails; two refuters correctly flagged it; and
-the desk recorded their finding as the peer's defect. The third outside audit
-caught it: the received step was valid, and the lab's public record briefly
-charged a correct proof with a nonexistent circularity.
-
-**The law:** (1) refuter lanes receive the received text VERBATIM — the file
-itself or an exact copy, never a desk compression; (2) any defect found in
-transcribed or restated material is re-verified against the original before it
-is recorded as the peer's; (3) errata to the lab's own provenance narrative
-rank with certificate errata — same-commit, dated, condition-untouched — and
-the corrected record must name what the desk got wrong, not merely restate
-the truth; (4) **every received peer text is retained verbatim in
-`notebook/raw/` the turn it arrives** — turn 15's text was not retained, so
-its erratum rests on a session-transcript reconstruction rather than an
-artifact, which is exactly the deficiency this clause closes (turn-16 lane
-catch; the turn-16 text is the first retained under this clause).
-
-**Refinement (turn 16, same day):** the transcription's flagged step was
-unjustified-but-INERT — even under the weakened pack, w(d) ≥ d − 6 closes
-d ≥ 12 against 16/3 with no integrality, so no conclusion depended on the
-flooring. The desk's record was thus wrong twice over: the charge was false
-of the received text AND consequence-free even of the transcription.
-
-**Why:** D-036 named the deflating "correction" of a peer's number; turn 15
-committed the same failure one level up, against a peer's proof step, through
-an unfaithful intermediate artifact. A transcription is itself a mathematical
-claim ("this restates the original faithfully") and it was never verified.
-The blind lanes' packs are transcriptions BY DESIGN — that is what makes them
-blind — so the asymmetry is the point: blind lanes get the desk's statements
-and their findings bind only the pack; refuters get the original and their
-findings may bind the peer.
+Merged into **D-036** (turn-16 clause), which carries the verbatim-routing law,
+the `notebook/raw/` retention clause and the turn-15 retraction verbatim. Kept as
+a pointer: cited by name in PLAN.md, README.md and certificates 0019/0020.

@@ -133,6 +133,14 @@ would have killed a genuine edge-critical core.
 
 **Whether (CC⁺)'s END-TO-END conclusion survives at X = 5 is OPEN.**
 
+> **SCOPE ADDENDUM 2026-07-29 (internal doc sweep).** The flag stays up — this
+> is a genuine open question *about the lemma*, and nothing below is withdrawn
+> — but it **can no longer yield a core**. No critical core in the window has
+> X = 5: **0019 (T-B)** confines X = 5 to m ≤ 26, and **0020 (T-A20)** empties
+> that band and proves X ≥ 6 for every critical core in [22, 456]. Whatever
+> the answer at X = 5, the X = 5 layer is uninhabited, so the open item is
+> about (CC⁺)'s reach and not about the frontier. No check condition changes.
+
 What is proven is that the **c = 1 corner** dies at X = 5 — the 4/3 rung of C1
 holds there, and C2/C3 are X-unrestricted — and the certificate exhibits
 the repaired witness (§2, check 13–15):
@@ -290,8 +298,16 @@ the Φ and 5⁶-pattern exhaustions of §1–§2. No file is read; no network.
 C5 caps X ≤ 2 at m ≤ 26, so **any hypothetical critical core with X ≤ 2 lives in
 m ∈ {23, 24, 25, 26} and nowhere else in [22, 456]**. Those are the same four
 rungs where the profile forces nothing. 0016's W ≤ 24 machinery and its per-edge
-budgets are m-free — **only the field scan needs re-running at 23, 24, 25, 26.**
-That is the cheapest thing on the board.
+budgets are m-free.
+
+> **ERRATUM 2026-07-29 (internal doc sweep).** This item originally ended
+> "— **only the field scan needs re-running at 23, 24, 25, 26.** That is the
+> cheapest thing on the board." **Superseded, and it must not be read as an
+> open task.** The X ≤ 2 box is **empty at every m in the window**: 0019 (T-A)
+> proves X ≥ 5 for every critical core in [22, 456] and 0020 (T-A20) raises
+> that to X ≥ 6, so the X ≤ 2 antecedent is vacuous on those four rungs and
+> everywhere else. **Do not run that scan.** The confinement statement above
+> remains true of this certificate's own laws; no check condition changes.
 
 **2. The X = 3 shape census is banked and points at one shape.** From the turn-13
 census and refuter lanes (`t13-census.md`, `t13-refuter.md` — *measured there, not
@@ -308,6 +324,17 @@ frontier, both its edges have x_e = 3 hence budget 0 hence all twelve degrees
 ≤ 6, and Lemma 1.2 fixes each row sum at exactly 30. That is transversal-level
 structure the degree-multiset field cannot see.
 
+> **ERRATUM 2026-07-29 (internal doc sweep).** The forward-looking half of this
+> item is dead. "**1,549 of the 1,580 survivors are consistent with the λ-4 pair
+> alone**: that shape is the whole frontier" was **killed by 0018**, whose
+> eight-shape census shows the λ4 pair forces **m ≤ 20** — one rung under the
+> window floor, so the entire 1,549-configuration turn-13 frontier is gone by
+> counting. The shape-census *method* itself was then **replaced by 0019**,
+> which closes the whole X ≤ 4 layer window-wide without enumerating a single
+> shape. The banked turn-13 measurements above stand as history — they were
+> never carried into this certificate — but nothing here is a live field. No
+> check condition changes.
+
 **3. (G)'s Jensen step is the new workhorse.** It is the first tool in this
 lineage that is *quadratic* in m, and it was built from ingredients already
 certified — no new combinatorics. Two immediate extensions: the **b-aware hybrid**
@@ -315,6 +342,17 @@ certified — no new combinatorics. Two immediate extensions: the **b-aware hybr
 now that X ≳ m²/90 from below, **any sub-quadratic upper bound on X would cap m
 directly** — nothing in the ledger supplies one, and (G)'s own upper branch is
 inert by a factor of ten.
+
+> **ERRATUM 2026-07-29 (internal doc sweep).** "The new workhorse" is
+> superseded. **0020's (Q)** — m(m−25) + Σ5 + 10H ≤ 38X, hence
+> X ≥ ⌈m(m−25)/38⌉ and X ≥ 5173 at m = 456 — is the quadratic law that now
+> owns the far end of the window, against (G)'s 2259 at the same rung. The
+> extensions named above are unclaimed by anyone. **(G) is not consumed by
+> either successor:** verified against both ledgers and both checkers —
+> 0019 consumes 0017 C1 (check 8), check 9, check 12 and C3; 0020 consumes
+> 0017 check 9, check 12 and C3; neither cites C6/(G), and neither `verify.py`
+> mentions it. (G) remains true and remains this certificate's; it is simply
+> no longer the sharpest tool on the board. No check condition changes.
 
 ## Post-audit repairs (applied at the desk, then re-verified)
 

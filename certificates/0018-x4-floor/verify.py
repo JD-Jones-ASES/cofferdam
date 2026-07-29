@@ -179,8 +179,13 @@ MANDATORY HONESTY NOTES
      exercise the localization identity itself.  Nothing here claims
      an enactment it does not run.
  (5) WHAT THIS DOES NOT CLAIM.  Nothing about m >= 23 (the thin rungs
-     m in {23..26} remain the window's arithmetic-free stretch).  No
-     core is claimed to exist.  Lemma D9 (X = 3 forces Delta <= 8,
+     m in {23..26} remain the window's arithmetic-free stretch -- a
+     statement about 0017's LAWS, never a claim that those rungs are
+     unattacked.  ERRATUM 2026-07-29, internal doc sweep: certificates
+     0019 (X >= 5 window-wide; X = 5 => m <= 26) and 0020 (X >= 6 for
+     every critical core in [22, 456]) have since forced X >= 6 there
+     by census.  Conditions untouched).  No core is claimed to exist.
+     Lemma D9 (X = 3 forces Delta <= 8,
      window-wide) was proven by the fleet and desk-verified but is NOT
      consumed by this chain; it is banked in the turn-14 notebook.
      0017's corner-ladder profile forces X >= 4 from m = 28 (its

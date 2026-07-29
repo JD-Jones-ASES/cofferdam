@@ -89,8 +89,8 @@ non-decreasing sits at least one degree above capF(X − q₁)) is weaker than t
 key cap. That is a *per-vertex* observation and it is kept as the secondary
 thing it is: both budgets are **sums** over the six cells of f, and a
 per-vertex comparison does not show the sum is slack. The certificate stands
-with those two rows removed. A certificate must never look more dependent than
-it is, either.
+with those two rows removed, and the rows are kept as derived-not-imposed
+rather than dropped (D-032).
 
 ---
 
@@ -221,23 +221,20 @@ corpus, none with s(z) = 0 (check 13, where that population is now *pinned*
 rather than merely reported non-empty). The +H term is not decoration —
 mutant **M1** reopens **17 of §3's 35 cells** when it is dropped.
 
-**The two halves of (SG) are enacted to different depths, and check 16 now
-says so.** The exchange identity is enacted non-vacuously, corpus-wide and per
-family. The *inequality* P + H ≤ R was, in the first draft of this
-certificate, confirmed on 70 guarded families **all of which read 0 ≤ 0** —
-because the corpus's only high-τ objects were the affine planes AG(2,q), whose
-degrees are all q = r−1, so Φ(d, r−1) = 0 at every vertex and P = H = R = 0.
-The counter that would have said so was computed and dropped. Both are fixed:
-the counter is asserted and printed, and the corpus gained one purpose-built
-family that satisfies the guard **non-vacuously** — `fat_plane(3, …)`, AG(2,3)
-with a sixth part appended that is constant on all but three *non-collinear*
-points. That cell then has degree 6 ≥ r = 5, so Φ(6,4) = 2 and the vertex is
-high; the three excluded points get private values and, not being collinear,
-are covered by no single cell, so τ stays at **3 = q<sub>max</sub> + 2** and
-the guard holds. It reads **P + H = 3 ≤ R = 30**. τ, q<sub>max</sub> and every
-count are computed in-run, not asserted. One family is one family: the
-inequality's real backing is the proof above plus the mutation suite, and
-check 16 says that too.
+**The two halves of (SG) are enacted to different depths, and check 16 says
+so.** The exchange identity runs non-vacuously, corpus-wide and per family. The
+*inequality* P + H ≤ R read **0 ≤ 0 on all 70 guarded families** of the first
+draft's corpus — whose only high-τ objects were the affine planes AG(2,q),
+degrees all q = r−1, so Φ(d, r−1) = 0 at every vertex and P = H = R = 0. The
+corpus therefore gained one purpose-built family that satisfies the guard
+**non-vacuously**: `fat_plane(3, …)`, AG(2,3) with a sixth part appended that is
+constant on all but three *non-collinear* points. That cell has degree 6 ≥ r = 5,
+so Φ(6,4) = 2 and the vertex is high; the three excluded points get private
+values and, not being collinear, are covered by no single cell, so τ stays at
+**3 = q<sub>max</sub> + 2** and the guard holds. It reads **P + H = 3 ≤ R = 30**,
+with τ, q<sub>max</sub> and every count computed in-run. One family is one
+family: the inequality's real backing is the proof above plus the mutation
+suite, and check 16 says that too.
 
 ### The residue identity, (Q), (Q0), (H1)
 
@@ -429,16 +426,11 @@ qᵢ + q_j ≤ x_e ≤ c = 3. Only {P₃, P₄} (1 + 1 = 2) qualifies.
   Then u, v ∈ g ∩ h, so {g, h} is a fifth excessive pair; it must be P₁ or P₂
   (q = 3), and then g lies in two excessive pairs with x_g ≥ 3 + 1 = 4 > 3.
 
-Both die. **This is the repair.** The review's defect here is **one defect
-with two consequences**: its §7.2 table names (3+3+2) as the only remaining
-excess partition at (8,30), so the list is **incomplete**; and *because* it is
-incomplete, its edge-disjointness sentence — which is **true** of the
-partitions it listed, where qᵢ + q_j ≥ 5 > 3 = c for every index pair and
-edge-disjointness really is forced — is false at the omitted (3,3,1,1). All
-three refuter lanes found it. `licensed_ii()` re-derives the exclusion
-mechanically for any (π, c), and check 33 runs it on all six index pairs of
-this cell *and* on the review's (3,3,2), where it confirms that no index pair
-may share an edge at all.
+Both die. **This is the repair** — of the review defect recorded once, in
+Provenance below, and priced by mutant M9. `licensed_ii()` re-derives the
+exclusion mechanically for any (π, c), and check 33 runs it on all six index
+pairs of this cell *and* on the review's (3,3,2), where it confirms that no
+index pair may share an edge at all.
 
 **(iii) Every high vertex has |T_v| ≥ 2, and its degree is capped by T_v.**
 Write T_v = {i : v ∈ Sᵢ}. All excess sits in the four listed pairs, so the
@@ -491,9 +483,7 @@ This certificate claims X = 6 ⟹ m ≤ 26 and stops.
 
 ---
 
-## One model comparison and two spec numbers that did not reproduce
-
-### 1. §3's min-S table — two models, two tables, both correct
+## One model comparison — and which model governs
 
 *Corrected 2026-07-28 under D-036. An earlier version of this section declared
 the review's rows "withdrawn", called the disagreement "a spec error rather
@@ -501,7 +491,7 @@ than an engine error", and asserted that no plausible cap set reproduces them.
 All three statements were wrong, and wrong in the direction that deflates
 correct peer work. The retraction is kept here rather than quietly edited out.*
 
-The desk spec carried the outside review's own min-S table —
+The desk spec carried the outside review's own §3 min-S table —
 13,14,14,15,15 / 15,15,16,17,19 (twice) / 19,21,21,24,25 (twice) — and
 transcribed it faithfully. **Those rows are correct under the model the review
 states**, which is written out in the received text: a **global** Δ ≤ 9 from
@@ -509,48 +499,20 @@ states**, which is written out in the received text: a **global** Δ ≤ 9 from
 avoids, and the 0017 4/3 budget Σ<sub>v ∈ f</sub> w(d(v)) ≤ ⌊(4/3)(5−t)⌋ on
 the six cells of f. Re-run under that model, they reproduce.
 
-**This file runs a different model**: the per-partition key cap
+**This file runs a different model** — the per-partition key cap
 F(d(v)) ≤ X − q₁ imposed at *every* vertex, with **no on-f budget imposed at
-all**. It returns **16,16,16,19,20** on the q₁ = 2 rows and
-**21,23,23,24,27** on the q₁ = 3 rows — uniformly larger, i.e. **wider
-kills** — while the q₁ = 1 row and the whole m = 27…31 extension
-(20/23/25/30/35) agree with the review exactly.
+all** — and returns **16,16,16,19,20** on the q₁ = 2 rows and
+**21,23,23,24,27** on the q₁ = 3 rows: uniformly larger, i.e. **wider kills**.
+The q₁ = 1 row and the whole m = 27…31 extension (20/23/25/30/35) agree with
+the review exactly.
 
-Neither table is an error. They price different constraint sets, and this
-certificate is governed by its own. **Consequence under this model:** the
-spec's "three one-unit cells" do not exist here — the thinnest §3 margin is
-**2**, at (2,2,1) on m = 22, 23, 24.
-
-### 2. §4's thinnest arithmetic kill
-
-Spec: (8,30,(3,2,2,1)) at margin 6. Measured: **margin 2** (1064 against
-1066). The cell, and its identity as the thinnest, are confirmed; the number
-is not.
-
-### 3. M10's MAXHIGH
-
-The spec guessed "≥ 74" and explicitly marked it for measurement. Measured:
-the literal mutant is **inert** (40, unchanged) and only the faithful reading
-reddens — at **190**, not "unbounded". See M10 below.
-
-A fourth, smaller one: the spec's M4 predicted (D2)-relaxation reopenings in
-§3; measured, relaxing (D2) by one reopens **nothing** — the cap has a full
-unit of slack everywhere it is used.
-
-### Deviations from the spec, named
-
-* **Mutant numbering.** This certificate renumbered the spec's mutants: spec
-  M3/M4/M5/M6 are this file's **M6/M3/M4/M5**. A reader holding the spec and
-  following a mutant label will otherwise land on the wrong row.
-* **The tightness control's name.** The spec calls it "PG(2,5) minus a point";
-  it is built and named here as its dual, the 6-partite **AG(2,5)**.
-  Parameters verified identical firsthand: deleting a point of PG(2,5) and the
-  six lines through it leaves 25 edges of size 6 on 30 vertices, all of degree
-  5, with X = 0, τ = 5 and Σ d² = 750 = m² + 5m + 2X — the certificate's
-  object exactly.
-* **(D2) in §4.** The staircase engine is now called (D2)-free; earlier drafts
-  ran it with the cap on and reported (D2)-freeness as a measured consequence.
-  Both readings agree on every cell (M3), but the billing is now structural.
+Neither table is an error. They price different constraint sets, and **this
+certificate is governed by its own**: the spec's "three one-unit cells" do not
+exist here — the thinnest §3 margin is **2**, at (2,2,1) on m = 22, 23, 24.
+*(The tightness control the spec calls "PG(2,5) minus a point" is built and
+named here as its dual, the 6-partite **AG(2,5)** — verified identical
+firsthand. The desk spec's other unreproduced numbers are recorded once, in
+`verify.py`'s honesty note (2).)*
 
 ## The mutation table (§6 — ten mutants in twelve measured readings)
 
@@ -572,7 +534,7 @@ recording which checks failed.
 | **M6** q ≤ 4 in the Q chain (R ≤ 5X) | checks 9, 38, 39, 40 | ceiling floor **5173 → 4095** (−1,078). **§3 completely inert**, and inert at check 5 too — which is what correct billing looks like from outside |
 | **M7** residue r(5−r) → r(4−r) | check 4 | identity fails at **480 of 601** degrees |
 | **M8** ceil → floor in (Q0)/(H1) | checks 9, 39, 40 | 5173 → 5172, and **all 435** window rungs report a strictly weaker floor |
-| **M9** (8,30) partition list cut to {(3,3,2)} | check 29 | sweep returns **0 survivors** — a **false all-clear**. The review's own §7.2 table named (3+3+2) as the only remaining partition, dropping exactly (3,3,1,1) and (3,2,2,1) |
+| **M9** (8,30) partition list cut to {(3,3,2)} — the review's own §7.2 list | check 29 | sweep returns **0 survivors** — a **false all-clear** (the defect itself is recorded once, in Provenance) |
 | **M10** \|T_v\| ≥ 2 dropped | checks 34–37 (and, downstream of the changed MAXHIGH, 50 and 52) | **two readings**, below |
 
 **M10, in full, because the spec asked for a measurement and got two.**
@@ -585,12 +547,10 @@ not an assumption, and the spec's "≥ 74" does not reproduce under it.
 *Faithful reading* — withdraw step (iii) itself, so every vertex is capped only
 by (BDH), F(d) ≤ s(T_v): a singleton on a q = 3 pair then reaches d = 8 and
 exc = 18, and (iv) does not limit how many such vertices exist, since they
-consume no index pair. **An earlier draft called MAXHIGH "then unbounded" and
-gave a witness of 7 singletons reaching 40 + 7·18 = 166. Both were wrong.**
-Nothing bounds the *number* of singletons, true — but the certificate's own
-geometry does: |Sᵢ| = qᵢ + 1 gives **4, 4, 2, 2 slots**, and every vertex
-occupies one slot in each Sᵢ of its index set. Two numbers, both measured
-in-run:
+consume no index pair. Nothing bounds the *number* of singletons — but the
+certificate's own geometry bounds the slots: |Sᵢ| = qᵢ + 1 gives **4, 4, 2, 2**,
+and every vertex occupies one slot in each Sᵢ of its index set. Two numbers,
+both measured in-run:
 
 * the enumerator visiting each index set at most once returns **206**;
 * the same enumerator with the slot cap, allowing a set to be reused while the
@@ -598,13 +558,12 @@ in-run:
 
 The kill fails as soon as the maximum reaches 1066 − 900 = **166**, and
 190 > 166, so **the faithful mutant does break the kill**: the bound becomes
-1090 against the required 1066. The realisable witness is printed by the run —
-one vertex on {2,3,4} at d = 10, one on {1,2} at d = 10, one each on {1,3} and
-{1,4} at d = 9, two singletons on {2} and one on {1} at d = 8 (4 slots in S₁,
-4 in S₂, 2 in S₃, 2 in S₄, all six index pairs distinct). The old
-"7 singletons" route is *not* realisable: the {1,2,3,4} vertex takes one slot
-of every Sᵢ, leaving 3 + 3 = 6 singleton slots, and 40 + 6·18 = **148 < 166**.
-**The step is load-bearing; the literal filter is not.**
+1090 against the required 1066. The run prints the realisable witness —
+vertices on {2,3,4}, {1,2}, {1,3}, {1,4} at d = 10, 10, 9, 9 plus three
+singletons at d = 8, filling all 4 + 4 + 2 + 2 slots with the six index pairs
+distinct. A {1,2,3,4} vertex plus singletons is *not* the maximiser: it leaves
+3 + 3 = 6 singleton slots and 40 + 6·18 = **148 < 166**. **The step is
+load-bearing; the literal filter is not.**
 
 ## Margins — every coordinate, named (D-035)
 

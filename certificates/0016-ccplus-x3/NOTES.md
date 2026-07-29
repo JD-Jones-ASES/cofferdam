@@ -125,14 +125,6 @@ is a fact about 0015's own judge, and that judge at X = 2 reduces to (D2) plus
 the global form W ≤ 60 — it simply does not decide the layer. §6 here re-measures
 the same field and shows W ≤ 24 empties it.
 
-**Still to correct at close-out** (verified firsthand, still carrying the
-superseded wording): `PLAN.md` line 50 — "the **9,224 X = 2 survivors** are the
-frontier field" — and `notebook/2026-07-27-turn11-cc-x-floor.md` line 91 — "The
-X = 2 layer's 9,224 survivors are the new frontier field". The real frontier is
-the X = 3 layer; see *What this opens*. *(Done at the turn-12 close-out:
-PLAN.md was rewritten; the turn-11 notebook entry stands as append-only history
-with the correction recorded in the turn-12 entry.)*
-
 ## Provenance — in-house, and no sketch was consumed
 
 The sharpening is **in-house**. It was found by this turn's derivation fleet and
@@ -241,6 +233,17 @@ the turn-11 notebook queued as the m = 23 campaign's field do not exist as an
 X = 2 frontier; the real frontier is the **186,086-configuration X = 3 layer**,
 of which **15,340** survive everything currently available.
 
+> **ERRATUM 2026-07-29 (internal doc sweep) — that frontier is closed, and so
+> is the layer above it.** All of it: the m = 22 rung by certificate **0018**
+> (the eight-shape census — the λ4 pair, which carried 1,549 of the 1,580
+> shape-cut survivors, dies at m ≤ 20); the X = 3 layer window-wide by **0019**
+> (T-A: X ≥ 5 for every critical core in [22, 456], reached by counting with no
+> shape enumerated at all); and the rung above that by **0020** (T-A20: X ≥ 6
+> everywhere in the window). The 15,340 configurations are **not** a field to
+> scan — **no critical core has X = 3 at any m**, so every X = 3 statement in
+> this section is now vacuous for cores and is kept as the shape-space record
+> it was, not as a work list. No check condition changes.
+
 Three things change at X = 3, and none of them is cosmetic:
 
 1. **a = 2 becomes legal.** (T) no longer forbids a triple sharing two vertices —
@@ -257,12 +260,10 @@ Three things change at X = 3, and none of them is cosmetic:
    *(This item is unaffected by the erratum: on the triangle's edges the two
    bounds coincide, so there the sharpening genuinely buys nothing.)*
 
-Two leads follow. First, prove the a = 2 world at X = 3 is *exactly* the
-codegree-3 triangle — a rigidity statement, and the natural next lemma. Second,
-the induced degree-array judge (L1) built during this turn's derivation is not
-decisive on its own at either strength (most X = 2 configurations do admit a
-valid array), but it is the machinery the X ≥ 3 rung will reuse, and it is
-already written down.
+Both leads this section opened are **retired, unproven and unneeded** — the
+a = 2 rigidity lemma (that the a = 2 world at X = 3 is *exactly* the codegree-3
+triangle) and the induced degree-array judge (L1): 0018/0019/0020 leave no
+X = 3 core for either to act on. Neither was ever consumed by any certificate.
 
 ## Erratum against this certificate (2026-07-27, applied with certificate 0017)
 
