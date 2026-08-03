@@ -98,3 +98,38 @@ env -i HOME="$HOME" PATH=/usr/bin:/bin python3 -O verify.py  # asserts off
 
 Stdlib only. No installs, no venv, no imports from `lib/`, nothing read from
 disk.
+
+## Erratum 2026-08-03 (turn 19) — three prose defects, found by the lab's own audit simulation
+
+A hostile sixth-audit simulation (Opus lane, reading the shipped repo as an
+outside auditor would) found, and the desk verified:
+
+1. **The header's mutant count said "Fifteen"; the file prices ten.**
+   Reworded. The check (`len(MUT) == 10`) was always right.
+2. **The (0,2) same-shared-set sub-case was asserted, not argued.** The
+   header claimed "(0,2) survives ONLY as the adjacent-apex pattern"
+   without the same-set argument. It is true: x, y ∈ S₁₂∖T lie in e₁∩e₂
+   and in f₁∩f₂; f₁ outside the triangle makes {e₁,f₁} a fifth pair, and
+   f₁ = e₁ makes {e₂,f₂} one (f₂ = e₂ would force q = 2, not 1). Argument
+   now stated in the header. Numerically irrelevant either way: the
+   optimizer never restricts which shared sets the outside cells inhabit,
+   so the branch as run DOMINATES both sub-cases. The structural failure
+   mode — a case list whose completeness is stated rather than generated —
+   is the same one this certificate charges against the fifth audit's
+   repair lemma; recorded without flinching. 0023's (EC)-style generated
+   enumerations are the systemic fix.
+3. **"Load-bearing for the (7,24) preview tie" overstated the o = 2
+   branch.** Its own ceiling is 54 against a 62 wall — deleting it moves
+   no number at any rung including 24. What m = 24 changes is
+   *admissibility* (c₃ = 5 lets the pattern exist), so structural
+   arguments there must carry the case; the count never consumed it.
+   Reworded here and in the witness label ("realize the LOCAL excess
+   pattern among these four edges" — the witness is a local
+   configuration, not a certified core).
+
+Also noted by the simulation, deferred deliberately: this file has no
+`note()` tally and four of its checks are constant-arithmetic guards on
+prose (its predecessors separate the two). 0023 restores the distinction;
+restructuring 0022's check numbering post-ship was judged worse than
+recording the deviation. **No check touched; re-verified green ×2 after
+the rewording.**

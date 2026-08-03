@@ -40,7 +40,11 @@ previous certificate could only reach the near end.
 
 The result is two theorems at opposite ends of the same window. At the near end
 the excess floor rises to 6 and a staircase appears; at the far end,
-X ≥ ⌈m(m−25)/38⌉, which at the ceiling m = 456 reads X ≥ 5173.
+X ≥ ⌈m(m−25)/38⌉ — the bare law reads X ≥ 5172 at the ceiling m = 456
+(38·5172 = 196536 = 456·431 exactly), and **(H1)** lifts it to X ≥ 5173,
+the unit M8 prices. *(Wording corrected 2026-08-03, turn 19: this line
+previously credited the bare law with 5173 — the front-page drift the
+lab's own audit simulation caught; §"(H1)" below always had it right.)*
 
 ## The ledger, in full
 

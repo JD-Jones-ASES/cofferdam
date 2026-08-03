@@ -31,10 +31,18 @@ what such an object could look like.
 Good — that is what this repo is for, and outside audit is the reason it is
 public. **The thinnest things first, so you can aim:**
 
+- **0023's zero-slack chain**: the (7,24) triangle ties Ψ = Λ = 62 exactly
+  and dies only by parity/pigeonhole gates whose shared pillar is residual
+  pairing — (SJ) is *slack* there, and without (RG) the branch reaches 83
+  (mutant M-RG reopens **all three** rungs). Its m = 22 ledgers close by
+  one unit of profile sum; the incidence-ledger engine is a relaxation and
+  the file says which two of its instances came back feasible before a
+  different gate (RG) closed them.
 - **0022's tightest cells**: the (2,2,2,1) triangle at (7,25) dies by ONE
   unit of the optimizer (67 vs 68); the (1⁷) wall at (7,26) sits at exactly
   Ψ = Λ = 73 and dies only by census emptiness and a capacity count; three
-  shapes at (7,25) reach exactly 70 vs 68 and die only by equality forcing.
+  shapes at (7,25) reach exactly 70 vs 68 (two units) and die only by
+  equality forcing.
 - **0021 has one zero-margin cell**: the (m, degrees) = (23, (10,9)) case
   clears its moment requirement at exactly Ψ = Λ = 59 and dies *only* by a
   census-and-profile count. Its three one-unit cells include the one that
@@ -59,7 +67,7 @@ valid proof (turn 15 — retracted, D-038). *An error that flatters the expected
 answer is the failure mode this lab is built around; deflating a peer's
 correct work is its mirror.*
 
-## Where it stands (2026-08-03)
+## Where it stands (2026-08-03, turn 19)
 
 **The problem is finite, and the excess floor is now window-wide.** Every
 claim is proven-by-certificate with an **empty external-input ledger** — no
@@ -68,38 +76,44 @@ literature constant, no unreproduced lemma, no solver in the trust chain.
 1. **The window** — every counterexample contains an edge-critical core, and
    every critical core has **m ∈ [22, 456]**, so the whole question is one
    finite check (0013–0014).
-2. **The excess floor** — every critical core has **X ≥ 7**, at every m, with
-   a squared-off staircase above it (**m ≥ 25 ⟹ X ≥ 8 · m ≥ 29 ⟹ X ≥ 9 ·
-   m ≥ 30 ⟹ X ≥ 10**) and a quadratic law window-wide, **X ≥ ⌈m(m−25)/38⌉**,
-   which reads **X ≥ 5173 at m = 456** (0019–0022).
+2. **The excess floor** — every critical core has **X ≥ 8**, at every m,
+   with a staircase above it (**m = 29 ⟹ X ≥ 9 · m ≥ 30 ⟹ X ≥ 10**) and a
+   quadratic law window-wide, **X ≥ ⌈m(m−25)/38⌉** — the bare law reads
+   5172 at m = 456, and with 0020's (H1) it reads **X ≥ 5173** (0019–0023).
 
-**The frontier is X = 7 on m ∈ {22, 23, 24}**, three edge counts — 0022
-emptied (7, 25) and (7, 26) on every excess partition. Every layer X ≤ 6 is
-empty at every m, and the frontier's first wall is exact: at (7, 24) the
-surviving triangle shape **ties its moment floor at zero margin** (Ψ = Λ =
-62, census pinned) — counting alone will not breach it.
+**The frontier is X = 8 on m ∈ [22, 28]** — 0023 emptied the whole X = 7
+layer: the zero-margin (7,24) tie that counting could not breach fell to a
+**parity sieve** and a **high-incidence pigeonhole** (three independent
+gates), and the remaining shapes to quotient walls and an **incidence-ledger
+engine** that turns each census row into a finite feasibility check. Every
+layer X ≤ 7 is empty at every m.
 
 *Underneath, each still standing on its own*: the floor m ≥ 22 (0001–0012)
 and the floor-local excess chain X ≥ 2/3/4 at m = 22 (0015–0018).
 
 | attack these first | |
 | --- | --- |
-| [0022](certificates/0022-shared-set-quotients) | X = 7 ⟹ m ≤ 24 — the newest; three equality-forced kills at one-unit margins and a census kill at zero gap |
-| [0021](certificates/0021-qmax-debit-x7) | X ≥ 7 everywhere — carries a zero-margin cell and a dated erratum on its triangle prose (numbers stood; 0022 §3 has the honest case law) |
+| [0023](certificates/0023-profile-ledgers) | X ≥ 8 everywhere — the newest; the whole X = 7 layer in one file: parity sieve, incidence ledgers, and a zero-slack (7,24) chain held up by residual pairing alone |
+| [0022](certificates/0022-shared-set-quotients) | X = 7 ⟹ m ≤ 24 — equality-forced kills at two units, a census kill at zero gap, and a dated erratum recording three prose defects the lab's own audit simulation caught |
 | [0013](certificates/0013-finite-window) + [0014](certificates/0014-window-456) | the window itself — nothing supersedes it, and everything rests on it |
-| [0008](certificates/0008-degree-two-cap) | the (D2) cap — the most-consumed input in the chain; 0022's profile fact leans on its per-edge reading |
+| [0008](certificates/0008-degree-two-cap) | the (D2) cap — the most-consumed input in the chain; 0023's parity sieve and profile alphabet both lean on its per-edge reading |
 
-The rest of `certificates/` — 0001–0012 (the floor) and 0015–0021 (the excess
+The rest of `certificates/` — 0001–0012 (the floor) and 0015–0022 (the excess
 chain) — each carry a `NOTES.md` with margins and adversarial record.
 
 The theorems in 0018–0022 were proposed by outside audits (GPT 5.6 Sol Pro,
 reading this public repo — five reviews, five theorems) and re-proven in-house
 under the peer-intake law: statements to blind derivation lanes, received text
 **verbatim** to hostile refuters and retained in `notebook/raw/`, and no proof
-step citing a peer ([DECISIONS.md](DECISIONS.md) D-036). The intake has now
+step citing a peer ([DECISIONS.md](DECISIONS.md) D-036). The intake has
 caught real defects in **both directions** on three consecutive turns —
-including, this turn, a hole in the audit's own repair of the defect it found
-(0022 NOTES, "The intake, both directions").
+including a hole in an audit's own repair of the defect it found (0022
+NOTES). 0023 is in-house, and the same discipline was turned inward: the
+desk's proof went to hostile refuter lanes and a simulated sixth audit
+before certification, which caught a missing multiset family in the draft,
+two prose overstatements, and a false front-page arithmetic implication
+(the bare quadratic law reads 5172; (H1) supplies the 5173) — all repaired
+pre-ship and recorded in the errata.
 
 A floor says where the object *cannot* be. Nothing here claims a
 counterexample exists — at 22, 456, or anywhere.

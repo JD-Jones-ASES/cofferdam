@@ -88,8 +88,15 @@ THE PROOF, IN ORDER
      of S_4 cap (U \\ T) has F <= 1; the legal (|S_4 cap T|, |S_4 cap
      (U \\ T)|) patterns are exactly (0,0), (1,0), (0,1), (0,2) -- the
      (1,1) pattern forces a fifth excessive pair, and (0,2) survives
-     ONLY as the adjacent-apex pattern, witnessed explicitly.  The
-     optimizer runs all four branches.
+     ONLY as the adjacent-apex pattern, witnessed explicitly.  (The
+     same-shared-set (0,2) sub-case dies: x, y in S_12 \\ T puts both
+     in e_1 cap e_2 and both in f_1 cap f_2; f_1 outside the triangle
+     makes {e_1, f_1} a fifth pair, and f_1 = e_1 makes {e_2, f_2}
+     one, since f_2 = e_2 would force q = 2 -- ERRATUM 2026-08-03:
+     this sentence was owed and missing at ship; argument stated here
+     and in NOTES, sub-case DOMINATED either way since the optimizer
+     never restricts which shared sets the two outside cells inhabit.)
+     The optimizer runs all four branches.
  (4) m = 26 DIES AT X = 7 (section 4).  All 15 partitions of 7,
      enumerated in-cert.  Eleven die to the raw (LD) knapsack against
      Lambda = 73.  The four raw survivors die thus:
@@ -142,7 +149,7 @@ THE PROOF, IN ORDER
      exactly -- Psi = Lambda = 62 at high degrees (10,9,6), census
      (n2,n3,n4,n5) = (12,5,0,16) -- the first zero-margin template of
      the next campaign.
- (7) MUTATIONS (section 7).  Fifteen mutants, each priced: the three
+ (7) MUTATIONS (section 7).  Ten mutants, each priced: the three
      teeth proposed for this file's own machinery (M-D2E two twos per
      edge; M-T5 five made triangular; M-C3 cap 4 -> 5), the optimizer
      completeness counters (M-TRI-O outside branch deleted; M-O2 apex
@@ -611,7 +618,8 @@ W_s_x = sum(q for (q, S) in W_PAIRS.values() if W_x in S)
 W_qmax_x = max(q for (q, S) in W_PAIRS.values() if W_x in S)
 check("THE ADJACENT-APEX WITNESS, BUILT AND MEASURED: four edges "
       "(e1 e2 e3 triangle on T = {t1,t2}, k the q = 1 partner of the "
-      "apex e1) realize excess partition %s with S_4 = {x, y}, x in "
+      "apex e1) realize the LOCAL excess pattern %s among these four "
+      "edges, with S_4 = {x, y}, x in "
       "S_12 minus T, y in S_13 minus T -- |S_4 cap U| = 2, |S_4 cap T| "
       "= 0, NO fifth pair.  s(x) = %d, qmax(x) = %d, so F(x) <= 1: TWO "
       "degree-6 candidates outside T.  The audit's repair lemma "
@@ -630,8 +638,10 @@ check("BUT THE APEX EDGE PAYS: x_e1 = 2 + 2 + 1 = %d in the witness, "
       "pattern CANNOT OCCUR at (7,25) or (7,26), so the audit's lemma "
       "is true THERE, rescued by a constraint it never invoked.  At "
       "m = 24 the cap is %d and the pattern is LIVE: the o = 2 branch "
-      "is vacuous-but-sound on this file's kills and LOAD-BEARING for "
-      "the (7,24) preview tie below, which already includes it.  "
+      "is carried for completeness, not for any number -- its own "
+      "ceiling is 54, dominated at every rung here INCLUDING m = 24 "
+      "(where the wall is 62); what changes at 24 is ADMISSIBILITY, "
+      "so any structural argument there must carry the case.  "
       "(Found by the desk as a pair-count hole, sharpened to the C3 "
       "rescue by the refuter fleet -- three lanes, independently)"
       % (W_x_e1, c3cap(7, 24)),
