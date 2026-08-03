@@ -63,9 +63,16 @@ exhaust jointly. The (1⁷) seventh pair runs ALL SEVEN placement postures
   counting (built for exactly that); one cert prose overclaim repaired
   (the (2,1⁵)-(10,9) J = 7 sub-branch, now enumerated, same
   non-triangular kill). **And it found (PC)** — see below.
-- **Blind sweep:** still running at ship; confirmatory scope; to be
-  reconciled on arrival (every number it re-derives already has two
-  independent derivations).
+- **Blind sweep (post-ship, reconciled):** every table matches the cert
+  exactly. Its two survivor claims adjudicated at the desk: the (2,1⁵)
+  rows are support-stage verdicts (full ledger + profile refuter close
+  them); the (1⁷)-(10,10)-k=3 reopening is refuted by pair-budget
+  (2 × s ≥ 6 = 12 > 7 without a shared link — which IS the K4; its k=3
+  second cell caps at d ≤ 8, the §5b family). Its contributions, banked:
+  **(RG2)** the supply/demand sieve (Σ C(k_ab,2) = Σ C(q+1,2), demand
+  k_ab ≥ d(a)+d(b)−m+7 — desk-verified, reproduces 0021's X=6 table) and
+  the parity scope law (bites exactly on zero-margin rows). The lane's
+  own caveat list is a model of honest reporting.
 
 ## (PC) — the turn's biggest find, banked
 

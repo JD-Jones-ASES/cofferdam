@@ -60,10 +60,15 @@ X ≥ 9/10 from 29/30; X ≥ ⌈m(m−25)/38⌉ window-wide (5172 bare, 5173 wit
    ⌊(76−2m)/5⌋ = 6 at m ≤ 25 (the q₁ = 3 world reopens); Λ₈ = Λ₇ + 2;
    cap X − q₁ reaches 7 where q₁ = 1, admitting d = 11 — except (PC)
    forbids it at n = 36. The sixth audit likely opens here too.
-2. **Re-derive (RG) with teeth.** The (7,24) kill and both ledger families
-   stand on residual pairing; 0021 proved it once; (PC) now provides an
-   independent breach of the same cells (unenacted). An in-cert
-   re-derivation + structural mutant retires the dependency either way.
+2. **Re-derive (RG) with teeth — and certify (RG2) beside it.** The
+   (7,24) kill and both ledger families stand on residual pairing; 0021
+   proved it once; (PC) breaches the same cells independently
+   (unenacted). The blind lane's **(RG2)** supply/demand sieve —
+   Σ C(k_ab, 2) = Σ C(q+1, 2) against k_ab ≥ d(a)+d(b)−m+7 —
+   desk-verified, reproduces 0021's X = 6 table, kills every
+   two-degree-10 multiset at m = 22 in one line. (PC) + (RG2) together
+   are the X = 8 campaign's opening artillery; both need certification
+   and mutants first.
 3. **Promote the banked bonus rungs** (X = 9 ⟹ m ≤ 28 etc.) — unchanged.
 4. **The ceiling is soft** — unchanged ((Q)/(Q0), the J-conjunction).
 5. **(EC) quotient completeness as an engine** — the posture lists in 0023

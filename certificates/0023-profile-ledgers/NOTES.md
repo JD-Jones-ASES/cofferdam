@@ -56,10 +56,27 @@ launched on the desk derivation. Outcomes recorded below at reconcile.
   prose overclaim repaired (the (2,1⁵)-(10,9) branch admits J = 7; the
   sub-branch is now enumerated in CK_215 and dies on the same
   non-triangular count). **And it found (PC) — see below.**
-- **Blind computational sweep:** [outcome recorded on arrival — the lane
-  was still running at ship; its scope is confirmatory (raw tables, census
-  rows, profile enumerations) and every one of those numbers already has
-  two independent derivations above.]
+- **Blind computational sweep (arrived post-ship; reconciled 2026-08-03):**
+  every raw sieve row, census table, and profile enumeration MATCHES this
+  file exactly (626 (m, shape, D) cells; the (4,3)@22 survivor and its
+  unique census; the sum ≤ 10 emptiness; the rigid (2,3,3,3) at 11).  Its
+  independent (2,1⁵) K4-forcing derivation matches 0022/0023's.  Two
+  discrepancy classes, both adjudicated at the desk:
+  (1) its "(2,1⁵) SURVIVES" rows are SUPPORT-STAGE verdicts (its stated
+  scope) — the full-edge incidence ledger closes each, and the profile
+  refuter's independent exhaustive check confirmed those exact rows dead;
+  (2) its claim that (1⁷)-(10,10)@24 reopens via a k = 3 link is REFUTED:
+  two degree-10 cells need s ≥ 6 each, 12 total against the all-ones
+  pair-budget of 7 — impossible without a shared link pair, which IS the
+  K4 (in its own k = 3 configurations the second cell caps at s = 4,
+  d ≤ 8: the (10,8,8) family §5b kills).  Its lasting contributions,
+  BANKED: **(RG2)**, the supply/demand sieve — Σ_{cell pairs} C(k_ab, 2)
+  = Σ_{parts} C(q+1, 2) =: SUPPLY, against DEMAND from (RG) at |U| = 2
+  (k_ab ≥ d(a) + d(b) − m + 7) — desk-re-derived, validated against
+  0021's X = 6 table, kills every two-degree-10 multiset at m = 22 in one
+  line; and the parity SCOPE law (at maximal n₂ with n = 36, n₄ = Ψ − Λ,
+  so the sieve bites exactly on zero-margin rows).  Neither is consumed
+  by this file.
 
 ## (PC), banked — the part-collision law (NOT consumed by this file)
 
