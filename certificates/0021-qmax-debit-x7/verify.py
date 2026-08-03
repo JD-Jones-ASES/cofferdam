@@ -1992,13 +1992,21 @@ head("4.  T-B21 -- X = 7 => m <= 26, X = 8 => m <= 28, X = 9 => m <= 29")
 def tri_max(X, m, pi, P):
     """The (2,2,2,*) TRIANGLE branch, when C3 does not exclude it: three
     q = 2 pairs on three edges e, f, g, all three shared sets meeting
-    in T = e cap f cap g.  Every high cell lies in T (a cell in one
-    shared set has s = qmax and F <= 0; a cell in two lies in all
-    three).  |S_4 cap T| <= 1, because two cells of S_4 inside T would
-    put two T-cells on both edges of the q = 1 pair and create a fifth
-    excessive pair.  J >= 2|S_1 u S_2 u S_3| plus one per S_4 cell
-    outside that union; the star-union bound of (RG) at k = 3 caps
-    sum f_i at m - 9 - rg3.  Exhaustive over |T| and |S_4 cap T|."""
+    in T = e cap f cap g.  ERRATUM 2026-08-03 (see NOTES): the claim
+    "every high cell lies in T" that stood here is FALSE for (2,2,2,1)
+    -- a cell of S_4 cap (U \\ T) has s = 2 + 1 = 3, qmax = 2, so
+    F <= 1 and d = 6 is possible outside T.  At the rungs THIS file
+    runs the branch (c = 4) such cells cannot arise: an S_4 landing in
+    U needs the q = 1 pair riding a triangle edge, which then carries
+    x_e = 5 > 4 (C3), or forces a fifth excessive pair.  So this
+    optimizer's numbers are correct AS RUN HERE; 0022 section 3 proves
+    the honest case law, carries the outside-cell branches, and
+    measures the corrected maxima equal (62/67/74/83 at m = 24..27).
+    |S_4 cap T| <= 1, because two cells of S_4 inside T force a fifth
+    excessive pair whether or not the q = 1 pair rides a triangle
+    edge.  J >= 2|S_1 u S_2 u S_3| plus one per S_4 cell outside that
+    union; the star-union bound of (RG) at k = 3 caps sum f_i at
+    m - 9 - rg3.  Exhaustive over |T| and |S_4 cap T|."""
     R = Rof(pi)
     best = 0
     k4 = len(pi) > 3

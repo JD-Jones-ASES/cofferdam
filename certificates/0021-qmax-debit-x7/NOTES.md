@@ -670,3 +670,28 @@ env -i HOME="$HOME" PATH=/usr/bin:/bin python3 -O verify.py  # asserts off
 
 Stdlib only. No installs, no venv, no imports from `lib/`, nothing read from
 disk.
+
+## Erratum 2026-08-03 — the triangle optimizer's stated support (turn 18)
+
+`tri_max`'s docstring asserted **"every high cell lies in T"**. False for
+(2,2,2,1): a cell of S₄ ∩ (U ∖ T) has s = 2 + 1 = 3, q_max = 2, so F ≤ 1 and a
+degree-6 cell can sit **outside T**. The optimizer never searched that cell.
+
+**No number in this file moves.** At the rungs where this file runs the branch,
+c = 4, and an S₄ cell in U needs the q = 1 pair riding a triangle edge — which
+then carries x_e = 2 + 2 + 1 = 5 > 4 — or forces a fifth excessive pair. Both
+of this file's uses were therefore sound as run: the claim rows (7,27)/(7,28)
+exclude the triangle by C3 outright, and the (7,26) preview's 74 is confirmed
+by the corrected optimizer. 0022 §3 proves the honest case law ((0,0), (1,0),
+(0,1), (0,2) for (|S₄ ∩ T|, |S₄ ∩ (U ∖ T)|), with the (0,2) adjacent-apex
+pattern witnessed and shown **live at m = 24**, where c = 5), carries the
+outside-cell branches, and measures the corrected maxima **equal**:
+62/67/74/83 at m = 24..27.
+
+Found by the fifth outside audit (which also supplied an incomplete repair —
+its lemma |S₄ ∩ U| ≤ 1 is true at c = 4 but not in general; 0022's honesty
+note 2 records both directions). Docstring reworded in place; **no check
+touched; re-verified green ×2** (bare 3.9.6 and `-O`) after the rewording.
+The engineering note from the same audit — the finite search's hard-coded
+degree ceiling — is closed in 0022's engine (monotone-derived ceiling), left
+as-is here.
