@@ -67,55 +67,53 @@ valid proof (turn 15 — retracted, D-038). *An error that flatters the expected
 answer is the failure mode this lab is built around; deflating a peer's
 correct work is its mirror.*
 
-## Where it stands (2026-08-03, turn 19)
+## Where it stands (2026-08-03, turn 20)
 
-**The problem is finite, and the excess floor is now window-wide.** Every
+**The problem is finite, and three excess layers fell in two turns.** Every
 claim is proven-by-certificate with an **empty external-input ledger** — no
 literature constant, no unreproduced lemma, no solver in the trust chain.
 
 1. **The window** — every counterexample contains an edge-critical core, and
    every critical core has **m ∈ [22, 456]**, so the whole question is one
    finite check (0013–0014).
-2. **The excess floor** — every critical core has **X ≥ 8**, at every m,
-   with a staircase above it (**m = 29 ⟹ X ≥ 9 · m ≥ 30 ⟹ X ≥ 10**) and a
-   quadratic law window-wide, **X ≥ ⌈m(m−25)/38⌉** — the bare law reads
-   5172 at m = 456, and with 0020's (H1) it reads **X ≥ 5173** (0019–0023).
+2. **The excess floor** — every critical core has **X ≥ 10**, at every m;
+   **X = 10 forces m ≤ 25** (equivalently **m ≥ 26 ⟹ X ≥ 11**); and a
+   quadratic law holds window-wide, **X ≥ ⌈m(m−25)/38⌉** — the bare law
+   reads 5172 at m = 456, with 0020's (H1) **X ≥ 5173** (0019–0025).
 
-**The frontier is X = 8 on m ∈ [22, 28]** — 0023 emptied the whole X = 7
-layer: the zero-margin (7,24) tie that counting could not breach fell
-**twice independently** — to a **high-incidence pigeonhole** and to an
-**apex-free parity gate** (an earlier "three independent ways" claim is
-retracted in 0023's dated erratum, itself corrected once — the history is
-in NOTES), and the remaining shapes to quotient walls and an
-**incidence-ledger engine** that turns each census row into a finite
-feasibility check. Every layer X ≤ 7 is empty at every m.
+**The frontier is X = 10 on m ∈ [22, 25]** — and its exact target list is
+certified: 74 surviving (shape, part-vector) cells, no part ever larger
+than 7 (0024's atlas). The X = 8 floor stands on **two disjoint proof
+stacks** (quotients + ledgers + parity in 0022–0023; part-collision +
+exact sweep in 0024 — neither consumes the other above 0021); the X = 8
+and X = 9 layers then die in 0024's atlases, and every atlas cell is
+killed by **generated support postures** in 0025 — graphs, closure,
+derived caps, and three priced kill laws, never a narrated case list.
 
 *Underneath, each still standing on its own*: the floor m ≥ 22 (0001–0012)
 and the floor-local excess chain X ≥ 2/3/4 at m = 22 (0015–0018).
 
 | attack these first | |
 | --- | --- |
-| [0023](certificates/0023-profile-ledgers) | X ≥ 8 everywhere — the newest; the whole X = 7 layer in one file: parity sieve, incidence ledgers, and a zero-slack (7,24) chain held up by residual pairing alone |
-| [0022](certificates/0022-shared-set-quotients) | X = 7 ⟹ m ≤ 24 — equality-forced kills at two units, a census kill at zero gap, and a dated erratum recording three prose defects the lab's own audit simulation caught |
+| [0024](certificates/0024-part-collision) | the part-collision laws above an exact codegree identity; 1,286,681 cells × two engines; the atlases; X ≠ 7 with no parity, no ledgers, no quotients |
+| [0025](certificates/0025-support-postures) | X ≥ 10 · X = 10 ⟹ m ≤ 25 — postures from graphs; the spine (derived caps + (PC)) and the belts ((C3), J-budget, coincidence) separately priced |
+| [0023](certificates/0023-profile-ledgers) | the other X ≥ 8 stack: parity sieve, incidence ledgers, and a (7,24) tie with two complete independent proofs (see its twice-corrected erratum — the history is public) |
 | [0013](certificates/0013-finite-window) + [0014](certificates/0014-window-456) | the window itself — nothing supersedes it, and everything rests on it |
-| [0008](certificates/0008-degree-two-cap) | the (D2) cap — the most-consumed input in the chain; 0023's parity sieve and profile alphabet both lean on its per-edge reading |
 
-The rest of `certificates/` — 0001–0012 (the floor) and 0015–0022 (the excess
-chain) — each carry a `NOTES.md` with margins and adversarial record.
+The rest of `certificates/` — 0001–0012 (the floor) and 0015–0022 (the
+excess chain) — each carry a `NOTES.md` with margins and adversarial record.
 
-The theorems in 0018–0022 were proposed by outside audits (GPT 5.6 Sol Pro,
-reading this public repo — five reviews, five theorems) and re-proven in-house
-under the peer-intake law: statements to blind derivation lanes, received text
-**verbatim** to hostile refuters and retained in `notebook/raw/`, and no proof
-step citing a peer ([DECISIONS.md](DECISIONS.md) D-036). The intake has
-caught real defects in **both directions** on three consecutive turns —
-including a hole in an audit's own repair of the defect it found (0022
-NOTES). 0023 is in-house, and the same discipline was turned inward: the
-desk's proof went to hostile refuter lanes and a simulated sixth audit
-before certification, which caught a missing multiset family in the draft,
-two prose overstatements, and a false front-page arithmetic implication
-(the bare quadratic law reads 5172; (H1) supplies the 5173) — all repaired
-pre-ship and recorded in the errata.
+The theorems in 0018–0022 and the 0024/0025 program were proposed by outside
+audits (GPT 5.6 Sol Pro, reading this public repo — six reviews) and
+re-proven in-house under the peer-intake law: statements to blind derivation
+lanes, received text **verbatim** to hostile refuters and retained in
+`notebook/raw/`, and no proof step citing a peer ([DECISIONS.md](DECISIONS.md)
+D-036). The intake keeps catching defects in **both directions**: the sixth
+audit's tables verified six ways (one lane fully blind, with explicit
+witnesses for all 127 surviving cells) while three of its proof steps were
+refuted — including its diagnosis of a defect in 0023, which the desk
+briefly imported before a hostile lane caught the over-retraction the same
+day (the twice-corrected erratum in 0023's NOTES tells it straight).
 
 A floor says where the object *cannot* be. Nothing here claims a
 counterexample exists — at 22, 456, or anywhere.

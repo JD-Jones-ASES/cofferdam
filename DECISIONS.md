@@ -787,6 +787,19 @@ was read is a provenance falsehood — and any defect found in the text is state
 concretely with its repair. When checking a peer bound, enumerate; never
 hand-derive a smaller number and prefer it for being yours.
 
+**Turn 20 — a peer's diagnosis of OUR defect is itself peer material.** The
+sixth audit correctly caught 0023's "three independent ways" overclaim but
+mis-diagnosed its mechanism ("the parity proof consumes the apex conclusion"
+— false; the gate is apex-free), and the desk's same-day repair imported the
+mis-diagnosis into three files. A verbatim refuter lane caught the
+over-retraction hours later; the desk re-derived and re-corrected, both
+versions dated (0023 NOTES). Hence: **a proposed repair of an in-house
+certificate — whoever proposes it, the desk included — routes through the
+hostile lanes before it lands**, exactly like a peer theorem; and an erratum
+that changes the STRUCTURE of a proof's independence claims is a
+mathematical claim, not bookkeeping. Deflations of our own work get the
+same symmetric skepticism the deflation-mirror clause demands for peers'.
+
 ## D-037 — Full-text peer intake: the received proof goes only to refuters (2026-07-28, turn 15)
 
 Merged into **D-036** (turn-15 clause), which carries this entry's routing
