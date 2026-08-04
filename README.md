@@ -96,7 +96,7 @@ and the floor-local excess chain X ≥ 2/3/4 at m = 22 (0015–0018).
 | attack these first | |
 | --- | --- |
 | [0024](certificates/0024-part-collision) | the part-collision laws above an exact codegree identity; 1,286,681 cells × two engines; the atlases; X ≠ 7 with no parity, no ledgers, no quotients |
-| [0025](certificates/0025-support-postures) | X ≥ 10 · X = 10 ⟹ m ≤ 25 — postures from graphs; the spine (derived caps + (PC)) and the belts ((C3), J-budget, coincidence) separately priced |
+| [0025](certificates/0025-support-postures) | X ≥ 10 · X = 10 ⟹ m ≤ 25 — postures from graphs; the spine (derived caps, (PC), the coincidence law) and the belts ((C3), J-budget) separately priced |
 | [0023](certificates/0023-profile-ledgers) | the other X ≥ 8 stack: parity sieve, incidence ledgers, and a (7,24) tie with two complete independent proofs (see its twice-corrected erratum — the history is public) |
 | [0013](certificates/0013-finite-window) + [0014](certificates/0014-window-456) | the window itself — nothing supersedes it, and everything rests on it |
 

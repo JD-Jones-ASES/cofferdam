@@ -76,8 +76,11 @@ all Opus, plus full desk re-derivation before any enactment.
   kills C3 (0017) / J-budget / capacity-ILP with the triangle-
   coincidence law. **(T-A25) X ≥ 10 everywhere; (T-B25) X = 10 ⟹
   m ≤ 25.** The audit's missed triangles are generated and killed by
-  law; M-CAPS/M-PCCAP pin the load-bearing spine (the posture caps and
-  0024's (PC)); C3/J/coincidence measured as belts. Green ×2.
+  law; M-CAPS/M-PCCAP/M-COIN pin the load-bearing spine (the posture
+  caps, 0024's (PC), and the coincidence law — the last briefly misfiled
+  as a belt on a scoped measurement; the full-atlas pass found three
+  reopening cells and the mutation was repaired same-day, flips pinned);
+  C3/J measured as belts. Green ×2.
 
 ## The lessons
 

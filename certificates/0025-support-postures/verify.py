@@ -605,21 +605,32 @@ TRI_SHAPES9 = [(23, (3, 3, 3), V66), (23, (4, 3, 2), V66),
                (24, (3, 3, 3), V66), (24, (4, 3, 2), V66),
                (23, (3, 3, 2), V66), (24, (3, 3, 2), V66)]
 t0 = time.time()
-coin_live = []
+coin_live6 = []
 for (m, pi, nv) in TRI_SHAPES9:
     X_ = 8 if pi == (3, 3, 2) else 9
     dead, _ = cell_dead(X_, m, pi, nv, coincidence=False)
     if not dead:
-        coin_live.append((X_, m, pi))
-mut("M-COIN  the triangle-coincidence law disabled on the triangle "
-    "shapes",
-    coin_live == [],
+        coin_live6.append((X_, m, pi))
+coin_flips = []
+for (X_, m, pi, nv) in [(9, 24, (3, 3, 3), V57),
+                        (10, 26, (3, 3, 2, 1, 1), V66),
+                        (10, 26, (3, 3, 3, 1), V66)]:
+    dead, _ = cell_dead(X_, m, pi, nv, coincidence=False)
+    if not dead:
+        coin_flips.append((X_, m, pi, nv))
+mut("M-COIN  the triangle-coincidence law disabled -- LOAD-BEARING, "
+    "not a belt",
+    coin_live6 == [] and len(coin_flips) == 3,
     True,
-    "the six triangle-bearing atlas rows at X = 8/9 still die "
-    "(budget and C3 stand in front of capacity there) -- the "
-    "coincidence law is TRUE (S_a ^ S_b = e ^ f ^ g inside the "
-    "third set) and kept for capacity exactness, priced as a third "
-    "belt on this atlas.  %.0f s" % (time.time() - t0))
+    "a full-atlas measurement (5,424 s, off-cert) found the law "
+    "carries THREE cells: (9,24,(3,3,3),6^5 7), "
+    "(10,26,(3,3,2,1,1),6^6) and (10,26,(3,3,3,1),6^6) all REOPEN "
+    "without it (re-verified here), while the six 6^6 triangle rows "
+    "at X = 8/9 still die behind C3/budget.  An earlier draft of "
+    "this mutation scoped only those six rows and called the law a "
+    "third belt -- WRONG, caught by the full measurement the same "
+    "day; the coincidence law (S_a ^ S_b = e ^ f ^ g inside the "
+    "third set) is part of the SPINE.  %.0f s" % (time.time() - t0))
 
 def worst_caps(edges):
     t = len(edges)

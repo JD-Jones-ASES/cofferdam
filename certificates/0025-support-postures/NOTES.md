@@ -32,15 +32,22 @@ here and die by law — pinned forever in check 3.
 Baseline tally over the 53 atlas cells (C3/BUD/CAP posture-kills):
 X = 8: 1/11/0 · X = 9: 52/124/20 · X = 10: 259/166/245.
 
-- **M-C3, M-J, M-COIN — three measured BELTS**: every atlas cell still
-  dies with (C3) withdrawn, with the J-credit zeroed, and with the
-  coincidence law off on the triangle rows. The redundancy is real and
-  now priced, not presumed.
-- **M-CAPS — the load-bearing spine, part 1**: posture-blind caps
+- **M-C3, M-J — two measured BELTS**: every atlas cell still dies with
+  (C3) withdrawn and with the J-credit zeroed. The redundancy is real
+  and now priced, not presumed.
+- **M-COIN — SPINE, and a same-day correction**: a full-atlas
+  measurement (5,424 s) showed the triangle-coincidence law carries
+  three cells — (9,24,(3,3,3),6⁵7) and two X = 10 cells REOPEN without
+  it. An earlier draft scoped the mutation to six 6⁶ rows and called
+  the law a belt; wrong, caught by the measurement before push settled,
+  repaired in-cert with the three flips pinned. (Belt-vs-spine
+  misclassification flatters the chain — same failure family as the
+  audit's attribution error, now measured instead of narrated.)
+- **M-CAPS — the load-bearing spine, part 2**: posture-blind caps
   (min(q)+1 everywhere) REOPEN (10,26,(3,3,2,1,1),6⁶) — the capacity
   ILP reaches 84 ≥ 79 and the budget dies with it. The derived posture
   caps ARE the proof.
-- **M-PCCAP — the load-bearing spine, part 2**: without 0024's (PC)
+- **M-PCCAP — the load-bearing spine, part 3**: without 0024's (PC)
   degree cap, (9,23,(3,3,3),6⁶) REOPENS (the triangle's T carries
   d ≤ 10 under (KC) alone: 140 ≥ 65; (PC)'s d ≤ 7 closes it at 32).
   The peer's own §7.2 gap had the same shape: its union-bound "kill"

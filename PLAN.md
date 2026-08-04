@@ -62,9 +62,9 @@ bare, 5173 with (H1)).
 **Closed levers (do not reopen silently):** turns 10–19 lists, plus: the
 X = 8 and X = 9 layers (turn 20: DONE — 0024+0025) · the X = 10 high rungs
 26/27/28 (DONE — 0025) · the union-bound route for q4-adjacent shapes
-(REFUTED — the triangles are realizable; use postures) · (C3)/J-budget/
-coincidence on the current atlases (measured BELTS — priced in 0025;
-don't re-derive as if load-bearing).
+(REFUTED — the triangles are realizable; use postures) · (C3)/J-budget
+on the current atlases (measured BELTS — priced in 0025; the
+coincidence law is NOT a belt: three cells reopen without it).
 
 ## Novelty ledger — updated 2026-08-03 (turn 20)
 
@@ -84,7 +84,7 @@ six outside audits, six theorem-bearing turns.
 | X ≥ 5/6/7 + staircase (0019–0021) | unchanged; both stacks consume 0021 |
 | X ≥ 8: stack A (0022+0023) | the (7,24) tie: TWO complete proofs (pigeonhole; apex-free parity — erratum twice-corrected); (RG) still the single certified pillar there |
 | X ≥ 8: stack B (0024) | (PC)/(GPC) + exact DM sweep; (D2)/(KC) are NULLS at the floor and load-bearing only in the X = 10 tail — M-D2R/M-KC price both directions |
-| **X ≥ 10 (0024+0025)** | the atlases (six-way verified, one blind, 127 witnesses) + generated postures; spine = derived caps + (PC) (M-CAPS/M-PCCAP); C3/J/coincidence are priced belts |
+| **X ≥ 10 (0024+0025)** | the atlases (six-way verified, one blind, 127 witnesses) + generated postures; spine = derived caps + (PC) + the coincidence law (M-CAPS/M-PCCAP/M-COIN, three flips); C3/J are priced belts |
 | (Q)/(Q0)/5172+(H1)→5173 | unchanged (0020) |
 
 ## Machinery — the working lessons (the law itself lives in DECISIONS.md)
@@ -97,9 +97,11 @@ six outside audits, six theorem-bearing turns.
 - **Generate, don't narrate.** Posture gaps survived three audits'
   narration; 0025's graph enumeration with asserted class counts is the
   standing pattern for any finite case space (next: (EC)).
-- **Measure belts vs spine.** 0025's M-C3/M-J/M-COIN are belts, priced
-  as such; M-CAPS/M-PCCAP are the spine. A mutation ledger that cannot
-  tell the difference flatters the chain.
+- **Measure belts vs spine — on the FULL atlas.** 0025's M-C3/M-J are
+  belts; M-CAPS/M-PCCAP/M-COIN are the spine — and M-COIN was briefly
+  misfiled as a belt on a scoped measurement until the full-atlas pass
+  landed (three cells reopen). A mutation priced on a subset prices the
+  subset.
 - Turn the intake law inward · a feasible relaxation is a question ·
   state the null result of a lever · sweep completeness (M-SWEEP) ·
   measurement over expectation (D-035): unchanged.
