@@ -22,8 +22,9 @@ Revised 2026-08-03 (turn 19). History is the record; this file is rewritten.
   (LG) the incidence ledger (per-edge low-cell profiles must jointly hit
   2n₂/3n₃/4n₄/5n₅ — a finite feasibility check per census row) · the
   high-incidence pigeonhole (every edge needs a high cell; 16 < 21).
-- **The (7,24) tie fell three ways** — pigeonhole (primary), apex-(S5)
-  arithmetic, parity — all zero-slack, all standing on residual pairing
+- **The (7,24) tie fell twice** — the pigeonhole (complete alone) and
+  the apex-(S5)-then-parity chain — three zero-slack computations, two
+  proofs (0023 erratum 2026-08-03), all standing on residual pairing
   (the (SJ) budget is SLACK there; without (RG) the branch reaches 83).
 - **Kills.** Raw sieves ×3 rungs → c=5-clean walls ((3,2,2) rebuilt without
   edge-disjointness; (2,2,1,1,1) μ-triangular; (2,2,2,1) clique forcing) →

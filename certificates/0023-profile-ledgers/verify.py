@@ -114,7 +114,7 @@ THE PROOF, IN ORDER
      10 < 11 minimum); at m = 23 the 2-count strands the rows the
      3-count spares; at m = 24 the 3/4-counts exhaust jointly.
  (6) ASSEMBLY (section 6).  T-A23, T-B23.
- (7) MUTATIONS (section 7).  Twelve, priced.
+ (7) MUTATIONS (section 7).  Nine, priced.
 
 MANDATORY HONESTY NOTES
 -----------------------
@@ -138,7 +138,11 @@ MANDATORY HONESTY NOTES
      full profile option list -- completeness of the option lists is
      itself checked (M-PROF, M-OPT).
  (4) MARGINS.  The (7,24) triangle dies with zero numeric slack at
-     three separate gates (optimizer tie, apex sum, parity).  The
+     three separate computations (optimizer tie, apex sum, parity) --
+     but these are TWO proofs, not three: the pigeonhole (CK_PIG) is
+     complete on its own, and apex + parity form ONE chain (the parity
+     count consumes the apex posture; erratum 2026-08-03, sixth
+     audit's find, desk-verified).  The
      ledgers at m = 23 close by 2 units of n_3 or 2 of the 2-count;
      m = 22 closes by 1 unit of profile-sum.  M-D2E reopens the m = 22
      instant kill and the parity sieve simultaneously -- (D2) is the
@@ -597,11 +601,14 @@ check("(2,2,1,1,1), THE QUOTIENT KILLS, ENUMERATED.  (10,10) at J = 8: "
       "forces mu patterns {3} or {2,1}; mu = 3 collapses onto T making "
       "C(r,2) = 5 again; mu = 2 is not a clique count.  At J = 9 (one "
       "increment outside) the in-union distributions repeat the same "
-      "two fates.  DEAD at every rung, every multiset"
+      "two fates.  DEAD at every rung, every multiset.  The (10,10) "
+      "hosting is UNIQUE: (7,7,2,2) with mu_01 = 3 (erratum "
+      "2026-08-03: a vacuous 'or True' conjunct sat here -- deleted, "
+      "replaced by this exact assertion; sixth audit's find)"
       % len(H_1096),
       all(comb(r, 2) != 5 for r in range(30))
-      and all(all(mu[0] == ((0, 1)) or mu[1] != 2 for mu in mus) or True
-              for (_, mus) in H_1010)
+      and len(H_1010) == 1
+      and H_1010[0] == ((7, 7, 2, 2), (((0, 1), 3),))
       and all(mus and all(p == (0, 1) for (p, c) in mus)
               for (_, mus) in H_1010)
       and len(H_1096) > 0
@@ -870,11 +877,16 @@ check("(P2) KILLS THE TIE AGAIN -- the desk's original parity gate, "
       "in w; n4 = 0; a second high is excluded by the optimizer's "
       "uniqueness; a second 2 violates (D2)): four odd numbers sum "
       "even, 17 is odd.  NO SUCH EDGE EXISTS -- and w needs five.  "
-      "The degree-6 cell v (3 plain edges, 13 odd) kills it a third "
-      "way.  THE DEGREE-9 CELL YIELDS NOTHING (9 + 2 + 3 + 5 + 5 + 5 "
+      "The degree-6 cell v (3 plain edges, 13 odd) repeats the SAME "
+      "parity invariant -- a second manifestation, not a new proof.  "
+      "THE DEGREE-9 CELL YIELDS NOTHING (9 + 2 + 3 + 5 + 5 + 5 "
       "= 29 is realizable) -- said aloud so nobody 'verifies' parity "
       "there and reads the failure as a flaw.  THE (7,24) TRIANGLE IS "
-      "EMPTY, three independent ways",
+      "EMPTY -- by the complete pigeonhole (CK_PIG), and again by the "
+      "apex-then-parity chain (this gate consumes CK_APEX: the plain "
+      "count 10 - 5 = 5 needs both q = 1 edges OFF the triangle).  "
+      "Two proofs, one cell (erratum 2026-08-03: 'three independent "
+      "ways' overclaimed; sixth audit's find, desk-verified)",
       29 - 10 - 2 == 17
       and sorted(set(sum(c) for c in
                      itertools.combinations_with_replacement(
@@ -1189,9 +1201,12 @@ mut("M-P2  the parity sieve withdrawn at (7,24)",
     profiles(4, 17, allowed=(3, 5), max2=0) == [],
     True,
     "four {3,5} cells summing 17: EMPTY -- the kill IS the parity of "
-    "this very profile query; no alternative gate stands behind it "
-    "(the optimizer ties and the census is feasible).  Zero margin, "
-    "named")
+    "this very profile query; withdrawing it severs the apex-then-"
+    "parity chain, but the INDEPENDENT pigeonhole gate (CK_PIG) still "
+    "kills the cell, so the theorem does NOT reopen (erratum "
+    "2026-08-03: this note once claimed no alternative gate stood "
+    "behind parity -- false, CK_PIG stands; sixth audit's find).  "
+    "Zero margin on this gate, named")
 
 # M-RG: residual pairing 5 -> 4 at k = 3 raises the triangle lims.
 def tri_rg4(X, m):

@@ -5,7 +5,7 @@ every critical core in the window**. (T-B23) Staircase: X ≥ 8 on [22, 28] ·
 X ≥ 9 at 29 · X ≥ 10 from 30. **The live minimum-excess frontier is X = 8
 on m ∈ [22, 28].** An entire excess layer cleared in one certificate.
 
-37 checks, green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O`.
+39 checks, green under bare `/usr/bin/python3` 3.9.6 **and** `python3 -O`.
 External-input ledger: **empty**. Billed in-chain: 0005, 0008 (both (D2)
 readings), 0017 ((C3), here at c = 5), 0020 ((SSC+)), 0021 ((SJ)/(LD)/(KC)/
 (RG), T-B21), 0022 (T-A22, T-B22, the corrected triangle optimizer).
@@ -108,9 +108,11 @@ partitions cutting to 5).
 
 ## Margins
 
-- The (7,24) triangle dies at **zero numeric slack through three gates**
-  (optimizer tie 62 = Λ; census unique; parity). M-P2 names the sieve as
-  the sole standing gate — there is no backup count behind it.
+- The (7,24) triangle dies at **zero numeric slack through three
+  computations** (optimizer tie 62 = Λ; census unique; parity) — which
+  form **two proofs, not three**: the pigeonhole (CK_PIG) complete on its
+  own, and apex-then-parity as one chain (see erratum below). M-P2 names
+  the parity gate's zero margin; CK_PIG stands independently behind it.
 - m = 22 ledgers close by **one unit** of profile sum (10 vs 11 minimum).
 - M-RG (residual pairing 5 → 4): triangle maxima rise 54/59/62 →
   59/62/67 — **all three rungs would reopen**; (RG) is load-bearing
@@ -120,6 +122,36 @@ partitions cutting to 5).
 - The 6-partite tiling test (banked turn 18) was measured at the (7,24)
   template: **it tiles** — the tiling does not kill what parity kills.
   Recorded so the lever ledger stays honest.
+
+## Erratum 2026-08-03 — the sixth audit's four finds (+ one desk find)
+
+The sixth outside audit (GPT 5.6 Sol Pro, turn 20 intake) audited this
+file and found four defects, none touching the theorem. Each was
+desk-verified against the source before repair; all four repaired
+2026-08-03, re-verified green ×2 (bare 3.9.6 and `-O`):
+
+1. **Header said "Twelve, priced"; the ledger asserts `len(MUT) == 9`.**
+   Nine is correct (counted). Header fixed.
+2. **"THE (7,24) TRIANGLE IS EMPTY, three independent ways" overclaimed.**
+   CK_P2's plain-edge count (10 − 5 = 5) consumes CK_APEX's conclusion
+   that both q = 1 edges avoid the triangle, so apex + parity are ONE
+   chain; the deg-10 and deg-6 contradictions are the same invariant
+   twice. Honest form: **one complete pigeonhole proof (CK_PIG) + one
+   apex-then-parity proof.** Prose fixed in-cert and here (Margins).
+3. **M-P2's note "no alternative gate stands behind it" was false** —
+   CK_PIG kills the cell without parity. Mutation description fixed;
+   the mutation's check itself was and is correct.
+4. **A vacuous `or True` conjunct** sat in the (2,2,1,1,1) quotient
+   check. Deleted; replaced by the exact assertion `len(H_1010) == 1`
+   with unique hosting `(7,7,2,2), μ₀₁ = 3` (desk-run confirmed the
+   audit's reconstruction exactly). The proof never depended on the
+   vacuous line — the adjacent conjunct enforced the H₁₀₁₀ property —
+   but the construct could have concealed a future false green.
+5. *(Desk find during repair:)* this file said "37 checks"; the cert
+   printed 39 at ship. Fixed above.
+
+Attribution recorded, not consumed (D-036): no proof step cites the
+audit; the repairs stand on desk verification alone.
 
 ## What this certificate does **not** claim
 
