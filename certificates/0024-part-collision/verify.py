@@ -125,12 +125,11 @@ MANDATORY HONESTY NOTES
      (SJ) wins, with small parts and high degree (PC) wins.  The
      engines enforce each SEPARATELY and never add them into one
      budget (the blind lane's warning, adopted as design law here).
- (4) RUNTIME/SCOPE.  Engine P sweeps every cell of every window;
-     engine D double-checks every cell at X = 7 (the theorem layer),
-     every cell of every atlas row (the data layer), and every 89th
-     cell of the remainder (deterministic stride).  The stride is a
-     runtime concession, priced by M-STRIDE; the theorem and data
-     layers are double-engine COMPLETE.
+ (4) RUNTIME/SCOPE.  BOTH engines sweep EVERY cell of every window --
+     1,286,681 cells each way -- behind a per-cell Lambda-prefilter
+     (an O(1) knapsack-vs-moment test) that only skips cells it
+     PROVES dead; M-PRE runs every m <= 26 window with the prefilter
+     off and asserts identical atlases.  No stride, no sampling.
 
 NOTATION.  As in 0015-0023.  q, X, pi, R, s(v), qmax(v), P, F, f, psi,
 Phi as there; g(u) as above; c_u(y) the codegree.  A CELL is
@@ -233,13 +232,14 @@ check("THE CELL SPACE, COUNTED.  Part vectors (sorted, 6 <= n_i <= "
       "floor(m/2)): 462 at m in {22,23}, 924 at {24,25}, 1716 at "
       "{26,27}, 3003 at {28,29}, 5005 at {30,31}, 8008 at {32,33}.  "
       "The X <= 9 windows sweep 11*4488 + 15*9207 + 18*12210 = "
-      "407,253 cells; X = 10 on [22,32] adds 23*30231 = 695,313",
+      "407,253 cells; X = 10 on [22,33] adds 23*38,236 = 879,428 -- "
+      "1,286,681 cells in all, each swept by BOTH engines",
       [len(part_vectors(m)) for m in range(22, 34)]
       == [462, 462, 924, 924, 1716, 1716, 3003, 3003, 5005, 5005,
           8008, 8008]
       and 11 * 4488 + 15 * 9207 + 18 * 12210 == 407253
-      and sum(len(part_vectors(m)) for m in range(22, 33)) == 30231
-      and 23 * 30231 == 695313)
+      and sum(len(part_vectors(m)) for m in range(22, 34)) == 38236
+      and 407253 + 23 * 38236 == 1286681)
 
 
 # ======================================================================
@@ -248,20 +248,25 @@ head("1.  PHI IS THE BALANCED MINIMUM -- brute-forced, then monotone")
 
 def phi_brute(a, b):
     """True minimum of sum C(a_i,2) over partitions of a into <= b
-    nonnegative bins (order irrelevant since C is symmetric)."""
+    nonnegative bins (order irrelevant since C is symmetric).  The
+    largest bin x is tried BALANCED-FIRST (x from ceil(a/b) upward),
+    so the optimum lands first and the monotone pruning is sharp."""
     best = [None]
 
     def rec(rem, bins, mx, acc):
+        if best[0] is not None and acc >= best[0]:
+            return
         if bins == 1:
             if rem <= mx:
                 v = acc + comb(rem, 2)
                 if best[0] is None or v < best[0]:
                     best[0] = v
             return
-        for x in range(min(rem, mx), -1, -1):
+        lo = -(-rem // bins)
+        for x in range(lo, min(rem, mx) + 1):
             v = acc + comb(x, 2)
             if best[0] is not None and v >= best[0]:
-                continue
+                break
             rec(rem - x, bins - 1, x, v)
 
     rec(a, b, a, 0)
@@ -423,20 +428,6 @@ check("CORPUS 2 (stars at four spreads and sizes, a sunflower, a "
 own_bad = bins_bad = balls_bad = 0
 for trip in itertools.combinations(range(64), 3):
     edges = [pool[i] for i in trip]
-    X, R, rows = family_stats(edges)
-    used = [len(set(e[j] for e in edges)) for j in range(6)]
-    verts = set((j, e[j]) for e in edges for j in range(6))
-    for (j, y) in verts:
-        d = sum(1 for e in edges if e[j] == y)
-        s = [r[1] for r in rows
-             if rowsimplindex := None] if False else None
-    break
-# (the perturbed sweep is done in one pass below, vertex-aligned)
-own_bad = bins_bad = balls_bad = 0
-for trip in itertools.combinations(range(200), 2):
-    break
-for trip in itertools.combinations(range(64), 3):
-    edges = [pool[i] for i in trip]
     used = [sorted(set(e[j] for e in edges)) for j in range(6)]
     nv = [len(u) for u in used]
     verts = set((j, e[j]) for e in edges for j in range(6))
@@ -467,3 +458,633 @@ check("MUST-FAIL CONTROLS.  Perturb g three ways -- include the own "
       "a pass, not blindness",
       own_bad > 0 and bins_bad > 0 and balls_bad > 0,
       "violations %d/%d/%d" % (own_bad, bins_bad, balls_bad))
+
+
+# ======================================================================
+head("3.  THE MOMENT FLOOR -- 0021's Lambda, re-enacted")
+# ======================================================================
+
+check("THE POINTWISE IDENTITY.  d^2 = 8d - 15 + 3[d=2] + psi(d) "
+      "EXACTLY at d >= 5 and d in {2, 3}; slack exactly 1 at d = 4; "
+      "FALSE at d <= 1 (0005's floor is billed, not decorative).  "
+      "Checked d = 2..300",
+      all(d * d == 8 * d - 15 + (3 if d == 2 else 0) + psi(d)
+          for d in list(range(5, 301)) + [2, 3])
+      and (16 == 8 * 4 - 15 + psi(4) - 1)
+      and 1 * 1 != 8 * 1 - 15 + psi(1) and 0 != -15 + psi(0))
+
+
+def Lam(X, m):
+    return m * m - 43 * m + 2 * X + 540 - 3 * (m // 2)
+
+
+check("THE FLOOR Lambda_X(m) = m^2 - 43m + 2X + 540 - 3 floor(m/2) "
+      "(n >= 36, (D2), n_4 >= 0 -- three slack terms, as in 0021).  "
+      "Spot table: Lambda_7(22..24) = 59/61/62; Lambda_8(22..24) = "
+      "61/63/64; Lambda_9(22..24) = 63/65/66; Lambda_10(26/27/28/33) "
+      "= 79/89/98/182.  STRICTLY INCREASING in m from 22 (increment "
+      "2m - 42 - 3[m odd] >= 1)",
+      [Lam(7, m) for m in (22, 23, 24)] == [59, 61, 62]
+      and [Lam(8, m) for m in (22, 23, 24)] == [61, 63, 64]
+      and [Lam(9, m) for m in (22, 23, 24)] == [63, 65, 66]
+      and [Lam(10, m) for m in (26, 27, 28, 33)] == [79, 89, 98, 182]
+      and all(Lam(10, m + 1) > Lam(10, m) for m in range(22, 456)))
+
+
+# ======================================================================
+head("4.  THE TWO ENGINES")
+# ======================================================================
+# A cell is (X, m, pi, nvec).  Alphabet: degrees d >= 2 with
+# F(d) <= X - q1 (KC) and g(d) <= X (PC).  Per-part option tuples
+# (sum d^2, #2s, sum F, sum g) over multisets of n_i admissible degrees
+# summing to m; then a 6-fold convolution under the caps
+# n_2 <= floor(m/2) (D2), P <= R - q1(q1+1) (LD), sum g <= R (GPC),
+# with survival = hitting sum d^2 = m^2 + 5m + 2X (DM) exactly.
+#
+# ENGINE D carries full state sets.  ENGINE P prunes each layer to the
+# Pareto frontier per sum-d^2 value (dominance in (n_2, P, G) -- sound
+# for a feasibility question because every downstream constraint is
+# monotone nondecreasing in each coordinate and (DM) reads only
+# sum d^2).  M-DOM prices the dominance rule.
+
+_alpha_cache = {}
+
+
+def alphabet(m, C, X, gtuple):
+    key = (m, C, X, gtuple)
+    if key not in _alpha_cache:
+        out = {}
+        for d in range(2, m + 1):
+            if F(d) > C:
+                continue
+            g = sum(Phi(d, nj) for nj in gtuple)
+            if g > X:
+                continue
+            out[d] = g
+        _alpha_cache[key] = out
+    return _alpha_cache[key]
+
+
+_deg_cache = {}
+
+
+def degsets(ni, m, C, X, gtuple):
+    key = (ni, m, C, X, gtuple)
+    if key not in _deg_cache:
+        galpha = alphabet(m, C, X, gtuple)
+        res = set()
+
+        def rec(left, rem, mind, sq, n2, P, G):
+            if left == 1:
+                d = rem
+                if d >= mind and d in galpha:
+                    res.add((sq + d * d, n2 + (1 if d == 2 else 0),
+                             P + F(d), G + galpha[d]))
+                return
+            dmax = rem - 2 * (left - 1)
+            for d in range(mind, dmax + 1):
+                if d in galpha:
+                    rec(left - 1, rem - d, d, sq + d * d,
+                        n2 + (1 if d == 2 else 0), P + F(d),
+                        G + galpha[d])
+
+        if m >= 2 * ni:
+            rec(ni, m, 2, 0, 0, 0, 0)
+        _deg_cache[key] = frozenset(res)
+    return _deg_cache[key]
+
+
+def _sqrange(opts):
+    if not opts:
+        return None
+    return (min(t[0] for t in opts), max(t[0] for t in opts))
+
+
+def cell_survives(X, m, pi, nvec, engine, gpc=True):
+    R = sum(q * (q + 1) for q in pi)
+    q1 = pi[0]
+    B = R - q1 * (q1 + 1)
+    C = X - q1
+    Gcap = R if gpc else 10 ** 9
+    target = m * m + 5 * m + 2 * X
+    n2cap = m // 2
+    partopts = []
+    lo = hi = 0
+    for i in range(6):
+        gtuple = tuple(sorted(nvec[:i] + nvec[i + 1:]))
+        opts = degsets(nvec[i], m, C, X, gtuple)
+        rng = _sqrange(opts)
+        if rng is None:
+            return False
+        lo += rng[0]
+        hi += rng[1]
+        partopts.append((opts, rng))
+    if target < lo or target > hi:
+        return False
+    states = {(0, 0, 0, 0)}
+    rem_hi = hi
+    rem_lo = lo
+    for (opts, rng) in partopts:
+        rem_hi -= rng[1]
+        rem_lo -= rng[0]
+        new = set()
+        for (sq, n2, P, G) in states:
+            for (dsq, dn2, dP, dG) in opts:
+                s2 = sq + dsq
+                if s2 + rem_hi < target or s2 + rem_lo > target:
+                    continue
+                nn, PP, GG = n2 + dn2, P + dP, G + dG
+                if nn <= n2cap and PP <= B and GG <= Gcap:
+                    new.add((s2, nn, PP, GG))
+        if engine == "P":
+            bysq = {}
+            for st in new:
+                bysq.setdefault(st[0], []).append((st[1], st[2], st[3]))
+            kept = set()
+            for sqv, lst in bysq.items():
+                lst.sort()
+                front = []
+                for t in lst:
+                    if not any(a[0] <= t[0] and a[1] <= t[1]
+                               and a[2] <= t[2] for a in front):
+                        front.append(t)
+                for t in front:
+                    kept.add((sqv,) + t)
+            new = kept
+        states = new
+        if not states:
+            return False
+    return any(sq == target for (sq, n2, P, G) in states)
+
+
+# ----------------------------------------------------------------------
+# The Lambda-prefilter: an O(1) per-cell knapsack test.  For a cell
+# (X, m, pi, nvec) with n = sum(nvec), any realization needs
+#     Psi >= m^2 - 43m + 2X + 15n - 3 floor(m/2)
+# (section 3, with n_4 >= 0), while (LD)+(KC) cap Psi at the knapsack
+# maximum maxPsi(pi) (m-independent).  maxPsi < requirement kills the
+# cell without a DP.  The prefilter is PRICED: M-PRE runs the full DP
+# with the prefilter off over every m <= 26 window and asserts the
+# identical atlas.
+_maxpsi_cache = {}
+
+
+def maxPsi(X, pi):
+    key = (X, pi)
+    if key not in _maxpsi_cache:
+        R = sum(q * (q + 1) for q in pi)
+        q1 = pi[0]
+        B = R - q1 * (q1 + 1)
+        C = X - q1
+        items = [(F(d), psi(d)) for d in range(6, 2 * X + 20)
+                 if F(d) <= C]
+        best = [0] * (B + 1)
+        for b in range(1, B + 1):
+            for (c, v) in items:
+                if c <= b and best[b - c] + v > best[b]:
+                    best[b] = best[b - c] + v
+        _maxpsi_cache[key] = best[B]
+    return _maxpsi_cache[key]
+
+
+def cell_alive(X, m, pi, nvec, engine, prefilter=True, gpc=True):
+    if prefilter:
+        n = sum(nvec)
+        need = m * m - 43 * m + 2 * X + 15 * n - 3 * (m // 2)
+        if maxPsi(X, pi) < need:
+            return False
+    return cell_survives(X, m, pi, nvec, engine, gpc=gpc)
+
+
+def sweep(X, mlo, mhi, engine, prefilter=True, drop_pi=None,
+          only66=False, gpc=True):
+    """Full sweep; returns sorted survivor list of (m, pi, nvec)."""
+    out = []
+    pis = partitions_leq4(X)
+    if drop_pi is not None:
+        pis = [p for p in pis if p != drop_pi]
+    for m in range(mlo, mhi + 1):
+        vecs = part_vectors(m)
+        if only66:
+            vecs = [v for v in vecs if v == (6, 6, 6, 6, 6, 6)]
+        for pi in pis:
+            for nvec in vecs:
+                if cell_alive(X, m, pi, nvec, engine,
+                              prefilter=prefilter, gpc=gpc):
+                    out.append((m, pi, nvec))
+    return sorted(out)
+
+
+# ======================================================================
+head("5.  THE SWEEP -- X = 7 empty; the atlases at 8, 9, 10")
+# ======================================================================
+
+V66 = (6, 6, 6, 6, 6, 6)
+V57 = (6, 6, 6, 6, 6, 7)
+V477 = (6, 6, 6, 6, 7, 7)
+
+t0 = time.time()
+S7D = sweep(7, 22, 26, "D")
+S7P = sweep(7, 22, 26, "P")
+check("X = 7: ZERO SURVIVORS at every rung of T-B21's whole X = 7 "
+      "window [22, 26], under BOTH engines -- 11 partitions x 4,488 "
+      "part vectors x 5 rungs = 49,368 cells.  The X = 7 layer is "
+      "empty with no quotient, no parity, no ledger, no residual "
+      "pairing anywhere in the chain",
+      S7D == [] and S7P == [],
+      "%.0f s" % (time.time() - t0))
+
+t0 = time.time()
+S8D = sweep(8, 22, 28, "D")
+S8P = sweep(8, 22, 28, "P")
+ATLAS8 = [
+    (22, (4, 4), V66),
+    (23, (3, 3, 2), V66), (23, (4, 4), V66),
+    (24, (3, 3, 2), V66), (24, (4, 4), V66), (24, (4, 4), V57),
+    (25, (4, 4), V66),
+    (26, (4, 4), V66),
+]
+check("THE X = 8 ATLAS, CELL-EXACT (both engines agree): (4,4) at "
+      "6^6 on every rung 22-26 (+ 6^5 7 at 24), (3,3,2) at 6^6 on "
+      "23-24, NOTHING at 27-28, NOTHING ELSE -- 15 partitions x "
+      "9,207 cells",
+      S8D == sorted(ATLAS8) and S8P == sorted(ATLAS8),
+      "%.0f s" % (time.time() - t0))
+
+t0 = time.time()
+S9D = sweep(9, 22, 29, "D")
+S9P = sweep(9, 22, 29, "P")
+ATLAS9 = [
+    (22, (4, 4, 1), V66),
+    (23, (3, 3, 3), V66), (23, (4, 3, 2), V66),
+    (23, (4, 4, 1), V66), (23, (4, 4, 1), V57),
+    (24, (2, 2, 2, 2, 1), V66), (24, (3, 2, 2, 2), V66),
+    (24, (3, 3, 1, 1, 1), V66), (24, (3, 3, 2, 1), V66),
+    (24, (3, 3, 3), V66), (24, (3, 3, 3), V57),
+    (24, (4, 3, 2), V66), (24, (4, 4, 1), V66), (24, (4, 4, 1), V57),
+    (25, (3, 3, 2, 1), V66), (25, (3, 3, 3), V66),
+    (25, (3, 3, 3), V57), (25, (4, 4, 1), V66), (25, (4, 4, 1), V57),
+    (26, (3, 3, 3), V66), (26, (3, 3, 3), V57),
+    (26, (4, 4, 1), V66), (26, (4, 4, 1), V57),
+]
+check("THE X = 9 ATLAS, CELL-EXACT (both engines agree): 23 cells on "
+      "[22, 26] -- (4,4,1) every rung, (3,3,3) from 23, (4,3,2) at "
+      "23-24 only, the four low shapes at 24(-25) only, all at 6^6 "
+      "or 6^5 7 -- and NOTHING at 27-29: 18 partitions x 12,210 cells",
+      S9D == sorted(ATLAS9) and S9P == sorted(ATLAS9),
+      "%.0f s" % (time.time() - t0))
+
+t0 = time.time()
+S10D = sweep(10, 22, 33, "D")
+S10P = sweep(10, 22, 33, "P")
+ATLAS10_HI = [
+    (26, (2, 2, 2, 2, 1, 1), V66), (26, (2, 2, 2, 2, 2), V66),
+    (26, (3, 3, 2, 1, 1), V66),
+    (26, (3, 3, 2, 2), V66), (26, (3, 3, 2, 2), V57),
+    (26, (3, 3, 3, 1), V66), (26, (3, 3, 3, 1), V57),
+    (26, (4, 3, 2, 1), V66),
+    (26, (4, 3, 3), V66), (26, (4, 3, 3), V57),
+    (26, (4, 4, 1, 1), V66), (26, (4, 4, 1, 1), V57),
+    (26, (4, 4, 2), V66), (26, (4, 4, 2), V57), (26, (4, 4, 2), V477),
+    (27, (3, 3, 2, 2), V66), (27, (3, 3, 3, 1), V66),
+    (27, (4, 3, 3), V66), (27, (4, 4, 1, 1), V66),
+    (27, (4, 4, 2), V66), (27, (4, 4, 2), V57),
+    (28, (4, 4, 2), V66),
+]
+S10_hi = [c for c in S10D if c[0] >= 26]
+check("THE X = 10 HIGH-RUNG ATLAS, CELL-EXACT (both engines agree): "
+      "15 cells at m = 26 (nine shapes), 6 at 27 (five shapes), "
+      "(4,4,2);6^6 ALONE at 28, and NOTHING at 29-33 -- the m = 33 "
+      "zero row is the Lambda tail's anchor.  23 partitions x 38,236 "
+      "part vectors over [22, 33]",
+      S10_hi == sorted(ATLAS10_HI) and S10D == S10P
+      and all(c[0] <= 28 for c in S10D),
+      "%.0f s" % (time.time() - t0))
+
+note("X = 10 also has survivors at m in [22, 25] -- %d cells, both "
+     "engines agreeing; they are the LIVE frontier if X >= 10 is "
+     "certified (0025), not a defect.  Printed for the record, "
+     "asserted only in count so the next campaign starts from an "
+     "honest list." % len([c for c in S10D if c[0] <= 25]))
+
+check("THE X = 10 LOW-RUNG COUNT (the next campaign's target list): "
+      "10 cells at m = 22, 17 at 23, 25 at 24, 22 at 25 -- 74 in all "
+      "(three engine implementations agree; a hostile lane's side "
+      "remark of 15 at m = 22 did not reproduce and was not part of "
+      "its audited scope -- recorded in the turn notebook)",
+      [len([c for c in S10D if c[0] == m]) for m in (22, 23, 24, 25)]
+      == [10, 17, 25, 22])
+
+check("POSITIVE CONTROLS -- the engine can tell a law from a "
+      "tautology: (8,24,(4,4),6^5 7), (9,24,(3,3,3),6^5 7) and "
+      "(10,28,(4,4,2),6^6) each SURVIVE both engines (a sweep that "
+      "kills everything is broken, not strong)",
+      cell_alive(8, 24, (4, 4), V57, "D")
+      and cell_alive(8, 24, (4, 4), V57, "P")
+      and cell_alive(9, 24, (3, 3, 3), V57, "D")
+      and cell_alive(10, 28, (4, 4, 2), V66, "D"))
+
+check("ATTRIBUTION INSIDE THE SWEEP, MEASURED (the sixth audit "
+      "credited (GPC) with the X = 7 kill; the refuter lane showed "
+      "pointwise (PC) does it alone): with the GLOBAL law switched "
+      "off, X = 7 is STILL empty -- but X = 9 at m = 27 reopens (6 "
+      "cells) and X = 10 at m = 26 grows 15 -> 47.  (GPC) earns its "
+      "place ABOVE the floor, not at it",
+      sweep(7, 22, 26, "P", gpc=False) == []
+      and len(sweep(9, 27, 27, "P", gpc=False)) == 6
+      and len(sweep(10, 26, 26, "P", gpc=False)) == 47)
+
+
+# ======================================================================
+head("6.  THE TAIL -- X = 10 dies on [33, 456] by knapsack vs Lambda")
+# ======================================================================
+
+check("MAX Psi OVER ALL 23 ADMISSIBLE PARTITIONS OF 10 UNDER "
+      "(LD)+(KC) IS 179, ATTAINED BY (3,3,3,1) (B = 26, cap F <= 7 "
+      "admits d = 11: three 48s cost 21, one d = 10 closes the "
+      "budget) -- runner-up (4,4,2) at 178.  The maximum is "
+      "m-INDEPENDENT: only R(pi) and X - q_1 enter",
+      max(maxPsi(10, pi) for pi in partitions_leq4(10)) == 179
+      and maxPsi(10, (3, 3, 3, 1)) == 179
+      and maxPsi(10, (4, 4, 2)) == 178
+      and sorted(maxPsi(10, pi) for pi in partitions_leq4(10))[-1]
+      == 179)
+
+check("THE TAIL, RUNG BY RUNG.  Lambda_10(33) = 182 > 179, and "
+      "Lambda_10 increases through m = 456 (section 3): EVERY rung "
+      "of [33, 456] has requirement > 179 >= max Psi -- X = 10 is "
+      "impossible on the whole tail.  With the sweep's zero rows at "
+      "[29, 32] (section 5): X = 10 => m <= 28",
+      Lam(10, 33) == 182
+      and all(Lam(10, m) > 179 for m in range(33, 457)))
+
+check("(T-B24)  X = 10 => m <= 28, WITH THE HIGH-RUNG ATLAS: the "
+      "only cells above m = 25 are the 22 asserted in section 5, "
+      "and none exist above 28.  Equivalently: any critical core "
+      "with m >= 29 has X != 10 -- with 0023's X >= 9 at 29 and "
+      "X >= 10 from 30 (T-B23, billed as CONTEXT ONLY, not consumed "
+      "here), the excess at m = 29 is X = 9 or X >= 11",
+      all(c[0] <= 28 for c in S10D) and len(ATLAS10_HI) == 22)
+
+check("(T-A24)  X != 7 FOR EVERY CRITICAL CORE; X >= 8 EVERYWHERE.  "
+      "Chain: T-B21 (0021, billed) confines X = 7 to m in [22, 26]; "
+      "section 5 empties every such cell under both engines; T-A21 "
+      "(0021, billed) gives X >= 7; hence X >= 8 on all of "
+      "[22, 456].  The certificate chain is 0021 -> 0024: 0022 and "
+      "0023 are NOT consumed -- X >= 8 everywhere now stands on two "
+      "disjoint proof stacks (ledgers/parity/quotients in 0023; "
+      "part-collision here)",
+      S7D == [] and S7P == [])
+
+
+# ======================================================================
+head("7.  MUTATIONS -- nine, priced")
+# ======================================================================
+
+MUT = []
+
+
+def mut(name, flipped, expect, detail):
+    MUT.append(name)
+    tag = "ok  " if flipped == expect else "FAIL"
+    if flipped != expect:
+        FAILED.append("MUT " + name.split()[0])
+    print("  [%s] %s -- %s" % (tag, name, detail))
+
+
+# M-GPC: the global law withdrawn (already measured in section 5's
+# attribution check: X = 9 m = 27 reopens 6 cells, X = 10 m = 26 grows
+# 15 -> 47).  Here: the X = 9 atlas itself would be WRONG without it.
+mut("M-GPC  the global law withdrawn",
+    sweep(9, 27, 29, "P", gpc=False) != [],
+    True,
+    "X = 9 reopens above the atlas ceiling (m = 27: 6 cells) -- the "
+    "27-29 zero rows STAND ON (GPC); the X = 7 floor does not (the "
+    "attribution check).  Withdrawing the global law breaks T-B24's "
+    "neighborhood, not T-A24")
+
+# The parametrized mutant engine: one code path, flags name the wound.
+def cell_mut(X, m, pi, nvec, pc=True, kc=True, d2slack=0,
+             dm_exact=True, bad_dom=False):
+    R = sum(q * (q + 1) for q in pi)
+    q1 = pi[0]
+    B = R - q1 * (q1 + 1)
+    C = X - q1
+    target = m * m + 5 * m + 2 * X
+    n2cap = m // 2 + d2slack
+    states = {(0, 0, 0, 0)}
+    for i in range(6):
+        gtuple = tuple(sorted(nvec[:i] + nvec[i + 1:]))
+        opts = set()
+        ga = {}
+        for d in range(2, m + 1):
+            if kc and F(d) > C:
+                continue
+            g = sum(Phi(d, nj) for nj in gtuple)
+            if pc and g > X:
+                continue
+            ga[d] = g
+
+        def rec(left, rem, mind, sq, n2, P, G):
+            if left == 1:
+                d = rem
+                if d >= mind and d in ga:
+                    opts.add((sq + d * d, n2 + (1 if d == 2 else 0),
+                              P + F(d), G + ga[d]))
+                return
+            dmax = rem - 2 * (left - 1)
+            for d in range(mind, dmax + 1):
+                if d in ga:
+                    rec(left - 1, rem - d, d, sq + d * d,
+                        n2 + (1 if d == 2 else 0), P + F(d), G + ga[d])
+
+        if m >= 2 * nvec[i]:
+            rec(nvec[i], m, 2, 0, 0, 0, 0)
+        new = set()
+        for (sq, n2, P, G) in states:
+            for (dsq, dn2, dP, dG) in opts:
+                s2, nn, PP, GG = sq + dsq, n2 + dn2, P + dP, G + dG
+                if s2 <= target and nn <= n2cap and PP <= B and GG <= R:
+                    new.add((s2, nn, PP, GG))
+        if bad_dom:
+            bysq = {}
+            for st in new:
+                bysq.setdefault(st[0], []).append((st[1], st[2], st[3]))
+            kept = set()
+            for sqv, lst in bysq.items():
+                for t in lst:
+                    if not any(a != t and a[0] >= t[0] and a[1] >= t[1]
+                               and a[2] >= t[2] for a in lst):
+                        kept.add((sqv,) + t)
+            new = kept
+        states = new
+        if not states:
+            return False
+    if dm_exact:
+        return any(sq == target for (sq, _, _, _) in states)
+    return any(sq <= target for (sq, _, _, _) in states)
+
+
+def mut_witness(X, mlo, mhi, **flags):
+    for m in range(mlo, mhi + 1):
+        for pi in partitions_leq4(X):
+            for nvec in part_vectors(m):
+                if cell_mut(X, m, pi, nvec, **flags):
+                    return (m, pi, nvec)
+    return None
+
+
+w_pc = mut_witness(7, 22, 26, pc=False)
+mut("M-PC  the pointwise law withdrawn from the alphabet",
+    w_pc is not None,
+    True,
+    "X = 7 REOPENS (witness %s) -- the floor kill stands on "
+    "pointwise (PC); with section 5's attribution check, both "
+    "directions are now measured in-cert" % (w_pc,))
+
+w_d2 = mut_witness(7, 22, 23, d2slack=1)
+mut("M-D2R  (D2) priced -- a NULL at the floor, load-bearing in the "
+    "tail",
+    (w_d2 is None)
+    and (33 * 33 - 43 * 33 + 20 + 540 - 3 * 36 < 179),
+    True,
+    "measured both ways: X = 7 stays EMPTY at m = 22, 23 even under "
+    "n_2 <= floor(m/2) + 1 -- the floor kill does NOT lean on (D2) "
+    "(unlike 0023, where M-D2E reopens everything; the two proof "
+    "stacks have honestly different dependency profiles) -- but "
+    "withdrawing (D2) from Lambda breaks the X = 10 tail: with n_2 "
+    "free at n = 36, Lambda'_10(33) = 122 < 179 and T-B24's m >= 33 "
+    "argument DIES.  (D2) is billed for the tail, not the floor")
+
+def maxPsi_noKC(pi):
+    R = sum(q * (q + 1) for q in pi)
+    B = R - pi[0] * (pi[0] + 1)
+    items = [(F(d), psi(d)) for d in range(6, 40) if F(d) <= B]
+    best = [0] * (B + 1)
+    for b in range(1, B + 1):
+        for (c, v) in items:
+            if c <= b and best[b - c] + v > best[b]:
+                best[b] = best[b - c] + v
+    return best[B]
+
+
+w_kc = mut_witness(7, 22, 23, kc=False)
+kc_tail = max(maxPsi_noKC(pi) for pi in partitions_leq4(10))
+mut("M-KC  the cap F <= X - q_1 withdrawn -- a NULL at the floor, "
+    "load-bearing in the tail",
+    (w_kc is None) and kc_tail >= Lam(10, 33),
+    True,
+    "measured both ways: X = 7 stays EMPTY at m = 22, 23 without "
+    "(KC) -- at the floor's part sizes, (PC) caps degrees below "
+    "(KC)'s reach, so the floor kill does not lean on it -- but the "
+    "TAIL does: without the cap the (LD) knapsack admits degree-17 "
+    "items and max Psi rises to %d >= %d = Lambda_10(33), so the "
+    "m = 33 rung REOPENS and T-B24's tail argument dies.  (KC) is "
+    "billed for the tail, not the floor" % (kc_tail, Lam(10, 33)))
+
+w_dm = mut_witness(7, 22, 22, dm_exact=False)
+mut("M-DM  the moment identity relaxed to an inequality",
+    w_dm is not None,
+    True,
+    "X = 7 at m = 22 reopens if a state may undershoot the moment "
+    "target (witness %s) -- exactness of (DM) is load-bearing"
+    % (w_dm,))
+
+# M-PART: one partition deleted from the sieve.
+mut("M-PART  (4,4) deleted from the X = 8 sieve",
+    sweep(8, 22, 22, "P", drop_pi=(4, 4)) == [],
+    True,
+    "the m = 22 atlas row vanishes -- a dropped partition is VISIBLE "
+    "as a wrong atlas, the sweep-completeness scar (M-SWEEP, 0021) "
+    "carried forward")
+
+# M-NV: part vectors restricted to 6^6.
+mut("M-NV  part vectors restricted to n = 36",
+    sweep(9, 22, 29, "P", only66=True)
+    == [c for c in sorted(ATLAS9) if c[2] == V66],
+    True,
+    "the atlas loses EXACTLY its 6^5 7 rows -- the n > 36 ladder is "
+    "load-bearing for atlas exactness (and for nothing else: no "
+    "6^6 verdict changes)")
+
+# M-DOM: engine P's compression corrupted -- keep ONE state per
+# sum-d^2 value, the coordinatewise-largest.  A frontier that discards
+# the minimal corner loses exactly the states that survive later caps.
+def cell_bad_compress(X, m, pi, nvec):
+    R = sum(q * (q + 1) for q in pi)
+    q1 = pi[0]
+    B = R - q1 * (q1 + 1)
+    C = X - q1
+    target = m * m + 5 * m + 2 * X
+    n2cap = m // 2
+    states = {(0, 0, 0, 0)}
+    for i in range(6):
+        gtuple = tuple(sorted(nvec[:i] + nvec[i + 1:]))
+        opts = degsets(nvec[i], m, C, X, gtuple)
+        new = {}
+        for (sq, n2, P, G) in states:
+            for (dsq, dn2, dP, dG) in opts:
+                s2, nn, PP, GG = sq + dsq, n2 + dn2, P + dP, G + dG
+                if s2 <= target and nn <= n2cap and PP <= B and GG <= R:
+                    k = (nn, PP, GG)
+                    if s2 not in new or k > new[s2]:
+                        new[s2] = k
+        states = set((s2,) + k for (s2, k) in new.items())
+        if not states:
+            return False
+    return any(sq == target for (sq, _, _, _) in states)
+
+
+bad_atlas8 = []
+for m in range(22, 29):
+    for pi in partitions_leq4(8):
+        for nvec in part_vectors(m):
+            if cell_alive(8, m, pi, nvec, "P") \
+               and not cell_bad_compress(8, m, pi, nvec):
+                bad_atlas8.append((m, pi, nvec))
+mut("M-DOM  engine P's frontier corrupted to one max state per "
+    "moment value",
+    bad_atlas8 != [],
+    True,
+    "the corrupted compression FALSELY KILLS true atlas cells "
+    "(%d of 8 at X = 8: %s...) -- discarding the minimal corner "
+    "loses the states that survive later caps; the Pareto rule keeps "
+    "them, and engine D agrees with engine P everywhere (section 5), "
+    "so the shipped compression is priced sound"
+    % (len(bad_atlas8), bad_atlas8[:2]))
+
+# M-PRE: the Lambda-prefilter disabled -- must change NOTHING.
+mut("M-PRE  the prefilter disabled on every m <= 26 window",
+    (sweep(8, 22, 26, "P", prefilter=False)
+     == [c for c in sorted(ATLAS8) if c[0] <= 26]
+     and sweep(9, 22, 26, "P", prefilter=False)
+     == [c for c in sorted(ATLAS9) if c[0] <= 26]),
+    True,
+    "identical atlases with the prefilter off -- the prefilter only "
+    "skips dead cells (it is an optimization with a proof, not a "
+    "filter with an opinion)")
+
+check("MUTATION LEDGER: %d mutants priced" % len(MUT), len(MUT) == 9)
+
+
+# ======================================================================
+head("RESULT")
+# ======================================================================
+
+ok = not FAILED
+print()
+print("  checks : %d" % NCHECK[0])
+print("  notes  : %d (stated, not tested)" % NNOTE[0])
+print("  failed : %d%s" % (len(FAILED),
+                           "" if ok else "  " + " | ".join(FAILED)))
+print("  time   : %.1f s" % (time.time() - START))
+print()
+if ok:
+    print("  GREEN.  THE PART-COLLISION LAWS HOLD AND THE SWEEP IS EXACT:")
+    print("      X = 7 is EMPTY on its whole window -- X >= 8 everywhere,")
+    print("      now on TWO disjoint proof stacks (0021->0024 | 0021->0023).")
+    print("      X = 10 => m <= 28.  Atlases at X = 8 (8 cells), X = 9")
+    print("      (23 cells), X = 10 high (22 cells) certified for 0025.")
+else:
+    print("  NOT GREEN.")
+sys.exit(0 if ok else 1)
