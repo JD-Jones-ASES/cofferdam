@@ -82,12 +82,13 @@ literature constant, no unreproduced lemma, no solver in the trust chain.
    5172 at m = 456, and with 0020's (H1) it reads **X ≥ 5173** (0019–0023).
 
 **The frontier is X = 8 on m ∈ [22, 28]** — 0023 emptied the whole X = 7
-layer: the zero-margin (7,24) tie that counting could not breach fell to a
-**high-incidence pigeonhole** (complete on its own) and again to an
-**apex-then-parity chain** (two proofs; an earlier "three independent ways"
-claim is retracted in 0023's dated erratum), and the remaining shapes to
-quotient walls and an **incidence-ledger engine** that turns each census
-row into a finite feasibility check. Every layer X ≤ 7 is empty at every m.
+layer: the zero-margin (7,24) tie that counting could not breach fell
+**twice independently** — to a **high-incidence pigeonhole** and to an
+**apex-free parity gate** (an earlier "three independent ways" claim is
+retracted in 0023's dated erratum, itself corrected once — the history is
+in NOTES), and the remaining shapes to quotient walls and an
+**incidence-ledger engine** that turns each census row into a finite
+feasibility check. Every layer X ≤ 7 is empty at every m.
 
 *Underneath, each still standing on its own*: the floor m ≥ 22 (0001–0012)
 and the floor-local excess chain X ≥ 2/3/4 at m = 22 (0015–0018).

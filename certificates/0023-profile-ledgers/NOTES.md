@@ -110,9 +110,10 @@ partitions cutting to 5).
 
 - The (7,24) triangle dies at **zero numeric slack through three
   computations** (optimizer tie 62 = Λ; census unique; parity) — which
-  form **two proofs, not three**: the pigeonhole (CK_PIG) complete on its
-  own, and apex-then-parity as one chain (see erratum below). M-P2 names
-  the parity gate's zero margin; CK_PIG stands independently behind it.
+  form **two complete independent proofs**: the pigeonhole (CK_PIG) and
+  the apex-free parity gate (CK_P2); CK_APEX is a posture note (see
+  erratum below — twice-corrected). M-P2 names the parity gate's zero
+  margin; CK_PIG stands independently behind it.
 - m = 22 ledgers close by **one unit** of profile sum (10 vs 11 minimum).
 - M-RG (residual pairing 5 → 4): triangle maxima rise 54/59/62 →
   59/62/67 — **all three rungs would reopen**; (RG) is load-bearing
@@ -132,12 +133,24 @@ desk-verified against the source before repair; all four repaired
 
 1. **Header said "Twelve, priced"; the ledger asserts `len(MUT) == 9`.**
    Nine is correct (counted). Header fixed.
-2. **"THE (7,24) TRIANGLE IS EMPTY, three independent ways" overclaimed.**
-   CK_P2's plain-edge count (10 − 5 = 5) consumes CK_APEX's conclusion
-   that both q = 1 edges avoid the triangle, so apex + parity are ONE
-   chain; the deg-10 and deg-6 contradictions are the same invariant
-   twice. Honest form: **one complete pigeonhole proof (CK_PIG) + one
-   apex-then-parity proof.** Prose fixed in-cert and here (Margins).
+2. **"THE (7,24) TRIANGLE IS EMPTY, three independent ways" overclaimed
+   — and the first repair over-retracted. Twice-corrected, both dated.**
+   The audit's charge was directionally right ("three independent ways"
+   is false — the deg-10/deg-6 parity contradictions are one invariant
+   twice, and apex is not a proof of the cell) but its *mechanism* was
+   wrong: it read the parity gate as consuming CK_APEX, and the desk's
+   first repair (same day) bought that and demoted parity to a chain
+   link. The refuter lane then showed the parity gate is **apex-free**:
+   the excess-carrying edges lie in {3 triangle edges} ∪ {both q = 1
+   edges}, ≤ 5 edges in either posture, so w needs ≥ 5 plain edges
+   regardless; "meets T only in w" needs no posture (a second T-cell
+   spawns excessive pairs against a spent partition); the census pins
+   are upstream of the split. Desk re-derived and confirmed. Honest
+   form: **two complete independent proofs (CK_PIG; CK_P2), CK_APEX a
+   posture note.** A verifier's lesson kept per D-017: *deflating a
+   correct claim on a peer's faulty reasoning is the mirror image of
+   inflating one — verify the deflation like the claim* (the house
+   already knew this; it happened anyway, caught in-session).
 3. **M-P2's note "no alternative gate stands behind it" was false** —
    CK_PIG kills the cell without parity. Mutation description fixed;
    the mutation's check itself was and is correct.
@@ -149,6 +162,9 @@ desk-verified against the source before repair; all four repaired
    but the construct could have concealed a future false green.
 5. *(Desk find during repair:)* this file said "37 checks"; the cert
    printed 39 at ship. Fixed above.
+6. *(Refuter-lane find, missed by the audit:)* CK_P2's prose said the
+   degree-6 cell's plain-edge residual is "13"; it is 29 − 6 − 2 = 21.
+   The code checked 21's parity correctly all along; prose fixed.
 
 Attribution recorded, not consumed (D-036): no proof step cites the
 audit; the repairs stand on desk verification alone.

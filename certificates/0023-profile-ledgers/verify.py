@@ -139,10 +139,10 @@ MANDATORY HONESTY NOTES
      itself checked (M-PROF, M-OPT).
  (4) MARGINS.  The (7,24) triangle dies with zero numeric slack at
      three separate computations (optimizer tie, apex sum, parity) --
-     but these are TWO proofs, not three: the pigeonhole (CK_PIG) is
-     complete on its own, and apex + parity form ONE chain (the parity
-     count consumes the apex posture; erratum 2026-08-03, sixth
-     audit's find, desk-verified).  The
+     TWO COMPLETE INDEPENDENT PROOFS (pigeonhole CK_PIG; parity
+     CK_P2, apex-free), with CK_APEX a posture note and the deg-6
+     parity the same invariant twice (erratum 2026-08-03, twice-
+     corrected -- see CK_P2 and NOTES).  The
      ledgers at m = 23 close by 2 units of n_3 or 2 of the 2-count;
      m = 22 closes by 1 unit of profile-sum.  M-D2E reopens the m = 22
      instant kill and the parity sieve simultaneously -- (D2) is the
@@ -869,24 +869,34 @@ CK_PIG = NCHECK[0]
 
 check("(P2) KILLS THE TIE AGAIN -- the desk's original parity gate, "
       "kept as an independent belt.  The degree-10 cell w is in S_4 "
-      "(forced), so w lies in the 3 triangle edges and both q = 1 "
-      "edges: 10 - 5 = 5 PLAIN edges (x = 0: all four excessive pairs "
-      "are accounted elsewhere).  A plain edge through w sums to 29 "
+      "(forced) and in T, so every excess-carrying edge through w is "
+      "a triangle edge or a q = 1 edge; the rest are PLAIN (x = 0: "
+      "all four excessive pairs are accounted elsewhere).  A plain "
+      "edge through w sums to 29 "
       "(S5): w gives 10, the forced degree-2 cell gives 2, and the "
       "other FOUR cells have degrees in {3, 5} (the edge meets T only "
       "in w; n4 = 0; a second high is excluded by the optimizer's "
       "uniqueness; a second 2 violates (D2)): four odd numbers sum "
-      "even, 17 is odd.  NO SUCH EDGE EXISTS -- and w needs five.  "
-      "The degree-6 cell v (3 plain edges, 13 odd) repeats the SAME "
-      "parity invariant -- a second manifestation, not a new proof.  "
-      "THE DEGREE-9 CELL YIELDS NOTHING (9 + 2 + 3 + 5 + 5 + 5 "
-      "= 29 is realizable) -- said aloud so nobody 'verifies' parity "
-      "there and reads the failure as a flaw.  THE (7,24) TRIANGLE IS "
-      "EMPTY -- by the complete pigeonhole (CK_PIG), and again by the "
-      "apex-then-parity chain (this gate consumes CK_APEX: the plain "
-      "count 10 - 5 = 5 needs both q = 1 edges OFF the triangle).  "
-      "Two proofs, one cell (erratum 2026-08-03: 'three independent "
-      "ways' overclaimed; sixth audit's find, desk-verified)",
+      "even, 17 is odd.  NO SUCH EDGE EXISTS -- and w needs FIVE OR "
+      "MORE in EITHER apex posture: the excess-carrying edges lie in "
+      "{3 triangle edges} + {both q = 1 edges through w}, at most 5 "
+      "edges (4 if the pair rides the triangle), so d(w) = 10 leaves "
+      ">= 5 plain edges.  This gate is APEX-FREE: 'meets T only in w' "
+      "needs no posture (a second T-cell spawns an excessive pair "
+      "with every triangle edge -- the partition is already spent), "
+      "and the census pins are upstream of the split.  The degree-6 "
+      "cell v (3 plain edges, residual 29 - 6 - 2 = 21, odd) repeats "
+      "the SAME invariant -- a second manifestation, not a new "
+      "proof.  THE DEGREE-9 CELL YIELDS NOTHING (9 + 2 + 3 + 5 + 5 "
+      "+ 5 = 29 is realizable) -- said aloud so nobody 'verifies' "
+      "parity there and reads the failure as a flaw.  THE (7,24) "
+      "TRIANGLE IS EMPTY -- TWO COMPLETE INDEPENDENT PROOFS: the "
+      "pigeonhole (CK_PIG) and this parity gate; CK_APEX is a "
+      "posture note, load-bearing for neither (erratum 2026-08-03, "
+      "twice-corrected: 'three independent ways' overclaimed, then "
+      "the first repair OVER-retracted parity to a chain -- the "
+      "refuter lane restored its independence; both versions dated "
+      "in NOTES)",
       29 - 10 - 2 == 17
       and sorted(set(sum(c) for c in
                      itertools.combinations_with_replacement(
@@ -1201,9 +1211,9 @@ mut("M-P2  the parity sieve withdrawn at (7,24)",
     profiles(4, 17, allowed=(3, 5), max2=0) == [],
     True,
     "four {3,5} cells summing 17: EMPTY -- the kill IS the parity of "
-    "this very profile query; withdrawing it severs the apex-then-"
-    "parity chain, but the INDEPENDENT pigeonhole gate (CK_PIG) still "
-    "kills the cell, so the theorem does NOT reopen (erratum "
+    "this very profile query; withdrawing it removes one of the "
+    "cell's two complete proofs, and the INDEPENDENT pigeonhole gate "
+    "(CK_PIG) still kills it, so the theorem does NOT reopen (erratum "
     "2026-08-03: this note once claimed no alternative gate stood "
     "behind parity -- false, CK_PIG stands; sixth audit's find).  "
     "Zero margin on this gate, named")
